@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+* { box-sizing: border-box; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: #75070D; }
+input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
+</style>
+</helmet>
+<div style="min-height: 100vh; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); align-items: stretch">
+
+  <!-- Левая колонка: смысл -->
+  <div style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding: clamp(32px, 5vw, 72px)">
+    <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 55%; transform: translate(-50%, -50%); width: min(90%, 620px); height: auto; opacity: 0.13; filter: brightness(0) invert(1)">
+    <a href="Модный Нижний.dc.html" style="position: relative; z-index: 1; display: flex; align-items: center; gap: 14px; color: #F3E7D8">
+      <img src="uploads/logo_long.svg.svg" alt="Модный Нижний" style="height: 30px; width: auto; display: block; filter: brightness(0) invert(1)">
+    </a>
+    <div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 24px">
+      <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7">Кабинет бренда</p>
+      <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(30px, 3.6vw, 50px); line-height: 1.1; max-width: 20ch; text-wrap: balance">Добавляйте товары в каталог платформы</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; opacity: 0.9; max-width: 46ch">Личный кабинет нужен, чтобы вести карточку бренда, загружать товары и коллекции, подавать заявки на маркеты, Форум и размещение в пространстве.</p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; border-top: 1px solid rgba(243,231,216,0.3); padding-top: 24px; font-size: 15px; line-height: 1.5; opacity: 0.92">
+        <li style="display: flex; gap: 14px"><span style="font-family: 'Yeseva One', serif; opacity: 0.7">I</span><span>Карточка бренда: описание, фото, контакты, шоурум</span></li>
+        <li style="display: flex; gap: 14px"><span style="font-family: 'Yeseva One', serif; opacity: 0.7">II</span><span>Товары и коллекции с ценами и наличием</span></li>
+        <li style="display: flex; gap: 14px"><span style="font-family: 'Yeseva One', serif; opacity: 0.7">III</span><span>Заявки на события платформы и публикации в медиа</span></li>
+      </ul>
+    </div>
+    <p style="position: relative; z-index: 1; margin: 0; font-size: 13px; letter-spacing: 0.04em; opacity: 0.7">Нижний Новгород · 2026</p>
+  </div>
+
+  <!-- Правая колонка: формы -->
+  <div style="display: flex; align-items: center; justify-content: center; padding: clamp(32px, 5vw, 72px) clamp(20px, 4vw, 64px)">
+    <div style="width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 28px">
+
+      <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(117,7,13,0.35)">
+          <button type="button" onClick="{{ goLogin }}" style="{{ tabLoginStyle }}">Вход</button>
+          <button type="button" onClick="{{ goSignup }}" style="{{ tabSignupStyle }}">Регистрация бренда</button>
+        </div>
+      </sc-if>
+
+      <!-- Вход -->
+      <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitLogin }}" style="display: flex; flex-direction: column; gap: 22px">
+          <div>
+            <h2 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; color: #75070D">Вход в кабинет</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.8">Для брендов, уже добавленных в каталог платформы.</p>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Email</span>
+            <input type="email" name="email" required="" placeholder="brand@example.ru" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Пароль <a href="#reset" onClick="{{ goReset }}" style="font-size: 12px; letter-spacing: 0.04em; text-transform: none; border-bottom: 1px solid rgba(117,7,13,0.4)">Забыли пароль?</a></span>
+            <input type="password" name="password" required="" placeholder="••••••••" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <label style="display: flex; align-items: center; gap: 12px; font-size: 15px">
+            <input type="checkbox" name="remember" style="width: 18px; height: 18px; accent-color: #75070D">
+            <span>Запомнить меня на этом устройстве</span>
+          </label>
+          <sc-if value="{{ loginError }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 14px 16px; background: rgba(117,7,13,0.08); border-left: 2px solid #75070D; font-size: 14px; line-height: 1.5; color: #75070D">{{ loginError }}</p>
+          </sc-if>
+          <button type="submit" style="{{ primaryBtnStyle }}">Войти в кабинет <span style="font-size: 15px">→</span></button>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.85">Бренда ещё нет на платформе? <a href="#signup" onClick="{{ goSignup }}" style="border-bottom: 1px solid rgba(117,7,13,0.5)">Зарегистрировать бренд</a></p>
+        </form>
+      </sc-if>
+
+      <!-- Регистрация -->
+      <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ false }}">
+        <form onSubmit="{{ submitSignup }}" style="display: flex; flex-direction: column; gap: 22px">
+          <div>
+            <h2 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; color: #75070D">Регистрация бренда</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.8">Заявку проверяет редакция платформы — обычно в течение двух рабочих дней. После подтверждения открывается загрузка товаров.</p>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Название бренда</span>
+            <input type="text" name="brand" required="" placeholder="KICHKA" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px">
+            <label style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Категория</span>
+              <select name="category" required="" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; appearance: none; transition: border-color 0.2s">
+                <option value="">Выберите</option>
+                <option>Одежда</option>
+                <option>Украшения</option>
+                <option>Обувь и аксессуары</option>
+                <option>Керамика и предметы</option>
+                <option>Другое</option>
+              </select>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Город</span>
+              <input type="text" name="city" required="" placeholder="Нижний Новгород" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+            </label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Контактное лицо</span>
+            <input type="text" name="person" required="" placeholder="Имя и роль в бренде" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px">
+            <label style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Email</span>
+              <input type="email" name="email" required="" placeholder="brand@example.ru" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Соцсеть или сайт</span>
+              <input type="text" name="link" placeholder="@brand" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+            </label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Пароль</span>
+            <input type="password" name="password" required="" minlength="8" placeholder="Минимум 8 символов" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <label style="display: flex; gap: 12px; font-size: 14px; line-height: 1.55">
+            <input type="checkbox" name="terms" required="" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #75070D; flex: 0 0 auto">
+            <span>Согласен с правилами платформы и обработкой персональных данных</span>
+          </label>
+          <button type="submit" style="{{ primaryBtnStyle }}">Отправить заявку <span style="font-size: 15px">→</span></button>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.85">Уже есть кабинет? <a href="#login" onClick="{{ goLogin }}" style="border-bottom: 1px solid rgba(117,7,13,0.5)">Войти</a></p>
+        </form>
+      </sc-if>
+
+      <!-- Восстановление пароля -->
+      <sc-if value="{{ isReset }}" hint-placeholder-val="{{ false }}">
+        <form onSubmit="{{ submitReset }}" style="display: flex; flex-direction: column; gap: 22px">
+          <div>
+            <h2 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; color: #75070D">Восстановление пароля</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.8">Пришлём ссылку для смены пароля на email, указанный при регистрации бренда.</p>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Email</span>
+            <input type="email" name="email" required="" placeholder="brand@example.ru" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <button type="submit" style="{{ primaryBtnStyle }}">Отправить ссылку <span style="font-size: 15px">→</span></button>
+          <p style="margin: 0; font-size: 15px"><a href="#login" onClick="{{ goLogin }}" style="border-bottom: 1px solid rgba(117,7,13,0.5)">← Вернуться ко входу</a></p>
+        </form>
+      </sc-if>
+
+      <!-- Подтверждение -->
+      <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 22px; border: 1px solid rgba(117,7,13,0.35); background: #F7EFE3; padding: clamp(24px, 4vw, 40px)">
+          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">{{ doneKicker }}</p>
+          <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(24px, 2.8vw, 34px); line-height: 1.15; color: #75070D">{{ doneTitle }}</h2>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65">{{ doneText }}</p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px">
+            <a href="Кабинет бренда.dc.html" style="display: inline-flex; align-items: center; gap: 10px; background: #75070D; color: #F7EFE3; padding: 15px 26px; font-size: 15px; border: 1px solid #75070D; transition: background 0.2s, color 0.2s" style-hover="background: #F7EFE3; color: #75070D">Открыть кабинет</a>
+            <button type="button" onClick="{{ goLogin }}" style="background: transparent; border: 1px solid #75070D; color: #75070D; padding: 15px 26px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F7EFE3">Ко входу</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <p style="margin: 0; padding-top: 4px; border-top: 1px solid rgba(117,7,13,0.2); font-size: 14px; line-height: 1.6; opacity: 0.75; padding-top: 20px">Вопросы по кабинету: <a href="mailto:hello@modnyinn.ru" style="border-bottom: 1px solid rgba(117,7,13,0.4)">hello@modnyinn.ru</a></p>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { screen: 'login', loginError: '' };
+
+  componentDidMount() {
+    const h = (window.location.hash || '').replace('#', '');
+    if (['login', 'signup', 'reset'].includes(h)) this.setState({ screen: h });
+  }
+
+  go(screen) {
+    return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ screen, loginError: '' }); };
+  }
+
+  renderVals() {
+    const s = this.state.screen;
+    const tab = (on) => `padding: 15px 18px; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; border: none; transition: background 0.2s, color 0.2s; background: ${on ? '#75070D' : 'transparent'}; color: ${on ? '#F3E7D8' : '#75070D'}`;
+    const done = {
+      signup: { doneKicker: 'Заявка отправлена', doneTitle: 'Мы получили заявку бренда', doneText: 'Редакция проверит информацию и пришлёт письмо с доступом в кабинет — обычно в течение двух рабочих дней. После подтверждения можно загружать товары в каталог.' },
+      reset: { doneKicker: 'Письмо отправлено', doneTitle: 'Ссылка для смены пароля у вас на почте', doneText: 'Если письма нет в течение десяти минут, проверьте папку «Спам» или напишите нам — восстановим доступ вручную.' },
+      signedin: { doneKicker: 'Кабинет бренда', doneTitle: 'Вы вошли в кабинет', doneText: 'Здесь будет рабочий стол бренда: карточка, товары и заявки на события платформы.' },
+    }[s] || {};
+    return {
+      isLogin: s === 'login',
+      isSignup: s === 'signup',
+      isReset: s === 'reset',
+      isDone: s === 'signup-done' || s === 'reset-done' || s === 'signedin',
+      showTabs: s === 'login' || s === 'signup',
+      tabLoginStyle: tab(s === 'login'),
+      tabSignupStyle: tab(s === 'signup'),
+      primaryBtnStyle: "display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #75070D; color: #F7EFE3; border: 1px solid #75070D; padding: 17px 28px; font-size: 15px; letter-spacing: 0.04em; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s",
+      loginError: this.state.loginError,
+      goLogin: this.go('login'),
+      goSignup: this.go('signup'),
+      goReset: this.go('reset'),
+      submitLogin: (e) => {
+        e.preventDefault();
+        const f = new FormData(e.target);
+        const email = String(f.get('email') || '');
+        const pass = String(f.get('password') || '');
+        if (pass.length < 8) { this.setState({ loginError: 'Пароль должен содержать не менее 8 символов.' }); return; }
+        if (!email.includes('@')) { this.setState({ loginError: 'Проверьте адрес электронной почты.' }); return; }
+        window.location.href = 'Кабинет бренда.dc.html';
+      },
+      submitSignup: (e) => { e.preventDefault(); this.setState({ screen: 'signup-done' }); },
+      submitReset: (e) => { e.preventDefault(); this.setState({ screen: 'reset-done' }); },
+      ...done,
+      doneKicker: done.doneKicker || '',
+      doneTitle: done.doneTitle || '',
+      doneText: done.doneText || '',
+    };
+  }
+}
+
+</script>
+</body>
+</html>
