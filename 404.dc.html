@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip; display: flex; flex-direction: column; min-height: 100vh">
+
+<dc-import name="Шапка" active="" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<section data-screen-label="404" style="flex: 1; background: #75070D; color: #F3E7D8; position: relative; overflow: hidden; display: flex; align-items: center">
+  <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92vw, 1100px); height: auto; opacity: 0.13; filter: brightness(0.6); pointer-events: none">
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 140px) 32px; display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+    <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">Ошибка 404</span>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(64px, 11vw, 160px); line-height: 0.95">404</h1>
+    <p style="margin: 0; max-width: 46ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; opacity: 0.92">Такой страницы нет — возможно, она переехала или адрес указан неверно. Загляните в каталог брендов или вернитесь на главную.</p>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 8px">
+      <a href="Модный Нижний.dc.html" style="display: inline-flex; align-items: center; gap: 12px; background: #F3E7D8; color: #5B0207; padding: 18px 34px; font-size: 16px; letter-spacing: 0.06em; transition: background 0.2s" style-hover="background: #E4D2BB">На главную <span aria-hidden="true">→</span></a>
+      <a href="Каталог.dc.html" style="color: #F3E7D8; font-size: 15px; border-bottom: 1px solid rgba(243,231,216,0.5); padding-bottom: 3px" style-hover="color: #E4D2BB">Смотреть каталог брендов</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+
+</x-dc>
+</body>
+</html>

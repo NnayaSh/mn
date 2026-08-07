@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+@font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip; display: flex; flex-direction: column; min-height: 100vh">
+
+<dc-import name="Шапка" active="" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<section data-screen-label="Заголовок" style="border-bottom: 1px solid rgba(117,7,13,0.25)">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(36px, 6vw, 80px) clamp(18px, 4vw, 32px); display: flex; flex-direction: column; gap: 16px">
+    <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Навигация</p>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(30px, 4.4vw, 60px); line-height: 1.08">Карта сайта</h1>
+    <p style="margin: 0; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.65; max-width: 56ch; opacity: 0.85">Все страницы платформы: слева то, что открыто гостям города, справа — разделы для брендов, институций и партнёров.</p>
+  </div>
+</section>
+
+<section data-screen-label="Разделы" style="flex: 1 1 auto">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(32px, 5vw, 72px) clamp(18px, 4vw, 32px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+      <div style="{{ g.style }}">
+        <div style="display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid rgba(117,7,13,0.25); padding-bottom: 12px">
+          <span style="font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">{{ g.kind }}</span>
+          <span style="font-family: 'Yeseva One', serif; font-size: 24px; color: #2B1214">{{ g.title }}</span>
+          <span style="font-size: 14px; line-height: 1.55; opacity: 0.7">{{ g.who }}</span>
+        </div>
+        <sc-for list="{{ g.pages }}" as="p" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid rgba(117,7,13,0.15); padding-bottom: 14px">
+            <a href="{{ p.href }}" style="font-size: 17px; align-self: flex-start; border-bottom: 1px solid rgba(117,7,13,0.35); padding-bottom: 1px">{{ p.name }}</a>
+            <sc-if value="{{ p.hasParts }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-wrap: wrap; gap: 8px 14px">
+                <sc-for list="{{ p.parts }}" as="s" hint-placeholder-count="3">
+                  <a href="{{ s.href }}" style="font-size: 14px; opacity: 0.75">{{ s.label }}</a>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+const GROUPS = [
+  { kind: 'Общее', title: 'Для всех', who: 'Вход на платформу и служебные страницы.', pages: [
+    { name: 'Главная', href: 'Модный Нижний.dc.html', parts: [
+      { label: 'Каталог', href: 'Модный Нижний.dc.html#catalog' },
+      { label: 'Медиа', href: 'Модный Нижний.dc.html#media' },
+      { label: 'Афиша', href: 'Модный Нижний.dc.html#events' },
+      { label: 'Подписка', href: 'Модный Нижний.dc.html#subscribe' } ] },
+    { name: 'О проекте', href: 'О проекте.dc.html', parts: [
+      { label: 'Миссия', href: 'О проекте.dc.html#mission' },
+      { label: 'История', href: 'О проекте.dc.html#history' },
+      { label: 'Пространство', href: 'О проекте.dc.html#space' },
+      { label: 'Платформа', href: 'О проекте.dc.html#platform' } ] },
+    { name: 'Контакты', href: 'Контакты.dc.html', parts: [] },
+    { name: 'Карта сайта', href: 'Карта сайта.dc.html', parts: [] },
+    { name: 'Страница 404', href: '404.dc.html', parts: [] },
+  ] },
+  { kind: 'B2C', title: 'Жителям и гостям', who: 'Локальные марки, материалы и события города.', pages: [
+    { name: 'Каталог брендов', href: 'Каталог.dc.html', parts: [
+      { label: 'Все бренды', href: 'Каталог.dc.html#brands' },
+      { label: 'Карта брендов', href: 'Каталог.dc.html#map' } ] },
+    { name: 'Страница бренда — KICHKA', href: 'KICHKA.dc.html', parts: [
+      { label: 'Лукбук', href: 'KICHKA.dc.html#lookbook' },
+      { label: 'Как купить', href: 'KICHKA.dc.html#buy' } ] },
+    { name: 'Медиа', href: 'Медиа.dc.html', parts: [
+      { label: 'Лента', href: 'Медиа.dc.html#feed' },
+      { label: 'Видео', href: 'Медиа.dc.html#video' },
+      { label: 'Фотопроекты', href: 'Медиа.dc.html#photo' },
+      { label: 'Теги', href: 'Медиа.dc.html#tags' } ] },
+    { name: 'Афиша', href: 'Афиша.dc.html', parts: [
+      { label: 'Календарь', href: 'Афиша.dc.html#calendar' },
+      { label: 'Подписка на анонсы', href: 'Афиша.dc.html#subscribe' } ] },
+    { name: 'Форум локальной моды', href: 'Форум.dc.html', parts: [
+      { label: 'О форуме', href: 'Форум.dc.html#about' },
+      { label: 'Программа', href: 'Форум.dc.html#program' },
+      { label: 'Спикеры', href: 'Форум.dc.html#speakers' },
+      { label: 'Архив', href: 'Форум.dc.html#archive' } ] },
+  ] },
+  { kind: 'B2B', title: 'Брендам и партнёрам', who: 'Марки, производства, институции и рекламодатели.', pages: [
+    { name: 'Регистрация на форум', href: 'Регистрация на форум.dc.html', parts: [
+      { label: 'Потоки участия', href: 'Регистрация на форум.dc.html#tracks' },
+      { label: 'Анкета', href: 'Регистрация на форум.dc.html#form' } ] },
+    { name: 'Добавить бренд', href: 'Каталог.dc.html#add', parts: [] },
+    { name: 'Стать партнёром', href: 'О проекте.dc.html#partners', parts: [
+      { label: 'Потенциал проекта', href: 'О проекте.dc.html#potential' },
+      { label: 'Медиакит и заявка', href: 'О проекте.dc.html#join' } ] },
+    { name: 'Добавить событие', href: 'Афиша.dc.html#submit-event', parts: [] },
+    { name: 'Вход и регистрация', href: 'Авторизация.dc.html', parts: [] },
+    { name: 'Кабинет бренда', href: 'Кабинет бренда.dc.html', parts: [] },
+    { name: 'Спасибо за заявку', href: 'Спасибо.dc.html', parts: [] },
+  ] },
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      groups: GROUPS.map(g => ({
+        ...g,
+        style: 'display: flex; flex-direction: column; gap: 18px' + (g.kind === 'B2B' ? '; background: #EDE0D0; padding: 24px; margin: -24px' : ''),
+        pages: g.pages.map(p => ({ ...p, hasParts: p.parts.length > 0 })),
+      })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="events" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<!-- Заголовок -->
+<section data-screen-label="Заголовок" style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden">
+  <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92vw, 1100px); height: auto; opacity: 0.13; filter: brightness(0.6); pointer-events: none">
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px">
+    <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">Афиша</p>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(40px, 7vw, 100px); line-height: 1.02; text-wrap: balance; max-width: 20ch">Календарь локальной моды</h1>
+    <p style="margin: 0; max-width: 56ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; opacity: 0.95">Показы, маркеты, лекции и воркшопы — всё, что происходит в локальной моде Нижнего Новгорода в одном календаре.</p>
+  </div>
+</section>
+
+<!-- Календарь / список -->
+<section id="calendar" data-screen-label="Календарь" style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px">
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px">
+    <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">01 — События сезона</p>
+    <div style="display: flex; gap: 8px">
+      <sc-for list="{{ viewTabs }}" as="v" hint-placeholder-count="2">
+        <button onClick="{{ v.select }}" style="{{ v.style }}">{{ v.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px">
+    <sc-for list="{{ tagTabs }}" as="t" hint-placeholder-count="8">
+      <button onClick="{{ t.select }}" style="{{ t.style }}" style-hover="border-color: #75070D">{{ t.label }}</button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ calendarView }}" hint-placeholder-val="{{ false }}">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: clamp(20px, 2.5vw, 32px)">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px">
+          <div style="display: flex; align-items: center; gap: 14px">
+            <button onClick="{{ prevMonth }}" disabled="{{ atFirstMonth }}" aria-label="Предыдущий месяц" style="{{ prevMonthStyle }}">←</button>
+            <span style="font-family: 'Yeseva One', serif; font-size: clamp(22px, 2.4vw, 30px); color: #75070D; min-width: 14ch; text-align: center">{{ monthLabel }}</span>
+            <button onClick="{{ nextMonth }}" disabled="{{ atLastMonth }}" aria-label="Следующий месяц" style="{{ nextMonthStyle }}">→</button>
+          </div>
+          <span style="font-size: 13px; opacity: 0.65">{{ monthCountLabel }}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px">
+          <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7">
+            <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; text-align: center; padding-bottom: 6px">{{ w }}</span>
+          </sc-for>
+          <sc-for list="{{ calendarCells }}" as="c" hint-placeholder-count="35">
+            <button onClick="{{ c.select }}" title="{{ c.title }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-top: 20px; border-top: 1px solid rgba(117,7,13,0.2); padding-top: 16px; font-size: 13px; opacity: 0.75">
+          <span style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; background: #75070D; display: block"></span>есть событие</span>
+          <span style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; border: 1px solid rgba(117,7,13,0.4); display: block"></span>свободный день</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 18px; max-height: 520px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+          <span style="font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #75070D">{{ sideTitle }}</span>
+          <sc-if value="{{ hasPicked }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ clearPicked }}" style="background: transparent; border: none; padding: 0; cursor: pointer; font-size: 13px; color: #75070D; border-bottom: 1px solid rgba(117,7,13,0.4)">✕ Все события</button>
+          </sc-if>
+        </div>
+        <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(117,7,13,0.3); overflow-y: auto; max-height: 340px">
+          <sc-for list="{{ sideEvents }}" as="e" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 6px; padding: 18px 6px; border-bottom: 1px solid rgba(117,7,13,0.25)">
+              <div style="display: flex; gap: 20px; align-items: baseline">
+                <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; min-width: 76px">{{ e.date }}</span>
+                <span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #2B1214; line-height: 1.25">{{ e.title }}</span>
+              </div>
+              <span style="font-size: 14px; opacity: 0.7; padding-left: 96px">{{ e.place }} · {{ e.tag }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ showSeeAll }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ seeAll }}" style="align-self: flex-start; background: transparent; border: none; padding: 0; cursor: pointer; font-size: 15px; color: #75070D; border-bottom: 1px solid #75070D">Смотреть все →</button>
+        </sc-if>
+        <a href="#subscribe" style="align-self: flex-start; border: 1px solid #75070D; padding: 14px 26px; font-size: 15px; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">Напомнить о событиях</a>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ listViewOn }}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(117,7,13,0.3)">
+      <sc-for list="{{ listEvents }}" as="e" hint-placeholder-count="7">
+        <div style="display: grid; grid-template-columns: minmax(80px, 110px) 1fr auto; gap: clamp(16px, 3vw, 40px); align-items: center; padding: 22px 8px; border-bottom: 1px solid rgba(117,7,13,0.3)">
+          <span style="font-family: 'Yeseva One', serif; font-size: clamp(20px, 2.2vw, 26px); color: #75070D">{{ e.date }}</span>
+          <span style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: 'Yeseva One', serif; font-size: clamp(18px, 2vw, 23px); color: #2B1214; line-height: 1.25">{{ e.title }}</span>
+            <span style="font-size: 14px; opacity: 0.7">{{ e.place }}</span>
+          </span>
+          <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #75070D; border: 1px solid rgba(117,7,13,0.35); padding: 7px 12px; white-space: nowrap">{{ e.tag }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ noEvents }}" hint-placeholder-val="{{ false }}">
+      <p style="margin: 32px 0 0; font-size: 16px; opacity: 0.7">Пока нет событий с этим тегом — загляните позже или посмотрите весь календарь.</p>
+    </sc-if>
+  </sc-if>
+</section>
+
+<!-- Добавить событие -->
+<section id="submit-event" data-screen-label="Добавить событие" style="background: #75070D; color: #F3E7D8">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 72px); align-items: center">
+    <div>
+      <p style="margin: 0 0 20px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7">02 — Своё событие</p>
+      <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.12; max-width: 22ch; text-wrap: balance">Проводите показ, маркет или лекцию — расскажем о нём всему городу</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.65; opacity: 0.92">
+      <p style="margin: 0">Если вы бренд, площадка или организатор события о локальной моде — пришлите нам детали, и мы разместим его в афише и в рассылке платформы.</p>
+      <a href="Контакты.dc.html" style="align-self: flex-start; margin-top: 4px; color: #F3E7D8; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 15px; border: 1px solid rgba(243,231,216,0.7); padding: 15px 26px; transition: background 0.2s, color 0.2s" style-hover="background: #F3E7D8; color: #75070D">Написать нам →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Подписка -->
+<section id="subscribe" data-screen-label="Подписка" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+  <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">03 — Не пропустить</p>
+  <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(28px, 4vw, 52px); line-height: 1.1; max-width: 20ch; text-wrap: balance">Анонсы событий на почту и в Telegram</h2>
+  <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+    <form onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 480px">
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center">
+        <input required="{{ true }}" type="email" placeholder="Ваша почта" style="flex: 1 1 240px; padding: 16px 20px; font-family: 'MN Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; background: transparent; border: 1px solid rgba(117,7,13,0.4); color: #2B1214; outline: none" style-focus="border: 1px solid #75070D">
+        <button type="submit" disabled="{{ consentMissing }}" style="{{ subscribeBtnStyle }}">Подписаться</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.5; text-align: left">
+        <label style="display: flex; gap: 12px; align-items: flex-start; cursor: pointer">
+          <input type="checkbox" required="{{ true }}" checked="{{ consentData }}" onChange="{{ toggleConsentData }}" style="margin: 2px 0 0; width: 18px; height: 18px; flex: none; accent-color: #75070D; cursor: pointer">
+          <span>Согласен(а) с <a href="#privacy" style="border-bottom: 1px solid rgba(117,7,13,0.5)">политикой обработки персональных данных</a></span>
+        </label>
+        <label style="display: flex; gap: 12px; align-items: flex-start; cursor: pointer">
+          <input type="checkbox" required="{{ true }}" checked="{{ consentMail }}" onChange="{{ toggleConsentMail }}" style="margin: 2px 0 0; width: 18px; height: 18px; flex: none; accent-color: #75070D; cursor: pointer">
+          <span>Согласен(а) получать рассылку и рекламные сообщения платформы</span>
+        </label>
+        <sc-if value="{{ consentMissing }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size: 13px; opacity: 0.75">Отметьте оба согласия — без них подписку оформить нельзя.</span>
+        </sc-if>
+      </div>
+    </form>
+  </sc-if>
+  <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+    <p style="margin: 0; font-family: 'Yeseva One', serif; font-size: 22px; color: #75070D">Спасибо! Первое письмо придёт в ближайшую пятницу.</p>
+  </sc-if>
+  <a href="https://t.me/" target="_blank" rel="noopener" style="font-size: 15px; border-bottom: 1px solid #75070D; padding-bottom: 3px">Подписаться в Telegram →</a>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+const EVENTS = [
+  { month: 0, day: 12, date: '12 сен', title: 'Осенний показ локальных брендов', place: 'Пакгаузы на Стрелке', tag: 'Показ' },
+  { month: 0, day: 19, date: '19 сен', title: 'Винтажный своп на Ильинской', place: 'Двор на Ильинской, 41', tag: 'Своп' },
+  { month: 0, day: 26, date: '26 сен', title: 'Мода как городская идентичность', place: 'Арсенал', tag: 'Лекция' },
+  { month: 1, day: 4, date: '4 окт', title: 'Маркет новых имён', place: 'Улица Рождественская', tag: 'Маркет' },
+  { month: 1, day: 18, date: '18 окт', title: 'Носить Нижний: архив и современность', place: 'Русский музей фотографии', tag: 'Выставка' },
+  { month: 2, day: 1, date: '1 ноя', title: 'От эскиза до капсулы', place: 'Терминал А', tag: 'Воркшоп' },
+  { month: 2, day: 14, day2: 15, date: '14–15 ноя', title: 'Форум локальной моды', place: 'Нижполиграф', tag: 'Форум' },
+];
+
+const MONTHS = [
+  { label: 'Сентябрь 2026', offset: 1, days: 30 },
+  { label: 'Октябрь 2026', offset: 3, days: 31 },
+  { label: 'Ноябрь 2026', offset: 6, days: 30 },
+];
+
+class Component extends DCLogic {
+  state = { view: 'Календарь', tag: 'Все', monthIndex: 0, pickedDay: null, submitted: false, consentData: false, consentMail: false };
+
+  renderVals() {
+    const view = this.state.view;
+    const calendarView = view === 'Календарь';
+    const viewTabs = ['Календарь', 'Список'].map(label => {
+      const on = view === label;
+      return { label, select: () => this.setState({ view: label }),
+        style: `padding: 10px 20px; cursor: pointer; font-family: 'MN Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; letter-spacing: 0.04em; transition: all 0.2s; border: 1px solid ${on ? '#75070D' : 'rgba(117,7,13,0.35)'}; background: ${on ? '#75070D' : 'transparent'}; color: ${on ? '#F3E7D8' : '#75070D'}` };
+    });
+
+    const tags = ['Все', ...Array.from(new Set(EVENTS.map(e => e.tag)))];
+    const tagTabs = tags.map(label => {
+      const on = this.state.tag === label;
+      return { label, select: () => this.setState({ tag: label }),
+        style: `padding: 9px 16px; cursor: pointer; font-family: 'MN Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; letter-spacing: 0.04em; transition: all 0.2s; border: 1px solid ${on ? '#75070D' : 'rgba(117,7,13,0.3)'}; background: ${on ? '#75070D' : 'transparent'}; color: ${on ? '#F3E7D8' : '#75070D'}` };
+    });
+
+    const filtered = this.state.tag === 'Все' ? EVENTS : EVENTS.filter(e => e.tag === this.state.tag);
+
+    const monthIndex = this.state.monthIndex;
+    const month = MONTHS[monthIndex];
+    const monthEvents = EVENTS.filter(e => e.month === monthIndex && e.day);
+    const cells = [];
+    for (let i = 0; i < month.offset; i++) cells.push({ label: '', empty: true });
+    for (let d = 1; d <= month.days; d++) {
+      const ev = monthEvents.find(e => e.day === d || e.day2 === d);
+      const on = this.state.pickedDay === d;
+      cells.push({
+        label: String(d), title: ev ? ev.title : '',
+        select: ev ? () => this.setState({ pickedDay: on ? null : d }) : null,
+        style: `aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-family: 'MN Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; cursor: ${ev ? 'pointer' : 'default'}; transition: all 0.2s; border: 1px solid ${ev ? '#75070D' : 'rgba(117,7,13,0.2)'}; background: ${ev ? (on ? '#4E0509' : '#75070D') : 'transparent'}; color: ${ev ? '#F3E7D8' : '#2B1214'}; opacity: ${ev ? 1 : 0.55}`,
+      });
+    }
+    const picked = monthEvents.find(e => e.day === this.state.pickedDay || e.day2 === this.state.pickedDay);
+    const navBtn = (disabled) => `width: 36px; height: 36px; cursor: ${disabled ? 'default' : 'pointer'}; appearance: none; font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; background: transparent; color: #75070D; border: 1px solid rgba(117,7,13,${disabled ? '0.15' : '0.4'}); opacity: ${disabled ? 0.4 : 1}`;
+
+    return {
+      viewTabs, tagTabs,
+      calendarView, listViewOn: !calendarView,
+      listEvents: filtered,
+      noEvents: filtered.length === 0,
+      weekdays: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+      calendarCells: cells.map(c => c.empty ? { label: '', title: '', select: null, style: 'aspect-ratio: 1; border: none; background: transparent; appearance: none; -webkit-appearance: none; pointer-events: none' } : c),
+      monthLabel: month.label,
+      monthCountLabel: `${monthEvents.length} события в месяце`,
+      prevMonth: () => monthIndex > 0 && this.setState({ monthIndex: monthIndex - 1, pickedDay: null }),
+      nextMonth: () => monthIndex < MONTHS.length - 1 && this.setState({ monthIndex: monthIndex + 1, pickedDay: null }),
+      atFirstMonth: monthIndex === 0,
+      atLastMonth: monthIndex === MONTHS.length - 1,
+      prevMonthStyle: navBtn(monthIndex === 0),
+      nextMonthStyle: navBtn(monthIndex === MONTHS.length - 1),
+      sideTitle: picked ? 'Выбранная дата' : 'Ближайшие события',
+      hasPicked: !!picked,
+      clearPicked: () => this.setState({ pickedDay: null }),
+      sideEvents: picked ? [picked] : EVENTS.slice(0, 5),
+      showSeeAll: !picked && EVENTS.length > 5,
+      seeAll: () => this.setState({ view: 'Список', pickedDay: null }),
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      consentData: this.state.consentData,
+      consentMail: this.state.consentMail,
+      consentMissing: !(this.state.consentData && this.state.consentMail),
+      toggleConsentData: (e) => this.setState({ consentData: e.target.checked }),
+      toggleConsentMail: (e) => this.setState({ consentMail: e.target.checked }),
+      subscribeBtnStyle: `padding: 16px 32px; background: #75070D; color: #F3E7D8; border: 1px solid #75070D; font-family: 'MN Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; letter-spacing: 0.04em; cursor: ${(this.state.consentData && this.state.consentMail) ? 'pointer' : 'not-allowed'}; opacity: ${(this.state.consentData && this.state.consentMail) ? 1 : 0.5}; transition: background 0.2s`,
+      submit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+    };
+  }
+}
+
+</script>
+</body>
+</html>
