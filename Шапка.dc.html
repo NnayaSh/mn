@@ -8,17 +8,37 @@
 <body>
 <x-dc>
 <header ref="{{ headerRef }}" style="background: #F3E7D8; border-bottom: 1px solid rgba(117,7,13,0.25); position: relative; transition: transform 0.28s ease; will-change: transform" onMouseLeave="{{ close }}">
+  <div style="background: #75070D; color: #F3E7D8; position: relative; z-index: 3">
+    <div style="{{ stripStyle }}">
+      <a href="tel:{{ phoneRaw }}" style="font-size: 13px; letter-spacing: 0.04em; white-space: nowrap; color: #F3E7D8; text-decoration: none" style-hover="color: #FFFFFF">{{ phone }}</a>
+      <div style="display: flex; align-items: center; gap: 16px">
+        <a href="https://vk.ru/modniy_nizhny" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 7px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #F3E7D8; text-decoration: none" style-hover="color: #FFFFFF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13.2 17.6c-6.5 0-10.3-4.5-10.4-11.9h3.4c.1 5.1 2.3 7.2 4.1 7.7v-7.7h3.2v4.7c1.7-.2 3.5-2.2 4.1-4.7h3.2c-.5 3-2.7 5.1-4.2 5.9 1.5.7 4 2.5 5 5.9h-3.5c-.7-2.4-2.5-4.2-4.9-4.5v4.5h-.4z" fill="currentColor"/></svg>
+          ВК
+        </a>
+        <a href="https://max.ru/channel_modniy_nizhny" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 7px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #F3E7D8; text-decoration: none" style-hover="color: #FFFFFF">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: #F3E7D8">
+            <img src="uploads/Max%20red.svg" alt="" style="width: 13px; height: 13px; display: block">
+          </span>
+          MAX
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div style="{{ barStyle }}">
-    <a href="Модный Нижний.dc.html" style="display: flex; align-items: center; flex: 0 1 auto; min-width: 0">
-      <img src="uploads/logo_long.svg.svg" alt="Модный Нижний" style="width: auto; height: auto; max-height: 30px; max-width: 100%; display: block">
-    </a>
-    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
-      <button type="button" onClick="{{ toggleMobile }}" aria-label="Меню" style="display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 10px; background: transparent; border: 1px solid rgba(117,7,13,0.35); cursor: pointer">
-        <span style="display: block; height: 1.5px; background: #75070D"></span>
-        <span style="display: block; height: 1.5px; background: #75070D"></span>
-        <span style="display: block; height: 1.5px; background: #75070D"></span>
-      </button>
-    </sc-if>
+    <div style="{{ topRowStyle }}">
+      <a href="Модный Нижний.dc.html" style="display: flex; align-items: center; flex: 0 1 auto; min-width: 0">
+        <img src="uploads/logo_long.svg.svg" alt="Модный Нижний" style="width: auto; height: auto; max-height: 28px; max-width: 100%; display: block">
+      </a>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ toggleMobile }}" aria-label="Меню" style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 10px; background: transparent; border: 1px solid rgba(117,7,13,0.35); cursor: pointer">
+          <span style="display: block; height: 1.5px; background: #75070D"></span>
+          <span style="display: block; height: 1.5px; background: #75070D"></span>
+          <span style="display: block; height: 1.5px; background: #75070D"></span>
+        </button>
+      </sc-if>
+    </div>
     <nav style="{{ navStyle }}">
       <sc-for list="{{ items }}" as="item" hint-placeholder-count="5">
         <a href="{{ item.href }}" onMouseEnter="{{ item.onEnter }}" onClick="{{ item.onClick }}" style="{{ item.style }}">{{ item.label }}</a>
@@ -30,13 +50,13 @@
           </div>
         </sc-if>
       </sc-for>
-      <a href="Каталог.dc.html" onMouseEnter="{{ close }}" onClick="{{ closeMobile }}" style="display: inline-flex; align-items: center; gap: 8px; background: #75070D; color: #F7EFE3; padding: 11px 20px; font-size: 14px; white-space: nowrap">Каталог →</a>
+      <a href="Каталог.dc.html" onMouseEnter="{{ close }}" onClick="{{ closeMobile }}" style="display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; background: #75070D; color: #F7EFE3; padding: 10px 18px; font-size: 14px; white-space: nowrap">Каталог →</a>
     </nav>
   </div>
 
   <sc-if value="{{ panel }}" hint-placeholder-val="{{ false }}">
     <div style="{{ panelStyle }}">
-      <div style="max-width: 1280px; margin: 0 auto; padding: 34px 32px 38px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 36px">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 34px 32px 38px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) 260px; gap: 36px; align-items: start">
         <sc-for list="{{ panel.cols }}" as="col" hint-placeholder-count="3">
           <div style="display: flex; flex-direction: column; gap: 12px">
             <div style="font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6">{{ col.title }}</div>
@@ -141,14 +161,21 @@ class Component extends DCLogic {
       ? (mobileMenu
         ? 'display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; padding: 18px 0 12px; font-size: 17px; max-height: calc(100vh - 110px); overflow-y: auto'
         : 'display: none')
-      : 'display: flex; align-items: center; gap: 22px; font-size: 15px; flex-wrap: wrap; justify-content: flex-end; min-width: 0';
+      : 'display: flex; align-items: center; gap: 18px; font-size: 14px; flex-wrap: nowrap; justify-content: flex-end; min-width: 0';
 
     return {
       headerRef: this.headerRef,
       isMobile,
-      barStyle: 'max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; position: relative; z-index: 3; background: #F3E7D8; '
-        + (isMobile ? 'padding: 12px 16px; gap: 12px' : 'padding: 16px 32px; gap: 24px'),
+      barStyle: isMobile
+        ? 'max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; align-items: stretch; position: relative; z-index: 3; background: #F3E7D8; padding: 12px 16px; gap: 12px'
+        : 'max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; position: relative; z-index: 3; background: #F3E7D8; padding: 16px 32px; gap: 20px',
+      topRowStyle: isMobile
+        ? 'display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; width: 100%; gap: 12px'
+        : 'display: contents',
       navStyle,
+      phone: '+7 (831) 000-00-00',
+      phoneRaw: '+78310000000',
+      stripStyle: 'max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: ' + (isMobile ? '7px 16px' : '7px 32px'),
       toggleMobile: () => this.setState(s => ({ mobileMenu: !s.mobileMenu, open: null })),
       closeMobile: () => this.setState({ mobileMenu: false, open: null }),
       close: () => this.setState({ open: null }),
@@ -172,7 +199,7 @@ class Component extends DCLogic {
         cols: cur.cols,
         note: cur.note,
         linkStyle: 'font-size: 16px; line-height: 1.4; color: ' + (cur.dark ? '#F3E7D8' : RED),
-        noteStyle: "font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.35; max-width: 22ch; opacity: 0.8; color: " + (cur.dark ? '#F3E7D8' : RED)
+        noteStyle: "font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.35; opacity: 0.8; grid-column: -2; color: " + (cur.dark ? '#F3E7D8' : RED)
       } : null,
       panelStyle: 'position: absolute; left: 0; right: 0; top: 100%; z-index: 2; border-bottom: 1px solid rgba(117,7,13,0.3); box-shadow: 0 22px 44px rgba(43,18,20,0.16); background: ' +
         (cur && cur.dark ? '#5B0207' : '#F7EFE3') + '; color: ' + (cur && cur.dark ? '#F3E7D8' : '#2B1214')
