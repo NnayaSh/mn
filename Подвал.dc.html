@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<footer style="background: #5B0207; color: #F3E7D8; position: relative; overflow: hidden">
+  <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; bottom: -14%; transform: translateX(-50%); width: min(90vw, 900px); height: auto; opacity: 0.16; filter: brightness(0.55); pointer-events: none">
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(40px, 7vw, 88px) clamp(18px, 4vw, 32px) 36px; display: flex; flex-direction: column; gap: 44px">
+    <div style="display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; align-items: flex-start">
+      <img src="uploads/logo_mn.svg" alt="Модный Нижний" style="height: clamp(56px, 8vw, 96px); width: auto; display: block">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: clamp(24px, 4vw, 64px); flex: 1 1 520px">
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+          <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6">Разделы</div>
+          <a href="О проекте.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">О проекте</a>
+          <a href="Каталог.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Каталог брендов</a>
+          <a href="Медиа.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Медиа</a>
+          <a href="Форум.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Форум</a>
+          <a href="Афиша.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Афиша</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+          <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6">Брендам</div>
+          <a href="Каталог.dc.html#add" style="color: #F3E7D8" style-hover="color: #E4D2BB">Добавить бренд</a>
+          <a href="Регистрация на форум.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Участие в форуме</a>
+          <a href="О проекте.dc.html#partners" style="color: #F3E7D8" style-hover="color: #E4D2BB">Партнёрам и рекламодателям</a>
+          <a href="Кабинет бренда.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Кабинет бренда</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+          <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6">Служебное</div>
+          <a href="Модный Нижний.dc.html#subscribe" style="color: #F3E7D8" style-hover="color: #E4D2BB">Подписка и Telegram</a>
+          <a href="Модный Нижний.dc.html#privacy" style="color: #F3E7D8" style-hover="color: #E4D2BB">Политика конфиденциальности</a>
+          <a href="Контакты.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Контакты</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+          <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6">Контакты</div>
+          <a href="mailto:hello@modny-nn.ru" style="color: #F3E7D8" style-hover="color: #E4D2BB">hello@modny-nn.ru</a>
+          <a href="mailto:forum@modny-nn.ru" style="color: #F3E7D8" style-hover="color: #E4D2BB">forum@modny-nn.ru</a>
+          <a href="https://t.me/" target="_blank" rel="noopener" style="color: #F3E7D8" style-hover="color: #E4D2BB">Telegram</a>
+          <a href="https://vk.com/" target="_blank" rel="noopener" style="color: #F3E7D8" style-hover="color: #E4D2BB">ВКонтакте</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(243,231,216,0.25); padding-top: 22px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; opacity: 0.6">
+      <span>© 2026 Модный Нижний · Нижний, который можно носить</span>
+      <span style="display: flex; gap: 20px; flex-wrap: wrap">
+        <a href="Модный Нижний.dc.html#privacy" style="color: #F3E7D8" style-hover="color: #E4D2BB">Политика конфиденциальности</a>
+        <a href="Карта сайта.dc.html" style="color: #F3E7D8" style-hover="color: #E4D2BB">Карта сайта</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showCookies }}" hint-placeholder-val="{{ true }}">
+  <div role="dialog" aria-label="Файлы cookie" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: #F7EFE3; color: #2B1214; border-top: 1px solid rgba(117,7,13,0.3); box-shadow: 0 -18px 40px rgba(43,18,20,0.18)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(16px, 3vw, 22px) clamp(18px, 4vw, 32px); display: flex; align-items: center; justify-content: space-between; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap">
+      <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-family: 'Yeseva One', serif; font-size: 17px; line-height: 1.3">Мы используем cookie</div>
+        <div style="font-size: 14px; line-height: 1.5; opacity: 0.75; max-width: 68ch">Файлы cookie помогают сайту работать корректно и показывать материалы, которые вам интересны. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием — подробнее в <a href="Модный Нижний.dc.html#privacy" style="color: #75070D; text-decoration: underline; text-underline-offset: 3px">политике конфиденциальности</a>.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+        <button type="button" onClick="{{ declineCookies }}" style="background: transparent; color: #75070D; border: 1px solid rgba(117,7,13,0.4); padding: 12px 20px; font: inherit; font-size: 14px; cursor: pointer; white-space: nowrap" style-hover="border-color: #75070D">Только необходимые</button>
+        <button type="button" onClick="{{ acceptCookies }}" style="background: #75070D; color: #F7EFE3; border: 0; padding: 13px 24px; font: inherit; font-size: 14px; cursor: pointer; white-space: nowrap" style-hover="background: #5B0207">Принять</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:420}}">const CK = 'mn-cookie-consent';
+
+class Component extends DCLogic {
+  state = { showCookies: false };
+
+  componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem(CK); } catch (e) {}
+    if (!saved) this.timer = setTimeout(() => this.setState({ showCookies: true }), 700);
+  }
+  componentWillUnmount() { clearTimeout(this.timer); }
+
+  save(value) {
+    try { localStorage.setItem(CK, value); } catch (e) {}
+    this.setState({ showCookies: false });
+  }
+
+  renderVals() {
+    return {
+      showCookies: this.state.showCookies,
+      acceptCookies: () => this.save('all'),
+      declineCookies: () => this.save('necessary')
+    };
+  }
+}</script>
+</body>
+</html>
