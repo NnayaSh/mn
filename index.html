@@ -497,9 +497,7 @@ a:hover { color: #4E0509; }
             <input type="checkbox" required="{{ true }}" checked="{{ consentMail }}" onChange="{{ toggleConsentMail }}" style="margin: 2px 0 0; width: 18px; height: 18px; flex: none; accent-color: #F3E7D8; cursor: pointer">
             <span>Согласен(а) получать рассылку и рекламные сообщения платформы</span>
           </label>
-          <sc-if value="{{ consentMissing }}" hint-placeholder-val="{{ false }}">
-            <span style="font-size: 13px; opacity: 0.75">Отметьте оба согласия — без них подписку оформить нельзя.</span>
-          </sc-if>
+
         </div>
       </form>
     </sc-if>
