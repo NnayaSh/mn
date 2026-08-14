@@ -30,6 +30,10 @@ a { color: #75070D; text-decoration: none; }
 a:hover { color: #4E0509; }
 * { box-sizing: border-box; }
 @keyframes mn-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 640px) {
+  .space-gallery { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 16px; }
+  .space-gallery img { flex: 0 0 82% !important; scroll-snap-align: start; height: 260px !important; min-height: 0 !important; grid-column: unset !important; }
+}
 </style>
 </helmet>
 <div style="min-width: 320px; overflow-x: clip">
@@ -146,15 +150,24 @@ a:hover { color: #4E0509; }
       <p style="margin: 0">Знакомьтесь с брендами, находите любимых авторов и открывайте новые имена.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); grid-auto-flow: dense; gap: 20px">
-      <sc-for list="{{ brands }}" as="b" hint-placeholder-count="9">
-        <a href="{{ b.href }}" style="{{ b.cardStyle }}" style-hover="background: #5B0207; color: #F3E7D8">
-          <div style="{{ b.imgStyle }}">
-            <span style="font-family: ui-monospace, monospace; font-size: 11px; opacity: 0.75">{{ b.photo }}</span>
+      <sc-for list="{{ brands }}" as="brd" hint-placeholder-count="9">
+        <a href="{{ brd.href }}" style="{{ brd.cardStyle }}" style-hover="background: #5B0207; color: #F3E7D8">
+          <div style="{{ brd.imgStyle }}">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; opacity: 0.75">{{ brd.photo }}</span>
           </div>
-          <div style="{{ b.bodyStyle }}">
-            <span style="{{ b.nameStyle }}">{{ b.name }}</span>
-            <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7">{{ b.category }}</span>
-            <span style="font-size: 14px; line-height: 1.55; opacity: 0.85; max-width: 46ch">{{ b.short }}</span>
+          <div style="{{ brd.bodyStyle }}">
+            <sc-if value="{{ brd.hasNoLogo }}" hint-placeholder-val="{{ true }}">
+              <div style="{{ brd.logoStyle }}">
+                <span style="font-family: ui-monospace, monospace; font-size: 9px; color: #F3E7D8; opacity: 0.7; text-align: center; line-height: 1.3">лого<br/>бренда</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ brd.hasLogo }}" hint-placeholder-val="{{ false }}">
+              <div style="{{ brd.logoImgWrapStyle }}">
+                <img src="{{ brd.logo }}" alt="{{ brd.name }}" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block">
+              </div>
+            </sc-if>
+            <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7">{{ brd.category }}</span>
+            <span style="font-size: 14px; line-height: 1.55; opacity: 0.85; max-width: 46ch">{{ brd.short }}</span>
           </div>
         </a>
       </sc-for>
@@ -211,7 +224,7 @@ a:hover { color: #4E0509; }
       <a href="#contacts" style="align-self: flex-start; margin-top: 4px; border: 1px solid #75070D; padding: 14px 26px; font-size: 15px; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">Как добраться</a>
     </div>
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+  <div class="space-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
     <img src="uploads/o proekte_1-01.png" alt="Покупательницы примеряют украшения локальных брендов" style="grid-column: span 2; width: 100%; height: 100%; min-height: 260px; object-fit: cover; display: block">
     <img src="uploads/o proekte_1-02.png" alt="Витрина с украшениями локальных брендов" style="width: 100%; height: 100%; min-height: 260px; object-fit: cover; display: block">
     <img src="uploads/o proekte_1-03.png" alt="Керамические украшения ручной работы" style="width: 100%; height: 100%; min-height: 260px; object-fit: cover; display: block">
@@ -718,6 +731,7 @@ class Component extends DCLogic {
 
   brandTiles() {
     const data = [
+      { name: 'ФЁКЛА И СВЁКЛА', category: 'Одежда', short: 'Умный способ одеваться в сложное время.', photo: 'кампейн', href: 'Каталог.dc.html#brands', size: 'wide', logo: 'uploads/fyokla_white.svg' },
       { name: 'ОКА', category: 'Одежда', short: 'Минималистичные пальто и костюмы из плотной шерсти, две коллекции в год.', photo: 'кампейн', href: 'Каталог.dc.html#brands', size: 'wide' },
       { name: 'KÍCHKA', category: 'Одежда', short: 'Нижегородский костюм в современном крое.', photo: 'лукбук', href: 'KICHKA.dc.html', size: 'small' },
       { name: 'ЧКАЛОВ', category: 'Аксессуары', short: 'Кожаные сумки ручной сборки.', photo: 'предметная съёмка', href: 'Каталог.dc.html#brands', size: 'small' },
@@ -736,7 +750,10 @@ class Component extends DCLogic {
         cardStyle: card + (wide ? ' grid-column: span 2;' : ' grid-column: span 1;') + ' flex-direction: row; align-items: stretch;',
         imgStyle: `flex: 0 0 ${narrow ? '34%' : (wide ? '42%' : '38%')}; min-height: ${narrow ? '118px' : (wide ? '160px' : '150px')}; background: repeating-linear-gradient(-45deg, #82141A 0 14px, #75070D 14px 28px); display: flex; align-items: flex-end; padding: 12px`,
         bodyStyle: `padding: ${narrow ? '16px 16px' : (wide ? '22px 26px' : '18px 18px')}; display: flex; flex-direction: column; gap: 7px; justify-content: center; flex: 1 1 auto; min-width: 0`,
-        nameStyle: `font-family: 'Yeseva One', serif; font-size: ${wide ? '26px' : '19px'}; line-height: 1.1`,
+        logoStyle: `width: ${wide ? '140px' : '110px'}; height: ${wide ? '36px' : '32px'}; flex: none; background: repeating-linear-gradient(-45deg, rgba(243,231,216,0.14) 0 8px, rgba(243,231,216,0.04) 8px 16px); border: 1px solid rgba(243,231,216,0.4); display: flex; align-items: center; justify-content: center`,
+        logoImgWrapStyle: `width: ${wide ? '140px' : '110px'}; height: ${wide ? '36px' : '32px'}; flex: none; display: flex; align-items: center; justify-content: flex-start`,
+        hasNoLogo: !b.logo,
+        hasLogo: !!b.logo,
       };
     });
   }
