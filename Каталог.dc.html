@@ -47,25 +47,22 @@ a:hover { color: #4E0509; }
   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px">
     <sc-for list="{{ brands }}" as="b" hint-placeholder-count="6">
       <article style="border: 1px solid rgba(117,7,13,0.3); background: #F3E7D8; display: flex; flex-direction: column">
-        <div style="display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 1px; background: rgba(117,7,13,0.3); border-bottom: 1px solid rgba(117,7,13,0.3)">
-          <div style="{{ b.cardImgAStyle }}">
-            <sc-if value="{{ b.hasNoCardImg }}" hint-placeholder-val="{{ true }}">
-              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.7">лукбук 1</span>
+        <div style="{{ b.cardPhotoStyle }}">
+          <sc-if value="{{ b.hasNoCardImg }}" hint-placeholder-val="{{ true }}">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.7">лукбук</span>
+          </sc-if>
+          <div style="{{ b.logoBadgeStyle }}">
+            <sc-if value="{{ b.hasNoLogo }}" hint-placeholder-val="{{ true }}">
+              <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; text-align: left; white-space: nowrap">{{ b.name }}</span>
             </sc-if>
           </div>
-          <div style="{{ b.cardImgBStyle }}"></div>
-          <div style="{{ b.cardImgCStyle }}"></div>
+          <span style="position: absolute; right: 14px; top: 14px; background: rgba(43,18,20,0.55); color: #F3E7D8; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px">{{ b.category }}</span>
         </div>
-        <div style="padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1">
-          <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline">
-            <div style="{{ b.logoBoxStyle }}">
-              <sc-if value="{{ b.hasNoLogo }}" hint-placeholder-val="{{ true }}">
-                <span style="font-family: ui-monospace, monospace; font-size: 9px; color: #75070D; opacity: 0.7; text-align: center; line-height: 1.3">лого<br/>бренда</span>
-              </sc-if>
-            </div>
-            <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7">{{ b.category }}</span>
-          </div>
+        <div style="padding: 50px 22px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1">
           <p style="margin: 0; font-size: 15px; line-height: 1.55; opacity: 0.85; flex: 1">{{ b.short }}</p>
+          <sc-if value="{{ b.hasFounderCaption }}" hint-placeholder-val="{{ true }}">
+            <span style="font-size: 12px; opacity: 0.55; font-style: italic">{{ b.founderCaption }}</span>
+          </sc-if>
           <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; border-top: 1px solid rgba(117,7,13,0.25); padding-top: 14px; margin-top: 4px">
             <button onClick="{{ b.open }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'IBM Plex Serif', serif; font-size: 14px; color: #75070D; border-bottom: 1px solid #75070D" style-hover="color: #4E0509">Карточка бренда →</button>
           </div>
@@ -82,11 +79,8 @@ a:hover { color: #4E0509; }
       <div style="background: #75070D; color: #F3E7D8; padding: 26px 32px; display: flex; justify-content: space-between; gap: 24px; align-items: flex-start">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <span style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75">{{ active.category }}</span>
-          <sc-if value="{{ active.logo }}" hint-placeholder-val="{{ false }}">
           <div style="{{ active.logoBoxStyle }}">
-            <sc-if value="{{ active.hasNoLogo }}" hint-placeholder-val="{{ true }}">
-              <span style="font-family: ui-monospace, monospace; font-size: 10px; color: #F3E7D8; opacity: 0.8">лого бренда</span>
-            </sc-if>
+            <span style="font-family: 'Yeseva One', serif; font-size: 34px; color: #F3E7D8">{{ active.name }}</span>
           </div>
         </div>
         <sc-if value="{{ active.hasPage }}" hint-placeholder-val="{{ false }}">
@@ -249,7 +243,8 @@ a:hover { color: #4E0509; }
   &quot;$preview&quot;: { &quot;width&quot;: 1440 }
 }">
 const BRANDS = [
-  { name: 'ФЁКЛА И СВЁКЛА', category: 'Одежда', short: 'Умный способ одеваться в сложное время: осознанный подход к гардеробу вместо экономии ради экономии.',
+  { name: 'ФЁКЛА И СВЁКЛА', category: 'Одежда', short: 'Умный способ одеваться в сложное время: осознанный подход к гардеробу вместо экономии ради экономии.', founded: '2023', craft: 'Три линейки, часть вещей — в единственном экземпляре',
+    founders: ['Ольга Мышаева'], vk: 'vk.com/fyoklaisvyokla', page: 'ФЁКЛА И СВЁКЛА.dc.html',
     logo: 'uploads/fyokla_white.svg', logoCard: 'uploads/fyokla_burgundy.svg',
     cardImgA: 'uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp', cardImgB: 'uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp', cardImgC: 'uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp',
     galleryImgs: ['uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp', 'uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp', 'uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp'],
@@ -321,15 +316,16 @@ class Component extends DCLogic {
       };
     });
     const list = BRANDS.filter(b => this.state.cat === 'Все' || b.category === this.state.cat);
-    const patternA = 'background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); grid-row: span 2; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center';
-    const patternB = 'background: repeating-linear-gradient(-45deg, #E2D0B8 0 10px, #F3E7D8 10px 20px)';
-    const patternC = 'background: repeating-linear-gradient(45deg, #E2D0B8 0 10px, #F3E7D8 10px 20px)';
-    const brands = list.map(b => ({ ...b, open: () => this.setState({ activeIdx: BRANDS.indexOf(b) }), hasNoCardImg: !b.cardImgA, hasNoLogo: !b.logoCard, hasNoFounded: !b.founded,
-      cardImgAStyle: b.cardImgA ? `background: url('${b.cardImgA}') center/cover; grid-row: span 2; aspect-ratio: 1 / 1` : patternA,
-      cardImgBStyle: b.cardImgB ? `background: url('${b.cardImgB}') center/cover` : patternB,
-      cardImgCStyle: b.cardImgC ? `background: url('${b.cardImgC}') center/cover` : patternC,
-      logoBoxStyle: b.logoCard ? `width: 132px; height: 40px; flex: none; background: url('${b.logoCard}') center/contain no-repeat; display: flex; align-items: center; justify-content: center` : `width: 132px; height: 40px; flex: none; background: repeating-linear-gradient(-45deg, #EBDCC7 0 8px, #F3E7D8 8px 16px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center`,
-    }));
+    const patternPhoto = 'position: relative; aspect-ratio: 4 / 3; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border-bottom: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center';
+    const brands = list.map(b => {
+      const founderCaption = b.founders && b.founders.length
+        ? `${b.founders.length > 1 ? 'Основатели — ' : 'Основатель — '}${b.founders.join(', ')}${b.founded ? `, с ${b.founded} года` : ''}`
+        : (b.founded ? `С ${b.founded} года` : '');
+      return { ...b, open: () => this.setState({ activeIdx: BRANDS.indexOf(b) }), hasNoCardImg: !b.cardImgA, hasNoLogo: true, hasNoFounded: !b.founded,
+      cardPhotoStyle: b.cardImgA ? `position: relative; aspect-ratio: 4 / 3; background: url('${b.cardImgA}') top/cover; border-bottom: 1px solid rgba(117,7,13,0.3)` : patternPhoto,
+      logoBadgeStyle: `position: absolute; left: 16px; bottom: 16px; max-width: 80%; box-sizing: border-box; padding: 10px 18px; background: #F3E7D8; border: 1px solid #75070D; display: flex; align-items: center; justify-content: flex-start; z-index: 2`,
+      founderCaption, hasFounderCaption: !!founderCaption,
+    }; });
     return {
       categories, brands,
       countLabel: `${list.length} из ${BRANDS.length} брендов`,
@@ -348,11 +344,11 @@ class Component extends DCLogic {
           };
         });
         return { ...b,
-          links: b.vk ? [
-            { label: 'ВКонтакте', href: 'https://' + b.vk },
-            { label: 'Телеграм', href: 'https://' + b.tg },
-            { label: 'Инстаграм', href: 'https://instagram.com/' + b.inst.replace('@', '') },
-          ] : [],
+          links: [
+            ...(b.vk ? [{ label: 'ВКонтакте', href: 'https://' + b.vk }] : []),
+            ...(b.tg ? [{ label: 'Телеграм', href: 'https://' + b.tg }] : []),
+            ...(b.inst ? [{ label: 'Инстаграм', href: 'https://instagram.com/' + b.inst.replace('@', '') }] : []),
+          ],
           hasSocials: !!b.vk,
           hasFounded: !!b.founded,
           hasFounders: !!(b.founders && b.founders.length),
@@ -360,8 +356,8 @@ class Component extends DCLogic {
           foundersValue: b.founders ? b.founders.join(', ') : '',
           hasCraft: !!b.craft,
           hasPage: !!b.page,
-          hasNoLogo: !b.logo,
-          logoBoxStyle: b.logo ? `width: 200px; height: 56px; background: url('${b.logo}') center/contain no-repeat; display: flex; align-items: center; justify-content: center` : 'width: 200px; height: 56px; background: repeating-linear-gradient(-45deg, rgba(243,231,216,0.18) 0 8px, rgba(243,231,216,0.05) 8px 16px); border: 1px solid rgba(243,231,216,0.5); display: flex; align-items: center; justify-content: center',
+          hasNoLogo: true,
+          logoBoxStyle: 'display: flex; align-items: center; justify-content: center; min-height: 56px',
           galleryCells,
           page: b.page || '#',
         };
