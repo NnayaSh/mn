@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #FEFBF6; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+@media (max-width: 640px) { .fs-frame-row { grid-template-columns: 1fr !important; } }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="media" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<div style="border-bottom: 1px solid rgba(117,7,13,0.2)">
+  <div style="max-width: 1280px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; letter-spacing: 0.04em">
+    <a href="Медиа.dc.html">← Медиа</a>
+    <span style="opacity: 0.4">/</span>
+    <span style="opacity: 0.7">Фотопроект</span>
+  </div>
+</div>
+
+<!-- Заголовок проекта -->
+<section data-screen-label="Заголовок фотопроекта" style="background: #75070D; color: #F3E7D8">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px clamp(40px, 6vw, 64px); display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+      <span style="font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7">Фотопроект · июнь 2026 · 12 кадров</span>
+      <a href="Медиа.dc.html#photo" style="font-size: 15px; color: #F3E7D8; border-bottom: 1px solid rgba(243,231,216,0.5)">← Все фотопроекты</a>
+    </div>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(32px, 4.8vw, 54px); line-height: 1.12; max-width: 18ch; text-wrap: balance">Носить Нижний</h1>
+    <p style="margin: 0; font-size: 18px; line-height: 1.6; opacity: 0.85; max-width: 56ch">Восемь образов локальных марок в декорациях деревянного города — съёмка на Ильинской улице.</p>
+  </div>
+</section>
+
+<!-- Обложка -->
+<section data-screen-label="Обложка" style="width: 100%">
+  <div style="aspect-ratio: 21 / 9; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 18px; border-bottom: 1px solid rgba(117,7,13,0.3)">
+    <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">обложка фотопроекта · 21:9</span>
+  </div>
+</section>
+
+<!-- Описание -->
+<section data-screen-label="Описание проекта" style="max-width: 1280px; margin: 0 auto; padding: clamp(40px, 6vw, 64px) 32px 0">
+  <div style="max-width: 700px; display: flex; flex-direction: column; gap: 16px; font-size: 18px; line-height: 1.75">
+    <p style="margin: 0">Съёмка прошла в июне на Ильинской улице — одной из немногих в городе, где деревянная застройка XIX века сохранилась почти целиком. В кадре — восемь образов, собранных из вещей шести локальных марок каталога.</p>
+    <p style="margin: 0; opacity: 0.85">Фотограф — Аня Соснина, стиль — команда платформы. Полный список брендов и вещей — в подписях к кадрам ниже.</p>
+  </div>
+</section>
+
+<!-- Галерея кадров -->
+<section data-screen-label="Галерея кадров" style="max-width: 1280px; margin: 0 auto; padding: clamp(40px, 6vw, 64px) 32px clamp(56px, 7vw, 96px)">
+  <div style="display: flex; flex-direction: column; gap: 16px">
+    <sc-for list="{{ rows }}" as="row" hint-placeholder-count="3">
+      <div class="fs-frame-row" style="{{ row.style }}">
+        <sc-for list="{{ row.cells }}" as="f" hint-placeholder-count="3">
+          <figure style="margin: 0">
+            <div style="{{ f.boxStyle }}; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 12px; border: 1px solid rgba(117,7,13,0.3)">
+              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">{{ f.label }}</span>
+            </div>
+            <figcaption style="margin-top: 8px; font-size: 13px; line-height: 1.5; opacity: 0.65">{{ f.caption }}</figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- Похожие материалы -->
+<section data-screen-label="Похожие материалы" style="border-top: 1px solid rgba(117,7,13,0.25); max-width: 800px; margin: 0 auto; padding: clamp(36px, 5vw, 56px) 32px; display: flex; flex-direction: column; gap: 16px">
+  <p style="margin: 0; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Читайте также</p>
+  <a href="Медиа.dc.html#photo" style="font-size: 17px; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">Металл и мосты →</a>
+  <a href="Медиа.dc.html#photo" style="font-size: 17px">Орнамент крупным планом →</a>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+class Component extends DCLogic {
+  renderVals() {
+    let n = 0;
+    const vertCell = () => { n++; return { label: `кадр ${n} · 3:4`, caption: 'Подпись к кадру: бренд, модель', boxStyle: 'aspect-ratio: 3 / 4' }; };
+    const wideCell = () => { n++; return { label: `кадр ${n} · 16:9`, caption: 'Подпись к кадру: бренд, модель', boxStyle: 'aspect-ratio: 16 / 9' }; };
+
+    const rows = [
+      { style: 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px', cells: [vertCell(), vertCell(), vertCell()] },
+      { style: 'display: grid; grid-template-columns: 64fr 27fr; gap: 16px', cells: [wideCell(), vertCell()] },
+      { style: 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px', cells: [vertCell(), vertCell(), vertCell()] },
+    ];
+    return { rows };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #FEFBF6; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="media" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<div style="border-bottom: 1px solid rgba(117,7,13,0.2)">
+  <div style="max-width: 1280px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; letter-spacing: 0.04em">
+    <a href="Медиа.dc.html">← Медиа</a>
+    <span style="opacity: 0.4">/</span>
+    <span style="opacity: 0.7">Лонгрид</span>
+  </div>
+</div>
+<!-- Заголовок материала -->
+<section data-screen-label="Заголовок лонгрида" style="background: #75070D; color: #F3E7D8">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px clamp(40px, 6vw, 64px); display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+      <span style="font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7">Статья · 9 июля 2026 г.</span>
+      <a href="Медиа.dc.html#feed" style="font-size: 15px; color: #F3E7D8; border-bottom: 1px solid rgba(243,231,216,0.5)">← Все материалы</a>
+    </div>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(32px, 4.8vw, 54px); line-height: 1.12; max-width: 18ch; text-wrap: balance">Как шьют пальто в Нижнем: разбор одной коллекции</h1>
+    <p style="margin: 0; font-size: 18px; line-height: 1.6; opacity: 0.85; max-width: 56ch">Интервью с основательницей бренда ОКА о закупке шерсти, лекалах, малых партиях и цене честного кроя.</p>
+  </div>
+</section>
+
+<!-- Обложка -->
+<section data-screen-label="Обложка" style="width: 100%">
+  <div style="aspect-ratio: 32 / 9; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 18px; border-bottom: 1px solid rgba(117,7,13,0.3)">
+    <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">обложка лонгрида · 16:9</span>
+  </div>
+</section>
+
+<!-- Текст материала -->
+<section data-screen-label="Текст лонгрида" style="max-width: 1280px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) 32px; display: flex; flex-direction: column; gap: 22px; font-size: 18px; line-height: 1.75">
+  <div style="max-width: 933px">
+  <p style="margin: 0">Мастерская ОКА занимает второй этаж бывшего цеха на Мызинской набережной. Здесь шьют пальто с нуля: от закупки шерсти до готовой вещи на вешале. Основательница бренда рассказывает, что путь одной модели занимает от полутора до трёх месяцев — и это при том, что коллекция выходит малыми партиями по 15–20 штук.</p>
+  </div>
+
+  <figure style="margin: 4px 0 0; max-width: 933px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+    <div>
+      <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 14px; border: 1px solid rgba(117,7,13,0.3)">
+        <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">фото в тексте · 3:4</span>
+      </div>
+    </div>
+    <div>
+      <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 14px; border: 1px solid rgba(117,7,13,0.3)">
+        <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">фото в тексте · 3:4</span>
+      </div>
+    </div>
+    <figcaption style="grid-column: 1 / -1; margin-top: 8px; font-size: 13px; line-height: 1.5; opacity: 0.65">Подпись к фотографии</figcaption>
+  </figure>
+  <div style="max-width: 933px">
+  <blockquote style="margin: 0; padding-left: 20px; border-left: 3px solid #75070D; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 24px; line-height: 1.4; color: #75070D">«Честный крой стоит дороже, потому что в нём нет компромиссов — ни в ткани, ни во времени».</blockquote>
+  </div>
+  <h2 style="margin: 12px 0 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 28px; line-height: 1.2; max-width: 933px">Закупка шерсти</h2>
+  <div style="max-width: 933px">
+  <p style="margin: 0">Ткань берут у нескольких небольших поставщиков — российских и из соседних стран. Импортная шерсть подорожала за последние годы в разы, поэтому в ход всё чаще идут остатки и небольшие партии, которые сложно найти дважды.</p>
+  </div>
+  <h2 style="margin: 12px 0 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 28px; line-height: 1.2; max-width: 933px">Лекала и посадка</h2>
+  <div style="max-width: 933px">
+  <p style="margin: 0">Каждое лекало правится вручную после первой примерочной партии. В мастерской держат архив выкроек за пять лет — по словам основательницы, это единственный способ не начинать с нуля каждый сезон.</p>
+  </div>
+
+  <figure style="margin: 4px 0 0; max-width: 933px">
+    <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 14px; border: 1px solid rgba(117,7,13,0.3)">
+      <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">фото в тексте · 3:2</span>
+    </div>
+    <figcaption style="margin-top: 8px; font-size: 13px; line-height: 1.5; opacity: 0.65">Подпись к фотографии</figcaption>
+  </figure>
+  <h2 style="margin: 12px 0 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 28px; line-height: 1.2; max-width: 933px">Почему производств не хватает</h2>
+  <div style="max-width: 933px">
+  <p style="margin: 0">В городе почти не осталось швейных цехов полного цикла — большинство брендов работают с надомницами или небольшими бригадами. ОКА — одно из немногих мест, где можно увидеть весь путь пальто своими глазами.</p>
+  </div>
+</section>
+
+<!-- Похожие материалы -->
+<section data-screen-label="Похожие материалы" style="border-top: 1px solid rgba(117,7,13,0.25); max-width: 800px; margin: 0 auto; padding: clamp(36px, 5vw, 56px) 32px; display: flex; flex-direction: column; gap: 16px">
+  <p style="margin: 0; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Читайте также</p>
+  <a href="Медиа.dc.html#feed" style="font-size: 17px; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">Сколько стоит запустить бренд в регионе →</a>
+  <a href="Медиа.dc.html#feed" style="font-size: 17px">Кто учит дизайнеров в Нижнем →</a>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}"></script>
+</body>
+</html>

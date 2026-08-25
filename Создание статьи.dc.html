@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+* { box-sizing: border-box; }
+input:focus, textarea:focus { outline: none; border-color: #75070D; }
+input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
+@media (max-width: 900px) { .fs-editor-grid { grid-template-columns: 1fr !important; } .fs-block-panel { position: static !important; order: 2; } }
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+  <!-- Топбар -->
+  <header style="position: sticky; top: 0; z-index: 30; background: #F3E7D8; border-bottom: 1px solid rgba(117,7,13,0.25)">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 28px); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+      <a href="Кабинет бренда.dc.html" style="display: flex; align-items: center; gap: 12px; min-width: 0">
+        <img src="uploads/logo_long.svg.svg" alt="Модный Нижний" style="height: 24px; width: auto; display: block">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6; border-left: 1px solid rgba(117,7,13,0.3); padding-left: 12px">Создание статьи</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+        <a href="Медиа.dc.html" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(117,7,13,0.4); padding-bottom: 2px">← К медиа</a>
+      </div>
+    </div>
+  </header>
+
+  <div style="flex: 1 1 auto; max-width: 1440px; width: 100%; margin: 0 auto; padding: 28px clamp(16px, 3vw, 28px); display: flex; flex-direction: column; gap: 24px">
+
+    <div>
+      <p style="margin: 0 0 10px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Лонгрид</p>
+      <input type="text" placeholder="Заголовок статьи" value="{{ title }}" onChange="{{ setTitle }}" style="width: 100%; padding: 0; border: none; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3.4vw, 42px); color: #75070D; line-height: 1.15">
+      <input type="text" placeholder="Короткий подзаголовок" value="{{ subtitle }}" onChange="{{ setSubtitle }}" style="width: 100%; margin-top: 10px; padding: 0; border: none; background: transparent; font-size: 17px; color: #2B1214; opacity: 0.85">
+    </div>
+
+    <div class="fs-editor-grid" style="display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: start">
+
+      <!-- Холст со списком блоков -->
+      <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="border: 1px dashed rgba(117,7,13,0.4); padding: 48px 24px; text-align: center; color: rgba(43,18,20,0.55); font-size: 15px">Добавьте первый блок справа — заголовок, текст, цитату или фото</div>
+        </sc-if>
+        <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="4">
+          <div style="border: 1px solid rgba(117,7,13,0.25); background: #F7EFE3; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">{{ b.kindLabel }}</span>
+              <div style="display: flex; gap: 8px">
+                <button type="button" onClick="{{ b.moveUp }}" style="{{ iconBtnStyle }}" title="Вверх">↑</button>
+                <button type="button" onClick="{{ b.moveDown }}" style="{{ iconBtnStyle }}" title="Вниз">↓</button>
+                <button type="button" onClick="{{ b.remove }}" style="{{ iconBtnStyle }}" title="Удалить">✕</button>
+              </div>
+            </div>
+            <sc-if value="{{ b.isHeading }}" hint-placeholder-val="{{ false }}">
+              <input type="text" placeholder="Текст заголовка" value="{{ b.value }}" onChange="{{ b.setValue }}" style="width: 100%; padding: 6px 0; border: none; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 24px; color: #2B1214">
+            </sc-if>
+            <sc-if value="{{ b.isText }}" hint-placeholder-val="{{ false }}">
+              <textarea placeholder="Текст абзаца" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="4" style="width: 100%; padding: 0; border: none; background: transparent; font-size: 16px; line-height: 1.6; color: #2B1214; resize: vertical"></textarea>
+            </sc-if>
+            <sc-if value="{{ b.isQuote }}" hint-placeholder-val="{{ false }}">
+              <textarea placeholder="Текст цитаты" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="3" style="width: 100%; padding: 12px 0 12px 18px; border: none; border-left: 3px solid #75070D; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; line-height: 1.4; color: #75070D; resize: vertical"></textarea>
+            </sc-if>
+<sc-if value="{{ b.isPhoto }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <div style="display: flex; gap: 8px">
+                  <button type="button" onClick="{{ b.setLayoutWide }}" style="{{ b.wideBtnStyle }}">Одна горизонтальная</button>
+                  <button type="button" onClick="{{ b.setLayoutPair }}" style="{{ b.pairBtnStyle }}">Две вертикальных</button>
+                </div>
+                <sc-if value="{{ b.isWide }}" hint-placeholder-val="{{ true }}">
+                  <div style="aspect-ratio: 16 / 9; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border: 1px dashed rgba(117,7,13,0.4); display: flex; align-items: center; justify-content: center">
+                    <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">перетащите фото · 16:9</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ b.isPair }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+                    <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border: 1px dashed rgba(117,7,13,0.4); display: flex; align-items: center; justify-content: center">
+                      <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">фото 1 · 3:4</span>
+                    </div>
+                    <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border: 1px dashed rgba(117,7,13,0.4); display: flex; align-items: center; justify-content: center">
+                      <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">фото 2 · 3:4</span>
+                    </div>
+                  </div>
+                </sc-if>
+                <input type="text" placeholder="Подпись к фотографии" value="{{ b.value }}" onChange="{{ b.setValue }}" style="width: 100%; padding: 8px 10px; border: 1px solid rgba(117,7,13,0.3); background: #FFFDF8; font-size: 14px; color: #2B1214">
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Панель добавления блоков -->
+      <div class="fs-block-panel" style="position: sticky; top: 92px; border: 1px solid rgba(117,7,13,0.3); background: #F7EFE3; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Добавить блок</span>
+        <sc-for list="{{ blockTypes }}" as="bt" hint-placeholder-count="4">
+          <button type="button" onClick="{{ bt.add }}" style="display: flex; align-items: center; gap: 12px; text-align: left; padding: 12px 14px; border: 1px solid rgba(117,7,13,0.3); background: transparent; color: #2B1214; font-size: 14px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">
+            <span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D; flex: 0 0 auto">{{ bt.icon }}</span>
+            <span>{{ bt.label }}</span>
+          </button>
+        </sc-for>
+        <div style="height: 1px; background: rgba(117,7,13,0.2); margin: 6px 0"></div>
+        <button type="button" onClick="{{ publish }}" style="background: #75070D; color: #F7EFE3; border: 1px solid #75070D; padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s" style-hover="background: #4E0509">Отправить на проверку</button>
+        <button type="button" onClick="{{ saveDraft }}" style="background: transparent; color: #75070D; border: 1px solid #75070D; padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">Сохранить в черновик</button>
+        <sc-if value="{{ published }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size: 13px; color: #75070D">Статья отправлена редакции</span>
+        </sc-if>
+        <sc-if value="{{ drafted }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size: 13px; color: #75070D">Черновик сохранён</span>
+        </sc-if>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+let uid = 0;
+const KIND_LABELS = { heading: 'Заголовок', text: 'Текст', quote: 'Цитата', photo: 'Фотография' };
+
+class Component extends DCLogic {
+  state = { title: '', subtitle: '', blocks: [], published: false, drafted: false };
+
+  addBlock(kind) {
+    this.setState(s => ({ blocks: [...s.blocks, { id: ++uid, kind, value: '', layout: 'wide' }], published: false, drafted: false }));
+  }
+
+  renderVals() {
+    const blocks = this.state.blocks;
+    const iconBtnStyle = "background: transparent; border: 1px solid rgba(117,7,13,0.3); color: #75070D; width: 26px; height: 26px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center";
+    return {
+      title: this.state.title,
+      setTitle: (e) => this.setState({ title: e.target.value }),
+      subtitle: this.state.subtitle,
+      setSubtitle: (e) => this.setState({ subtitle: e.target.value }),
+      isEmpty: blocks.length === 0,
+      iconBtnStyle,
+      blockTypes: [
+        { kind: 'heading', label: 'Заголовок', icon: 'Aa', add: () => this.addBlock('heading') },
+        { kind: 'text', label: 'Текст', icon: '¶', add: () => this.addBlock('text') },
+        { kind: 'quote', label: 'Цитата', icon: '«»', add: () => this.addBlock('quote') },
+        { kind: 'photo', label: 'Фотография', icon: '▧', add: () => this.addBlock('photo') },
+      ],
+      blocks: blocks.map((b, i) => ({
+        id: b.id,
+        value: b.value,
+        kindLabel: KIND_LABELS[b.kind],
+        isHeading: b.kind === 'heading',
+        isText: b.kind === 'text',
+        isQuote: b.kind === 'quote',
+        isPhoto: b.kind === 'photo',
+        isWide: (b.layout || 'wide') === 'wide',
+        isPair: b.layout === 'pair',
+        wideBtnStyle: `flex: 1; padding: 8px 10px; font-size: 12px; border: 1px solid #75070D; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif; background: ${(b.layout || 'wide') === 'wide' ? '#75070D' : 'transparent'}; color: ${(b.layout || 'wide') === 'wide' ? '#F3E7D8' : '#75070D'}`,
+        pairBtnStyle: `flex: 1; padding: 8px 10px; font-size: 12px; border: 1px solid #75070D; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif; background: ${b.layout === 'pair' ? '#75070D' : 'transparent'}; color: ${b.layout === 'pair' ? '#F3E7D8' : '#75070D'}`,
+        setLayoutWide: () => this.setState(s => ({ blocks: s.blocks.map(x => x.id === b.id ? { ...x, layout: 'wide' } : x) })),
+        setLayoutPair: () => this.setState(s => ({ blocks: s.blocks.map(x => x.id === b.id ? { ...x, layout: 'pair' } : x) })),
+        setValue: (e) => this.setState(s => ({ blocks: s.blocks.map(x => x.id === b.id ? { ...x, value: e.target.value } : x) })),
+        remove: () => this.setState(s => ({ blocks: s.blocks.filter(x => x.id !== b.id) })),
+        moveUp: () => this.setState(s => { if (i === 0) return null; const arr = [...s.blocks]; [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; return { blocks: arr }; }),
+        moveDown: () => this.setState(s => { if (i === s.blocks.length - 1) return null; const arr = [...s.blocks]; [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]; return { blocks: arr }; }),
+      })),
+      published: this.state.published,
+      publish: () => this.setState({ published: true, drafted: false }),
+      drafted: this.state.drafted,
+      saveDraft: () => this.setState({ drafted: true, published: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

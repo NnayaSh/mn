@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
 <style>
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #FEFBF6; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
 a { color: #75070D; text-decoration: none; }
 a:hover { color: #4E0509; }
 </style>
@@ -33,7 +33,7 @@ a:hover { color: #4E0509; }
 
 <!-- Главный материал -->
 <section data-screen-label="Главный материал" style="max-width: 1280px; margin: 0 auto; padding: clamp(40px, 6vw, 80px) 32px 0">
-  <a href="#feed" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; border: 1px solid rgba(117,7,13,0.3); transition: background 0.25s" style-hover="background: #EFE2D2; color: #75070D">
+  <a href="Лонгрид - Как шьют пальто в Нижнем.dc.html" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; border: 1px solid rgba(117,7,13,0.3); transition: background 0.25s" style-hover="background: #EFE2D2; color: #75070D">
     <div style="min-height: 320px; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 18px; border-right: 1px solid rgba(117,7,13,0.3)">
       <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">обложка главного материала · 3:2</span>
     </div>
@@ -156,7 +156,7 @@ a:hover { color: #4E0509; }
   </div>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px">
     <sc-for list="{{ photoProjects }}" as="p" hint-placeholder-count="4">
-      <a href="#photo" style="{{ p.style }}" style-hover="filter: brightness(0.96)">
+      <a href="{{ p.href }}" style="{{ p.style }}" style-hover="filter: brightness(0.96)">
         <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.7">{{ p.shot }}</span>
         <span style="display: flex; flex-direction: column; gap: 6px">
           <span style="font-family: 'Yeseva One', serif; font-size: 21px; color: #75070D">{{ p.title }}</span>
@@ -326,11 +326,12 @@ class Component extends DCLogic {
         { title: 'Как это сделано', text: 'Короткие репортажи из мастерских и цехов города.', count: '21 видео · YouTube', embed: 'встроенный плеер YouTube' },
       ],
       photoProjects: [
-        { title: 'Носить Нижний', meta: 'Съёмка · июнь 2026 · 12 кадров', shot: 'кадр 4:5', span: 2 },
+        { title: 'Носить Нижний', meta: 'Съёмка · июнь 2026 · 12 кадров', shot: 'кадр 4:5', span: 2, href: 'Фотопроект - Носить Нижний.dc.html' },
         { title: 'Металл и мосты', meta: 'СТРЕЛКА · май 2026 · 9 кадров', shot: 'кадр 3:4', span: 1 },
         { title: 'Цех и люди', meta: 'НИЖПОШИВ · апрель 2026 · 16 кадров', shot: 'кадр 3:4', span: 1 },
         { title: 'Орнамент', meta: 'КОВШ · апрель 2026 · 20 кадров', shot: 'кадр 4:5', span: 2 },
       ].map(p => ({ ...p,
+        href: p.href || 'Медиа.dc.html#photo',
         style: `grid-column: span ${narrow ? 1 : p.span}; aspect-ratio: ${(p.span === 2 && !narrow) ? '3 / 2' : '3 / 4'}; background: repeating-linear-gradient(-45deg, #E2D0B8 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; transition: filter 0.2s` })),
       submitted: this.state.submitted,
       notSubmitted: !this.state.submitted,

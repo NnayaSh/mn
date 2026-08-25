@@ -38,11 +38,19 @@ a:hover { color: #4E0509; }
     <span style="font-size: 14px; opacity: 0.7">{{ countLabel }}</span>
   </div>
 
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px)">
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: clamp(28px, 4vw, 48px)">
     <sc-for list="{{ categories }}" as="c" hint-placeholder-count="5">
       <button onClick="{{ c.select }}" style="{{ c.style }}" style-hover="border-color: #75070D">{{ c.label }}</button>
     </sc-for>
+    <sc-if value="{{ hasActiveFilters }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ resetFilters }}" style="padding: 10px 16px; cursor: pointer; font-family: 'IBM Plex Serif', serif; font-size: 14px; letter-spacing: 0.04em; border: none; background: transparent; color: #75070D; text-decoration: underline">Сбросить фильтры</button>
+    </sc-if>
   </div>
+
+  <label style="display: inline-flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: clamp(28px, 4vw, 48px); font-size: 15px">
+    <input type="checkbox" checked="{{ mnOnly }}" onChange="{{ toggleMnOnly }}" style="width: 18px; height: 18px; accent-color: #75070D; cursor: pointer">
+    Можно купить в «Модном Нижнем»
+  </label>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px">
     <sc-for list="{{ brands }}" as="b" hint-placeholder-count="6">
@@ -64,7 +72,7 @@ a:hover { color: #4E0509; }
             <span style="font-size: 12px; opacity: 0.55; font-style: italic">{{ b.founderCaption }}</span>
           </sc-if>
           <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; border-top: 1px solid rgba(117,7,13,0.25); padding-top: 14px; margin-top: 4px">
-            <button onClick="{{ b.open }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'IBM Plex Serif', serif; font-size: 14px; color: #75070D; border-bottom: 1px solid #75070D" style-hover="color: #4E0509">Карточка бренда →</button>
+            <button onClick="{{ b.open }}" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'IBM Plex Serif', serif; font-size: 14px; color: #75070D; border-bottom: 1px solid #75070D" style-hover="color: #4E0509">Страница бренда →</button>
           </div>
         </div>
       </article>
@@ -243,7 +251,7 @@ a:hover { color: #4E0509; }
   &quot;$preview&quot;: { &quot;width&quot;: 1440 }
 }">
 const BRANDS = [
-  { name: 'ФЁКЛА И СВЁКЛА', category: 'Одежда', short: 'Умный способ одеваться в сложное время: осознанный подход к гардеробу вместо экономии ради экономии.', founded: '2023', craft: 'Три линейки, часть вещей — в единственном экземпляре',
+  { name: 'ФЁКЛА И СВЁКЛА', category: 'Одежда', inMN: true, short: 'Умный способ одеваться в сложное время: осознанный подход к гардеробу вместо экономии ради экономии.', founded: '2023', craft: 'Три линейки, часть вещей — в единственном экземпляре',
     founders: ['Ольга Мышаева'], vk: 'vk.com/fyoklaisvyokla', page: 'ФЁКЛА И СВЁКЛА.dc.html',
     logo: 'uploads/fyokla_white.svg', logoCard: 'uploads/fyokla_burgundy.svg',
     cardImgA: 'uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp', cardImgB: 'uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp', cardImgC: 'uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp',
@@ -252,19 +260,19 @@ const BRANDS = [
     description2: 'Здесь меньше ошибок и импульсивных покупок, больше пользы от каждой вещи. В основе — экспертиза стилиста, отобранный ассортимент и поддержка локальных брендов. Каждая деталь продумана так, чтобы служить долго и радовать вас каждый день.',
     description3: 'Это выбор в пользу экологии, качества и собственного времени. Ничего лишнего — только то, что действительно вам идёт и подходит по ритму жизни.',
     description4: '«ФЁКЛА И СВЁКЛА» — для тех, кто ценит стиль без переплат и хочет одеваться с умом.' },
-  { name: 'KÍCHKA', category: 'Одежда', short: 'Концептуальный бренд, переосмысляющий наследие традиционного нижегородского костюма.', founded: '2023', craft: 'Три линейки, часть вещей — в единственном экземпляре',
+  { name: 'KÍCHKA', category: 'Одежда', inMN: true, short: 'Концептуальный бренд, переосмысляющий наследие традиционного нижегородского костюма.', founded: '2023', craft: 'Три линейки, часть вещей — в единственном экземпляре',
     description: 'KÍCHKA — концептуальный бренд одежды, переосмысляющий в современных образах наследие традиционного нижегородского костюма и повседневной одежды прошлых столетий.',
     description2: 'Три линейки: ОЌО — посвящение традиционному нижегородскому костюму, ЗҼRO — базовые унисекс-вещи, ОҠRОМЯ — лимитированные и апсайкл-изделия, часто в единственном экземпляре.',
     gallery: ['коллекция Оберег', 'линейка ОЌО', 'линейка ЗҼRO', 'ОҠRОМЯ'],
     founders: ['Ольга Мышаева'],
     vk: 'vk.com/kichka_style', tg: 't.me/kichka_style', inst: '@kichka.style', page: 'KICHKA.dc.html' },
-  { name: 'ОКА', category: 'Одежда', short: 'Минималистичные пальто и костюмы из плотной шерсти, вдохновлённые речным горизонтом.', founded: '2019', craft: 'Малые партии, пошив в Нижнем Новгороде, две коллекции в год',
+  { name: 'ОКА', category: 'Одежда', inMN: true, short: 'Минималистичные пальто и костюмы из плотной шерсти, вдохновлённые речным горизонтом.', founded: '2019', craft: 'Малые партии, пошив в Нижнем Новгороде, две коллекции в год',
     description: 'Марка верхней одежды, выросшая из небольшого ателье на Рождественской. Работает малыми партиями, шьёт в Нижнем Новгороде и не выпускает более двух коллекций в год.',
     description2: 'В основе — сдержанный крой, натуральные ткани и палитра речной воды: серо-синие, песочные и бордовые тона.',
     gallery: ['лукбук SS26', 'деталь кроя', 'ателье', 'кампейн'],
     founders: ['Анна Светлова'],
     vk: 'vk.com/okabrand', tg: 't.me/okabrand', inst: '@oka.brand' },
-  { name: 'ЧКАЛОВ', category: 'Аксессуары', short: 'Кожаные сумки и ремни ручной сборки, отсылка к промышленной истории города.', founded: '2021', craft: 'Полный цикл: раскрой, сборка, фурнитура; нумерация изделий',
+  { name: 'ЧКАЛОВ', category: 'Аксессуары', inMN: true, short: 'Кожаные сумки и ремни ручной сборки, отсылка к промышленной истории города.', founded: '2021', craft: 'Полный цикл: раскрой, сборка, фурнитура; нумерация изделий',
     description: 'Мастерская кожгалантереи с производством полного цикла: от раскроя до фурнитуры. Каждая сумка нумеруется и подлежит бесплатному ремонту.',
     description2: 'Форма считана с рабочих сумок инженеров и лётчиков — жёсткий силуэт, крупные пряжки, минимум декора.',
     gallery: ['модель Стрелка', 'мастерская', 'фурнитура', 'лукбук'],
@@ -297,7 +305,7 @@ const BRANDS = [
 ];
 
 class Component extends DCLogic {
-  state = { cat: 'Все', activeIdx: null, lightbox: null };
+  state = { cats: [], mnOnly: false, activeIdx: null, lightbox: null };
 
   componentDidMount() {
     this._esc = (e) => { if (e.key === 'Escape') this.setState(s => s.lightbox !== null ? { lightbox: null } : { activeIdx: null }); };
@@ -306,16 +314,17 @@ class Component extends DCLogic {
   componentWillUnmount() { window.removeEventListener('keydown', this._esc); }
 
   renderVals() {
-    const cats = ['Все', ...Array.from(new Set(BRANDS.map(b => b.category)))];
+    const cats = [...Array.from(new Set(BRANDS.map(b => b.category))), 'Дети'];
+    const toggleCat = (label) => () => this.setState(s => ({ cats: s.cats.includes(label) ? s.cats.filter(c => c !== label) : [...s.cats, label] }));
     const categories = cats.map(label => {
-      const on = this.state.cat === label;
+      const on = this.state.cats.includes(label);
       return {
         label,
-        select: () => this.setState({ cat: label }),
+        select: toggleCat(label),
         style: `padding: 10px 20px; cursor: pointer; font-family: 'IBM Plex Serif', serif; font-size: 14px; letter-spacing: 0.04em; transition: all 0.2s; border: 1px solid ${on ? '#75070D' : 'rgba(117,7,13,0.35)'}; background: ${on ? '#75070D' : 'transparent'}; color: ${on ? '#F3E7D8' : '#75070D'}`,
       };
     });
-    const list = BRANDS.filter(b => this.state.cat === 'Все' || b.category === this.state.cat);
+    const list = BRANDS.filter(b => (this.state.cats.length === 0 || this.state.cats.includes(b.category)) && (!this.state.mnOnly || b.inMN));
     const patternPhoto = 'position: relative; aspect-ratio: 4 / 3; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border-bottom: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center';
     const brands = list.map(b => {
       const founderCaption = b.founders && b.founders.length
@@ -327,7 +336,11 @@ class Component extends DCLogic {
       founderCaption, hasFounderCaption: !!founderCaption,
     }; });
     return {
-      categories, brands,
+      categories,
+      hasActiveFilters: this.state.cats.length > 0 || this.state.mnOnly,
+      resetFilters: () => this.setState({ cats: [], mnOnly: false }),
+      mnOnly: this.state.mnOnly,
+      toggleMnOnly: () => this.setState(s => ({ mnOnly: !s.mnOnly })), brands,
       countLabel: `${list.length} из ${BRANDS.length} брендов`,
       brandCount: BRANDS.length,
       mapPoints: BRANDS.slice(0, 4).map(b => ({ name: b.name, category: b.category, craft: b.craft || '' })),

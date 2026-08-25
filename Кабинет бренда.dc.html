@@ -278,6 +278,98 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
         </div>
       </sc-if>
 
+      <!-- Медиа -->
+      <sc-if value="{{ isMedia }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 22px">
+          <div>
+            <p style="margin: 0 0 10px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Медиа</p>
+            <h1 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(24px, 2.8vw, 34px); line-height: 1.15; color: #75070D">Опубликовать материал о бренде</h1>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; max-width: 60ch; opacity: 0.85">Материалы попадают в общую ленту медиа платформы после проверки редакцией.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px">
+            <a href="Создание статьи.dc.html" style="border: 1px solid rgba(117,7,13,0.3); padding: 24px; display: flex; flex-direction: column; gap: 10px; color: #2B1214; transition: background 0.2s" style-hover="background: #F7EFE3">
+              <span style="font-family: 'Yeseva One', serif; font-size: 22px; color: #75070D">Статья</span>
+              <span style="font-size: 14px; line-height: 1.5; opacity: 0.8">Лонгрид с заголовками, цитатами и фотографиями</span>
+            </a>
+            <button type="button" onClick="{{ openPhotoForm }}" style="text-align: left; border: 1px solid rgba(117,7,13,0.3); padding: 24px; display: flex; flex-direction: column; gap: 10px; background: transparent; color: #2B1214; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif; transition: background 0.2s" style-hover="background: #F7EFE3">
+              <span style="font-family: 'Yeseva One', serif; font-size: 22px; color: #75070D">Фотопроект</span>
+              <span style="font-size: 14px; line-height: 1.5; opacity: 0.8">Съёмка или лукбук — набор кадров с подписями</span>
+            </button>
+            <button type="button" onClick="{{ openVideoForm }}" style="text-align: left; border: 1px solid rgba(117,7,13,0.3); padding: 24px; display: flex; flex-direction: column; gap: 10px; background: transparent; color: #2B1214; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif; transition: background 0.2s" style-hover="background: #F7EFE3">
+              <span style="font-family: 'Yeseva One', serif; font-size: 22px; color: #75070D">Видео</span>
+              <span style="font-size: 14px; line-height: 1.5; opacity: 0.8">Ссылка на ролик — показ, интервью, репортаж</span>
+            </button>
+          </div>
+
+          <sc-if value="{{ isMediaFormPhoto }}" hint-placeholder-val="{{ false }}">
+            <form onSubmit="{{ submitMedia }}" style="border: 1px solid rgba(117,7,13,0.35); background: #F7EFE3; padding: clamp(20px, 3vw, 32px); display: flex; flex-direction: column; gap: 20px">
+              <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 22px; color: #75070D">Новый фотопроект</h2>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px">
+                <label style="display: flex; flex-direction: column; gap: 8px">
+                  <span style="{{ labelStyle }}">Название</span>
+                  <input type="text" name="title" required="" placeholder="Носить Нижний" style="{{ inputStyle }}">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 8px">
+                  <span style="{{ labelStyle }}">Количество кадров</span>
+                  <input type="number" name="count" min="1" placeholder="12" style="{{ inputStyle }}">
+                </label>
+              </div>
+              <label style="display: flex; flex-direction: column; gap: 8px">
+                <span style="{{ labelStyle }}">Описание</span>
+                <textarea name="desc" rows="3" placeholder="Локация, фотограф, идея съёмки" style="{{ textareaStyle }}"></textarea>
+              </label>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="{{ labelStyle }}">Фотографии</span>
+                <div style="border: 1px dashed rgba(117,7,13,0.5); padding: 26px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; background: repeating-linear-gradient(-45deg, #EFE1CB 0 12px, #F7EFE3 12px 24px)">
+                  <span style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #75070D">перетащите фото · вертикальные и горизонтальные</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 14px; flex-wrap: wrap">
+                <button type="submit" style="{{ primaryBtnStyle }}">Отправить на проверку</button>
+                <button type="button" onClick="{{ closeMediaForm }}" style="{{ ghostBtnStyle }}">Отмена</button>
+              </div>
+            </form>
+          </sc-if>
+
+          <sc-if value="{{ isMediaFormVideo }}" hint-placeholder-val="{{ false }}">
+            <form onSubmit="{{ submitMedia }}" style="border: 1px solid rgba(117,7,13,0.35); background: #F7EFE3; padding: clamp(20px, 3vw, 32px); display: flex; flex-direction: column; gap: 20px">
+              <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 22px; color: #75070D">Новое видео</h2>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px">
+                <label style="display: flex; flex-direction: column; gap: 8px">
+                  <span style="{{ labelStyle }}">Название</span>
+                  <input type="text" name="title" required="" placeholder="Как собирают сумку" style="{{ inputStyle }}">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 8px">
+                  <span style="{{ labelStyle }}">Платформа</span>
+                  <select name="platform" style="{{ selectStyle }}">
+                    <option>VK Видео</option>
+                    <option>RUTUBE</option>
+                    <option>YouTube</option>
+                  </select>
+                </label>
+              </div>
+              <label style="display: flex; flex-direction: column; gap: 8px">
+                <span style="{{ labelStyle }}">Ссылка на ролик</span>
+                <input type="url" name="link" required="" placeholder="https://" style="{{ inputStyle }}">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 8px">
+                <span style="{{ labelStyle }}">Описание</span>
+                <textarea name="desc" rows="3" placeholder="О чём ролик" style="{{ textareaStyle }}"></textarea>
+              </label>
+              <div style="display: flex; gap: 14px; flex-wrap: wrap">
+                <button type="submit" style="{{ primaryBtnStyle }}">Отправить на проверку</button>
+                <button type="button" onClick="{{ closeMediaForm }}" style="{{ ghostBtnStyle }}">Отмена</button>
+              </div>
+            </form>
+          </sc-if>
+
+          <sc-if value="{{ mediaSubmitted }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size: 14px; color: #75070D">Материал отправлен на проверку редакции</span>
+          </sc-if>
+        </div>
+      </sc-if>
+
       <!-- Заявки -->
       <sc-if value="{{ isRequests }}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; flex-direction: column; gap: 22px">
@@ -312,7 +404,7 @@ const START = [
 ];
 
 class Component extends DCLogic {
-  state = { tab: 'overview', formOpen: false, products: START, brandSaved: false, narrow: false, brandEditing: false };
+  state = { tab: 'overview', formOpen: false, products: START, brandSaved: false, narrow: false, brandEditing: false, mediaForm: null, mediaSubmitted: false };
 
   componentDidMount() {
     this.mq = window.matchMedia('(max-width: 860px)');
@@ -343,6 +435,7 @@ class Component extends DCLogic {
       { id: 'overview', label: 'Обзор', badge: '' },
       { id: 'products', label: 'Товары', badge: String(this.state.products.length) },
       { id: 'brand', label: 'Карточка бренда', badge: '' },
+      { id: 'media', label: 'Медиа', badge: '' },
       { id: 'requests', label: 'Заявки', badge: '2' },
     ];
     const input = "width: 100%; padding: 14px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #FFFDF8; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s";
@@ -351,7 +444,15 @@ class Component extends DCLogic {
       isOverview: t === 'overview',
       isProducts: t === 'products',
       isBrand: t === 'brand',
+      isMedia: t === 'media',
       isRequests: t === 'requests',
+      isMediaFormPhoto: this.state.mediaForm === 'photo',
+      isMediaFormVideo: this.state.mediaForm === 'video',
+      openPhotoForm: () => this.setState({ mediaForm: 'photo', mediaSubmitted: false }),
+      openVideoForm: () => this.setState({ mediaForm: 'video', mediaSubmitted: false }),
+      closeMediaForm: () => this.setState({ mediaForm: null }),
+      mediaSubmitted: this.state.mediaSubmitted,
+      submitMedia: (e) => { e.preventDefault(); this.setState({ mediaForm: null, mediaSubmitted: true }); },
       statusLabel: 'Бренд опубликован',
       statusChipStyle: 'padding: 7px 14px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(117,7,13,0.4); color: #75070D',
       shellStyle: `flex: 1 1 auto; max-width: 1440px; width: 100%; margin: 0 auto; padding: ${narrow ? '20px 18px 40px' : '28px'}; display: grid; grid-template-columns: ${narrow ? 'minmax(0, 1fr)' : '236px minmax(0, 1fr)'}; gap: ${narrow ? '20px' : '28px'}; align-items: start`,
