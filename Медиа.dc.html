@@ -83,14 +83,26 @@ a:hover { color: #4E0509; }
   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); grid-auto-flow: dense; align-items: start; gap: 20px">
     <sc-for list="{{ items }}" as="m" hint-placeholder-count="9">
       <article style="{{ m.cardStyle }}">
-        <div style="{{ m.mediaStyle }}">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; opacity: 0.78">{{ m.placeholder }}</span>
-        </div>
+        <sc-if value="{{ m.hasPage }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ m.page }}" style="{{ m.mediaStyle }}">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; opacity: 0.78">{{ m.placeholder }}</span>
+          </a>
+        </sc-if>
+        <sc-if value="{{ m.hasNoPage }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ m.mediaStyle }}">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; opacity: 0.78">{{ m.placeholder }}</span>
+          </div>
+        </sc-if>
         <div style="{{ m.bodyStyle }}">
           <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D">
             <span>{{ m.kind }}</span><span style="opacity: 0.65">{{ m.date }}</span>
           </div>
-          <h3 style="{{ m.titleStyle }}">{{ m.title }}</h3>
+          <sc-if value="{{ m.hasPage }}" hint-placeholder-val="{{ false }}">
+            <h3 style="{{ m.titleStyle }}"><a href="{{ m.page }}" style="color: inherit; text-decoration: none" style-hover="text-decoration: underline">{{ m.title }}</a></h3>
+          </sc-if>
+          <sc-if value="{{ m.hasNoPage }}" hint-placeholder-val="{{ true }}">
+            <h3 style="{{ m.titleStyle }}">{{ m.title }}</h3>
+          </sc-if>
           <p style="margin: 0; font-size: 14px; line-height: 1.55; opacity: 0.8">{{ m.excerpt }}</p>
           <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 2px">
             <div style="display: flex; gap: 6px; flex-wrap: wrap">
@@ -225,9 +237,9 @@ const THEME_TAGS = ['Показы', 'Съёмки', 'Производство', 
 
 const ITEMS = [
   { kind: 'Новость', date: '18 июл', title: 'KÍCHKA открыла шоурум на Алексеевской', excerpt: 'Бренд переехал из мастерской в собственное пространство с примеркой по записи.', tags: ['KÍCHKA', 'Бренды'], placeholder: 'фото новости', size: 'small' },
-  { kind: 'Лонгрид', date: '9 июл', title: 'Как шьют пальто в Нижнем', excerpt: 'Интервью с основательницей ОКА о малых партиях, производствах и цене честного кроя.', tags: ['ОКА', 'Производство', 'Интервью'], placeholder: 'иллюстрация к статье', size: 'wide' },
+  { kind: 'Лонгрид', date: '9 июл', title: 'Как шьют пальто в Нижнем', excerpt: 'Интервью с основательницей ОКА о малых партиях, производствах и цене честного кроя.', tags: ['ОКА', 'Производство', 'Интервью'], placeholder: 'иллюстрация к статье', size: 'wide', page: 'Лонгрид - Как шьют пальто в Нижнем.dc.html' },
   { kind: 'Видео', date: '2 июл', title: 'Показ сезона: полная запись', excerpt: 'Час записи весеннего показа на Стрелке — двенадцать брендов подряд.', tags: ['Показы', 'Видео'], placeholder: 'плеер · VK Видео', size: 'small' },
-  { kind: 'Фотопроект', date: '24 июн', title: 'Носить Нижний: съёмка на Ильинской', excerpt: 'Восемь образов локальных марок в декорациях деревянного города.', tags: ['Съёмки', 'Городская среда'], placeholder: 'лукбук · 12 кадров', size: 'small' },
+  { kind: 'Фотопроект', date: '24 июн', title: 'Носить Нижний: съёмка на Ильинской', excerpt: 'Восемь образов локальных марок в декорациях деревянного города.', tags: ['Съёмки', 'Городская среда'], placeholder: 'лукбук · 12 кадров', size: 'small', page: 'Фотопроект - Носить Нижний.dc.html' },
   { kind: 'Аналитика', date: '11 июн', title: 'Сколько стоит запустить бренд в регионе', excerpt: 'Разбор бюджетов пяти марок: от первой капсулы до постоянного шоурума.', tags: ['Аналитика', 'Бизнес'], placeholder: 'инфографика', size: 'wide' },
   { kind: 'Новость', date: '3 июн', title: 'Открыт приём заявок на Форум', excerpt: 'Дизайнеры и производственники подают заявки до 1 октября.', tags: ['Форум'], placeholder: 'фото новости', size: 'small' },
   { kind: 'Видео', date: '28 мая', title: 'Мастерская ЧКАЛОВ: как собирают сумку', excerpt: 'Двенадцать минут в цеху: раскрой, сборка, фурнитура.', tags: ['ЧКАЛОВ', 'Производство'], placeholder: 'плеер · RUTUBE', size: 'small' },
@@ -306,6 +318,8 @@ class Component extends DCLogic {
         tagChips: m.tags.map(t => ({ label: t, select: toggleTag(t) })),
         share: () => this.shareItem(m),
         shareLabel: this.state.sharedTitle === m.title ? 'Скопировано' : 'Поделиться',
+        hasPage: !!m.page,
+        hasNoPage: !m.page,
       };
     });
 
