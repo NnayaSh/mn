@@ -583,7 +583,7 @@ a:hover { color: #4E0509; }
 <script type="text/x-dc" data-dc-script data-props="{&quot;showTicker&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Секции&quot;},&quot;bannersAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Баннеры&quot;},&quot;eventsView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Список&quot;,&quot;Календарь&quot;],&quot;default&quot;:&quot;Календарь&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Афиша&quot;},&quot;eventCount&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:3,&quot;max&quot;:7,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Афиша&quot;}}">
 const MEDIA = [
   { kind: 'Новость', date: '18 июл', title: 'KÍCHKA открыла шоурум на Алексеевской', excerpt: 'Бренд переехал из мастерской в собственное пространство с примеркой по записи.', tags: ['KÍCHKA', 'Бренды'], placeholder: 'фото новости' },
-  { kind: 'Лонгрид', date: '9 июл', title: 'Интервью: как шьют пальто в Нижнем', excerpt: 'Основательница ОКА — о малых партиях, местных производствах и цене честного кроя.', tags: ['ОКА', 'Производство'], placeholder: 'иллюстрация к статье' },
+  { kind: 'Статья', date: '9 июл', title: 'Интервью: как шьют пальто в Нижнем', excerpt: 'Основательница ОКА — о малых партиях, местных производствах и цене честного кроя.', tags: ['ОКА', 'Производство'], placeholder: 'иллюстрация к статье' },
   { kind: 'Видео', date: '2 июл', title: 'Показ сезона: полная запись', excerpt: 'Часовая запись весеннего показа на Стрелке — двенадцать брендов подряд.', tags: ['Показы', 'Видео'], placeholder: 'плеер · YouTube / VK Видео' },
   { kind: 'Фотопроект', date: '24 июн', title: 'Носить Нижний: съёмка на Ильинской', excerpt: 'Восемь образов локальных марок в декорациях деревянного города.', tags: ['Съёмки', 'Городская среда'], placeholder: 'лукбук · 12 кадров' },
   { kind: 'Аналитика', date: '11 июн', title: 'Сколько стоит запустить бренд в регионе', excerpt: 'Разбор бюджетов пяти марок: от первой капсулы до постоянного шоурума.', tags: ['Аналитика', 'Бизнес'], placeholder: 'графика' },
@@ -759,8 +759,8 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const tabs = ['Все', 'Новости', 'Лонгриды', 'Видео', 'Фотопроекты'];
-    const map = { 'Новости': ['Новость'], 'Лонгриды': ['Лонгрид', 'Аналитика'], 'Видео': ['Видео'], 'Фотопроекты': ['Фотопроект'] };
+    const tabs = ['Все', 'Новости', 'Статьи', 'Видео', 'Фотопроекты'];
+    const map = { 'Новости': ['Новость'], 'Статьи': ['Статья', 'Аналитика'], 'Видео': ['Видео'], 'Фотопроекты': ['Фотопроект'] };
     const mediaTabs = tabs.map(label => {
       const on = this.state.mediaTab === label;
       return { label, select: () => this.setState({ mediaTab: label }),
