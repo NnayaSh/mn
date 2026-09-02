@@ -460,18 +460,25 @@ a:hover { color: #4E0509; }
         <a href="mailto:partners@modny-nn.ru" style="align-self: center; font-size: 15px; border-bottom: 1px solid #75070D; padding-bottom: 3px">partners@modny-nn.ru</a>
       </div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
       <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 20px">
         <img src="uploads/nizniy800.svg" alt="Нижний 800" style="max-width: 100%; max-height: 100%; width: auto; height: auto; display: block">
       </div>
       <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 20px">
         <img src="uploads/pfki.svg" alt="Фонд культурных инициатив" style="max-width: 100%; max-height: 100%; width: auto; height: auto; display: block">
       </div>
-      <sc-for list="{{ partnerLogos }}" as="p" hint-placeholder-count="4">
-        <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 12px; line-height: 1.5; color: #75070D; opacity: 0.85">{{ p }}</span>
-        </div>
-      </sc-for>
+      <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 20px">
+        <img src="uploads/DA_logo_2023_social_-2.png" alt="Дом архитектора" style="max-width: 88%; max-height: 88%; width: auto; height: auto; display: block">
+      </div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 20px">
+        <img src="uploads/unnamed.png" alt="Деловая Россия" style="max-width: 92%; max-height: 92%; width: auto; height: auto; display: block">
+      </div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 20px">
+        <img src="uploads/volga-.png" alt="ВОЛГА" style="max-width: 88%; max-height: 62%; width: auto; height: auto; display: block">
+      </div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center; padding: 20px">
+        <img src="uploads/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_%D0%BF%D0%B0%D1%80%D1%82%D0%B8%D0%B8_%22%D0%9D%D0%BE%D0%B2%D1%8B%D0%B5_%D0%BB%D1%8E%D0%B4%D0%B8%22.png" alt="Партия Новые люди" style="max-width: 74%; max-height: 74%; width: auto; height: auto; display: block">
+      </div>
     </div>
   </div>
 </section>
@@ -807,7 +814,6 @@ class Component extends DCLogic {
         { value: '6 000', label: 'из 300 000 нижегородок узнали о местных брендах благодаря нашей работе' },
         { value: '3', label: 'бренда одежды, которые планировали закрыться, продолжили работу благодаря нашей площадке и поддержке комьюнити' },
       ],
-      partnerLogos: ['логотип · СМИ-партнёр', 'логотип · партнёр', 'логотип · партнёр', 'логотип · партнёр'],
       brands: this.brandTiles(),
       mediaTabs, mediaItems,
       tags: ['KÍCHKA', 'ОКА', 'Показы', 'Съёмки', 'Производство', 'Аналитика', 'Форум', 'Городская среда'],

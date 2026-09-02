@@ -20,8 +20,11 @@ a { color: #75070D; text-decoration: none; }
 a:hover { color: #4E0509; }
 #fs-hero-logo::part(frame) { background: transparent; }
 @media (max-width: 640px) { .fs-gallery-wide-row { grid-template-columns: 1fr !important; } }
+@media (max-width: 560px) { .fs-modal-row { flex-direction: column !important; } .fs-modal-row > div:first-child { width: 100% !important; height: min(80vw, 360px) !important; } }
+.fs-tile:hover .fs-cap { opacity: 1 !important; }
 @media (max-width: 860px) { #contacts > div { grid-template-columns: 1fr !important; } }
-@media (max-width: 900px) { .fs-hero-row { flex-direction: column !important; min-height: auto !important; } .fs-hero-row > div { width: 100% !important; max-width: none !important; order: 2 !important; } .fs-hero-row > image-slot { height: min(70vw, 420px) !important; max-height: none !important; order: 1 !important; } }
+@media (max-width: 1180px) { .fs-hero-row > div:first-child { padding-left: 16px !important; padding-right: 16px !important; } }
+@media (max-width: 900px) { .fs-hero-row { flex-direction: column !important; min-height: auto !important; } .fs-hero-row > div:first-child { width: 100% !important; max-width: none !important; padding-left: 16px !important; padding-right: 16px !important; order: 2 !important; } .fs-hero-row > div:last-child { width: 100% !important; height: min(70vw, 420px) !important; max-height: none !important; padding: 24px 16px !important; order: 1 !important; } }
 </style>
 </helmet>
 <div style="min-width: 320px; overflow-x: clip">
@@ -40,8 +43,8 @@ a:hover { color: #4E0509; }
 <!-- Hero: фото сверху, ниже прямоугольник с лого, основателем, годом, описанием и кнопкой -->
 <section data-screen-label="Бренд: hero" style="background-color: #FEFBF6">
   <div class="fs-hero-row" style="display: flex; min-height: min(78vh, 760px)">
-    <div style="width: 46%; max-width: 600px; flex-shrink: 0; background: #FEFBF6; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 40px 40px 28px; color: #75070D; box-sizing: border-box">
-      <image-slot id="fs-hero-logo" shape="rect" fit="contain" placeholder="Логотип" style="width: 100%; max-width: 340px; height: 120px; flex-shrink: 0; background: #FEFBF6"></image-slot>
+    <div style="width: 46%; max-width: 600px; flex-shrink: 0; background: #FEFBF6; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 40px 40px 28px max(32px, calc((100vw - 1344px) / 2 + 32px)); color: #75070D; box-sizing: border-box">
+      <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(34px, 4vw, 56px); line-height: 1.1; color: #75070D; text-wrap: balance">ФЁКЛА И СВЁКЛА</h1>
       <div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid rgba(117,7,13,0.2)">
         <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55">Основатель</span>
         <span style="font-size: 15px; font-weight: 600">Ольга Мышаева</span>
@@ -50,7 +53,9 @@ a:hover { color: #4E0509; }
       <p style="margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.85; max-width: 549px">Здесь меньше ошибок и импульсивных покупок, больше пользы от каждой вещи. В основе — экспертиза стилиста, отобранный ассортимент и поддержка локальных брендов. Каждая деталь продумана так, чтобы служить долго и радовать вас каждый день. Это выбор в пользу экологии, качества и собственного времени. Ничего лишнего — только то, что действительно вам идёт и подходит по ритму жизни. «ФЁКЛА И СВЁКЛА» — для тех, кто ценит стиль без переплат и хочет одеваться с умом.</p>
       <a href="#contacts" style="align-self: flex-start; background: #75070D; color: #FEFBF6; padding: 14px 26px; font-size: 14px; white-space: nowrap; transition: background 0.2s" style-hover="background: #4E0509; color: #FEFBF6">Купить</a>
     </div>
-    <image-slot id="fs-hero-photo" src="uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp" shape="rect" placeholder="Фото бренда" style="flex: 1; min-width: 0; align-self: stretch; height: 742px; max-height: 100%; display: block"></image-slot>
+    <div style="flex: 1; min-width: 0; align-self: stretch; height: 742px; max-height: 100%; padding: clamp(32px, 5vw, 72px); box-sizing: border-box; display: flex; align-items: center; justify-content: center">
+      <image-slot id="fs-hero-logo-right" shape="rect" fit="contain" placeholder="Логотип бренда" style="width: 100%; height: 100%; display: block; background: transparent; --slot-frame-bg: transparent"></image-slot>
+    </div>
   </div>
 </section>
 
@@ -59,25 +64,119 @@ a:hover { color: #4E0509; }
   <p style="margin: 0 0 24px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Галерея</p>
   <div style="display: flex; flex-direction: column; gap: 3px">
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px">
-      <div style="aspect-ratio: 3 / 4; background: url('uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp') center/cover"></div>
-      <div style="aspect-ratio: 3 / 4; background: url('uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp') center/cover"></div>
-      <div style="aspect-ratio: 3 / 4; background: url('uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp') center/cover"></div>
+      <div class="fs-tile" onClick="{{ openHandlers.0 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; background: url('uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp') center/cover">
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Платье «Свёкла»</span>
+            <span style="font-size: 13px; opacity: 0.85">Лён, ручная роспись · 42–52</span>
+            <span style="font-size: 14px">18 500 ₽</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid rgba(254,251,246,0.3)">
+            <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Сумка «Морковь»</span>
+            <span style="font-size: 13px; opacity: 0.85">Кожа, ручная работа · one size</span>
+            <span style="font-size: 14px">6 200 ₽</span>
+          </div>
+        </div>
+      </div>
+      <div class="fs-tile" onClick="{{ openHandlers.1 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; background: url('uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp') center/cover">
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Сарафан «Грядка»</span>
+          <span style="font-size: 13px; opacity: 0.85">Хлопок · 42–50</span>
+          <span style="font-size: 14px">14 200 ₽</span>
+        </div>
+      </div>
+      <div class="fs-tile" onClick="{{ openHandlers.2 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; background: url('uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp') center/cover">
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Жакет «Ботва»</span>
+          <span style="font-size: 13px; opacity: 0.85">Шерсть, подкладка вискоза · 44–52</span>
+          <span style="font-size: 14px">26 900 ₽</span>
+        </div>
+      </div>
     </div>
     <div class="fs-gallery-wide-row" style="display: grid; grid-template-columns: 64fr 27fr; gap: 3px">
-      <image-slot id="fs-gallery-4" shape="rect" placeholder="Фото 4" style="aspect-ratio: 16 / 9; display: block"></image-slot>
-      <image-slot id="fs-gallery-5" shape="rect" placeholder="Фото 5" style="aspect-ratio: 3 / 4; display: block"></image-slot>
+      <div class="fs-tile" style="position: relative; aspect-ratio: 16 / 9; overflow: hidden">
+        <div style="position: absolute; inset: 0; background: url('uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Съёмка коллекции «Огород», 2026</span>
+          <span style="font-size: 13px; opacity: 0.85">Подпись к кадру</span>
+        </div>
+      </div>
+      <div class="fs-tile" onClick="{{ openHandlers.4 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer">
+        <div style="position: absolute; inset: 0; background: url('uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Блуза «Репа»</span>
+          <span style="font-size: 13px; opacity: 0.85">Крепдешин · 42–50</span>
+          <span style="font-size: 14px">11 800 ₽</span>
+        </div>
+      </div>
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px">
-      <image-slot id="fs-gallery-6" shape="rect" placeholder="Фото 6" style="aspect-ratio: 3 / 4; display: block"></image-slot>
-      <image-slot id="fs-gallery-7" shape="rect" placeholder="Фото 7" style="aspect-ratio: 3 / 4; display: block"></image-slot>
-      <image-slot id="fs-gallery-8" shape="rect" placeholder="Фото 8" style="aspect-ratio: 3 / 4; display: block"></image-slot>
+      <div class="fs-tile" onClick="{{ openHandlers.5 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer">
+        <div style="position: absolute; inset: 0; background: url('uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Название изделия</span>
+          <span style="font-size: 13px; opacity: 0.85">Состав · размерный ряд</span>
+          <span style="font-size: 14px">цена</span>
+        </div>
+      </div>
+      <div class="fs-tile" onClick="{{ openHandlers.6 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer">
+        <div style="position: absolute; inset: 0; background: url('uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Название изделия</span>
+          <span style="font-size: 13px; opacity: 0.85">Состав · размерный ряд</span>
+          <span style="font-size: 14px">цена</span>
+        </div>
+      </div>
+      <div class="fs-tile" onClick="{{ openHandlers.7 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer">
+        <div style="position: absolute; inset: 0; background: url('uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Название изделия</span>
+          <span style="font-size: 13px; opacity: 0.85">Состав · размерный ряд</span>
+          <span style="font-size: 14px">цена</span>
+        </div>
+      </div>
     </div>
     <div class="fs-gallery-wide-row" style="display: grid; grid-template-columns: 64fr 27fr; gap: 3px">
-      <image-slot id="fs-gallery-9" shape="rect" placeholder="Фото 9" style="aspect-ratio: 16 / 9; display: block"></image-slot>
-      <image-slot id="fs-gallery-10" shape="rect" placeholder="Фото 10" style="aspect-ratio: 3 / 4; display: block"></image-slot>
+      <div class="fs-tile" style="position: relative; aspect-ratio: 16 / 9; overflow: hidden">
+        <div style="position: absolute; inset: 0; background: url('uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Подпись к кадру</span>
+          <span style="font-size: 13px; opacity: 0.85">Где и когда снято</span>
+        </div>
+      </div>
+      <div class="fs-tile" onClick="{{ openHandlers.9 }}" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer">
+        <div style="position: absolute; inset: 0; background: url('uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp') center/cover"></div>
+        <div class="fs-cap" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 20px; background: linear-gradient(to top, rgba(43,18,20,0.88) 0%, rgba(43,18,20,0.5) 45%, rgba(43,18,20,0) 100%); color: #FEFBF6; opacity: 0; transition: opacity 0.25s; pointer-events: none">
+          <span style="font-family: 'Yeseva One', serif; font-size: 19px; line-height: 1.2">Название изделия</span>
+          <span style="font-size: 13px; opacity: 0.85">Состав · размерный ряд</span>
+          <span style="font-size: 14px">цена</span>
+        </div>
+      </div>
     </div>
   </div>
+  <p style="margin: 18px 0 0; font-size: 13px; line-height: 1.6; opacity: 0.6; max-width: 620px">На десктопе подписи появляются при наведении на кадр: название изделия, состав, размерный ряд и цена. Клик по фото открывает карточку товара целиком. На мобильных достаточно нажать на фото.</p>
 </section>
+
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeModal }}" style="position: fixed; inset: 0; z-index: 200; background: rgba(43,18,20,0.72); display: flex; align-items: center; justify-content: center; padding: 24px">
+    <div onClick="{{ stopClick }}" style="background: #FEFBF6; max-width: 620px; width: 100%; max-height: 84vh; overflow-y: auto; padding: 40px; display: flex; flex-direction: column; gap: 18px; position: relative; box-sizing: border-box">
+      <button onClick="{{ closeModal }}" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 26px; line-height: 1; color: #75070D; cursor: pointer; padding: 4px">×</button>
+      <div class="fs-modal-row" style="display: flex; gap: 20px; flex-wrap: wrap">
+        <div style="width: 300px; max-width: 100%; height: 400px; flex-shrink: 0; overflow: hidden; background-color: #EFE3D3; background-image: url('{{ modalImg }}'); background-size: cover; background-position: center"></div>
+        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0; flex: 1">
+          <sc-for list="{{ modalItems }}" as="item" hint-placeholder-count="1">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-family: 'Yeseva One', serif; font-weight: 400; font-size: 30px; color: #75070D; line-height: 1.2">{{ item.title }}</span>
+              <span style="font-size: 17px; opacity: 0.7">{{ item.desc }}</span>
+              <span style="font-size: 19px; font-weight: 600; color: #75070D">{{ item.price }}</span>
+            </div>
+          </sc-for>
+          <a href="#contacts" onClick="{{ closeModal }}" style="align-self: flex-start; margin-top: 4px; background: #75070D; color: #FEFBF6; padding: 12px 22px; font-size: 14px; white-space: nowrap; transition: background 0.2s" style-hover="background: #4E0509; color: #FEFBF6">Купить</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</sc-if>
 
 <!-- Купить / Кабинет бренда -->
 <section id="contacts" data-screen-label="Купить и кабинет бренда" style="background: #EFE3D3; border-top: 1px solid rgba(117,7,13,0.2)">
@@ -124,6 +223,33 @@ a:hover { color: #4E0509; }
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">class Component extends DCLogic {
+  state = { modalIdx: null };
+  tilesData = [
+    [{img:"uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp",title:"Платье «Свёкла»",desc:"Лён, ручная роспись · 42–52",price:"18 500 ₽"},{img:"uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp",title:"Сумка «Морковь»",desc:"Кожа, ручная работа · one size",price:"6 200 ₽"}],
+    [{img:"uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp",title:"Сарафан «Грядка»",desc:"Хлопок · 42–50",price:"14 200 ₽"}],
+    [{img:"uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp",title:"Жакет «Ботва»",desc:"Шерсть, подкладка вискоза · 44–52",price:"26 900 ₽"}],
+    null,
+    [{img:"uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp",title:"Блуза «Репа»",desc:"Крепдешин · 42–50",price:"11 800 ₽"}],
+    [{img:"uploads/1WnIYeaYAQ6zMmUIIyTi0sqx3-1jGFXqfpxuIMdCwLcXZdUqGPhjGdbSk1v_jW_u9IS8MwUNMAitxunopS30z7ay.webp",title:"Название изделия",desc:"Состав · размерный ряд",price:"цена"}],
+    [{img:"uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp",title:"Название изделия",desc:"Состав · размерный ряд",price:"цена"}],
+    [{img:"uploads/yhNI3eKRxNpMgbnudaDM10yh7GtPsA79ZdJ0f24Tbe5NHES5oZkj-Eeq_Yqgis3LbnhIMklMMUKtXXZTSyNPmbyK.webp",title:"Название изделия",desc:"Состав · размерный ряд",price:"цена"}],
+    null,
+    [{img:"uploads/5fZbjcJ8iAWOajWOhBjDVjah2NalmRR-c1E3MPXaTm22tg9rTSbIGTvWGTaj21rpctOvJacgv9OEIuyUMStwaIS3.webp",title:"Название изделия",desc:"Состав · размерный ряд",price:"цена"}],
+  ];
+  renderVals() {
+    const { tilesData } = this;
+    const openHandlers = tilesData.map((data, i) => data ? () => this.setState({ modalIdx: i }) : undefined);
+    const modalIdx = this.state.modalIdx;
+    return {
+      openHandlers,
+      modalOpen: modalIdx !== null,
+      modalItems: modalIdx !== null ? tilesData[modalIdx] : [],
+      modalImg: modalIdx !== null ? tilesData[modalIdx][0].img : "",
+      closeModal: () => this.setState({ modalIdx: null }),
+      stopClick: (e) => e.stopPropagation(),
+    };
+  }
+}</script>
 </body>
 </html>

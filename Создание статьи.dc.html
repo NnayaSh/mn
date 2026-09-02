@@ -24,6 +24,69 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
 </helmet>
 <div style="min-height: 100vh; display: flex; flex-direction: column">
 
+  <!-- Предпросмотр -->
+  <sc-if value="{{ previewOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 60; background: rgba(43,18,20,0.45); display: flex; justify-content: center; overflow-y: auto; padding: 24px 16px">
+      <div style="background: #FEFBF6; width: 100%; max-width: 960px; align-self: flex-start; border: 1px solid rgba(117,7,13,0.3)">
+        <div style="position: sticky; top: 0; background: #FEFBF6; border-bottom: 1px solid rgba(117,7,13,0.25); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+          <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Предпросмотр статьи</span>
+          <button type="button" onClick="{{ closePreview }}" style="background: transparent; border: 1px solid rgba(117,7,13,0.4); color: #75070D; padding: 8px 14px; font-size: 13px; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif" style-hover="background: #75070D; color: #F3E7D8">Закрыть</button>
+        </div>
+        <div style="padding: clamp(24px, 4vw, 44px); font-family: 'IBM Plex Serif', Georgia, serif; display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.75">
+          <span style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #75070D">{{ previewMeta }}</span>
+          <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; color: #2B1214; text-wrap: balance">{{ previewTitle }}</h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.6; opacity: 0.85">{{ previewSubtitle }}</p>
+          <sc-for list="{{ previewBlocks }}" as="p" hint-placeholder-count="3">
+            <div>
+              <sc-if value="{{ p.isHeading }}" hint-placeholder-val="{{ false }}">
+                <h2 style="margin: 8px 0 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 26px; line-height: 1.1">{{ p.value }}</h2>
+              </sc-if>
+              <sc-if value="{{ p.isQuote }}" hint-placeholder-val="{{ false }}">
+                <blockquote style="margin: 0; padding-left: 18px; border-left: 3px solid #75070D; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 22px; line-height: 1.4; color: #75070D">{{ p.value }}</blockquote>
+              </sc-if>
+              <sc-if value="{{ p.isText }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 16px">
+                  <sc-for list="{{ p.paragraphs }}" as="par" hint-placeholder-count="2">
+                    <p style="margin: 0">{{ par.text }}</p>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ p.isPhoto }}" hint-placeholder-val="{{ false }}">
+                <figure style="margin: 0; display: grid; grid-template-columns: {{ p.photoCols }}; gap: 10px">
+                  <sc-for list="{{ p.photos }}" as="ph" hint-placeholder-count="1">
+                    <div style="aspect-ratio: {{ ph.ratio }}; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 14px">
+                      <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">{{ ph.label }}</span>
+                    </div>
+                  </sc-for>
+                  <figcaption style="grid-column: 1 / -1; margin-top: 6px; font-size: 13px; line-height: 1.5; opacity: 0.65">{{ p.value }}</figcaption>
+                </figure>
+              </sc-if>
+              <sc-if value="{{ p.isSplit }}" hint-placeholder-val="{{ false }}">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center">
+                  <div style="{{ p.imgOrderStyle }} aspect-ratio: 4 / 5; background: repeating-linear-gradient(-45deg, #EBDCC7 0 16px, #F3E7D8 16px 32px); display: flex; align-items: flex-end; padding: 14px">
+                    <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">фото · 4:5</span>
+                  </div>
+                  <div style="{{ p.textOrderStyle }} display: flex; flex-direction: column; gap: 16px">
+                    <sc-for list="{{ p.paragraphs }}" as="par" hint-placeholder-count="2">
+                      <p style="margin: 0">{{ par.text }}</p>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <sc-if value="{{ hasTags }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(117,7,13,0.25); padding-top: 18px">
+              <sc-for list="{{ previewTags }}" as="t" hint-placeholder-count="3">
+                <span style="{{ t.style }}">{{ t.label }}</span>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
   <!-- Топбар -->
   <header style="position: sticky; top: 0; z-index: 30; background: #F3E7D8; border-bottom: 1px solid rgba(117,7,13,0.25)">
     <div style="max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 28px); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
@@ -41,8 +104,46 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
 
     <div>
       <p style="margin: 0 0 10px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Статья</p>
-      <input type="text" placeholder="Заголовок статьи" value="{{ title }}" onChange="{{ setTitle }}" style="width: 100%; padding: 0; border: none; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3.4vw, 42px); color: #75070D; line-height: 1.15">
+      <input type="text" placeholder="Заголовок статьи" value="{{ title }}" onChange="{{ setTitle }}" style="width: 100%; padding: 0; border: none; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3.4vw, 42px); color: #75070D; line-height: 1.1">
       <input type="text" placeholder="Короткий подзаголовок" value="{{ subtitle }}" onChange="{{ setSubtitle }}" style="width: 100%; margin-top: 10px; padding: 0; border: none; background: transparent; font-size: 17px; color: #2B1214; opacity: 0.85">
+      <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">SEO-заголовок</span>
+        <input type="text" placeholder="Заголовок для поиска и соцсетей" value="{{ seo }}" onChange="{{ setSeo }}" style="width: 100%; padding: 11px 13px; border: 1px solid rgba(117,7,13,0.3); background: #FFFDF8; font-size: 15px; color: #2B1214; font-family: 'MN Sans', Helvetica, Arial, sans-serif">
+        <span style="font-size: 12px; opacity: 0.55">{{ seoHint }}</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid rgba(117,7,13,0.25); border-bottom: 1px solid rgba(117,7,13,0.25); padding: 18px 0">
+      <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Привязка к бренду</span>
+      <sc-if value="{{ hasBrand }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+          <span style="border: 1px solid #75070D; background: #75070D; color: #F3E7D8; padding: 9px 14px; font-size: 13px">{{ brand }}</span>
+          <button type="button" onClick="{{ clearBrand }}" style="background: transparent; border: 1px solid rgba(117,7,13,0.35); color: #75070D; padding: 8px 12px; font-size: 12px; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif" style-hover="background: #75070D; color: #F3E7D8">Сменить бренд</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noBrand }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 460px">
+          <input type="text" placeholder="Поиск бренда по названию" value="{{ brandQuery }}" onChange="{{ setBrandQuery }}" style="width: 100%; padding: 11px 13px; border: 1px solid rgba(117,7,13,0.3); background: #FFFDF8; font-size: 15px; color: #2B1214; font-family: 'MN Sans', Helvetica, Arial, sans-serif">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <sc-for list="{{ brandTags }}" as="t" hint-placeholder-count="6">
+              <button type="button" onClick="{{ t.toggle }}" style="{{ t.style }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ brandsEmpty }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size: 13px; opacity: 0.55">Бренд не найден — проверьте название</span>
+          </sc-if>
+          <sc-if value="{{ brandsMore }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size: 12px; opacity: 0.5">{{ brandsMoreLabel }}</span>
+          </sc-if>
+        </div>
+      </sc-if>
+      <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D; margin-top: 8px">Теги темы</span>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <sc-for list="{{ themeTags }}" as="t" hint-placeholder-count="8">
+          <button type="button" onClick="{{ t.toggle }}" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <span style="font-size: 13px; line-height: 1.5; opacity: 0.6">{{ tagsHint }}</span>
     </div>
 
     <div class="fs-editor-grid" style="display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: start">
@@ -63,10 +164,10 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
               </div>
             </div>
             <sc-if value="{{ b.isHeading }}" hint-placeholder-val="{{ false }}">
-              <input type="text" placeholder="Текст заголовка" value="{{ b.value }}" onChange="{{ b.setValue }}" style="width: 100%; padding: 6px 0; border: none; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 24px; color: #2B1214">
+              <input type="text" placeholder="Текст заголовка" value="{{ b.value }}" onChange="{{ b.setValue }}" style="width: 100%; padding: 6px 0; border: none; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 24px; line-height: 1.1; color: #2B1214">
             </sc-if>
             <sc-if value="{{ b.isText }}" hint-placeholder-val="{{ false }}">
-              <textarea placeholder="Текст абзаца" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="4" style="width: 100%; padding: 0; border: none; background: transparent; font-size: 16px; line-height: 1.6; color: #2B1214; resize: vertical"></textarea>
+              <textarea placeholder="Текст — абзацы разделяйте пустой строкой" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="4" style="width: 100%; padding: 0; border: none; background: transparent; font-size: 16px; line-height: 1.6; color: #2B1214; resize: vertical"></textarea>
             </sc-if>
             <sc-if value="{{ b.isQuote }}" hint-placeholder-val="{{ false }}">
               <textarea placeholder="Текст цитаты" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="3" style="width: 100%; padding: 12px 0 12px 18px; border: none; border-left: 3px solid #75070D; background: transparent; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; line-height: 1.4; color: #75070D; resize: vertical"></textarea>
@@ -100,7 +201,7 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
                 <div style="{{ b.imgOrderStyle }} aspect-ratio: 4 / 5; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border: 1px dashed rgba(117,7,13,0.4); display: flex; align-items: center; justify-content: center">
                   <span style="font-family: ui-monospace, monospace; font-size: 12px; color: #75070D; opacity: 0.8">перетащите фото · 4:5</span>
                 </div>
-                <textarea placeholder="Текст рядом с фото" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="6" style="{{ b.textOrderStyle }} padding: 0; border: none; background: transparent; font-size: 16px; line-height: 1.6; color: #2B1214; resize: vertical"></textarea>
+                <textarea placeholder="Текст рядом с фото — абзацы разделяйте пустой строкой" value="{{ b.value }}" onChange="{{ b.setValue }}" rows="6" style="{{ b.textOrderStyle }} padding: 0; border: none; background: transparent; font-size: 16px; line-height: 1.6; color: #2B1214; resize: vertical"></textarea>
               </div>
             </sc-if>
           </div>
@@ -117,10 +218,12 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
           </button>
         </sc-for>
         <div style="height: 1px; background: rgba(117,7,13,0.2); margin: 6px 0"></div>
-        <button type="button" onClick="{{ publish }}" style="background: #75070D; color: #F7EFE3; border: 1px solid #75070D; padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s" style-hover="background: #4E0509">Отправить на проверку</button>
-        <button type="button" onClick="{{ saveDraft }}" style="background: transparent; color: #75070D; border: 1px solid #75070D; padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">Сохранить в черновик</button>
+        <button type="button" onClick="{{ openPreview }}" style="background: transparent; color: #75070D; border: 1px solid #75070D; padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">Предпросмотр</button>
+        <button type="button" onClick="{{ publish }}" style="background: #75070D; color: #F7EFE3; border: 1px solid #75070D; padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s" style-hover="background: #4E0509">Опубликовать</button>
+        <button type="button" onClick="{{ saveDraft }}" style="background: transparent; color: #75070D; border: 1px solid rgba(117,7,13,0.45); padding: 15px 20px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">Сохранить в черновик</button>
+        <span style="font-size: 12px; line-height: 1.5; opacity: 0.55">{{ statusLabel }}</span>
         <sc-if value="{{ published }}" hint-placeholder-val="{{ false }}">
-          <span style="font-size: 13px; color: #75070D">Статья отправлена редакции</span>
+          <span style="font-size: 13px; color: #75070D">Статья опубликована</span>
         </sc-if>
         <sc-if value="{{ drafted }}" hint-placeholder-val="{{ false }}">
           <span style="font-size: 13px; color: #75070D">Черновик сохранён</span>
@@ -133,10 +236,13 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
 let uid = 0;
+const BRAND_TAGS = ['KÍCHKA', 'ОКА', 'ЧКАЛОВ', 'СТРЕЛКА', 'НИЖПОШИВ', 'КОВШ'];
+const THEME_TAGS = ['Показы', 'Съёмки', 'Производство', 'Аналитика', 'Форум', 'Городская среда', 'Образование', 'Интервью'];
+const chipStyle = (on) => `padding: 9px 14px; font-size: 13px; cursor: pointer; font-family: 'MN Sans', Helvetica, Arial, sans-serif; border: 1px solid ${on ? '#75070D' : 'rgba(117,7,13,0.35)'}; background: ${on ? '#75070D' : 'transparent'}; color: ${on ? '#F3E7D8' : '#2B1214'}; transition: background 0.2s, color 0.2s`;
 const KIND_LABELS = { heading: 'Заголовок', text: 'Текст', quote: 'Цитата', photo: 'Фотография', 'split-left': 'Фото слева, текст справа', 'split-right': 'Текст слева, фото справа' };
 
 class Component extends DCLogic {
-  state = { title: '', subtitle: '', blocks: [], published: false, drafted: false };
+  state = { title: '', subtitle: '', seo: '', blocks: [], brand: null, brandQuery: '', themes: [], previewOpen: false, published: false, drafted: false };
 
   addBlock(kind) {
     this.setState(s => ({ blocks: [...s.blocks, { id: ++uid, kind, value: '', layout: 'wide' }], published: false, drafted: false }));
@@ -144,6 +250,8 @@ class Component extends DCLogic {
 
   renderVals() {
     const blocks = this.state.blocks;
+    const q = (this.state.brandQuery || '').trim().toLowerCase();
+    const brandMatches = q ? BRAND_TAGS.filter(t => t.toLowerCase().includes(q)) : BRAND_TAGS;
     const iconBtnStyle = "background: transparent; border: 1px solid rgba(117,7,13,0.3); color: #75070D; width: 26px; height: 26px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center";
     return {
       title: this.state.title,
@@ -151,6 +259,28 @@ class Component extends DCLogic {
       subtitle: this.state.subtitle,
       setSubtitle: (e) => this.setState({ subtitle: e.target.value }),
       isEmpty: blocks.length === 0,
+      brand: this.state.brand,
+      hasBrand: !!this.state.brand,
+      noBrand: !this.state.brand,
+      clearBrand: () => this.setState({ brand: null, brandQuery: '' }),
+      brandQuery: this.state.brandQuery,
+      setBrandQuery: (e) => this.setState({ brandQuery: e.target.value }),
+      brandTags: brandMatches.slice(0, 8).map(t => ({
+        label: t,
+        style: chipStyle(false),
+        toggle: () => this.setState({ brand: t }),
+      })),
+      brandsEmpty: brandMatches.length === 0,
+      brandsMore: brandMatches.length > 8,
+      brandsMoreLabel: `и ещё ${Math.max(brandMatches.length - 8, 0)} — уточните запрос`,
+      themeTags: THEME_TAGS.map(t => ({
+        label: t,
+        style: chipStyle(this.state.themes.includes(t)),
+        toggle: () => this.setState(s => ({ themes: s.themes.includes(t) ? s.themes.filter(x => x !== t) : [...s.themes, t] })),
+      })),
+      tagsHint: this.state.brand
+        ? `Материал появится в подборке бренда ${this.state.brand} и на его карточке в каталоге`
+        : 'Выберите бренд, чтобы материал попал в его подборку и на карточку в каталоге',
       iconBtnStyle,
       blockTypes: [
         { kind: 'heading', label: 'Заголовок', icon: 'Aa', add: () => this.addBlock('heading') },
@@ -183,10 +313,49 @@ class Component extends DCLogic {
         moveUp: () => this.setState(s => { if (i === 0) return null; const arr = [...s.blocks]; [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; return { blocks: arr }; }),
         moveDown: () => this.setState(s => { if (i === s.blocks.length - 1) return null; const arr = [...s.blocks]; [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]; return { blocks: arr }; }),
       })),
+      seo: this.state.seo,
+      setSeo: (e) => this.setState({ seo: e.target.value }),
+      seoHint: `${(this.state.seo || '').length} из 60 символов · показывается в поиске и при шаринге`,
+      statusLabel: this.state.published ? 'Статус: опубликована' : (this.state.drafted ? 'Статус: черновик сохранён' : 'Статус: черновик, не сохранён'),
       published: this.state.published,
       publish: () => this.setState({ published: true, drafted: false }),
       drafted: this.state.drafted,
       saveDraft: () => this.setState({ drafted: true, published: false }),
+      previewOpen: this.state.previewOpen,
+      openPreview: () => this.setState({ previewOpen: true }),
+      closePreview: () => this.setState({ previewOpen: false }),
+      previewMeta: `Статья · ${new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}`,
+      previewTitle: this.state.title || 'Без заголовка',
+      previewSubtitle: this.state.subtitle,
+      previewBlocks: blocks.map(b => {
+        const paragraphs = String(b.value || '').split(/\n\s*\n/).map(t => t.trim()).filter(Boolean).map(text => ({ text }));
+        const pair = b.layout === 'pair';
+        return {
+          value: b.value,
+          isHeading: b.kind === 'heading',
+          isText: b.kind === 'text',
+          isQuote: b.kind === 'quote',
+          isPhoto: b.kind === 'photo',
+          isSplit: b.kind === 'split-left' || b.kind === 'split-right',
+          imgOrderStyle: b.kind === 'split-right' ? 'order: 2;' : 'order: 1;',
+          textOrderStyle: b.kind === 'split-right' ? 'order: 1;' : 'order: 2;',
+          photoCols: pair ? '1fr 1fr' : '1fr',
+          photos: pair
+            ? [{ ratio: '3 / 4', label: 'фото 1 · 3:4' }, { ratio: '3 / 4', label: 'фото 2 · 3:4' }]
+            : [{ ratio: '16 / 9', label: 'фото · 16:9' }],
+          paragraphs,
+        };
+      }),
+      hasTags: !!this.state.brand || this.state.themes.length > 0,
+      previewTags: [
+        ...(this.state.brand ? [{ label: this.state.brand, brand: true }] : []),
+        ...this.state.themes.map(t => ({ label: t, brand: false })),
+      ].map(t => ({
+        label: t.label,
+        style: t.brand
+          ? 'border: 1px solid #75070D; background: #75070D; color: #F3E7D8; padding: 8px 14px; font-size: 14px'
+          : 'border: 1px solid rgba(117,7,13,0.4); padding: 8px 14px; font-size: 14px',
+      })),
     };
   }
 }

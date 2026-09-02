@@ -31,6 +31,9 @@
       <a href="Модный Нижний.dc.html" style="display: flex; align-items: center; flex: 0 1 auto; min-width: 0">
         <img src="uploads/logo_long.svg.svg" alt="Модный Нижний" style="width: auto; height: auto; max-height: 28px; max-width: 100%; display: block">
       </a>
+      <a href="https://фондкультурныхинициатив.рф" target="_blank" rel="noopener" title="Президентский фонд культурных инициатив" style="{{ pfkiStyle }}">
+        <img src="uploads/pfki.svg" alt="Президентский фонд культурных инициатив" style="{{ pfkiImgStyle }}">
+      </a>
       <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
         <button type="button" onClick="{{ toggleMobile }}" aria-label="Меню" style="flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 10px; background: transparent; border: 1px solid rgba(117,7,13,0.35); cursor: pointer">
           <span style="display: block; height: 1.5px; background: #75070D"></span>
@@ -171,7 +174,14 @@ class Component extends DCLogic {
         : 'max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; position: relative; z-index: 3; background: #F3E7D8; padding: 16px 32px; gap: 20px',
       topRowStyle: isMobile
         ? 'display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; width: 100%; gap: 12px'
-        : 'display: contents',
+        : 'display: flex; align-items: center; flex: 0 1 auto; min-width: 0; gap: clamp(16px, 2vw, 28px)',
+      // ПФКИ: 350/1920 ширины шапки, пропорции строго 602:152, охранное поле по всем сторонам
+      pfkiStyle: isMobile
+        ? 'display: flex; align-items: center; flex: 0 0 auto; padding: 8px 0 8px 10px'
+        : 'display: flex; align-items: center; flex: 0 0 auto; padding: clamp(10px, 1vw, 15px) 0 clamp(10px, 1vw, 15px) clamp(14px, 1.4vw, 22px)',
+      pfkiImgStyle: isMobile
+        ? 'width: 118px; height: auto; display: block'
+        : 'width: clamp(150px, 12vw, 200px); height: auto; display: block',
       navStyle,
       phone: '+7 920 257-57-77',
       phoneRaw: '+79202575777',
