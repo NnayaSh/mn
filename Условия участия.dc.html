@@ -17,16 +17,16 @@ body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Se
 a { color: #75070D; text-decoration: none; }
 a:hover { color: #4E0509; }
 .ua-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
-.ua-cond { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(32px, 5vw, 64px); }
+.ua-cond { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .ua-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .ua-showroom { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
 @media (max-width: 1000px) {
   .ua-cards { grid-template-columns: 1fr; max-width: 560px; }
   .ua-steps { grid-template-columns: repeat(2, 1fr); }
   .ua-showroom { grid-template-columns: 1fr; }
-  .ua-cond { grid-template-columns: 1fr; }
+  .ua-cond { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 640px) { .ua-steps { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .ua-steps { grid-template-columns: 1fr; } .ua-cond { grid-template-columns: 1fr; } }
 </style>
 </helmet>
 <div style="min-width: 320px; overflow-x: clip">
@@ -189,27 +189,27 @@ a:hover { color: #4E0509; }
     <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Общие правила для всех тарифов</h2>
 
     <div class="ua-cond" style="margin-top: clamp(28px, 4vw, 44px)">
-      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 22px 20px 26px">
         <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Бренд из Нижегородской области</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Платформа собирает локальные марки: производство или основная деятельность бренда связаны с Нижегородской областью.</p>
       </div>
-      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 22px 20px 26px">
         <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Модерация карточки</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Каждая заявка проходит проверку кураторов платформы. Статус заявки виден в личном кабинете, после одобрения карточка публикуется в каталоге.</p>
       </div>
-      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 22px 20px 26px">
         <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Материалы предоставляет бренд</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Фотографии, описания, тексты и видео готовит бренд. Если материалов нет — платформа помогает их подготовить за дополнительную плату, стоимость обсуждается отдельно.</p>
       </div>
-      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 22px 20px 26px">
         <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Без ссылок на сторонние ресурсы</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">В каталоге не размещаются ссылки на сайты, соцсети и маркетплейсы брендов: платформа ведёт покупателя к вещи, а не уводит на внешние площадки.</p>
       </div>
-      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 22px 20px 26px">
         <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Год считается с даты оплаты</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Участие на тарифе «Широкий» действует 12 месяцев с момента оплаты. Перейти с «Узкого» на платный тариф можно в любой момент.</p>
       </div>
-      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 22px 20px 26px">
         <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Сроки публикаций согласовываются</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Даты выхода материала в медиа и постов в соцсетях платформа и бренд согласуют заранее, исходя из контент-плана и календаря мероприятий.</p>
       </div>
