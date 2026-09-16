@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+.ua-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+.ua-cond { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(32px, 5vw, 64px); }
+.ua-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.ua-showroom { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+@media (max-width: 1000px) {
+  .ua-cards { grid-template-columns: 1fr; max-width: 560px; }
+  .ua-steps { grid-template-columns: repeat(2, 1fr); }
+  .ua-showroom { grid-template-columns: 1fr; }
+  .ua-cond { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) { .ua-steps { grid-template-columns: 1fr; } }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="brands" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<!-- Hero -->
+<section data-screen-label="Обложка" style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px clamp(40px, 6vw, 72px)">
+  <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">Условия участия · Бренды</p>
+  <h1 style="margin: 0 0 24px; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(34px, 5.4vw, 60px); line-height: 1.02; max-width: 16ch">Как бренду попасть на платформу и что это даёт</h1>
+  <p style="margin: 0 0 32px; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; max-width: 62ch; opacity: 0.9">«Модный Нижний» — витрина локальных марок Нижегородской области: каталог на сайте, медиа, показы и пространство на Кожевенном, где бренды можно примерить и купить. Присутствие на платформе устроено в три уровня — от бесплатной карточки в каталоге до рекламной кампании под конкретный бренд.</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+    <a href="Кабинет бренда.dc.html" style="background: #75070D; color: #F3E7D8; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid #75070D; transition: background 0.2s, border-color 0.2s" style-hover="background: #4E0509; border-color: #4E0509; color: #F3E7D8">Зарегистрировать бренд</a>
+    <a href="#compare" style="color: #75070D; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid rgba(117,7,13,0.4); transition: background 0.2s, color 0.2s" style-hover="background: #E4D2BB; color: #5B0207">Сравнить тарифы</a>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; margin-top: 48px; border-top: 1px solid rgba(117,7,13,0.25)">
+    <div style="flex: 1 1 220px; padding: 22px 26px 22px 0; border-right: 1px solid rgba(117,7,13,0.25)">
+      <span style="display: block; font-family: 'Yeseva One', serif; font-size: 26px; font-weight: 400; line-height: 1.1; margin-bottom: 6px; color: #75070D">0 ₽</span>
+      <span style="font-size: 14px; line-height: 1.4; opacity: 0.75">Узкий — карточка бренда и 10 товаров</span>
+    </div>
+    <div style="flex: 1 1 220px; padding: 22px 26px 22px 26px; border-right: 1px solid rgba(117,7,13,0.25)">
+      <span style="display: block; font-family: 'Yeseva One', serif; font-size: 26px; font-weight: 400; line-height: 1.1; margin-bottom: 6px; color: #75070D">10 000 ₽ / год</span>
+      <span style="font-size: 14px; line-height: 1.4; opacity: 0.75">Широкий — медиа, соцсети, показы</span>
+    </div>
+    <div style="flex: 1 1 220px; padding: 22px 0 22px 26px">
+      <span style="display: block; font-family: 'Yeseva One', serif; font-size: 26px; font-weight: 400; line-height: 1.1; margin-bottom: 6px; color: #75070D">По запросу</span>
+      <span style="font-size: 14px; line-height: 1.4; opacity: 0.75">Продвинутый — кампания под бренд</span>
+    </div>
+  </div>
+</section>
+
+<!-- Тарифы -->
+<section id="tariffs" data-screen-label="Тарифы" style="background: #EFE2D2">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px">
+    <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">01 — Тарифы</p>
+    <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Три уровня присутствия</h2>
+
+    <div class="ua-cards" style="margin-top: clamp(28px, 4vw, 44px)">
+      <article style="background: #F7EFE3; border: 1px solid rgba(117,7,13,0.25); padding: 34px 30px 32px; display: flex; flex-direction: column">
+        <p style="margin: 0 0 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #75070D">Уровень 1</p>
+        <h3 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(20px, 2.2vw, 26px); color: #2B1214">Узкий</h3>
+        <div style="font-family: 'Yeseva One', serif; font-size: 32px; line-height: 1.1; margin: 16px 0 4px; color: #75070D">Бесплатно</div>
+        <span style="display: block; font-size: 14px; opacity: 0.7; margin-top: 6px">Для брендов Нижегородской области</span>
+        <p style="margin: 14px 0 22px; font-size: 16px; line-height: 1.5">Базовое присутствие: бренд появляется в каталоге платформы, его находят покупатели, кураторы показов и журналисты.</p>
+        <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 18px; border-top: 1px solid rgba(43,18,20,0.5); opacity: 0.55; margin-bottom: 16px">Что входит</div>
+        <ul style="list-style: none; margin: 0 0 26px; padding: 0; font-size: 15.5px; line-height: 1.5">
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Карточка бренда: логотип, краткое описание, имя основателя, год основания, категория</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>До 10 фотографий товаров с описанием</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Точка на карте локальных брендов</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Редактирование карточки в личном кабинете в любой момент</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Участие в общем отборе на показы и маркеты платформы</li>
+        </ul>
+        <p style="margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(117,7,13,0.25); font-size: 13.5px; line-height: 1.45; opacity: 0.72">Не входит: публикации в медиа-разделе сайта и посты в соцсетях платформы.</p>
+        <a href="Кабинет бренда.dc.html" style="margin-top: 22px; text-align: center; color: #75070D; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid rgba(117,7,13,0.4); transition: background 0.2s, color 0.2s" style-hover="background: #E4D2BB; color: #5B0207">Разместить бренд</a>
+      </article>
+
+      <article style="background: #75070D; color: #F3E7D8; border: 1px solid #75070D; padding: 34px 30px 32px; display: flex; flex-direction: column; position: relative">
+        <span style="position: absolute; top: -1px; right: -1px; background: #5B0207; color: #F3E7D8; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 13px">Основной</span>
+        <p style="margin: 0 0 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7">Уровень 2</p>
+        <h3 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(20px, 2.2vw, 26px)">Широкий</h3>
+        <div style="font-family: 'Yeseva One', serif; font-size: 32px; line-height: 1.1; margin: 16px 0 4px">10 000 ₽</div>
+        <span style="display: block; font-size: 14px; opacity: 0.75; margin-top: 6px">в год, с даты оплаты</span>
+        <p style="margin: 14px 0 22px; font-size: 16px; line-height: 1.5">Бренд не просто числится в каталоге, а участвует в жизни платформы: выходит в медиа и соцсетях, попадает на показы и мероприятия.</p>
+        <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 18px; border-top: 1px solid rgba(243,231,216,0.5); opacity: 0.7; margin-bottom: 16px">Всё из «Узкого», плюс</div>
+        <ul style="list-style: none; margin: 0 0 26px; padding: 0; font-size: 15.5px; line-height: 1.5">
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Материалы в медиа-разделе сайта без ограничения по количеству: статьи, новости, фотосессии, видеоинтервью</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Посты в соцсетях платформы без ограничения по количеству — ВКонтакте, Телеграм, Макс</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Приоритет при отборе на показы, маркеты и мероприятия</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Участие в сезонных показах и форуме платформы со скидкой до 50%</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Съёмки в пространстве «Модного Нижнего»: доступ к локации для собственных съёмок по записи</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Упоминание в афишах и пресс-материалах мероприятий</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #F3E7D8; display: block"></span>Куратор на связи: помощь с описанием бренда и подачей материалов</li>
+        </ul>
+        <p style="margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(243,231,216,0.3); font-size: 13.5px; line-height: 1.45; opacity: 0.8">Карточка в каталоге остаётся в том же формате, что и на бесплатном уровне.</p>
+        <a href="Кабинет бренда.dc.html" style="margin-top: 22px; text-align: center; background: #F3E7D8; color: #75070D; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid #F3E7D8; transition: background 0.2s" style-hover="background: #F7EFE3; border-color: #F7EFE3; color: #75070D">Стать участником</a>
+      </article>
+
+      <article style="background: #F7EFE3; border: 1px solid rgba(117,7,13,0.25); padding: 34px 30px 32px; display: flex; flex-direction: column">
+        <p style="margin: 0 0 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #75070D">Уровень 3</p>
+        <h3 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(20px, 2.2vw, 26px); color: #2B1214">Продвинутый</h3>
+        <div style="font-family: 'Yeseva One', serif; font-size: 32px; line-height: 1.1; margin: 16px 0 4px; color: #75070D">По запросу</div>
+        <span style="display: block; font-size: 14px; opacity: 0.7; margin-top: 6px">Состав и стоимость — после брифа</span>
+        <p style="margin: 14px 0 22px; font-size: 16px; line-height: 1.5">Рекламная кампания, собранная под задачу конкретного бренда: запуск коллекции, выход в новый сегмент, подготовка к сезону.</p>
+        <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 18px; border-top: 1px solid rgba(43,18,20,0.5); opacity: 0.55; margin-bottom: 16px">Всё из «Широкого», плюс</div>
+        <ul style="list-style: none; margin: 0 0 26px; padding: 0; font-size: 15.5px; line-height: 1.5">
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Рекламная кампания, разработанная специально для бренда</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Поднятие карточки в каталоге и попадание в тематические подборки</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Фотосессия или видео под конкретную задачу</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Реклама на аудиторию платформы в социальных сетях</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Персональный показ или презентация коллекции в пространстве</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Коллаборация с другим брендом каталога или локальной площадкой</li>
+          <li style="position: relative; padding-left: 20px; margin-bottom: 12px"><span style="position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: #75070D; display: block"></span>Отдельная страница коллекции на сайте платформы</li>
+        </ul>
+        <p style="margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(117,7,13,0.25); font-size: 13.5px; line-height: 1.45; opacity: 0.72">Работаем по брифу: обсуждаем задачу, собираем состав кампании и план на срок от месяца.</p>
+        <a href="mailto:hi@modnynn.ru" style="margin-top: 22px; text-align: center; color: #75070D; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid rgba(117,7,13,0.4); transition: background 0.2s, color 0.2s" style-hover="background: #E4D2BB; color: #5B0207">Обсудить кампанию</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Сравнение -->
+<section id="compare" data-screen-label="Сравнение тарифов" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px">
+  <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">02 — Сравнение</p>
+  <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Что входит в каждый тариф</h2>
+
+  <div style="overflow-x: auto; margin-top: clamp(28px, 4vw, 44px); border: 1px solid rgba(117,7,13,0.25); background: #F7EFE3">
+    <table style="border-collapse: collapse; width: 100%; min-width: 720px; font-size: 15.5px">
+      <thead>
+        <tr>
+          <th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.4); background: #EBDCC7; font-family: 'IBM Plex Serif', serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6">Возможность</th>
+          <th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.4); background: #EBDCC7; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 18px; white-space: nowrap">Узкий</th>
+          <th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.4); background: #EBDCC7; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 18px; white-space: nowrap">Широкий</th>
+          <th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.4); background: #EBDCC7; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 18px; white-space: nowrap">Продвинутый</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Карточка бренда: логотип, описание, основатель, год</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Фотографии товаров с описанием</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">до 10</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">до 10</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">до 10</td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Точка на карте локальных брендов</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Редактирование карточки в личном кабинете</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Отбор на показы и маркеты</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">общий</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">приоритет</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">приоритет</td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Материалы в медиа-разделе сайта</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">без ограничений</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">без ограничений + материалы кампании</td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Посты в соцсетях платформы — ВКонтакте, Телеграм, Макс</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">без ограничений</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">без ограничений + реклама</td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Участие в сезонных показах и форуме платформы</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">скидка до 50%</td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-size: 13.5px">скидка до 50%</td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Съёмки в пространстве по записи</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Упоминание в афишах и пресс-материалах</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Куратор и помощь с подачей бренда</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Поднятие карточки и тематические подборки</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Рекламная кампания под бренд</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Реклама на аудиторию платформы в соцсетях</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr><th style="padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top; font-weight: 400; width: 40%">Персональный показ и коллаборации с брендами</th><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="opacity: 0.28; font-size: 19px; line-height: 1">—</span></td><td style="padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(117,7,13,0.25); vertical-align: top"><span style="color: #75070D; font-size: 19px; line-height: 1">●</span></td></tr>
+        <tr style="background: #EBDCC7"><th style="padding: 16px 20px; text-align: left; vertical-align: top; font-weight: 400; width: 40%; font-family: 'Yeseva One', serif; font-size: 17px">Стоимость</th><td style="padding: 16px 20px; text-align: center; vertical-align: top; font-family: 'Yeseva One', serif; font-size: 17px">0 ₽</td><td style="padding: 16px 20px; text-align: center; vertical-align: top; font-family: 'Yeseva One', serif; font-size: 17px">10 000 ₽ / год</td><td style="padding: 16px 20px; text-align: center; vertical-align: top; font-family: 'Yeseva One', serif; font-size: 17px">По запросу</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Шоурум -->
+<section id="showroom" data-screen-label="Пространство" style="background: #75070D; color: #F3E7D8">
+  <div class="ua-showroom" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px">
+    <div>
+      <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7">03 — Пространство</p>
+      <h2 style="margin: 0 0 20px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Продажи в шоуруме — отдельно от тарифов</h2>
+      <p style="margin: 0 0 20px; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; max-width: 60ch; opacity: 0.92">В пространстве «Модного Нижнего» на Кожевенном бренды представлены физически: покупатель может примерить и купить вещь на месте. Это самостоятельное направление — оно не входит ни в один из тарифов и не оплачивается вместе с ними.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; opacity: 0.85; max-width: 60ch">Шоурум работает на комиссии от продаж: бренд ничего не платит за размещение, платформа получает процент с каждой проданной вещи. Условия и размер комиссии обсуждаются отдельно и фиксируются договором.</p>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0">
+      <li style="padding: 20px 0; border-top: 1px solid rgba(243,231,216,0.3); font-size: 16px; line-height: 1.5"><b style="display: block; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; margin-bottom: 5px">Оплата только с продаж</b>Нет аренды полки и вступительного взноса — платформа зарабатывает, когда зарабатывает бренд.</li>
+      <li style="padding: 20px 0; border-top: 1px solid rgba(243,231,216,0.3); font-size: 16px; line-height: 1.5"><b style="display: block; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; margin-bottom: 5px">Отдельный договор</b>Размещение в шоуруме оформляется отдельно от тарифа на сайте и не зависит от него.</li>
+      <li style="padding: 20px 0; border-top: 1px solid rgba(243,231,216,0.3); font-size: 16px; line-height: 1.5"><b style="display: block; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; margin-bottom: 5px">Доступно на любом тарифе</b>В шоурум можно попасть и с бесплатной карточкой в каталоге — вопрос в отборе, а не в оплате.</li>
+      <li style="padding: 20px 0; border-top: 1px solid rgba(243,231,216,0.3); border-bottom: 1px solid rgba(243,231,216,0.3); font-size: 16px; line-height: 1.5"><b style="display: block; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; margin-bottom: 5px">Живая витрина</b>Ежедневно 12:00–20:00, встречи с дизайнерами и открытые показы по выходным.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Условия -->
+<section id="conditions" data-screen-label="Общие условия" style="background: #FEFBF6">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px">
+    <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">04 — Условия</p>
+    <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Общие правила для всех тарифов</h2>
+
+    <div class="ua-cond" style="margin-top: clamp(28px, 4vw, 44px)">
+      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+        <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Бренд из Нижегородской области</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Платформа собирает локальные марки: производство или основная деятельность бренда связаны с Нижегородской областью.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+        <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Модерация карточки</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Каждая заявка проходит проверку кураторов платформы. Статус заявки виден в личном кабинете, после одобрения карточка публикуется в каталоге.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+        <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Материалы предоставляет бренд</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Фотографии, описания, тексты и видео готовит бренд. Если материалов нет — платформа помогает их подготовить за дополнительную плату, стоимость обсуждается отдельно.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+        <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Без ссылок на сторонние ресурсы</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">В каталоге не размещаются ссылки на сайты, соцсети и маркетплейсы брендов: платформа ведёт покупателя к вещи, а не уводит на внешние площадки.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+        <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Год считается с даты оплаты</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Участие на тарифе «Широкий» действует 12 месяцев с момента оплаты. Перейти с «Узкого» на платный тариф можно в любой момент.</p>
+      </div>
+      <div style="padding: 26px 0; border-top: 1px solid rgba(117,7,13,0.25)">
+        <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Сроки публикаций согласовываются</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; opacity: 0.85">Даты выхода материала в медиа и постов в соцсетях платформа и бренд согласуют заранее, исходя из контент-плана и календаря мероприятий.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Шаги -->
+<section data-screen-label="Как подключиться" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px">
+  <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">05 — Как подключиться</p>
+  <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Четыре шага до публикации</h2>
+
+  <div class="ua-steps" style="margin-top: clamp(28px, 4vw, 44px)">
+    <div style="border-top: 2px solid #75070D; padding-top: 20px">
+      <div style="font-family: 'Yeseva One', serif; font-size: 15px; color: #75070D; letter-spacing: 0.1em; margin-bottom: 10px">Шаг 01</div>
+      <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Регистрация</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.82">Заведите личный кабинет бренда — нужно указать название и категорию. Занимает пару минут.</p>
+    </div>
+    <div style="border-top: 2px solid #75070D; padding-top: 20px">
+      <div style="font-family: 'Yeseva One', serif; font-size: 15px; color: #75070D; letter-spacing: 0.1em; margin-bottom: 10px">Шаг 02</div>
+      <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Анкета бренда</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.82">Заполните описание, добавьте логотип, фотографии товаров, имя основателя и год основания.</p>
+    </div>
+    <div style="border-top: 2px solid #75070D; padding-top: 20px">
+      <div style="font-family: 'Yeseva One', serif; font-size: 15px; color: #75070D; letter-spacing: 0.1em; margin-bottom: 10px">Шаг 03</div>
+      <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Модерация</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.82">Кураторы проверяют карточку и публикуют её в каталоге. Статус заявки виден в кабинете.</p>
+    </div>
+    <div style="border-top: 2px solid #75070D; padding-top: 20px">
+      <div style="font-family: 'Yeseva One', serif; font-size: 15px; color: #75070D; letter-spacing: 0.1em; margin-bottom: 10px">Шаг 04</div>
+      <h3 style="margin: 0 0 8px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 19px; color: #2B1214">Выбор тарифа</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.82">Остаётесь в «Узком» бесплатно или подключаете «Широкий» и «Продвинутый» — прямо из кабинета.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section data-screen-label="Заявка" style="background: #EBDCC7; text-align: center">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px">
+    <p style="margin: 0 0 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">06 — Заявка</p>
+    <h2 style="margin: 0 auto 20px; max-width: 20ch; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.06">Добавьте бренд в каталог «Модного Нижнего»</h2>
+    <p style="margin: 0 auto 32px; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; max-width: 62ch; opacity: 0.9">Начать можно бесплатно: зарегистрируйте бренд, заполните карточку и опубликуйтесь в каталоге. Тариф всегда можно повысить позже.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center">
+      <a href="Кабинет бренда.dc.html" style="background: #75070D; color: #F3E7D8; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid #75070D; transition: background 0.2s, border-color 0.2s" style-hover="background: #4E0509; border-color: #4E0509; color: #F3E7D8">Зарегистрировать бренд</a>
+      <a href="Авторизация.dc.html" style="color: #75070D; padding: 16px 30px; font-size: 16px; letter-spacing: 0.05em; border: 1px solid rgba(117,7,13,0.4); transition: background 0.2s, color 0.2s" style-hover="background: #E4D2BB; color: #5B0207">Войти в кабинет</a>
+    </div>
+    <p style="margin-top: 26px; font-size: 14px; opacity: 0.7">Вопросы по тарифам и продвижению — <a href="mailto:hi@modnynn.ru">hi@modnynn.ru</a></p>
+  </div>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}"></script>
+</body>
+</html>
