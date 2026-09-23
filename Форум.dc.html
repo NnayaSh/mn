@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
 <style>
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
@@ -289,21 +290,21 @@ a:hover { color: #4E0509; }
         <h4 style="margin: 0 0 16px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 16px; line-height: 1.25; color: #2B1214">Негде шить и некому шить</h4>
         <div style="display: flex; flex-direction: column; gap: 16px">
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ЮШ</span>
+            <image-slot id="fp-speaker-1" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Юлия Шинкарёва</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">SHI-SHI, основатель</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ГХ</span>
+            <image-slot id="fp-speaker-2" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Григорий Хромов</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">Школа дизайна НИУ ВШЭ — Нижний Новгород</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">АГ</span>
+            <image-slot id="fp-speaker-3" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Антон Гуреев</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">«Человек, который шьёт»</span>
@@ -316,28 +317,28 @@ a:hover { color: #4E0509; }
         <h4 style="margin: 0 0 16px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 16px; line-height: 1.25; color: #2B1214">Красиво. Дорого. Неприбыльно?</h4>
         <div style="display: flex; flex-direction: column; gap: 16px">
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">СЛ</span>
+            <image-slot id="fp-speaker-4" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Сергей Левин</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">Called A Garment</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ЕБ</span>
+            <image-slot id="fp-speaker-5" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Екатерина Булгакова</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">Called A Garment</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">НК</span>
+            <image-slot id="fp-speaker-6" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Николай Константинов</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">Trend Island</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ЕС</span>
+            <image-slot id="fp-speaker-7" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Елена Селина</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">«Алиса и Розы»</span>
@@ -350,20 +351,20 @@ a:hover { color: #4E0509; }
         <h4 style="margin: 0 0 16px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 16px; line-height: 1.25; color: #2B1214">Если о тебе не говорят — ты не индустрия</h4>
         <div style="display: flex; flex-direction: column; gap: 16px">
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ЮГ</span>
+            <image-slot id="fp-speaker-8" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Юрате Гураускайте</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ГР</span>
+            <image-slot id="fp-speaker-9" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Георгий Ростовщиков</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">Fashion Hub</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ЯА</span>
+            <image-slot id="fp-speaker-10" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Яна Аверьянова</span>
               <span style="font-size: 13px; opacity: 0.65; line-height: 1.3">НН.Собака.ru</span>
@@ -376,19 +377,19 @@ a:hover { color: #4E0509; }
         <h4 style="margin: 0 0 16px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 16px; line-height: 1.25; color: #2B1214">Мода сама не вырастет</h4>
         <div style="display: flex; flex-direction: column; gap: 16px">
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ОН</span>
+            <image-slot id="fp-speaker-11" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Ольга Никитина</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">ОБ</span>
+            <image-slot id="fp-speaker-12" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Олег Беркович</span>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: flex-start">
-            <span style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #75070D; color: #F3E7D8; display: flex; align-items: center; justify-content: center; font-family: 'Yeseva One', serif; font-size: 14px">МЧ</span>
+            <image-slot id="fp-speaker-13" shape="circle" placeholder="Фото" style="width: 48px; height: 48px; flex: none"></image-slot>
             <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
               <span style="font-size: 15px; font-weight: 600; line-height: 1.25">Максим Черкасов</span>
             </div>
@@ -405,22 +406,22 @@ a:hover { color: #4E0509; }
       <a href="Каталог.dc.html" style="font-size: 15px; border-bottom: 1px solid #75070D; padding-bottom: 3px">Все бренды в каталоге →</a>
     </div>
     <div class="fp-brands-grid">
-      <a href="https://modnynn.ru/catalog/fors" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Форс</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
-      <a href="https://modnynn.ru/catalog/violetta-langas" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Виолетту Лангас</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
-      <a href="https://modnynn.ru/catalog/prityazhenie" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Притяжение</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Украшения</span></a>
-      <a href="https://modnynn.ru/catalog/burmur" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Бурмур</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Украшения</span></a>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Ниногласс</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Украшения</span></div>
-      <a href="https://modnynn.ru/catalog/sveta-vesta" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Sveta Vesta</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Golubka</span></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Золотая Муха</span></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Селина</span></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Наталья Дегтярук</span></div>
-      <a href="https://modnynn.ru/catalog/edinovlastie" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Единовластие</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
-      <a href="https://modnynn.ru/catalog/lenes" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Lenes</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
-      <a href="https://modnynn.ru/catalog/animartin" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Animartin</span><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Kod</span></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">B&amp;M (Белякова и Мавлянова)</span></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D">Живая Нить</span></div>
+      <a href="https://modnynn.ru/catalog/fors" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Форс</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
+      <a href="https://modnynn.ru/catalog/violetta-langas" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Виолетту Лангас</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
+      <a href="https://modnynn.ru/catalog/prityazhenie" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Притяжение</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Украшения</span></a>
+      <a href="https://modnynn.ru/catalog/burmur" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Бурмур</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Украшения</span></a>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Ниногласс</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Украшения</span></div>
+      <a href="https://modnynn.ru/catalog/sveta-vesta" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Sveta Vesta</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Golubka</span></div></div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Золотая Муха</span></div></div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Селина</span></div></div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Наталья Дегтярук</span></div></div>
+      <a href="https://modnynn.ru/catalog/edinovlastie" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Единовластие</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
+      <a href="https://modnynn.ru/catalog/lenes" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Lenes</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
+      <a href="https://modnynn.ru/catalog/animartin" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Animartin</span></div><span style="font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em">Одежда</span></a>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Kod</span></div></div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">B&amp;M (Белякова и Мавлянова)</span></div></div>
+      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: #FEFBF6; border: 1px solid rgba(117,7,13,0.25); padding: 4px 8px; margin-bottom: 2px"><span style="font-family: 'Yeseva One', serif; font-size: 14px; color: #75070D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%">Живая Нить</span></div></div>
     </div>
   </div>
 
