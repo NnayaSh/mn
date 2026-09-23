@@ -20,7 +20,7 @@ a:hover { color: #4E0509; }
 @media (max-width: 720px) { .fp-archive-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 @media (max-width: 460px) { .fp-archive-grid { grid-template-columns: 1fr !important; } }
 .fp-speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 32px 20px; }
-.fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 16px; }
+.fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 100px), 1fr)); gap: 10px; }
 .fp-partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 24px 16px; }
 </style>
 </helmet>
@@ -312,7 +312,7 @@ a:hover { color: #4E0509; }
               <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span>
             </div>
             <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
-              <span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">{{ b.name }}</span>
+              <span style="font-family: 'Yeseva One', serif; font-size: 13px; color: #75070D; line-height: 1.2">{{ b.name }}</span>
               <span style="{{ b.catStyle }}">{{ b.catText }}</span>
             </div>
           </a>
@@ -323,7 +323,7 @@ a:hover { color: #4E0509; }
               <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span>
             </div>
             <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
-              <span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">{{ b.name }}</span>
+              <span style="font-family: 'Yeseva One', serif; font-size: 13px; color: #75070D; line-height: 1.2">{{ b.name }}</span>
               <span style="{{ b.catStyle }}">{{ b.catText }}</span>
             </div>
           </div>
@@ -586,8 +586,8 @@ const BRANDS = [
 ].map(([name, cat, url]) => ({
   name, url, hasUrl: !!url, hasNoUrl: !url,
   catText: cat || 'Категория уточняется',
-  catStyle: 'font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: ' + (cat ? 0.75 : 0.45),
-  cardStyle: 'border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s',
+  catStyle: 'font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: ' + (cat ? 0.75 : 0.45),
+  cardStyle: 'border: 1px solid rgba(117,7,13,0.3); padding: 8px 8px 10px; display: flex; flex-direction: column; gap: 8px; transition: background 0.2s',
 }));
 
 const PARTNERS_SPONSOR = ['Генеральный партнёр', 'Партнёр', 'Партнёр', 'Партнёр'];
