@@ -280,111 +280,22 @@ a:hover { color: #4E0509; }
       <span style="font-size: 14px; opacity: 0.7">Список пополняется до 1 октября</span>
     </div>
     <div class="fp-speakers-grid">
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
+      <sc-for list="{{ speakersVisible }}" as="s" hint-placeholder-count="8">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
+          </div>
+          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">{{ s.actLabel }}</span>
+          <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">{{ s.name }}</span>
+          <span style="{{ s.roleStyle }}">{{ s.roleText }}</span>
         </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт I</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Юлия Шинкарёва</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">SHI-SHI, основатель</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт I</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Григорий Хромов</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">Школа дизайна НИУ ВШЭ — Нижний Новгород</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт I</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Антон Гуреев</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">«Человек, который шьёт»</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт II</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Сергей Левин</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">Called A Garment</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт II</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Екатерина Булгакова</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">Called A Garment</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт II</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Николай Константинов</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">Trend Island</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт II</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Елена Селина</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">«Алиса и Розы»</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт III</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Юрате Гураускайте</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.45">Компания уточняется</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт III</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Георгий Ростовщиков</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">Fashion Hub</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт III</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Яна Аверьянова</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.8">НН.Собака.ru</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт IV</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Ольга Никитина</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.45">Компания уточняется</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт IV</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Олег Беркович</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.45">Компания уточняется</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
-        </div>
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">Акт IV</span>
-        <span style="font-family: 'Yeseva One', serif; font-size: 20px; color: #75070D; line-height: 1.15">Максим Черкасов</span>
-        <span style="font-size: 14px; line-height: 1.45; opacity: 0.45">Компания уточняется</span>
-      </div>
+      </sc-for>
     </div>
+    <sc-if value="{{ speakersHasMore }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: center">
+        <button onClick="{{ toggleSpeakers }}" style="border: 1px solid #75070D; padding: 15px 28px; font-size: 15px; background: transparent; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">{{ speakersToggleLabel }}</button>
+      </div>
+    </sc-if>
   </div>
 
   <!-- Бренды-участники маркета -->
@@ -394,80 +305,86 @@ a:hover { color: #4E0509; }
       <a href="Каталог.dc.html" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Все бренды в каталоге →</a>
     </div>
     <div class="fp-brands-grid">
-      <a href="https://modnynn.ru/catalog/fors" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Форс</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Одежда</span></div></a>
-      <a href="https://modnynn.ru/catalog/violetta-langas" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Виолетта Лангас</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Одежда</span></div></a>
-      <a href="https://modnynn.ru/catalog/prityazhenie" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Притяжение</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Украшения</span></div></a>
-      <a href="https://modnynn.ru/catalog/burmur" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Бурмур</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Украшения</span></div></a>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Ниногласс</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Украшения</span></div></div>
-      <a href="https://modnynn.ru/catalog/sveta-vesta" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Sveta Vesta</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Одежда</span></div></a>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Golubka</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Золотая Муха</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Селина</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Наталья Дегтярук</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
-      <a href="https://modnynn.ru/catalog/edinovlastie" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Единовластие</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Одежда</span></div></a>
-      <a href="https://modnynn.ru/catalog/lenes" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Lenes</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Одежда</span></div></a>
-      <a href="https://modnynn.ru/catalog/animartin" target="_blank" rel="noopener" style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s" style-hover="background: #F7EFE3"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Animartin</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75">Одежда</span></div></a>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Kod</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">B&amp;M (Белякова и Мавлянова)</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
-      <div style="border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s"><div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center"><span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span></div><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">Живая Нить</span><span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45">Категория уточняется</span></div></div>
+      <sc-for list="{{ brandsVisible }}" as="b" hint-placeholder-count="12">
+        <sc-if value="{{ b.hasUrl }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ b.url }}" target="_blank" rel="noopener" style="{{ b.cardStyle }}" style-hover="background: #F7EFE3">
+            <div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center">
+              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+              <span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">{{ b.name }}</span>
+              <span style="{{ b.catStyle }}">{{ b.catText }}</span>
+            </div>
+          </a>
+        </sc-if>
+        <sc-if value="{{ b.hasNoUrl }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ b.cardStyle }}">
+            <div style="aspect-ratio: 1 / 1; background: repeating-linear-gradient(-45deg, #EBDCC7 0 10px, #F3E7D8 10px 20px); border: 1px solid rgba(117,7,13,0.25); display: flex; align-items: center; justify-content: center">
+              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+              <span style="font-family: 'Yeseva One', serif; font-size: 19px; color: #75070D; line-height: 1.15">{{ b.name }}</span>
+              <span style="{{ b.catStyle }}">{{ b.catText }}</span>
+            </div>
+          </div>
+        </sc-if>
+      </sc-for>
     </div>
+    <sc-if value="{{ brandsHasMore }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: center">
+        <button onClick="{{ toggleBrands }}" style="border: 1px solid #75070D; padding: 15px 28px; font-size: 15px; background: transparent; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">{{ brandsToggleLabel }}</button>
+      </div>
+    </sc-if>
   </div>
 
   <!-- Партнёры -->
-  <div style="display: flex; flex-direction: column; gap: 24px">
-    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">
-      <h3 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(22px, 2.4vw, 30px)">Партнёры</h3>
-      <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Стать партнёром →</a>
+  <div style="display: flex; flex-direction: column; gap: clamp(40px, 5vw, 56px)">
+    <div>
+      <h3 style="margin: 0 0 20px; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(22px, 2.4vw, 30px)">Партнёры</h3>
     </div>
-    <div class="fp-partners-grid">
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-        </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Генеральный партнёр</span>
+
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">
+        <h4 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(18px, 2vw, 22px)">Спонсоры</h4>
+        <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Стать партнёром →</a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-        </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Партнёр</span>
+      <div class="fp-partners-grid">
+        <sc-for list="{{ sponsorsVisible }}" as="p" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
+              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
+            </div>
+            <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
+          </div>
+        </sc-for>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
+      <sc-if value="{{ sponsorsHasMore }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align: center">
+          <button onClick="{{ toggleSponsors }}" style="border: 1px solid #75070D; padding: 15px 28px; font-size: 15px; background: transparent; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">{{ sponsorsToggleLabel }}</button>
         </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Партнёр</span>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">
+        <h4 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(18px, 2vw, 22px)">Информационные партнёры</h4>
+        <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Стать партнёром →</a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
+      <div class="fp-partners-grid">
+        <sc-for list="{{ infoVisible }}" as="p" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
+              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
+            </div>
+            <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ infoHasMore }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align: center">
+          <button onClick="{{ toggleInfo }}" style="border: 1px solid #75070D; padding: 15px 28px; font-size: 15px; background: transparent; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F3E7D8">{{ infoToggleLabel }}</button>
         </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Партнёр</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-        </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Инфопартнёр</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-        </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Инфопартнёр</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-        </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Инфопартнёр</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-          <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-        </div>
-        <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">Инфопартнёр</span>
-      </div>
+      </sc-if>
     </div>
   </div>
 </section>
@@ -629,10 +546,88 @@ a:hover { color: #4E0509; }
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+const SPEAKERS = [
+  ['Юлия Шинкарёва', 'SHI-SHI, основатель', 'I'],
+  ['Григорий Хромов', 'Школа дизайна НИУ ВШЭ — Нижний Новгород', 'I'],
+  ['Антон Гуреев', '«Человек, который шьёт»', 'I'],
+  ['Сергей Левин', 'Called A Garment', 'II'],
+  ['Екатерина Булгакова', 'Called A Garment', 'II'],
+  ['Николай Константинов', 'Trend Island', 'II'],
+  ['Елена Селина', '«Алиса и Розы»', 'II'],
+  ['Юрате Гураускайте', '', 'III'],
+  ['Георгий Ростовщиков', 'Fashion Hub', 'III'],
+  ['Яна Аверьянова', 'НН.Собака.ru', 'III'],
+  ['Ольга Никитина', '', 'IV'],
+  ['Олег Беркович', '', 'IV'],
+  ['Максим Черкасов', '', 'IV'],
+].map(([name, role, act]) => ({
+  name, actLabel: 'Акт ' + act,
+  roleText: role || 'Компания уточняется',
+  roleStyle: 'font-size: 14px; line-height: 1.45; opacity: ' + (role ? 0.8 : 0.45),
+}));
+
+const BRANDS = [
+  ['Форс', 'Одежда', 'https://modnynn.ru/catalog/fors'],
+  ['Виолетта Лангас', 'Одежда', 'https://modnynn.ru/catalog/violetta-langas'],
+  ['Притяжение', 'Украшения', 'https://modnynn.ru/catalog/prityazhenie'],
+  ['Бурмур', 'Украшения', 'https://modnynn.ru/catalog/burmur'],
+  ['Ниногласс', 'Украшения', ''],
+  ['Sveta Vesta', 'Одежда', 'https://modnynn.ru/catalog/sveta-vesta'],
+  ['Golubka', '', ''],
+  ['Золотая Муха', '', ''],
+  ['Селина', '', ''],
+  ['Наталья Дегтярук', '', ''],
+  ['Единовластие', 'Одежда', 'https://modnynn.ru/catalog/edinovlastie'],
+  ['Lenes', 'Одежда', 'https://modnynn.ru/catalog/lenes'],
+  ['Animartin', 'Одежда', 'https://modnynn.ru/catalog/animartin'],
+  ['Kod', '', ''],
+  ['B&M (Белякова и Мавлянова)', '', ''],
+  ['Живая Нить', '', ''],
+].map(([name, cat, url]) => ({
+  name, url, hasUrl: !!url, hasNoUrl: !url,
+  catText: cat || 'Категория уточняется',
+  catStyle: 'font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: ' + (cat ? 0.75 : 0.45),
+  cardStyle: 'border: 1px solid rgba(117,7,13,0.3); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s',
+}));
+
+const PARTNERS_SPONSOR = ['Генеральный партнёр', 'Партнёр', 'Партнёр', 'Партнёр'];
+const PARTNERS_INFO = ['Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр'];
+
+const SPEAKERS_STEP = 8;
+const BRANDS_STEP = 12;
+const PARTNERS_STEP = 4;
+
 class Component extends DCLogic {
+  state = { speakersExpanded: false, brandsExpanded: false, sponsorsExpanded: false, infoExpanded: false };
+
   renderVals() {
+    const speakersN = this.state.speakersExpanded ? SPEAKERS.length : SPEAKERS_STEP;
+    const brandsN = this.state.brandsExpanded ? BRANDS.length : BRANDS_STEP;
+    const sponsorsN = this.state.sponsorsExpanded ? PARTNERS_SPONSOR.length : PARTNERS_STEP;
+    const infoN = this.state.infoExpanded ? PARTNERS_INFO.length : PARTNERS_STEP;
+
     return {
       submit: (e) => e.preventDefault(),
+
+      speakersVisible: SPEAKERS.slice(0, speakersN),
+      speakersHasMore: SPEAKERS.length > SPEAKERS_STEP,
+      speakersToggleLabel: this.state.speakersExpanded ? 'Свернуть' : `Показать всех спикеров (${SPEAKERS.length})`,
+      toggleSpeakers: () => this.setState({ speakersExpanded: !this.state.speakersExpanded }),
+
+      brandsVisible: BRANDS.slice(0, brandsN),
+      brandsHasMore: BRANDS.length > BRANDS_STEP,
+      brandsToggleLabel: this.state.brandsExpanded ? 'Свернуть' : `Показать все бренды (${BRANDS.length})`,
+      toggleBrands: () => this.setState({ brandsExpanded: !this.state.brandsExpanded }),
+
+      sponsorsVisible: PARTNERS_SPONSOR.slice(0, sponsorsN),
+      sponsorsHasMore: PARTNERS_SPONSOR.length > PARTNERS_STEP,
+      sponsorsToggleLabel: this.state.sponsorsExpanded ? 'Свернуть' : `Показать всех спонсоров (${PARTNERS_SPONSOR.length})`,
+      toggleSponsors: () => this.setState({ sponsorsExpanded: !this.state.sponsorsExpanded }),
+
+      infoVisible: PARTNERS_INFO.slice(0, infoN),
+      infoHasMore: PARTNERS_INFO.length > PARTNERS_STEP,
+      infoToggleLabel: this.state.infoExpanded ? 'Свернуть' : `Показать всех (${PARTNERS_INFO.length})`,
+      toggleInfo: () => this.setState({ infoExpanded: !this.state.infoExpanded }),
     };
   }
 }
