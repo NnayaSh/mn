@@ -20,7 +20,7 @@ a:hover { color: #4E0509; }
 @media (max-width: 720px) { .fp-archive-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 @media (max-width: 460px) { .fp-archive-grid { grid-template-columns: 1fr !important; } }
 .fp-speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 32px 20px; }
-.fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 100px), 1fr)); gap: 10px; }
+.fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 14px; }
 .fp-partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 16px 12px; }
 </style>
 </helmet>
@@ -312,7 +312,7 @@ a:hover { color: #4E0509; }
               <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span>
             </div>
             <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
-              <span style="font-family: 'Yeseva One', serif; font-size: 13px; color: #75070D; line-height: 1.2">{{ b.name }}</span>
+              <span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D; line-height: 1.2">{{ b.name }}</span>
               <span style="{{ b.catStyle }}">{{ b.catText }}</span>
             </div>
           </a>
@@ -323,7 +323,7 @@ a:hover { color: #4E0509; }
               <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип</span>
             </div>
             <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
-              <span style="font-family: 'Yeseva One', serif; font-size: 13px; color: #75070D; line-height: 1.2">{{ b.name }}</span>
+              <span style="font-family: 'Yeseva One', serif; font-size: 16px; color: #75070D; line-height: 1.2">{{ b.name }}</span>
               <span style="{{ b.catStyle }}">{{ b.catText }}</span>
             </div>
           </div>
@@ -339,51 +339,25 @@ a:hover { color: #4E0509; }
 
   <!-- Партнёры -->
   <div style="display: flex; flex-direction: column; gap: 24px">
-    <h3 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(22px, 2.4vw, 30px)">Партнёры</h3>
-
-    <div style="display: flex; flex-direction: column; gap: 24px">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">
-        <h4 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(18px, 2vw, 22px)">Спонсоры</h4>
-        <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Стать партнёром →</a>
-      </div>
-      <div class="fp-partners-grid">
-        <sc-for list="{{ sponsorsVisible }}" as="p" hint-placeholder-count="4">
-          <div style="display: flex; flex-direction: column; gap: 8px">
-            <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-            </div>
-            <span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
-          </div>
-        </sc-for>
-      </div>
-      <sc-if value="{{ sponsorsHasMore }}" hint-placeholder-val="{{ false }}">
-        <div style="text-align: right">
-          <button onClick="{{ toggleSponsors }}" style="border: none; border-bottom: 1px solid #75070D; background: transparent; padding: 0 0 2px; font-size: 14px; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #4E0509; border-color: #4E0509">{{ sponsorsToggleLabel }}</button>
-        </div>
-      </sc-if>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">
+      <h3 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(22px, 2.4vw, 30px)">Партнёры</h3>
+      <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Стать партнёром →</a>
     </div>
-
-    <div style="display: flex; flex-direction: column; gap: 24px">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(117,7,13,0.3); padding-bottom: 14px">
-        <h4 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(18px, 2vw, 22px)">Информационные партнёры</h4>
-        <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #75070D; padding-bottom: 2px">Стать партнёром →</a>
-      </div>
-      <div class="fp-partners-grid">
-        <sc-for list="{{ infoVisible }}" as="p" hint-placeholder-count="4">
-          <div style="display: flex; flex-direction: column; gap: 8px">
-            <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
-              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
-            </div>
-            <span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
+    <div class="fp-partners-grid">
+      <sc-for list="{{ partnersVisible }}" as="p" hint-placeholder-count="8">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="aspect-ratio: 3 / 2; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">логотип партнёра</span>
           </div>
-        </sc-for>
-      </div>
-      <sc-if value="{{ infoHasMore }}" hint-placeholder-val="{{ false }}">
-        <div style="text-align: right">
-          <button onClick="{{ toggleInfo }}" style="border: none; border-bottom: 1px solid #75070D; background: transparent; padding: 0 0 2px; font-size: 14px; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #4E0509; border-color: #4E0509">{{ infoToggleLabel }}</button>
+          <span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
         </div>
-      </sc-if>
+      </sc-for>
     </div>
+    <sc-if value="{{ partnersHasMore }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align: right">
+        <button onClick="{{ togglePartners }}" style="border: none; border-bottom: 1px solid #75070D; background: transparent; padding: 0 0 2px; font-size: 14px; color: #75070D; cursor: pointer; font-family: 'IBM Plex Serif', Georgia, serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #4E0509; border-color: #4E0509">{{ partnersToggleLabel }}</button>
+      </div>
+    </sc-if>
   </div>
 </section>
 
@@ -584,25 +558,23 @@ const BRANDS = [
 ].map(([name, cat, url]) => ({
   name, url, hasUrl: !!url, hasNoUrl: !url,
   catText: cat || 'Категория уточняется',
-  catStyle: 'font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: ' + (cat ? 0.75 : 0.45),
-  cardStyle: 'border: 1px solid rgba(117,7,13,0.3); padding: 8px 8px 10px; display: flex; flex-direction: column; gap: 8px; transition: background 0.2s',
+  catStyle: 'font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: ' + (cat ? 0.75 : 0.45),
+  cardStyle: 'border: 1px solid rgba(117,7,13,0.3); padding: 12px 12px 15px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s',
 }));
 
-const PARTNERS_SPONSOR = ['Генеральный партнёр', 'Партнёр', 'Партнёр', 'Партнёр'];
-const PARTNERS_INFO = ['Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр'];
+const PARTNERS = ['Генеральный партнёр', 'Партнёр', 'Партнёр', 'Партнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр'];
 
 const SPEAKERS_STEP = 8;
 const BRANDS_STEP = 12;
-const PARTNERS_STEP = 4;
+const PARTNERS_STEP = 8;
 
 class Component extends DCLogic {
-  state = { speakersExpanded: false, brandsExpanded: false, sponsorsExpanded: false, infoExpanded: false };
+  state = { speakersExpanded: false, brandsExpanded: false, partnersExpanded: false };
 
   renderVals() {
     const speakersN = this.state.speakersExpanded ? SPEAKERS.length : SPEAKERS_STEP;
     const brandsN = this.state.brandsExpanded ? BRANDS.length : BRANDS_STEP;
-    const sponsorsN = this.state.sponsorsExpanded ? PARTNERS_SPONSOR.length : PARTNERS_STEP;
-    const infoN = this.state.infoExpanded ? PARTNERS_INFO.length : PARTNERS_STEP;
+    const partnersN = this.state.partnersExpanded ? PARTNERS.length : PARTNERS_STEP;
 
     return {
       submit: (e) => e.preventDefault(),
@@ -617,15 +589,10 @@ class Component extends DCLogic {
       brandsToggleLabel: this.state.brandsExpanded ? 'Свернуть' : `Показать все бренды (${BRANDS.length})`,
       toggleBrands: () => this.setState({ brandsExpanded: !this.state.brandsExpanded }),
 
-      sponsorsVisible: PARTNERS_SPONSOR.slice(0, sponsorsN),
-      sponsorsHasMore: PARTNERS_SPONSOR.length > PARTNERS_STEP,
-      sponsorsToggleLabel: this.state.sponsorsExpanded ? 'Свернуть' : `Показать всех спонсоров (${PARTNERS_SPONSOR.length})`,
-      toggleSponsors: () => this.setState({ sponsorsExpanded: !this.state.sponsorsExpanded }),
-
-      infoVisible: PARTNERS_INFO.slice(0, infoN),
-      infoHasMore: PARTNERS_INFO.length > PARTNERS_STEP,
-      infoToggleLabel: this.state.infoExpanded ? 'Свернуть' : `Показать всех (${PARTNERS_INFO.length})`,
-      toggleInfo: () => this.setState({ infoExpanded: !this.state.infoExpanded }),
+      partnersVisible: PARTNERS.slice(0, partnersN),
+      partnersHasMore: PARTNERS.length > PARTNERS_STEP,
+      partnersToggleLabel: this.state.partnersExpanded ? 'Свернуть' : `Показать всех партнёров (${PARTNERS.length})`,
+      togglePartners: () => this.setState({ partnersExpanded: !this.state.partnersExpanded }),
     };
   }
 }
