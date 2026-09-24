@@ -311,8 +311,8 @@ class Component extends DCLogic {
       return { ...m,
         cardStyle: `border: 1px solid rgba(117,7,13,0.3); display: flex; grid-column: span ${wide ? 2 : 1}; ${wide || narrow ? 'flex-direction: row; align-items: stretch;' : 'flex-direction: column;'} transition: background 0.2s`,
         mediaStyle: (wide || narrow)
-          ? `flex: 0 0 ${narrow ? '34%' : '40%'}; min-height: ${narrow ? '118px' : '190px'}; ${fill(m)} display: flex; align-items: flex-end; padding: 12px; border-right: 1px solid rgba(117,7,13,0.3); overflow: hidden`
-          : `aspect-ratio: 16 / 10; max-height: 260px; ${fill(m)} display: flex; align-items: flex-end; padding: 12px; border-bottom: 1px solid rgba(117,7,13,0.3)`,
+          ? `flex: 0 0 ${narrow ? '34%' : '40%'}; min-height: ${narrow ? '118px' : '190px'}; ${fill(m)} display: flex; align-items: flex-end; padding: 12px; overflow: hidden`
+          : `aspect-ratio: 16 / 10; max-height: 260px; ${fill(m)} display: flex; align-items: flex-end; padding: 12px`,
         bodyStyle: `padding: ${wide ? '22px 26px 26px' : (narrow ? '16px 16px 18px' : '18px 18px 22px')}; ${narrow ? 'justify-content: center;' : ''} display: flex; flex-direction: column; gap: 10px; flex: 1; ${wide ? 'justify-content: center;' : ''} min-width: 0`,
         titleStyle: `margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: ${wide ? '26px' : '20px'}; line-height: 1.22; color: #2B1214`,
         tagChips: m.tags.map(t => ({ label: t, select: toggleTag(t) })),
@@ -346,7 +346,7 @@ class Component extends DCLogic {
         { title: 'Орнамент', meta: 'КОВШ · апрель 2026 · 20 кадров', shot: 'кадр 4:5', span: 2 },
       ].map(p => ({ ...p,
         href: p.href || 'Медиа.dc.html#photo',
-        style: `grid-column: span ${narrow ? 1 : p.span}; aspect-ratio: ${(p.span === 2 && !narrow) ? '3 / 2' : '3 / 4'}; background: repeating-linear-gradient(-45deg, #E2D0B8 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; transition: filter 0.2s` })),
+        style: `grid-column: span ${narrow ? 1 : p.span}; aspect-ratio: ${(p.span === 2 && !narrow) ? '3 / 2' : '3 / 4'}; background: repeating-linear-gradient(-45deg, #E2D0B8 0 12px, #F3E7D8 12px 24px); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; transition: filter 0.2s` })),
       submitted: this.state.submitted,
       notSubmitted: !this.state.submitted,
       submit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },

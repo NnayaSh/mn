@@ -45,13 +45,6 @@
     <nav style="{{ navStyle }}">
       <sc-for list="{{ items }}" as="item" hint-placeholder-count="5">
         <a href="{{ item.href }}" onMouseEnter="{{ item.onEnter }}" onClick="{{ item.onClick }}" style="{{ item.style }}">{{ item.label }}</a>
-        <sc-if value="{{ item.mobileOpen }}" hint-placeholder-val="{{ false }}">
-          <div style="display: flex; flex-direction: column; gap: 10px; padding: 2px 0 6px 14px; border-left: 1px solid rgba(117,7,13,0.25)">
-            <sc-for list="{{ item.allLinks }}" as="link" hint-placeholder-count="3">
-              <a href="{{ link.href }}" onClick="{{ closeMobile }}" style="font-size: 15px; opacity: 0.85">{{ link.label }}</a>
-            </sc-for>
-          </div>
-        </sc-if>
       </sc-for>
       <a href="Каталог.dc.html" onMouseEnter="{{ close }}" onClick="{{ closeMobile }}" style="display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; background: #75070D; color: #F7EFE3; padding: 10px 18px; font-size: 14px; white-space: nowrap">Каталог →</a>
     </nav>
@@ -195,12 +188,8 @@ class Component extends DCLogic {
         const base = 'padding-bottom: 3px; white-space: nowrap; border-bottom: 1px solid ' + (on ? RED : 'transparent');
         return {
           ...m,
-          mobileOpen: isMobile && open === m.key && m.cols.length > 0,
-          allLinks: m.cols.reduce((a, c) => a.concat(c.links), []),
           onEnter: () => { if (!isMobile) this.setState({ open: m.cols.length ? m.key : null }); },
-          onClick: (isMobile && m.cols.length)
-            ? (e) => { e.preventDefault(); this.setState(s => ({ open: s.open === m.key ? null : m.key })); }
-            : () => this.setState({ mobileMenu: false, open: null }),
+          onClick: () => this.setState({ mobileMenu: false, open: null }),
           style: m.dark && !isMobile
             ? base + '; color: ' + RED + '; font-weight: 500' + (m.divider ? '; padding-left: 14px; margin-left: 2px; border-left: 1px solid rgba(117,7,13,0.3)' : '')
             : base

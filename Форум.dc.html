@@ -64,7 +64,7 @@ a:hover { color: #4E0509; }
     <div>
       <p style="margin: 0 0 20px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">01 — О форуме</p>
       <h2 style="margin: 0 0 24px; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.12; text-wrap: balance">Разговор, после которого запускаются коллекции</h2>
-      <img src="uploads/forum-block1.jpg" alt="Участники показа локальных брендов" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 1px solid rgba(117,7,13,0.3)">
+      <img src="uploads/forum-block1.jpg" alt="Участники показа локальных брендов" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
     </div>
     <div style="display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.65">
       <p style="margin: 0">Форум собирает тех, кто обычно работает поодиночке: дизайнеров, швейные производства, закупщиков, преподавателей и городские институции. Задача простая — превратить разрозненные усилия в отрасль, у которой есть цепочка от лекала до полки.</p>
@@ -282,7 +282,7 @@ a:hover { color: #4E0509; }
     <div class="fp-speakers-grid">
       <sc-for list="{{ speakersVisible }}" as="s" hint-placeholder-count="8">
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); border: 1px solid rgba(117,7,13,0.3); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
+          <div style="aspect-ratio: 3 / 4; background: repeating-linear-gradient(-45deg, #EBDCC7 0 12px, #F3E7D8 12px 24px); display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
             <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.75">портрет 3×4</span>
           </div>
           <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; opacity: 0.75">{{ s.actLabel }}</span>

@@ -326,13 +326,13 @@ class Component extends DCLogic {
       };
     });
     const list = BRANDS.filter(b => (this.state.cats.length === 0 || this.state.cats.includes(b.category)) && (!this.state.mnOnly || b.inMN));
-    const patternPhoto = 'position: relative; aspect-ratio: 4 / 3; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); border-bottom: 1px solid rgba(117,7,13,0.3); display: flex; align-items: center; justify-content: center';
+    const patternPhoto = 'position: relative; aspect-ratio: 4 / 3; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); display: flex; align-items: center; justify-content: center';
     const brands = list.map(b => {
       const founderCaption = b.founders && b.founders.length
         ? `${b.founders.length > 1 ? 'Основатели — ' : 'Основатель — '}${b.founders.join(', ')}${b.founded ? `, с ${b.founded} года` : ''}`
         : (b.founded ? `С ${b.founded} года` : '');
       return { ...b, open: () => this.setState({ activeIdx: BRANDS.indexOf(b) }), hasNoCardImg: !b.cardImgA, hasNoLogo: true, hasNoFounded: !b.founded,
-      cardPhotoStyle: b.cardImgA ? `position: relative; aspect-ratio: 4 / 3; background: url('${b.cardImgA}') top/cover; border-bottom: 1px solid rgba(117,7,13,0.3)` : patternPhoto,
+      cardPhotoStyle: b.cardImgA ? `position: relative; aspect-ratio: 4 / 3; background: url('${b.cardImgA}') top/cover` : patternPhoto,
       logoBadgeStyle: `position: absolute; left: 16px; bottom: 16px; max-width: 80%; box-sizing: border-box; padding: 10px 18px; background: #F3E7D8; border: 1px solid #75070D; display: flex; align-items: center; justify-content: flex-start; z-index: 2`,
       founderCaption, hasFounderCaption: !!founderCaption,
     }; });
