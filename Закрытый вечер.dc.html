@@ -10,22 +10,62 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&amp;family=Oswald:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
-a { color: #75070D; text-decoration: none; }
-a:hover { color: #4E0509; }
-.ev-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+body { margin: 0; background: #F3E7D8; color: #241012; font-family: 'IBM Plex Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.fv-wrap { max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; }
+.fv-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.fv-kick { margin: 0 0 18px; font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E; }
+.fv-kick-sand { margin: 0; font: 500 14px/1.3 'IBM Plex Sans', sans-serif; letter-spacing: 0.3em; text-transform: uppercase; color: #E8C9A0; }
+.fv-h1 { margin: 0; font: 900 clamp(32px, 4vw, 56px)/1.04 'Playfair Display', serif; letter-spacing: -0.02em; text-transform: uppercase; color: #FFFBF7; max-width: 14ch; text-wrap: balance; }
+.fv-h2 { margin: 0; font: 900 clamp(32px, 4vw, 56px)/1.06 'Playfair Display', serif; letter-spacing: -0.02em; }
+.fv-hero { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); min-height: 520px; }
+.fv-hero-text { padding: clamp(32px, 4vw, 52px) clamp(24px, 4vw, 56px) clamp(32px, 4vw, 52px) max(32px, calc((100vw - 1280px) / 2 + 32px)); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 18px; position: relative; z-index: 2; }
+.fv-date { display: inline-block; padding: 6px 40px 8px 28px; margin-left: -10px; background: url(uploads/forum-mazok-1.png) center / 100% 100% no-repeat; font: 700 clamp(34px, 4.2vw, 58px)/1 'Oswald', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; color: #5B0207; white-space: nowrap; }
+.fv-venue { margin: -6px 0 0; display: flex; align-items: center; gap: 10px; font: 500 clamp(17px, 1.7vw, 22px)/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #D8F32A; }
+.fv-lead { margin: 0; max-width: 46ch; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.6; color: #F3E7D8; }
+.fv-actions { display: flex; gap: 22px 30px; flex-wrap: wrap; align-items: center; }
+.fv-photo { position: relative; --sl: 64px; min-height: 520px; }
+.fv-photo::before { content: ''; position: absolute; inset: 0; background: #D8F32A; clip-path: polygon(var(--sl) 0, 100% 0, 100% 100%, 0 100%); }
+.fv-photo-img { position: absolute; inset: 0; background-size: cover; background-position: 58% 35%; clip-path: polygon(calc(var(--sl) + 14px) 0, 100% 0, 100% 100%, 14px 100%); }
+.fv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; background: #2E0A0C; border-top: 1px solid rgba(255,251,247,0.12); }
+.fv-facts > div { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; border-left: 1px solid rgba(255,251,247,0.12); }
+.fv-facts > div:first-child { border-left: 0; padding-left: max(32px, calc((100vw - 1280px) / 2 + 32px)); }
+.fv-num { font: 600 clamp(26px, 2.8vw, 38px)/1 'Oswald', sans-serif; letter-spacing: 0.03em; text-transform: uppercase; color: #D8F32A; }
+.fv-fact { font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #E8C9A0; }
+.fv-btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 32px; font: 500 15px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+.fv-btn-milk { background: #FFFBF7; color: #5B0207; }
+.fv-btn-milk:hover { background: #E8C9A0; color: #5B0207; }
+.fv-link { font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; padding-bottom: 5px; border-bottom: 1px solid currentColor; }
+.fv-link-light { color: #F3E7D8; }
+.fv-link-light:hover { color: #D8F32A; }
+.fv-stub { display: inline-flex; align-items: center; padding: 15px 28px; border: 1px solid rgba(255,251,247,0.4); font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #E8C9A0; }
+.fv-crumbs { background: #F3E7D8; border-bottom: 1px solid rgba(91,2,7,0.2); }
+.fv-crumbs > div { max-width: 1280px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #5B0207; }
+.fv-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+@media (max-width: 900px) {
+  .fv-hero { grid-template-columns: 1fr; min-height: 0; }
+  .fv-photo { min-height: 260px; }
+  .fv-photo::before { clip-path: none; }
+  .fv-photo-img { clip-path: none; top: 10px; }
+  .fv-hero-text { padding: 28px 20px 26px; gap: 14px; }
+  .fv-lead { font-size: 15px; line-height: 1.5; }
+  .fv-facts > div { padding: 14px 20px; gap: 4px; }
+  .fv-facts > div:first-child { padding-left: 20px; }
+  .fv-crumbs > div { padding: 12px 20px; }
+  .fv-wrap { padding-left: 20px; padding-right: 20px; }
+}
 </style>
 </helmet>
 <div style="min-width: 320px; overflow-x: clip">
 
 <dc-import name="Шапка" active="" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
 
-<div style="border-bottom: 1px solid rgba(117,7,13,0.2); background: #F3E7D8">
-  <div style="max-width: 1280px; margin: 0 auto; padding: 11px clamp(18px, 4vw, 32px); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; letter-spacing: 0.04em">
+<div class="fv-crumbs">
+  <div>
     <a href="Форум.dc.html">← Форум локальной моды</a>
     <span style="opacity: 0.4">/</span>
     <span style="opacity: 0.7">Закрытый вечер</span>
@@ -33,89 +73,89 @@ a:hover { color: #4E0509; }
 </div>
 
 <!-- Обложка -->
-<section data-screen-label="Обложка вечера" style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden">
-  <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(96vw, 1200px); height: auto; opacity: 0.14; filter: brightness(0.6); pointer-events: none">
-  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(18px, 4vw, 32px) clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px">
-    <div style="display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">
-      <span>Форум локальной моды</span>
-      <span>22 октября 2026 · Futuro</span>
-    </div>
-    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(38px, 6.4vw, 88px); line-height: 1.02; max-width: 16ch; text-wrap: balance">Закрытый вечер в Futuro</h1>
-    <div style="display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; align-items: flex-end; border-top: 1px solid rgba(243,231,216,0.35); padding-top: 24px">
-      <p style="margin: 0; max-width: 48ch; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; opacity: 0.92">Отдельное мероприятие в рамках Форума локальной моды. Вход только по билетам.</p>
-      <sc-if value="{{ hasUrl }}" hint-placeholder-val="{{ false }}">
-        <a href="{{ ticketUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; background: #F3E7D8; color: #75070D; padding: 18px 34px; font-size: 16px; letter-spacing: 0.05em; transition: background 0.2s" style-hover="background: #E4D2BB; color: #75070D">Купить билет <span aria-hidden="true">→</span></a>
-      </sc-if>
-      <sc-if value="{{ noUrl }}" hint-placeholder-val="{{ true }}">
-        <span style="display: inline-flex; align-items: center; padding: 18px 34px; border: 1px solid rgba(243,231,216,0.45); font-size: 16px; letter-spacing: 0.05em; opacity: 0.75">Билеты скоро в продаже</span>
-      </sc-if>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(20px, 3vw, 40px); border-top: 1px solid rgba(243,231,216,0.35); padding-top: 26px">
-      <div style="display: flex; flex-direction: column; gap: 6px">
-        <span style="font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1">22 октября</span>
-        <span style="font-size: 14px; opacity: 0.8">первый день форума</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px">
-        <span style="font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1">Futuro</span>
-        <span style="font-size: 14px; opacity: 0.8">площадка вечера</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px">
-        <span style="font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1">Платные билеты</span>
-        <span style="font-size: 14px; opacity: 0.8">продаются на Радарио</span>
+<section data-screen-label="Обложка вечера" style="background: #5B0207; color: #FFFBF7; overflow: hidden">
+  <div class="fv-hero">
+    <div class="fv-hero-text">
+      <p class="fv-kick-sand">Форум локальной моды · Закрытый вечер</p>
+      <h1 class="fv-h1">Закрытый вечер в Futuro</h1>
+      <div class="fv-date"><span>22 октября</span></div>
+      <p class="fv-venue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="#D8F32A"/><circle cx="12" cy="10" r="2.6" fill="#5B0207"/></svg>Галерея Futuro</p>
+      <p class="fv-lead">Отдельное мероприятие в рамках Форума локальной моды. Вход только по билетам.</p>
+      <div class="fv-actions">
+        <sc-if value="{{ hasUrl }}" hint-placeholder-val="{{ false }}">
+          <a class="fv-btn fv-btn-milk" href="{{ ticketUrl }}" target="_blank" rel="noopener">Купить билет →</a>
+        </sc-if>
+        <sc-if value="{{ noUrl }}" hint-placeholder-val="{{ true }}">
+          <span class="fv-stub">Билеты скоро в продаже</span>
+        </sc-if>
+        <a class="fv-link fv-link-light" href="Форум.dc.html#program">Программа форума →</a>
       </div>
     </div>
+    <div class="fv-photo">
+      <div class="fv-photo-img" style="background-image: url('uploads/forum-evening-hero-3.jpg')" role="img" aria-label="Девушка в бордовом пальто в профиль у кирпичной стены галереи"></div>
+    </div>
+  </div>
+  <div class="fv-facts">
+    <div><span class="fv-num">22 октября</span><span class="fv-fact">первый день форума</span></div>
+    <div><span class="fv-num">Futuro</span><span class="fv-fact">площадка вечера</span></div>
+    <div><span class="fv-num">Платные билеты</span><span class="fv-fact">продаются на Радарио</span></div>
   </div>
 </section>
 
 <!-- О вечере -->
-<section data-screen-label="О вечере" style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 104px) clamp(18px, 4vw, 32px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 5vw, 72px); align-items: start">
-  <div>
-    <p style="margin: 0 0 20px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">О вечере</p>
-    <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.12; text-wrap: balance">{{ heading }}</h2>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17px; line-height: 1.65">
-    <sc-for list="{{ paragraphs }}" as="p" hint-placeholder-count="2">
-      <p style="margin: 0">{{ p }}</p>
-    </sc-for>
-    <sc-if value="{{ noText }}" hint-placeholder-val="{{ true }}">
-      <p style="margin: 0; opacity: 0.6">Программа и подробности вечера появятся здесь позже.</p>
-    </sc-if>
+<section data-screen-label="О вечере" style="background: #F3E7D8; color: #241012">
+  <div class="fv-wrap fv-two">
+    <div>
+      <p class="fv-kick">01 · О вечере</p>
+      <h2 class="fv-h2" style="color: #5B0207">{{ heading }}</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17px; line-height: 1.65">
+      <sc-for list="{{ paragraphs }}" as="p" hint-placeholder-count="2">
+        <p style="margin: 0">{{ p }}</p>
+      </sc-for>
+      <sc-if value="{{ noText }}" hint-placeholder-val="{{ true }}">
+        <p style="margin: 0; opacity: 0.6">Программа и подробности вечера появятся здесь позже.</p>
+      </sc-if>
+    </div>
   </div>
 </section>
 
 <!-- Фото -->
-<section data-screen-label="Фото" style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 32px) clamp(48px, 7vw, 104px)">
-  <div class="ev-gallery">
-    <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="3">
-      <div>
-        <sc-if value="{{ ph.hasSrc }}" hint-placeholder-val="{{ false }}">
-          <img src="{{ ph.src }}" alt="Закрытый вечер в Futuro" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
-        </sc-if>
-        <sc-if value="{{ ph.noSrc }}" hint-placeholder-val="{{ true }}">
-          <div style="aspect-ratio: 4 / 5; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); display: flex; align-items: flex-end; padding: 14px">
-            <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">фото · 4:5</span>
-          </div>
-        </sc-if>
-      </div>
-    </sc-for>
+<section data-screen-label="Фото" style="background: #F3E7D8">
+  <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px clamp(48px, 7vw, 104px)">
+    <div class="fv-gallery">
+      <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="3">
+        <div>
+          <sc-if value="{{ ph.hasSrc }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ ph.src }}" alt="Закрытый вечер в Futuro" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
+          </sc-if>
+          <sc-if value="{{ ph.noSrc }}" hint-placeholder-val="{{ true }}">
+            <div style="aspect-ratio: 4 / 5; background: #E8C9A0 url(uploads/forum-monogram-vine.svg) center / 30% no-repeat; display: flex; align-items: flex-end; padding: 14px">
+              <span style="font: 500 11px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #5B0207; opacity: 0.8">фото · 4:5</span>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
   </div>
 </section>
 
 <!-- Билеты -->
-<section data-screen-label="Билеты" style="background: #75070D; color: #F3E7D8">
-  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(18px, 4vw, 32px); display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap">
+<section data-screen-label="Билеты" style="background: #5B0207; color: #FFFBF7">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px; display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 52ch">
-      <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.12; text-wrap: balance">Билеты на закрытый вечер</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.6; opacity: 0.9">Билеты продаются отдельно от регистрации на форум. Регистрация на сам форум — по единой ссылке на Радарио.</p>
+      <p class="fv-kick" style="color: #D8F32A; margin: 0">02 · Билеты</p>
+      <h2 class="fv-h2" style="color: #FFFBF7">Билеты на закрытый вечер</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #F3E7D8">Билеты продаются отдельно от регистрации на форум. Регистрация на сам форум — по единой ссылке на Радарио.</p>
     </div>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center">
+    <div style="display: flex; gap: 22px 30px; flex-wrap: wrap; align-items: center">
       <sc-if value="{{ hasUrl }}" hint-placeholder-val="{{ false }}">
-        <a href="{{ ticketUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; background: #F3E7D8; color: #75070D; padding: 18px 34px; font-size: 16px; letter-spacing: 0.05em; transition: background 0.2s" style-hover="background: #E4D2BB; color: #75070D">Купить билет <span aria-hidden="true">→</span></a>
+        <a class="fv-btn fv-btn-milk" href="{{ ticketUrl }}" target="_blank" rel="noopener">Купить билет →</a>
       </sc-if>
       <sc-if value="{{ noUrl }}" hint-placeholder-val="{{ true }}">
-        <span style="display: inline-flex; align-items: center; padding: 18px 34px; border: 1px solid rgba(243,231,216,0.45); font-size: 16px; letter-spacing: 0.05em; opacity: 0.75">Билеты скоро в продаже</span>
+        <span class="fv-stub">Билеты скоро в продаже</span>
       </sc-if>
-      <a href="Форум.dc.html#reg" style="color: #F3E7D8; font-size: 15px; border-bottom: 1px solid rgba(243,231,216,0.6); padding-bottom: 3px" style-hover="color: #E4D2BB">Регистрация на форум →</a>
+      <a class="fv-link fv-link-light" href="Форум.dc.html#reg">Регистрация на форум →</a>
     </div>
   </div>
 </section>
