@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'IBM Plex Serif', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+.ev-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<div style="border-bottom: 1px solid rgba(117,7,13,0.2); background: #F3E7D8">
+  <div style="max-width: 1280px; margin: 0 auto; padding: 11px clamp(18px, 4vw, 32px); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; letter-spacing: 0.04em">
+    <a href="Форум.dc.html">← Форум локальной моды</a>
+    <span style="opacity: 0.4">/</span>
+    <span style="opacity: 0.7">Закрытый вечер</span>
+  </div>
+</div>
+
+<!-- Обложка -->
+<section data-screen-label="Обложка вечера" style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden">
+  <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(96vw, 1200px); height: auto; opacity: 0.14; filter: brightness(0.6); pointer-events: none">
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(18px, 4vw, 32px) clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">
+      <span>Форум локальной моды</span>
+      <span>22 октября 2026 · Futuro</span>
+    </div>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(38px, 6.4vw, 88px); line-height: 1.02; max-width: 16ch; text-wrap: balance">Закрытый вечер в Futuro</h1>
+    <div style="display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; align-items: flex-end; border-top: 1px solid rgba(243,231,216,0.35); padding-top: 24px">
+      <p style="margin: 0; max-width: 48ch; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; opacity: 0.92">Отдельное мероприятие в рамках Форума локальной моды. Вход только по билетам.</p>
+      <sc-if value="{{ hasUrl }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ ticketUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; background: #F3E7D8; color: #75070D; padding: 18px 34px; font-size: 16px; letter-spacing: 0.05em; transition: background 0.2s" style-hover="background: #E4D2BB; color: #75070D">Купить билет <span aria-hidden="true">→</span></a>
+      </sc-if>
+      <sc-if value="{{ noUrl }}" hint-placeholder-val="{{ true }}">
+        <span style="display: inline-flex; align-items: center; padding: 18px 34px; border: 1px solid rgba(243,231,216,0.45); font-size: 16px; letter-spacing: 0.05em; opacity: 0.75">Билеты скоро в продаже</span>
+      </sc-if>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(20px, 3vw, 40px); border-top: 1px solid rgba(243,231,216,0.35); padding-top: 26px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1">22 октября</span>
+        <span style="font-size: 14px; opacity: 0.8">первый день форума</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1">Futuro</span>
+        <span style="font-size: 14px; opacity: 0.8">площадка вечера</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1">Платные билеты</span>
+        <span style="font-size: 14px; opacity: 0.8">продаются на Радарио</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- О вечере -->
+<section data-screen-label="О вечере" style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 104px) clamp(18px, 4vw, 32px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 5vw, 72px); align-items: start">
+  <div>
+    <p style="margin: 0 0 20px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">О вечере</p>
+    <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.12; text-wrap: balance">{{ heading }}</h2>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17px; line-height: 1.65">
+    <sc-for list="{{ paragraphs }}" as="p" hint-placeholder-count="2">
+      <p style="margin: 0">{{ p }}</p>
+    </sc-for>
+    <sc-if value="{{ noText }}" hint-placeholder-val="{{ true }}">
+      <p style="margin: 0; opacity: 0.6">Программа и подробности вечера появятся здесь позже.</p>
+    </sc-if>
+  </div>
+</section>
+
+<!-- Фото -->
+<section data-screen-label="Фото" style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 32px) clamp(48px, 7vw, 104px)">
+  <div class="ev-gallery">
+    <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="3">
+      <div>
+        <sc-if value="{{ ph.hasSrc }}" hint-placeholder-val="{{ false }}">
+          <img src="{{ ph.src }}" alt="Закрытый вечер в Futuro" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block">
+        </sc-if>
+        <sc-if value="{{ ph.noSrc }}" hint-placeholder-val="{{ true }}">
+          <div style="aspect-ratio: 4 / 5; background: repeating-linear-gradient(-45deg, #EBDCC7 0 14px, #F3E7D8 14px 28px); display: flex; align-items: flex-end; padding: 14px">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #75070D; opacity: 0.8">фото · 4:5</span>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- Билеты -->
+<section data-screen-label="Билеты" style="background: #75070D; color: #F3E7D8">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(18px, 4vw, 32px); display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 52ch">
+      <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.12; text-wrap: balance">Билеты на закрытый вечер</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; opacity: 0.9">Билеты продаются отдельно от регистрации на форум. Регистрация на сам форум — по единой ссылке на Радарио.</p>
+    </div>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center">
+      <sc-if value="{{ hasUrl }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ ticketUrl }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; background: #F3E7D8; color: #75070D; padding: 18px 34px; font-size: 16px; letter-spacing: 0.05em; transition: background 0.2s" style-hover="background: #E4D2BB; color: #75070D">Купить билет <span aria-hidden="true">→</span></a>
+      </sc-if>
+      <sc-if value="{{ noUrl }}" hint-placeholder-val="{{ true }}">
+        <span style="display: inline-flex; align-items: center; padding: 18px 34px; border: 1px solid rgba(243,231,216,0.45); font-size: 16px; letter-spacing: 0.05em; opacity: 0.75">Билеты скоро в продаже</span>
+      </sc-if>
+      <a href="Форум.dc.html#reg" style="color: #F3E7D8; font-size: 15px; border-bottom: 1px solid rgba(243,231,216,0.6); padding-bottom: 3px" style-hover="color: #E4D2BB">Регистрация на форум →</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// Сюда вставить ссылку на билеты (Радарио), когда появится. Пустая строка = «Билеты скоро в продаже».
+const RADARIO_EVENING_URL = '';
+
+// Текст от Татьяны: заголовок и абзацы. Пока пусто — на странице показывается заглушка.
+const EVENING = {
+  heading: 'Вечер, на который попадают только по билетам',
+  paragraphs: [],
+  // Фото от Татьяны: пути к файлам в uploads/, например 'uploads/evening-1.jpg'. Пока пусто — три заглушки.
+  photos: [],
+};
+
+class Component extends DCLogic {
+  renderVals() {
+    const n = Math.max(3, EVENING.photos.length);
+    return {
+      hasUrl: !!RADARIO_EVENING_URL,
+      noUrl: !RADARIO_EVENING_URL,
+      ticketUrl: RADARIO_EVENING_URL,
+      heading: EVENING.heading,
+      paragraphs: EVENING.paragraphs,
+      noText: EVENING.paragraphs.length === 0,
+      photos: Array.from({ length: n }, (_, i) => ({ src: EVENING.photos[i] || '', hasSrc: !!EVENING.photos[i], noSrc: !EVENING.photos[i] })),
+    };
+  }
+}
+</script>
+</body>
+</html>
