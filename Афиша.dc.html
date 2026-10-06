@@ -27,7 +27,7 @@ a:hover { color: #4E0509; }
 <!-- Заголовок -->
 <section data-screen-label="Заголовок" style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden">
   <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92vw, 1100px); height: auto; opacity: 0.13; filter: brightness(0.6); pointer-events: none">
-  <div style="position: relative; max-width: 1344px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px">
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px">
     <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">Афиша</p>
     <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(40px, 7vw, 100px); line-height: 1.02; text-wrap: balance; max-width: 20ch">Календарь локальной моды</h1>
     <p style="margin: 0; max-width: 56ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; opacity: 0.95">Показы, маркеты, лекции и воркшопы — всё, что происходит в локальной моде Нижнего Новгорода в одном календаре.</p>
@@ -35,7 +35,7 @@ a:hover { color: #4E0509; }
 </section>
 
 <!-- Календарь / список -->
-<section id="calendar" data-screen-label="Календарь" style="max-width: 1344px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px">
+<section id="calendar" data-screen-label="Календарь" style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px">
   <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px">
     <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">01 — События сезона</p>
     <div style="display: flex; gap: 8px">
@@ -121,7 +121,7 @@ a:hover { color: #4E0509; }
 
 <!-- Добавить событие -->
 <section id="submit-event" data-screen-label="Добавить событие" style="background: #75070D; color: #F3E7D8">
-  <div style="max-width: 1344px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 72px); align-items: center">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 72px); align-items: center">
     <div>
       <p style="margin: 0 0 20px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7">02 — Своё событие</p>
       <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.12; max-width: 22ch; text-wrap: balance">Проводите показ, маркет или лекцию — расскажем о нём всему городу</h2>
@@ -134,7 +134,7 @@ a:hover { color: #4E0509; }
 </section>
 
 <!-- Подписка -->
-<section id="subscribe" data-screen-label="Подписка" style="max-width: 1344px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+<section id="subscribe" data-screen-label="Подписка" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
   <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D">03 — Не пропустить</p>
   <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(28px, 4vw, 52px); line-height: 1.1; max-width: 20ch; text-wrap: balance">Анонсы событий на почту и в Telegram</h2>
   <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
