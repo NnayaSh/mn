@@ -464,12 +464,7 @@ a { color: inherit; text-decoration: none; }
         <span class="fv-card-k">22–25 октября 2026</span>
         <h3 class="fv-card-h">Регистрация на форум</h3>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">Единая регистрация на все дни форума и деловую программу.</p>
-        <sc-if value="{{ hasForumUrl }}" hint-placeholder-val="{{ false }}">
-          <a class="fv-btn fv-btn-milk" href="{{ forumRegUrl }}" target="_blank" rel="noopener" style="align-self: flex-start">Зарегистрироваться →</a>
-        </sc-if>
-        <sc-if value="{{ noForumUrl }}" hint-placeholder-val="{{ true }}">
-          <span class="fv-stub">Ссылка на регистрацию скоро появится</span>
-        </sc-if>
+        <a class="fv-btn fv-btn-milk" href="{{ forumRegUrl }}" target="_blank" rel="noopener" style="align-self: flex-start">Зарегистрироваться →</a>
       </div>
       <div class="fv-card">
         <span class="fv-card-k">23 октября · Futuro · платные билеты</span>
@@ -589,7 +584,7 @@ a { color: inherit; text-decoration: none; }
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
-// Ссылки на Радарио — вставить сюда, когда появятся (пустая строка = «скоро появится»)
+// Ссылки на Радарио — вставить сюда, когда появятся (пустая строка = кнопка есть, но ведёт на #)
 const RADARIO_FORUM_URL = '';
 const RADARIO_EVENING_URL = '';
 
@@ -603,7 +598,7 @@ const RADARIO_EVENING_URL = '';
 //   title  — название; text — короткое описание; lead — необязательно, вводная фраза курсивом; kicker — необязательно, надпись над названием («Акт первый»)
 //   tags   — необязательно, список тегов, например ['Производство', 'Кадры']
 //   paid   — true платное, false бесплатное; если поле не указано, пометки о цене нет; price — необязательно, например 'от 1 500 ₽'
-//   url    — ссылка на регистрацию именно на это мероприятие (Радарио). '' = место под ссылку занято, кнопка «ссылка скоро появится»;
+//   url    — ссылка на регистрацию именно на это мероприятие (Радарио). '' = ссылки пока нет, кнопка стоит и ведёт на #;
 //            null = у мероприятия нет своей регистрации (кнопки не будет)
 //   cta    — необязательно, свой текст кнопки (по умолчанию «Зарегистрироваться» / «Купить билет»)
 //   page   — необязательно, ссылка на страницу с подробностями
@@ -721,7 +716,7 @@ const SPEAKERS = [
   ['Максим Черкасов', '', 'IV'],
 ].map(([name, role, act]) => ({
   name, actLabel: 'Акт ' + act,
-  roleText: role || 'Компания уточняется',
+  roleText: role || '',
   roleStyle: "font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: 0.04em; line-height: 1.4; color: #6B4A42; opacity: " + (role ? 1 : 0.5),
 }));
 
@@ -744,7 +739,7 @@ const BRANDS = [
   ['Живая Нить', '', ''],
 ].map(([name, cat, url]) => ({
   name, url, hasUrl: !!url, hasNoUrl: !url,
-  catText: cat || 'Категория уточняется',
+  catText: cat || '',
   catStyle: "font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6B4A42; opacity: " + (cat ? 1 : 0.5),
   cardStyle: 'border: 1px solid rgba(91,2,7,0.3); padding: 12px 12px 15px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s',
 }));
@@ -782,7 +777,7 @@ class Component extends DCLogic {
       priceLabel, hasPrice: !!priceLabel,
       metaLine: [d.label, `${e.start}–${e.end}`, v.name, priceLabel].filter(Boolean).join(' · '),
       cta: e.cta || (e.paid ? 'Купить билет' : 'Зарегистрироваться'),
-      url, hasUrl: !!url, hasStub: url === '',
+      url: url || '#', hasUrl: url !== null && url !== undefined, hasStub: false,
       startT: e.start, endT: e.end,
       barStyle: `flex: none; width: 4px; align-self: stretch; background: ${kindPal(e.kind).bg === 'transparent' ? kindPal(e.kind).line : kindPal(e.kind).bg}`,
       dotStyle: `width: 14px; height: 14px; display: block; background: ${v.bg}; border: 1px solid rgba(243,231,216,0.6)`,
@@ -894,7 +889,7 @@ class Component extends DCLogic {
     const plural = (n) => { const a = n % 100, b = n % 10; return (a > 10 && a < 15) ? 'событий' : b === 1 ? 'событие' : (b >= 2 && b <= 4) ? 'события' : 'событий'; };
     const dayStat = (d) => {
       const evs = EVENTS.filter(e => e.day === d.id && d.venues.includes(e.venue) && (venueFilter === 'all' || venueFilter === e.venue) && (kindFilter === 'all' || e.kind === kindFilter));
-      if (!evs.length) return 'программа уточняется';
+      if (!evs.length) return 'нет мероприятий';
       return `${evs.length} ${plural(evs.length)} · ${fromMin(Math.min(...evs.map(e => toMin(e.start))))}–${fromMin(Math.max(...evs.map(e => toMin(e.end))))}`;
     };
     const filterNote = venueFilter === 'all' ? '' : VENUES.find(v => v.id === venueFilter).name;
@@ -917,7 +912,7 @@ class Component extends DCLogic {
       kindLegend: [],
       dayHasEvents: list.length > 0,
       dayEmpty: list.length === 0,
-      emptyText: venues.length === 0 ? `${filterNote}: в этот день площадка не работает.` : (kindFilter !== 'all' ? 'В этот день нет мероприятий выбранного вида.' : 'Программа этого дня уточняется.'),
+      emptyText: venues.length === 0 ? `${filterNote}: в этот день площадка не работает.` : (kindFilter !== 'all' ? 'В этот день нет мероприятий выбранного вида.' : 'В этот день нет мероприятий.'),
       axisLabels, axisStyle: `position: relative; height: ${bodyH}px`,
       cols,
       cards: list.map(e => {
