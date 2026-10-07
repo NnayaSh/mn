@@ -612,7 +612,7 @@ const DAYS = [
         'Конференция индустрии — публичная профессиональная диагностика этих разрывов. Открывает её неудобный вопрос: почему Нижний не станет столицей моды? Дальше — четыре акта, в каждом разбираем одно звено цепочки.',
       ],
       facts: ['11:00–18:30', 'Галерея Futuro', '4 акта · 2 мини-показа · стратегическая сессия'] } },
-  { id: '23', label: '23 октября', venues: ['futura', 'da'] },
+  { id: '23', label: '23 октября', venues: ['da', 'futura'] },
   { id: '24', label: '24 октября', venues: ['futura', 'da'] },
   { id: '25', label: '25 октября', venues: ['da'] },
 ];
@@ -773,7 +773,7 @@ class Component extends DCLogic {
   programVals() {
     const { day: dayId, venue: venueFilter, kind: kindFilter, sel, hov, exp } = this.state;
     const day = DAYS.find(d => d.id === dayId);
-    const venues = VENUES.filter(v => day.venues.includes(v.id) && (venueFilter === 'all' || venueFilter === v.id));
+    const venues = day.venues.map(id => VENUES.find(v => v.id === id)).filter(v => venueFilter === 'all' || venueFilter === v.id); // порядок колонок задаётся порядком в day.venues
     const list = EVENTS.map((e, i) => ({ ...e, i }))
       .filter(e => e.day === dayId && venues.some(v => v.id === e.venue) && (kindFilter === 'all' || e.kind === kindFilter))
       .sort((a, b) => toMin(a.start) - toMin(b.start));
