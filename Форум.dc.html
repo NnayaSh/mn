@@ -353,9 +353,6 @@ a { color: inherit; text-decoration: none; }
     </sc-if>
 
     <div class="pg-legend" style="display: flex; gap: 14px 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.9; align-items: center">
-      <sc-for list="{{ kindLegend }}" as="k" hint-placeholder-count="6">
-        <span style="display: flex; align-items: center; gap: 8px"><span style="{{ k.swatch }}"></span>{{ k.label }}</span>
-      </sc-for>
       <span class="pg-legend-note">Высота блока = длительность мероприятия</span>
     </div>
 
@@ -460,7 +457,7 @@ a { color: inherit; text-decoration: none; }
     <div style="display: flex; flex-direction: column; gap: 22px">
       <p class="fv-kick" style="color: #D8F32A; margin: 0">04 · Регистрация</p>
       <h2 class="fv-h2" style="color: #FFFBF7; margin: 0">Регистрация на форум</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; color: #F3E7D8">Регистрация проходит на платформе Радарио. Одна ссылка — на весь форум. Билеты на закрытый вечер 22 октября в Futuro продаются отдельно.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; color: #F3E7D8">Регистрация проходит на платформе Радарио. Одна ссылка — на весь форум. Билеты на закрытый вечер 23 октября в Futuro продаются отдельно.</p>
     </div>
     <div style="display: flex; flex-direction: column; gap: 20px">
       <div class="fv-card">
@@ -475,16 +472,11 @@ a { color: inherit; text-decoration: none; }
         </sc-if>
       </div>
       <div class="fv-card">
-        <span class="fv-card-k">22 октября · Futuro · платные билеты</span>
+        <span class="fv-card-k">23 октября · Futuro · платные билеты</span>
         <h3 class="fv-card-h">Закрытый вечер в Futuro</h3>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">Отдельное мероприятие в рамках форума. Вход только по билетам, они продаются отдельно от регистрации на форум.</p>
         <div style="display: flex; gap: 22px; flex-wrap: wrap; align-items: center">
-          <sc-if value="{{ hasEveningUrl }}" hint-placeholder-val="{{ false }}">
-            <a class="fv-btn fv-btn-milk" href="{{ eveningUrl }}" target="_blank" rel="noopener">Купить билет →</a>
-          </sc-if>
-          <sc-if value="{{ noEveningUrl }}" hint-placeholder-val="{{ true }}">
-            <span class="fv-stub">Билеты скоро в продаже</span>
-          </sc-if>
+          <a class="fv-btn fv-btn-milk" href="{{ eveningBtnUrl }}" target="_blank" rel="noopener">Купить билет →</a>
           <a class="fv-link fv-link-light" href="Закрытый вечер.dc.html">О вечере →</a>
         </div>
       </div>
@@ -618,7 +610,7 @@ const RADARIO_EVENING_URL = '';
 // ВНИМАНИЕ: мероприятия 23, 24 и 25 октября — примеры для макета, их нужно заменить на реальные.
 const VENUES = [
   { id: 'futura', name: 'Галерея Futuro', short: 'Futuro', note: '22, 23, 24 октября', bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
-  { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', note: '23, 24, 25 октября', bg: '#A0060E', fg: '#FFFBF7', line: 'rgba(255,251,247,0.5)' },
+  { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', note: '23, 24, 25 октября', bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
 ];
 
 const DAYS = [
@@ -657,12 +649,9 @@ const EVENTS = [
     lead: 'Что должно измениться, чтобы Нижний Новгород стал одним из центров российской fashion-индустрии к 2036 году?',
     text: 'Спикеры четырёх актов сводят выводы дня в 10 конкретных условий — основу публичной дорожной карты развития отрасли.' },
   { day: '22', venue: 'futura', start: '18:10', end: '18:30', title: 'Итоги дня', text: 'Знакомство с брендами продолжается на сайте-каталоге.', url: null },
-  { day: '22', venue: 'futura', start: '19:00', end: '22:00', title: 'Закрытый вечер', kind: 'Вечер', text: 'Закрытое мероприятие в рамках форума. Вход только по билетам.', paid: true, url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
   // 22 октября — примеры параллельных мероприятий (заменить на реальные)
   { day: '22', venue: 'futura', start: '11:00', end: '11:50', title: 'Параллельное мероприятие А', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '22', venue: 'futura', start: '11:00', end: '11:50', title: 'Параллельное мероприятие Б', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
-  { day: '22', venue: 'futura', start: '19:30', end: '21:00', title: 'Параллельное мероприятие А', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
-  { day: '22', venue: 'futura', start: '20:00', end: '22:00', title: 'Параллельное мероприятие Б', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
 
   // Примеры (заменить на реальные): в каждый день — одно, два и три одновременных мероприятия
   // 23 октября · Futuro
@@ -672,10 +661,12 @@ const EVENTS = [
   { day: '23', venue: 'futura', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '23', venue: 'futura', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
   { day: '23', venue: 'futura', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  // Закрытый вечер — отдельное платное мероприятие, ссылка берётся из RADARIO_EVENING_URL
+  { day: '23', venue: 'futura', start: '19:00', end: '22:00', title: 'Закрытый вечер', kind: 'Вечер', text: 'Закрытое мероприятие в рамках форума. Вход только по билетам.', paid: true, url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
   // 23 октября · Дом архитектора
-  { day: '23', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
-  { day: '23', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
-  { day: '23', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '23', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887627/tickets' },
+  { day: '23', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887643/tickets' },
+  { day: '23', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2886570/tickets' },
   { day: '23', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '23', venue: 'da', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
   { day: '23', venue: 'da', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
@@ -704,16 +695,10 @@ const EVENTS = [
 
 const KIND_ORDER = ['Лекция', 'Мастер-класс', 'Дискуссия', 'Показ', 'Маркет', 'Нетворкинг', 'Вечер'];
 // Цвета мероприятий по видам (палитра айдентики форума)
-const KIND_STYLES = {
-  'Лекция': { bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
-  'Мастер-класс': { bg: '#E8C9A0', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
-  'Дискуссия': { bg: '#75070D', fg: '#FFFBF7', line: 'rgba(255,251,247,0.5)' },
-  'Показ': { bg: '#A0060E', fg: '#FFFBF7', line: 'rgba(255,251,247,0.5)' },
-  'Маркет': { bg: '#2E0A0C', fg: '#FFFBF7', line: 'rgba(255,251,247,0.4)' },
-  'Нетворкинг': { bg: 'transparent', fg: '#F3E7D8', line: 'rgba(243,231,216,0.6)' },
-  'Вечер': { bg: '#FFFBF7', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
-};
-const KIND_DEFAULT = { bg: 'transparent', fg: '#F3E7D8', line: 'rgba(243,231,216,0.6)' };
+// Все мероприятия в сетке — бежевые (вид отражён подписью в блоке и фильтром)
+const BEIGE = { bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' };
+const KIND_STYLES = {};
+const KIND_DEFAULT = BEIGE;
 const kindPal = (k) => { const p = KIND_STYLES[k] || KIND_DEFAULT; return { ...p, pop: p.bg === 'transparent' ? '#2E0A0C' : p.bg }; };
 const PX_PER_MIN = 1.6;
 const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
@@ -929,7 +914,7 @@ class Component extends DCLogic {
       hasIntro: !!day.intro && (venueFilter === 'all' || venueFilter === 'futura'),
       intro: day.intro || { kicker: '', title: '', paragraphs: [], facts: [] },
       dayCaption: `${dayVenueNames(day)} · ${dayStat(day)}`,
-      kindLegend: kindsPresent.map(k => { const p = kindPal(k); return { label: k, swatch: `width: 14px; height: 14px; display: block; background: ${p.bg}; border: 1px solid rgba(243,231,216,0.6)` }; }),
+      kindLegend: [],
       dayHasEvents: list.length > 0,
       dayEmpty: list.length === 0,
       emptyText: venues.length === 0 ? `${filterNote}: в этот день площадка не работает.` : (kindFilter !== 'all' ? 'В этот день нет мероприятий выбранного вида.' : 'Программа этого дня уточняется.'),
@@ -954,6 +939,7 @@ class Component extends DCLogic {
       hasForumUrl: !!RADARIO_FORUM_URL,
       noForumUrl: !RADARIO_FORUM_URL,
       eveningUrl: RADARIO_EVENING_URL,
+      eveningBtnUrl: RADARIO_EVENING_URL || 'Закрытый вечер.dc.html',
       hasEveningUrl: !!RADARIO_EVENING_URL,
       noEveningUrl: !RADARIO_EVENING_URL,
 
