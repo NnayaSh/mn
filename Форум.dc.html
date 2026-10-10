@@ -453,7 +453,7 @@ a { color: inherit; text-decoration: none; }
     <div style="display: flex; flex-direction: column; gap: 22px">
       <p class="fv-kick" style="color: #D8F32A; margin: 0">04 · Регистрация</p>
       <h2 class="fv-h2" style="color: #FFFBF7; margin: 0">Регистрация на мероприятия</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; color: #F3E7D8">Регистрация проходит на платформе Радарио, на каждое мероприятие отдельно. Выберите нужное в программе и нажмите «Зарегистрироваться». Билеты на закрытый вечер 23 октября в Futuro продаются отдельно.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; color: #F3E7D8">Регистрация проходит на каждое мероприятие отдельно. Выберите нужное в программе и нажмите «Зарегистрироваться». Билеты на закрытый вечер 23 октября в Futuro продаются отдельно.</p>
     </div>
     <div style="display: flex; flex-direction: column; gap: 20px">
       <div class="fv-card">
@@ -465,7 +465,7 @@ a { color: inherit; text-decoration: none; }
       <div class="fv-card">
         <span class="fv-card-k">23 октября · Futuro · платные билеты</span>
         <h3 class="fv-card-h">Закрытый fashion-вечер в Futuro</h3>
-        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">Звёздный гость — Владислав Лисовец. Три показа нижегородских брендов, дизайн-маркет, выставка, афтертолк и фуршет. Билеты продаются на Радарио.</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">Звёздный гость — Владислав Лисовец. Три показа нижегородских брендов, дизайн-маркет, выставка, афтертолк и фуршет. Билеты — по кнопке ниже.</p>
         <div style="display: flex; gap: 22px; flex-wrap: wrap; align-items: center">
           <a class="fv-btn fv-btn-milk" href="{{ eveningBtnUrl }}" target="_blank" rel="noopener">Купить билет →</a>
           <a class="fv-link fv-link-light" href="Закрытый вечер.dc.html">О вечере →</a>
@@ -646,7 +646,7 @@ const EVENTS = [
   // Примеры (заменить на реальные): в каждый день — одно, два и три одновременных мероприятия
   // 23 октября · Futuro
   // Закрытый вечер — отдельное платное мероприятие, ссылка берётся из RADARIO_EVENING_URL
-  { day: '23', venue: 'futura', start: '19:00', end: '22:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, афтертолк и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', paid: true, url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
+  { day: '23', venue: 'futura', start: '17:00', end: '21:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, афтертолк и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', paid: true, url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
   // 23 октября · Дом архитектора
   { day: '23', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887627/tickets' },
   { day: '23', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887643/tickets' },
