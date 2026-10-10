@@ -52,9 +52,9 @@ a { color: inherit; text-decoration: none; }
 .fv-rt { font: 500 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #5B0207; }
 .fv-rd { font-size: 15px; line-height: 1.55; }
 .fv-aud { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
-.fv-aud > div { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 28px 0; border-top: 4px solid #5B0207; margin-right: 24px; }
-.fv-at { font: 500 22px/1.15 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #5B0207; }
-.fv-ad { font-size: 15px; line-height: 1.55; color: #241012; }
+.fv-aud > div { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 28px 0; border-top: 4px solid #D8F32A; margin-right: 24px; }
+.fv-at { font: 500 22px/1.15 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #FFFBF7; }
+.fv-ad { font-size: 15px; line-height: 1.55; color: #F3E7D8; }
 .fv-card { display: flex; flex-direction: column; gap: 16px; border: 1px solid rgba(255,251,247,0.4); padding: clamp(24px, 3vw, 40px); }
 .fv-card-k { font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.22em; text-transform: uppercase; color: #D8F32A; }
 .fv-card-h { margin: 0; font: 900 clamp(24px, 3vw, 34px)/1.1 'Playfair Display', serif; letter-spacing: -0.02em; text-transform: uppercase; color: #FFFBF7; }
@@ -95,6 +95,159 @@ a { color: inherit; text-decoration: none; }
   .pg-legend-note { display: none; }
   .pg-cap { display: block; margin: 0; font: 500 14px/1.4 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #E8C9A0; }
 }
+  /* ===== Блок «Посетителям» — вставить перед #program ===== */
+  .mn-visitors{
+    --v-bg:#f3e7d8;--v-panel:#efe0cc;--v-accent:#5b0207;--v-eyebrow:#a0060e;
+    --v-text:#241012;--v-on-accent:#fffbf7;--v-line:#5b020733;
+    --v-display:"Playfair Display",Georgia,serif;
+    --v-label:Oswald,"Helvetica Neue",Arial,sans-serif;
+    --v-sans:ibmPlexSans,"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--v-bg);color:var(--v-text);font-family:var(--v-sans);
+    padding:clamp(56px,8vw,112px) 0;
+  }
+  .mn-visitors *,.mn-visitors *::before,.mn-visitors *::after{box-sizing:border-box}
+  .mn-visitors .v-wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+  .mn-visitors .v-eyebrow{
+    font-family:var(--v-label);font-weight:500;font-size:13px;line-height:1;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--v-eyebrow);margin:0 0 18px;
+  }
+  .mn-visitors h2,.mn-visitors h3{font-family:var(--v-display);font-weight:900;color:var(--v-accent);margin:0;letter-spacing:-.02em}
+  .mn-visitors h2{font-size:clamp(32px,4.4vw,52px);line-height:1.06;max-width:18ch}
+  .mn-visitors h3{font-size:clamp(24px,2.6vw,32px);line-height:1.12}
+  .mn-visitors p{margin:0}
+  .mn-visitors .v-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;max-width:62ch;margin-top:28px}
+
+  /* чередующиеся ряды: фото | текст, текст | фото */
+  .mn-visitors .v-rows{list-style:none;margin:clamp(48px,6vw,88px) 0 0;padding:0;counter-reset:v}
+  .mn-visitors .v-row{
+    display:grid;grid-template-columns:minmax(0,340px) minmax(0,560px);justify-content:center;
+    gap:clamp(32px,5vw,72px);align-items:center;
+    counter-increment:v;
+  }
+  .mn-visitors .v-row + .v-row{margin-top:clamp(40px,5vw,72px)}
+  .mn-visitors .v-row:nth-child(even){grid-template-columns:minmax(0,560px) minmax(0,340px)}
+  .mn-visitors .v-row:nth-child(even) .v-photo{order:2}
+  .mn-visitors .v-photo{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--v-panel)}
+  .mn-visitors .v-photo img{display:block;width:100%;height:100%;object-fit:cover}
+    .mn-visitors .v-num{
+    display:block;font-family:var(--v-label);font-weight:500;font-size:13px;letter-spacing:.24em;
+    color:var(--v-eyebrow);padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid var(--v-line);
+  }
+  .mn-visitors .v-num::before{content:counter(v,decimal-leading-zero) " / 05"}
+  .mn-visitors .v-text p{font-size:17px;line-height:1.65;margin-top:18px}
+
+  /* плашка с датами и кнопкой */
+  .mn-visitors .v-meta{
+    font-family:var(--v-label);font-weight:500;font-size:clamp(16px,1.6vw,20px);letter-spacing:.12em;
+    text-transform:uppercase;line-height:1.5;
+  }
+  .mn-visitors .v-meta span{opacity:.55;padding:0 .4em}
+  .mn-visitors .v-btn{
+    display:inline-block;font-family:var(--v-label);font-weight:500;font-size:15px;letter-spacing:.12em;
+    text-transform:uppercase;text-decoration:none;padding:17px 32px;white-space:nowrap;
+    background:var(--v-on-accent);color:var(--v-accent);transition:opacity .2s;
+  }
+  .mn-visitors .v-btn:hover{opacity:.85}
+  .mn-visitors .v-btn--dark{background:var(--v-accent);color:var(--v-on-accent)}
+
+  /* кураторский отбор FUTURO */
+  .mn-visitors .v-futuro{
+    margin-top:clamp(72px,10vw,140px);padding-top:clamp(48px,6vw,72px);border-top:1px solid var(--v-line);
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:clamp(32px,5vw,72px);align-items:start;
+  }
+  .mn-visitors .v-futuro .v-photo{order:2;position:sticky;top:96px}
+  .mn-visitors .v-futuro--left{grid-template-columns:minmax(0,400px) minmax(0,1fr)}
+  .mn-visitors .v-futuro--left .v-photo{order:0}
+  .mn-visitors .v-futuro .v-body > p.v-accent{font-family:var(--v-display);font-weight:900;font-size:clamp(20px,2vw,24px);line-height:1.3;color:var(--v-accent)}
+  .mn-visitors .v-futuro .v-body > p{font-size:17px;line-height:1.65;margin-top:22px}
+  .mn-visitors .v-brands{
+    list-style:none;margin:32px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .mn-visitors .v-brands li{
+    font-family:var(--v-label);font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--v-accent);border:1px solid var(--v-line);padding:8px 12px;line-height:1.2;
+  }
+  .mn-visitors .v-futuro .v-meta{color:var(--v-accent);margin-top:36px}
+  .mn-visitors .v-futuro .v-btn{margin-top:20px}
+  .mn-visitors .v-note{font-size:15px;line-height:1.5;margin-top:16px;opacity:.75}
+
+  @media (max-width:860px){
+    .mn-visitors .v-wrap{padding:0 20px}
+    .mn-visitors .v-row,.mn-visitors .v-row:nth-child(even),.mn-visitors .v-futuro,.mn-visitors .v-futuro--left{grid-template-columns:1fr;gap:24px}
+    .mn-visitors .v-row:nth-child(even) .v-photo,.mn-visitors .v-futuro .v-photo{order:0;position:static}
+        .mn-visitors .v-photo{aspect-ratio:4/3}
+    .mn-visitors .v-text p,.mn-visitors .v-futuro .v-body > p:not(.v-accent){font-size:16px}
+    .mn-visitors .v-cta{padding:24px 20px;margin-left:-20px;margin-right:-20px}
+    .mn-visitors .v-btn{width:100%;text-align:center;white-space:normal}
+  }
+
+  .mn-visitors .v-btns{display:flex;flex-wrap:wrap;gap:12px}
+  .mn-visitors .v-btns--left{margin-top:20px}
+  .mn-visitors .v-btns--left .v-btn{margin-top:0}
+  @media (max-width:860px){.mn-visitors .v-btns{width:100%;flex-direction:column}}
+
+  /* плашка маркета: лаймовый мазок, дни-плитки */
+  .mn-visitors .v-cta{
+    margin-top:clamp(48px,7vw,96px);padding:clamp(32px,4vw,52px);background:var(--v-accent);color:var(--v-on-accent);
+    border-top:6px solid #D8F32A;position:relative;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px clamp(32px,5vw,72px);align-items:center;
+  }
+  .mn-visitors .v-stamp{
+    display:inline-block;margin-left:-10px;padding:8px 40px 10px 28px;
+    background:url(uploads/forum-mazok-1.png) center/100% 100% no-repeat;
+    font-family:var(--v-label);font-weight:700;font-size:clamp(26px,3vw,40px);line-height:1;letter-spacing:.02em;
+    text-transform:uppercase;color:var(--v-accent);white-space:nowrap;
+  }
+  .mn-visitors .v-cta-h{font-family:var(--v-display);font-weight:900;font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.01em;color:var(--v-on-accent);margin:22px 0 0;max-width:24ch}
+  .mn-visitors .v-cta .v-link{
+    display:inline-block;margin-top:24px;font-family:var(--v-label);font-weight:500;font-size:14px;letter-spacing:.14em;
+    text-transform:uppercase;color:#D8F32A;border-bottom:1px solid currentColor;padding-bottom:4px;transition:color .2s;
+  }
+  .mn-visitors .v-cta .v-link:hover{color:var(--v-on-accent)}
+  .mn-visitors .v-days{display:flex;gap:14px}
+  .mn-visitors .v-day{
+    width:148px;display:flex;flex-direction:column;gap:4px;padding:20px 18px 18px;
+    border:1px solid #fffbf773;color:var(--v-on-accent);transition:background .2s,border-color .2s,transform .2s;
+  }
+  .mn-visitors .v-day-n{font-family:var(--v-label);font-weight:700;font-size:68px;line-height:1;color:#D8F32A;transition:color .2s}
+  .mn-visitors .v-day-m{font-family:var(--v-label);font-weight:500;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#E8C9A0;transition:color .2s}
+  .mn-visitors .v-day-go{margin-top:18px;font-family:var(--v-label);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--v-on-accent);transition:color .2s}
+  .mn-visitors .v-day:hover{background:#D8F32A;border-color:#D8F32A;transform:translateY(-4px)}
+  .mn-visitors .v-day:hover .v-day-n,.mn-visitors .v-day:hover .v-day-m,.mn-visitors .v-day:hover .v-day-go{color:var(--v-accent)}
+  @media (max-width:860px){
+    .mn-visitors .v-cta{grid-template-columns:1fr;padding:28px 20px;margin-left:-20px;margin-right:-20px}
+    .mn-visitors .v-days{width:100%;gap:10px}
+    .mn-visitors .v-day{flex:1 1 0;width:auto;padding:14px 12px 12px}
+    .mn-visitors .v-day-n{font-size:44px}
+    .mn-visitors .v-day-go{font-size:11px}
+  }
+
+  /* ряды «фото + текст»: на всю ширину сайта, крупная типографика, номер на мазке */
+  .mn-visitors h2{font-size:clamp(36px,5.2vw,72px);line-height:1.04;max-width:20ch}
+  .mn-visitors .v-lead{font-size:clamp(18px,1.7vw,22px);max-width:60ch}
+  .mn-visitors .v-num{
+    display:inline-flex;align-items:baseline;gap:16px;border-bottom:0;padding-bottom:0;margin-bottom:30px;
+    font-family:var(--v-label);letter-spacing:.02em;color:var(--v-accent);
+  }
+  .mn-visitors .v-num::before{
+    content:counter(v,decimal-leading-zero);display:inline-block;margin-left:-10px;padding:8px 44px 12px 30px;
+    background:url(uploads/forum-mazok-1.png) center/100% 100% no-repeat;
+    font-weight:700;font-size:clamp(52px,6.2vw,88px);line-height:1;color:var(--v-accent);
+  }
+  .mn-visitors .v-num::after{content:"/ 05";font-weight:500;font-size:clamp(16px,1.5vw,20px);letter-spacing:.2em;color:var(--v-eyebrow)}
+  .mn-visitors .v-text h3{font-size:clamp(30px,3.6vw,52px);line-height:1.08}
+  .mn-visitors .v-text p{font-size:clamp(17px,1.5vw,20px);line-height:1.65;margin-top:22px;max-width:46ch}
+  @media (min-width:861px){
+    .mn-visitors .v-rows{margin-top:clamp(56px,7vw,104px)}
+    .mn-visitors .v-row,.mn-visitors .v-row:nth-child(even){justify-content:stretch;gap:clamp(40px,7vw,112px)}
+    .mn-visitors .v-row{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+    .mn-visitors .v-row:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+    .mn-visitors .v-row + .v-row{margin-top:clamp(64px,8vw,128px)}
+  }
+  @media (max-width:860px){
+    .mn-visitors .v-num{margin-bottom:20px}
+    .mn-visitors .v-num::before{font-size:52px;padding:6px 34px 9px 24px}
+  }
 </style>
 </helmet>
 <div style="min-width: 320px; overflow-x: clip">
@@ -150,10 +303,10 @@ a { color: inherit; text-decoration: none; }
 </section>
 
 <!-- Для кого -->
-<section id="audience" data-screen-label="Для кого" style="background: #E8C9A0; color: #241012">
+<section id="audience" data-screen-label="Для кого" style="background: #5B0207; color: #FFFBF7">
   <div class="fv-wrap">
-    <p class="fv-kick">01А · Для кого</p>
-    <h2 class="fv-h2" style="color: #5B0207; margin-bottom: clamp(28px, 4vw, 48px)">Кого мы ждём на форуме</h2>
+    <p class="fv-kick" style="color: #D8F32A">01А · Для кого</p>
+    <h2 class="fv-h2" style="color: #FFFBF7; margin-bottom: clamp(28px, 4vw, 48px)">Кого мы ждём на форуме</h2>
     <div class="fv-aud">
       <div><span class="fv-at">Горожане и туристы</span><span class="fv-ad">Для всех, кто интересуется локальной модой.</span></div>
       <div><span class="fv-at">Профессионалы</span><span class="fv-ad">Бренды, дизайнеры, стилисты, байеры, производства.</span></div>
@@ -164,6 +317,104 @@ a { color: inherit; text-decoration: none; }
 </section>
 
 <!-- Программа -->
+<!-- Посетителям (01Б) -->
+<section class="mn-visitors" id="visitors">
+  <div class="v-wrap">
+    <p class="v-eyebrow">01Б · Посетителям</p>
+    <h2>Здесь вещь можно потрогать, а автора — спросить</h2>
+    <p class="v-lead">Маркет форума — это не витрина. Три дня в Доме архитектора больше ста локальных брендов стоят за своими изделиями сами. Вы приходите не в магазин, а в мастерскую города, которая на три дня переехала в центр.</p>
+
+    <ol class="v-rows">
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-avtor.jpg" alt="Автор бренда украшений показывает изделие покупательнице за своим столом на маркете" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Познакомиться с теми, кто это сделал</h3>
+          <p>За каждой вешалкой стоит автор — не продавец. Можно спросить, почему такая ткань, откуда крой, сколько шла работа. Такого разговора не бывает ни в одном торговом центре.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-veshch.jpg" alt="Посетительницы рассматривают жилет с цветочным принтом" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Понять, что такое дизайнерская вещь</h3>
+          <p>Разница между локальным брендом и масс-маркетом объясняется не словами, а руками: посадка, шов, изнанка, материал. За один день вы увидите больше, чем за год чтения про моду.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-primerka.jpg" alt="Девушка в красном платье примеряет вещь на маркете" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Примерить</h3>
+          <p>На маркете работают примерочные — вещь можно надеть, посмотреть в зеркало, сравнить несколько брендов между собой. Локальные авторы шьют на разные типы фигуры: у каждого своя посадка, и понять, чья ваша, можно только на себе.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-sovet.jpg" alt="Дизайнер надевает шляпку на посетительницу" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Получить совет лично от автора</h3>
+          <p>Что подойдёт именно вам, что можно адаптировать, что доработать под вас. Индивидуальный подход здесь не услуга, а норма разговора.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-pokupka.jpg" alt="Посетительницы рассматривают кольцо, купленное на маркете" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Уйти с покупкой, которой больше ни у кого не будет</h3>
+          <p>Локальные бренды шьют малыми партиями. Вещь, купленную на маркете, вы вряд ли встретите на другом человеке в городе.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="v-cta" id="market-reg">
+      <div class="v-cta-info">
+        <span class="v-stamp">23–25 октября</span>
+        <p class="v-cta-h">Маркет в Доме архитектора. Вход свободный по регистрации</p>
+        <a class="v-link" href="https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810" target="_blank" rel="noopener">Подбор образа на маркете — расписание →</a>
+      </div>
+      <div class="v-days">
+        <a class="v-day" href="https://goj.radario.ru/events/2886570/tickets" target="_blank" rel="noopener"><span class="v-day-n">23</span><span class="v-day-m">октября</span><span class="v-day-go">Регистрация →</span></a>
+        <a class="v-day" href="https://goj.radario.ru/events/2887643/tickets" target="_blank" rel="noopener"><span class="v-day-n">24</span><span class="v-day-m">октября</span><span class="v-day-go">Регистрация →</span></a>
+        <a class="v-day" href="https://goj.radario.ru/events/2887989/tickets" target="_blank" rel="noopener"><span class="v-day-n">25</span><span class="v-day-m">октября</span><span class="v-day-go">Регистрация →</span></a>
+      </div>
+    </div>
+
+    <div class="v-futuro">
+      <figure class="v-photo"><img src="uploads/forum-visit-futuro.jpg" alt="Вешалка с одеждой нижегородских брендов у кирпичной стены" width="1000" height="1250" loading="lazy"></figure>
+      <div class="v-body">
+        <p class="v-eyebrow">Вторая площадка</p>
+        <h3>Кураторский отбор в галерее FUTURO</h3>
+        <p>22 и 24 октября в галерее FUTURO работает вторая площадка — кураторский отбор организаторов форума. Больше пятнадцати брендов, которые, на наш взгляд, точнее всего показывают, куда движется нижегородская мода прямо сейчас. Коллекции Feelatto и Jssense в этом году были показаны на Московской неделе моды.</p>
+        <ul class="v-brands">
+          <li>Виолетта Лангас</li><li>Павел Рябинин</li><li>Синика</li><li>Смородина</li>
+          <li>Cosareve</li><li>Feelatto</li><li>Jssense</li><li>LanaVille</li><li>Lenes</li>
+          <li>Nelly Kruk</li><li>NinoGlass</li><li>Parle</li><li>Rasputai</li><li>Select studio</li>
+          <li>Sevingin</li><li>Solobags</li><li>Tiu</li><li>Urban Soul</li>
+        </ul>
+        <p class="v-meta">22 и 24 октября<span>·</span>Галерея FUTURO</p>
+        <div class="v-btns v-btns--left">
+          <a class="v-btn v-btn--dark" href="https://goj.radario.ru/events/2889579/tickets" target="_blank" rel="noopener">22 октября →</a>
+          <a class="v-btn v-btn--dark" href="https://goj.radario.ru/events/2889689/tickets" target="_blank" rel="noopener">24 октября →</a>
+        </div>
+        <p class="v-note">23 октября галерея работает по отдельной программе.</p>
+      </div>
+    </div>
+
+    <div class="v-futuro v-futuro--left">
+      <figure class="v-photo"><img style="object-position:50% 15%" src="uploads/forum-visit-vystavka.jpg" alt="Чёрный кожаный жакет нижегородского бренда на манекене" width="1000" height="1250" loading="lazy"></figure>
+      <div class="v-body">
+        <p class="v-eyebrow">Выставка · Галерея FUTURO</p>
+        <h3>Как выглядит Нижний, если не печатать Кремль на футболке?</h3>
+        <p>Попробуем увидеть современный визуальный код города не через сувенирные штампы, а через архитектуру, среду, характер, локальные истории, дизайнерское мышление и ДНК нижегородских брендов.</p>
+        <p>Весь день в Галерее Futuro будет работать выставка локальных брендов, можно будет познакомиться с коллекциями, перейти в цифровой сайт-каталог «Модный Нижний», задавать вопросы экспертам, участвовать в голосованиях и проверять собственное восприятие прямо по ходу программы.</p>
+        <p class="v-accent">Это срез: где нижегородская мода находится сейчас и куда она идёт.</p>
+        <p>По нему видно то, что не видно в отдельном магазине или ленте, — что у города уже есть собственный почерк. Не на уровне принта с Кремлём, а на уровне кроя, ткани и детали, которую замечаешь не сразу.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="program" data-screen-label="Программа" style="background: #5B0207; color: #FFFBF7">
   <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 3.5vw, 40px)">
     <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap">
@@ -214,6 +465,7 @@ a { color: inherit; text-decoration: none; }
             <p style="margin: 0">{{ p }}</p>
           </sc-for>
         </div>
+        <a class="fv-btn fv-btn-milk" href="{{ introUrl }}" target="_blank" rel="noopener" style="align-self: flex-start">Зарегистрироваться на конференцию →</a>
       </div>
     </sc-if>
 
@@ -460,7 +712,10 @@ a { color: inherit; text-decoration: none; }
         <span class="fv-card-k">22–25 октября 2026</span>
         <h3 class="fv-card-h">Регистрация на мероприятия форума</h3>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">У каждого мероприятия своя кнопка регистрации: она в карточке мероприятия в программе.</p>
-        <a class="fv-btn fv-btn-milk" href="#program" style="align-self: flex-start">Выбрать в программе →</a>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap; align-items: center">
+          <a class="fv-btn fv-btn-milk" href="#program">Выбрать в программе →</a>
+          <a class="fv-link fv-link-light" href="https://radario.ru/customer/afisha/0749550d376154a2aa0c90fff47bbc91bf06b4380190cc3?widgetSettingId=2814" target="_blank" rel="noopener">Все мероприятия списком →</a>
+        </div>
       </div>
       <div class="fv-card">
         <span class="fv-card-k">23 октября · Futuro · платные билеты</span>
@@ -605,6 +860,7 @@ const VENUES = [
 
 const DAYS = [
   { id: '22', label: '22 октября', venues: ['futura'], intro: {
+      url: 'https://goj.radario.ru/events/2889579/tickets', // регистрация на конференцию
       kicker: 'Деловая программа',
       title: 'Талантов достаточно. Индустрии — нет.',
       paragraphs: [
@@ -648,25 +904,25 @@ const EVENTS = [
   // Закрытый вечер — отдельное платное мероприятие, ссылка берётся из RADARIO_EVENING_URL
   { day: '23', venue: 'futura', start: '17:00', end: '21:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, общение и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', paid: true, url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
   // 23 октября · Дом архитектора
-  { day: '23', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887627/tickets' },
-  { day: '23', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887643/tickets' },
-  { day: '23', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2886570/tickets' },
+  { day: '23', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2886570/tickets' },
+  { day: '23', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '23', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '23', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '23', venue: 'da', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
   { day: '23', venue: 'da', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   // 24 октября · Futuro: выставка (открытое посещение) + дизайн-маркет + лекции (время — заглушка)
-  { day: '24', venue: 'futura', start: '11:00', end: '19:00', title: 'Выставка нижегородской моды', kind: 'Выставка', text: 'Открытое посещение: работы нижегородских дизайнеров и брендов.', paid: false, url: null },
-  { day: '24', venue: 'futura', start: '11:00', end: '19:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', paid: false, url: null },
-  { day: '24', venue: 'futura', start: '14:00', end: '17:00', title: 'Лекции', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Лекции в рамках выставки.', paid: false, url: '' },
+  { day: '24', venue: 'futura', start: '11:00', end: '19:00', title: 'Выставка нижегородской моды', kind: 'Выставка', text: 'Открытое посещение: работы нижегородских дизайнеров и брендов.', paid: false, url: 'https://goj.radario.ru/events/2889689/tickets' },
+  { day: '24', venue: 'futura', start: '11:00', end: '19:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', paid: false, url: 'https://goj.radario.ru/events/2889689/tickets' },
+  { day: '24', venue: 'futura', start: '14:00', end: '17:00', title: 'Лекции', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Лекции в рамках выставки.', paid: false, url: 'https://goj.radario.ru/events/2889689/tickets' },
   // 24 октября · Дом архитектора
-  { day: '24', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '24', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887643/tickets' },
   { day: '24', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'по записи', url: '' },
   { day: '24', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '24', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '24', venue: 'da', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
   { day: '24', venue: 'da', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   // 25 октября · Дом архитектора
-  { day: '25', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '25', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887989/tickets' },
   { day: '25', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '25', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
   { day: '25', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
@@ -894,6 +1150,7 @@ class Component extends DCLogic {
       })),
       hasIntro: !!day.intro && (venueFilter === 'all' || venueFilter === 'futura'),
       intro: day.intro || { kicker: '', title: '', paragraphs: [], facts: [] },
+      introUrl: (day.intro && day.intro.url) || '#',
       dayCaption: `${dayVenueNames(day)} · ${dayStat(day)}`,
       kindLegend: [],
       dayHasEvents: list.length > 0,
