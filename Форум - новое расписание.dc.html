@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&amp;family=Oswald:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #F3E7D8; color: #241012; font-family: 'IBM Plex Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.fv-wrap { max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; }
+.fv-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.fv-kick { margin: 0 0 18px; font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E; }
+.fv-kick-sand { margin: 0; font: 500 14px/1.3 'IBM Plex Sans', sans-serif; letter-spacing: 0.3em; text-transform: uppercase; color: #E8C9A0; }
+.fv-h1 { margin: 0; font: 900 clamp(30px, 3.5vw, 50px)/1.04 'Playfair Display', serif; letter-spacing: -0.02em; text-transform: uppercase; color: #FFFBF7; max-width: 22ch; text-wrap: balance; }
+.fv-h2 { margin: 0; font: 900 clamp(32px, 4vw, 56px)/1.06 'Playfair Display', serif; letter-spacing: -0.02em; }
+.fv-hero { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); min-height: 520px; }
+.fv-hero-text { padding: clamp(32px, 4vw, 52px) clamp(24px, 4vw, 56px) clamp(32px, 4vw, 52px) max(32px, calc((100vw - 1280px) / 2 + 32px)); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 18px; position: relative; z-index: 2; }
+.fv-date { display: inline-block; padding: 6px 40px 8px 28px; margin-left: -10px; background: url(uploads/forum-mazok-3.png) center / 100% 100% no-repeat; font: 700 clamp(34px, 4.2vw, 58px)/1 'Oswald', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; color: #5B0207; white-space: nowrap; }
+.fv-venue { margin: -6px 0 0; display: flex; align-items: center; gap: 10px; font: 500 clamp(17px, 1.7vw, 22px)/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #D8F32A; }
+.fv-lead { margin: 0; max-width: 60ch; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.6; color: #F3E7D8; }
+.fv-actions { display: flex; gap: 22px 30px; flex-wrap: wrap; align-items: center; }
+.fv-photo { position: relative; --sl: 64px; min-height: 520px; }
+.fv-photo::before { content: ''; position: absolute; inset: 0; background: #D8F32A; clip-path: polygon(var(--sl) 0, 100% 0, 100% 100%, 0 100%); }
+.fv-photo-img { position: absolute; inset: 0; background-size: cover; background-position: 52% 30%; clip-path: polygon(calc(var(--sl) + 14px) 0, 100% 0, 100% 100%, 14px 100%); }
+.fv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; background: #2E0A0C; border-top: 1px solid rgba(255,251,247,0.12); }
+.fv-facts > div { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; border-left: 1px solid rgba(255,251,247,0.12); }
+.fv-facts > div:first-child { border-left: 0; padding-left: max(32px, calc((100vw - 1280px) / 2 + 32px)); }
+.fv-num { font: 600 clamp(26px, 2.8vw, 38px)/1 'Oswald', sans-serif; letter-spacing: 0.03em; text-transform: uppercase; color: #D8F32A; }
+.fv-fact { font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #E8C9A0; }
+.fv-btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 32px; font: 500 15px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+.fv-btn-milk { background: #FFFBF7; color: #5B0207; }
+.fv-btn-milk:hover { background: #E8C9A0; color: #5B0207; }
+.fv-btn-plate { background: #75070D; color: #D8F32A; }
+.fv-btn-plate:hover { background: #2E0A0C; color: #D8F32A; }
+.fv-link { font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #5B0207; padding-bottom: 5px; border-bottom: 1px solid currentColor; }
+.fv-link:hover { color: #A0060E; }
+.fv-link-light { color: #F3E7D8; }
+.fv-link-light:hover { color: #D8F32A; }
+.fv-list { display: flex; flex-direction: column; margin-top: 6px; }
+.fv-row { display: grid; grid-template-columns: 52px 150px 1fr; gap: 14px; align-items: baseline; padding: 18px 0; border-top: 4px solid #75070D; }
+.fv-row + .fv-row { border-top: 1px solid rgba(91,2,7,0.3); }
+.fv-rn { font: 700 22px/1 'Oswald', sans-serif; color: #A0060E; }
+.fv-rt { font: 500 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #5B0207; }
+.fv-rd { font-size: 15px; line-height: 1.55; }
+.fv-aud { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
+.fv-aud > div { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 28px 0; border-top: 4px solid #D8F32A; margin-right: 24px; }
+.fv-at { font: 500 22px/1.15 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #FFFBF7; }
+.fv-ad { font-size: 15px; line-height: 1.55; color: #F3E7D8; }
+.fv-card { display: flex; flex-direction: column; gap: 16px; border: 1px solid rgba(255,251,247,0.4); padding: clamp(24px, 3vw, 40px); }
+.fv-card-k { font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.22em; text-transform: uppercase; color: #D8F32A; }
+.fv-card-h { margin: 0; font: 900 clamp(24px, 3vw, 34px)/1.1 'Playfair Display', serif; letter-spacing: -0.02em; text-transform: uppercase; color: #FFFBF7; }
+.fv-stub { align-self: flex-start; display: inline-flex; align-items: center; padding: 15px 28px; border: 1px solid rgba(255,251,247,0.4); font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #E8C9A0; }
+.fp-act { display: block; }
+@media (max-width: 900px) {
+  .fv-hero { grid-template-columns: 1fr; min-height: 0; }
+  .fv-photo { min-height: 260px; }
+  .fv-photo::before { clip-path: none; }
+  .fv-photo-img { clip-path: none; top: 10px; background-image: url(uploads/forum-hero-mobile-2.jpg) !important; background-position: 55% 30% !important; }
+  .fv-hero-text { padding: 28px 32px 26px; gap: 14px; }
+  .fv-lead { font-size: 15px; line-height: 1.5; }
+  .fv-facts > div { padding: 14px 32px; gap: 4px; }
+  .fv-facts > div:first-child { padding-left: 32px; }
+  .fv-row { grid-template-columns: 40px 1fr; }
+  .fv-row .fv-rd { grid-column: 2; }
+}
+@media (max-width: 720px) { .fp-archive-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 460px) { .fp-archive-grid { grid-template-columns: 1fr !important; } }
+.fp-speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 32px 20px; }
+.fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 14px; }
+.fp-partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 16px 12px; }
+.pg-grid { display: grid; grid-template-columns: 110px minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1.25fr); gap: 6px; }
+.pg-grid-ms { display: none; flex-direction: column; gap: 28px; }
+.pg-c { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-height: 76px; padding: 12px 16px; border: 1px solid rgba(243,231,216,0.3); }
+.pg-c[data-k="head"], .pg-c[data-k="corner"] { border: none; padding: 0 0 4px; min-height: 0; justify-content: flex-end; gap: 6px; }
+.pg-c[data-k="corner"] { font: 500 12px/1 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #E8C9A0; }
+.pg-c[data-k="day"] { justify-content: center; gap: 4px; }
+.pg-c[data-k="off"] { border-style: dashed; opacity: 0.4; }
+.pg-c[data-k="ev"], .pg-c[data-k="daily"] { border-left-width: 5px; }
+.pg-c[data-k="daily"] { justify-content: flex-start; background: rgba(255,251,247,0.05); }
+.pg-c-hrs { font: 600 18px/1 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; }
+.pg-c-dn { font: 600 28px/1 'Oswald', sans-serif; color: #D8F32A; }
+.pg-c-dw { font: 500 11px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #E8C9A0; }
+.pg-c-lab { font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #D8F32A; }
+.pg-c-it { display: flex; flex-direction: column; gap: 3px; }
+.pg-c-t { font: 500 15px/1.25 'Oswald', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #FFFBF7; }
+.pg-c-n { font-size: 12px; line-height: 1.35; color: #E8C9A0; }
+.pg-c-act { display: flex; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
+.pg-c-p { font: 600 14px/1.2 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; white-space: nowrap; }
+.pg-c-a { font: 500 12px/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #FFFBF7; border-bottom: 1px solid rgba(255,251,247,0.6); padding-bottom: 2px; white-space: nowrap; }
+.pg-c-short { display: none; }
+.pg-c-a:hover { color: #D8F32A; border-color: #D8F32A; }
+.fs { display: flex; flex-direction: column; gap: clamp(36px, 5vw, 56px); padding-top: clamp(16px, 2vw, 24px); }
+.fs-title { margin: 0; font: 900 clamp(28px, 3.4vw, 44px)/1.1 'Playfair Display', serif; letter-spacing: -0.02em; color: #FFFBF7; }
+.fs-day { display: flex; flex-direction: column; gap: 12px; }
+.fs-day-h { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(243,231,216,0.4); }
+.fs-dn { font: 600 44px/1 'Oswald', sans-serif; color: #D8F32A; }
+.fs-dl { font: 500 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #F3E7D8; }
+.fs-mk, .fs-g, .fs-rep { display: flex; flex-direction: column; gap: 8px; padding: clamp(16px, 2vw, 22px) clamp(16px, 2.2vw, 26px); border: 1px solid rgba(243,231,216,0.25); border-left-width: 5px; }
+.fs-mk { background: rgba(255,251,247,0.06); }
+.fs-g, .fs-rep { background: #F3E7D8; color: #5B0207; border-color: #F3E7D8; }
+.fs-top { display: flex; align-items: center; gap: 6px 14px; flex-wrap: wrap; }
+.fs-time { font: 600 15px/1 'Oswald', sans-serif; letter-spacing: 0.04em; }
+.fs-price { font: 600 15px/1 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; }
+.fs-g .fs-price, .fs-rep .fs-price { color: #A0060E; }
+.fs-t { font: 500 18px/1.25 'Oswald', sans-serif; letter-spacing: 0.03em; text-transform: uppercase; }
+.fs-gt { font: 900 clamp(22px, 2.4vw, 30px)/1.12 'Playfair Display', serif; letter-spacing: -0.01em; }
+.fs-lead { margin: 0; font-size: 15px; line-height: 1.5; font-style: italic; opacity: 0.85; max-width: 70ch; }
+.fs-d { margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.9; max-width: 75ch; }
+.fs-mk .fs-d { color: #F3E7D8; }
+.fs-k { font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #A0060E; }
+.fs-sp { font-size: 14px; line-height: 1.4; font-weight: 500; }
+.fs-rows { display: flex; flex-direction: column; margin-top: 6px; }
+.fs-r { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 4px 20px; padding: 14px 0; border-top: 1px solid rgba(91,2,7,0.18); }
+.fs-r-time { font: 600 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.02em; }
+.fs-r-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fs-g-a { display: flex; align-items: center; gap: 14px 28px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid rgba(91,2,7,0.18); }
+.fs-g .fv-btn-milk, .fs-rep .fv-btn-milk { background: #5B0207; color: #FFFBF7; }
+.fs-g .fv-btn-milk:hover { background: #A0060E; color: #FFFBF7; }
+.fs-g .fv-link-light { color: #5B0207; }
+.fs-btn { align-self: flex-start; margin-top: 4px; display: inline-flex; padding: 12px 18px; background: #FFFBF7; color: #5B0207; font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+.fs-btn:hover { background: #E8C9A0; color: #5B0207; }
+.fs-also { align-self: flex-start; font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #E8C9A0; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+.fs-also:hover { color: #D8F32A; }
+.fs-reps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 14px; scroll-margin-top: 90px; }
+.fs-sl-row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 14px; align-items: center; padding: 10px 0; border-top: 1px solid rgba(91,2,7,0.18); }
+.fs-sl-d { font: 500 14px/1.2 'Oswald', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+.fs-sl-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.fs-sl { display: inline-flex; padding: 9px 12px; background: #5B0207; color: #FFFBF7; font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.04em; }
+.fs-sl:hover { background: #A0060E; color: #FFFBF7; }
+.fs-sl-sold, .fs-sl-sold:hover { background: transparent; color: rgba(91,2,7,0.4); border: 1px solid rgba(91,2,7,0.25); text-decoration: line-through; cursor: default; }
+.fs-sl-none { font-size: 14px; opacity: 0.6; }
+@media (max-width: 760px) {
+  .fs-dn { font-size: 34px; }
+  .fs-dl { font-size: 14px; }
+  .fs-r { grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 12px 0; }
+  .fs-r-time { font-size: 15px; color: #A0060E; }
+  .fs-t { font-size: 16px; }
+  .fs-d, .fs-lead { font-size: 14px; }
+  .fs-sl-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .fs-sl-list { gap: 5px; }
+  .fs-sl { padding: 9px 7px; font-size: 13px; letter-spacing: 0.02em; }
+}
+@media (max-width: 760px) {
+  .pg-grid-d { display: none; }
+  .pg-grid-ms { display: flex; }
+  .pg-grid { gap: 4px; }
+  .pg-c { padding: 10px 10px; min-height: 64px; gap: 8px; }
+  .pg-c[data-k="head"] { flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; padding: 0 0 6px; }
+  .pg-c[data-k="head"] .pg-vpill { font-size: 12px; padding: 7px 10px; }
+  .pg-c[data-k="ev"], .pg-c[data-k="daily"] { border-left-width: 4px; }
+  .pg-c[data-k="day"] { padding: 6px 2px; align-items: center; }
+  .pg-c-hrs { font-size: 16px; }
+  .pg-c-dn { font-size: 24px; }
+  .pg-c-dw { font-size: 10px; }
+  .pg-c-lab { font-size: 11px; letter-spacing: 0.12em; }
+  .pg-c-t { font-size: 14px; letter-spacing: 0.03em; overflow-wrap: anywhere; }
+  .pg-c-n { font-size: 12px; }
+  .pg-c-act { gap: 2px 10px; }
+  .pg-c-p { font-size: 13px; white-space: normal; }
+  .pg-c-a { font-size: 12px; letter-spacing: 0.06em; white-space: normal; }
+  .pg-c-full { display: none; }
+  .pg-c-short { display: inline; }
+}
+.pg-vpill { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; padding: 7px 12px; font: 500 12px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+.pg-vpill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pg-vpill-s { padding: 5px 9px; font-size: 11px; letter-spacing: 0.1em; }
+  /* ===== Блок «Посетителям» — вставить перед #program ===== */
+  .mn-visitors{
+    --v-bg:#f3e7d8;--v-panel:#efe0cc;--v-accent:#5b0207;--v-eyebrow:#a0060e;
+    --v-text:#241012;--v-on-accent:#fffbf7;--v-line:#5b020733;
+    --v-display:"Playfair Display",Georgia,serif;
+    --v-label:Oswald,"Helvetica Neue",Arial,sans-serif;
+    --v-sans:ibmPlexSans,"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--v-bg);color:var(--v-text);font-family:var(--v-sans);
+    padding:clamp(56px,8vw,112px) 0;
+  }
+  .mn-visitors *,.mn-visitors *::before,.mn-visitors *::after{box-sizing:border-box}
+  .mn-visitors .v-wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+  .mn-visitors .v-eyebrow{
+    font-family:var(--v-label);font-weight:500;font-size:13px;line-height:1;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--v-eyebrow);margin:0 0 18px;
+  }
+  .mn-visitors h2,.mn-visitors h3{font-family:var(--v-display);font-weight:900;color:var(--v-accent);margin:0;letter-spacing:-.02em}
+  .mn-visitors h2{font-size:clamp(32px,4.4vw,52px);line-height:1.06;max-width:18ch}
+  .mn-visitors h3{font-size:clamp(24px,2.6vw,32px);line-height:1.12}
+  .mn-visitors p{margin:0}
+  .mn-visitors .v-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;max-width:62ch;margin-top:28px}
+
+  /* чередующиеся ряды: фото | текст, текст | фото */
+  .mn-visitors .v-rows{list-style:none;margin:clamp(48px,6vw,88px) 0 0;padding:0;counter-reset:v}
+  .mn-visitors .v-row{
+    display:grid;grid-template-columns:minmax(0,340px) minmax(0,560px);justify-content:center;
+    gap:clamp(32px,5vw,72px);align-items:center;
+    counter-increment:v;
+  }
+  .mn-visitors .v-row + .v-row{margin-top:clamp(40px,5vw,72px)}
+  .mn-visitors .v-row:nth-child(even){grid-template-columns:minmax(0,560px) minmax(0,340px)}
+  .mn-visitors .v-row:nth-child(even) .v-photo{order:2}
+  .mn-visitors .v-photo{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--v-panel)}
+  .mn-visitors .v-photo img{display:block;width:100%;height:100%;object-fit:cover}
+    .mn-visitors .v-num{
+    display:block;font-family:var(--v-label);font-weight:500;font-size:13px;letter-spacing:.24em;
+    color:var(--v-eyebrow);padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid var(--v-line);
+  }
+  .mn-visitors .v-num::before{content:counter(v,decimal-leading-zero) " / 05"}
+  .mn-visitors .v-text p{font-size:17px;line-height:1.65;margin-top:18px}
+
+  /* плашка с датами и кнопкой */
+  .mn-visitors .v-meta{
+    font-family:var(--v-label);font-weight:500;font-size:clamp(16px,1.6vw,20px);letter-spacing:.12em;
+    text-transform:uppercase;line-height:1.5;
+  }
+  .mn-visitors .v-meta span{opacity:.55;padding:0 .4em}
+  .mn-visitors .v-btn{
+    display:inline-block;font-family:var(--v-label);font-weight:500;font-size:15px;letter-spacing:.12em;
+    text-transform:uppercase;text-decoration:none;padding:17px 32px;white-space:nowrap;
+    background:var(--v-on-accent);color:var(--v-accent);transition:opacity .2s;
+  }
+  .mn-visitors .v-btn:hover{opacity:.85}
+  .mn-visitors .v-btn--dark{background:var(--v-accent);color:var(--v-on-accent)}
+
+  /* кураторский отбор FUTURO */
+  .mn-visitors .v-futuro{
+    margin-top:clamp(72px,10vw,140px);padding-top:clamp(48px,6vw,72px);border-top:1px solid var(--v-line);
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:clamp(32px,5vw,72px);align-items:start;
+  }
+  .mn-visitors .v-futuro .v-photo{order:2;position:sticky;top:96px}
+  .mn-visitors .v-futuro--left{grid-template-columns:minmax(0,400px) minmax(0,1fr)}
+  .mn-visitors .v-futuro--left .v-photo{order:0}
+  .mn-visitors .v-futuro .v-body > p.v-accent{font-family:var(--v-display);font-weight:900;font-size:clamp(20px,2vw,24px);line-height:1.3;color:var(--v-accent)}
+  .mn-visitors .v-futuro .v-body > p{font-size:17px;line-height:1.65;margin-top:22px}
+  .mn-visitors .v-brands{
+    list-style:none;margin:32px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .mn-visitors .v-brands li{
+    font-family:var(--v-label);font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--v-accent);border:1px solid var(--v-line);padding:8px 12px;line-height:1.2;
+  }
+  .mn-visitors .v-futuro .v-meta{color:var(--v-accent);margin-top:36px}
+  .mn-visitors .v-futuro .v-btn{margin-top:20px}
+  .mn-visitors .v-note{font-size:15px;line-height:1.5;margin-top:16px;opacity:.75}
+
+  @media (max-width:860px){
+    .mn-visitors .v-wrap{padding:0 20px}
+    .mn-visitors .v-row,.mn-visitors .v-row:nth-child(even),.mn-visitors .v-futuro,.mn-visitors .v-futuro--left{grid-template-columns:1fr;gap:24px}
+    .mn-visitors .v-row:nth-child(even) .v-photo,.mn-visitors .v-futuro .v-photo{order:0;position:static}
+        .mn-visitors .v-photo{aspect-ratio:4/3}
+    .mn-visitors .v-text p,.mn-visitors .v-futuro .v-body > p:not(.v-accent){font-size:16px}
+    .mn-visitors .v-cta{padding:24px 20px;margin-left:-20px;margin-right:-20px}
+    .mn-visitors .v-btn{width:100%;text-align:center;white-space:normal}
+  }
+
+  .mn-visitors .v-btns{display:flex;flex-wrap:wrap;gap:12px}
+  .mn-visitors .v-btns--left{margin-top:20px}
+  .mn-visitors .v-btns--left .v-btn{margin-top:0}
+  @media (max-width:860px){.mn-visitors .v-btns{width:100%;flex-direction:column}}
+
+  /* плашка маркета: лаймовый мазок, дни-плитки */
+  .mn-visitors .v-cta{
+    margin-top:clamp(48px,7vw,96px);padding:clamp(32px,4vw,52px);background:var(--v-accent);color:var(--v-on-accent);
+    border-top:6px solid #D8F32A;position:relative;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px clamp(32px,5vw,72px);align-items:center;
+  }
+  .mn-visitors .v-stamp{
+    display:inline-block;margin-left:-10px;padding:8px 40px 10px 28px;
+    background:url(uploads/forum-mazok-1.png) center/100% 100% no-repeat;
+    font-family:var(--v-label);font-weight:700;font-size:clamp(26px,3vw,40px);line-height:1;letter-spacing:.02em;
+    text-transform:uppercase;color:var(--v-accent);white-space:nowrap;
+  }
+  .mn-visitors .v-cta-h{font-family:var(--v-display);font-weight:900;font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.01em;color:var(--v-on-accent);margin:22px 0 0;max-width:24ch}
+  .mn-visitors .v-cta .v-link{
+    display:inline-block;margin-top:24px;font-family:var(--v-label);font-weight:500;font-size:14px;letter-spacing:.14em;
+    text-transform:uppercase;color:#D8F32A;border-bottom:1px solid currentColor;padding-bottom:4px;transition:color .2s;
+  }
+  .mn-visitors .v-cta .v-link:hover{color:var(--v-on-accent)}
+  .mn-visitors .v-days{display:flex;gap:14px}
+  .mn-visitors .v-day{
+    width:148px;display:flex;flex-direction:column;gap:4px;padding:20px 18px 18px;
+    border:1px solid #fffbf773;color:var(--v-on-accent);transition:background .2s,border-color .2s,transform .2s;
+  }
+  .mn-visitors .v-day-n{font-family:var(--v-label);font-weight:700;font-size:68px;line-height:1;color:#D8F32A;transition:color .2s}
+  .mn-visitors .v-day-m{font-family:var(--v-label);font-weight:500;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#E8C9A0;transition:color .2s}
+  .mn-visitors .v-day-go{margin-top:18px;font-family:var(--v-label);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--v-on-accent);transition:color .2s}
+  .mn-visitors .v-day:hover{background:#D8F32A;border-color:#D8F32A;transform:translateY(-4px)}
+  .mn-visitors .v-day:hover .v-day-n,.mn-visitors .v-day:hover .v-day-m,.mn-visitors .v-day:hover .v-day-go{color:var(--v-accent)}
+  @media (max-width:860px){
+    .mn-visitors .v-cta{grid-template-columns:1fr;padding:28px 20px;margin-left:-20px;margin-right:-20px}
+    .mn-visitors .v-days{width:100%;gap:10px}
+    .mn-visitors .v-day{flex:1 1 0;width:auto;padding:14px 12px 12px}
+    .mn-visitors .v-day-n{font-size:44px}
+    .mn-visitors .v-day-go{font-size:11px}
+  }
+
+  /* ряды «фото + текст»: на всю ширину сайта, крупная типографика, номер на мазке */
+  .mn-visitors h2{font-size:clamp(36px,5.2vw,72px);line-height:1.04;max-width:20ch}
+  .mn-visitors .v-lead{font-size:clamp(18px,1.7vw,22px);max-width:60ch}
+  .mn-visitors .v-num{
+    display:inline-flex;align-items:baseline;gap:16px;border-bottom:0;padding-bottom:0;margin-bottom:30px;
+    font-family:var(--v-label);letter-spacing:.02em;color:var(--v-accent);
+  }
+  .mn-visitors .v-num::before{
+    content:counter(v,decimal-leading-zero);display:inline-block;margin-left:-10px;padding:8px 44px 12px 30px;
+    background:url(uploads/forum-mazok-1.png) center/100% 100% no-repeat;
+    font-weight:700;font-size:clamp(52px,6.2vw,88px);line-height:1;color:var(--v-accent);
+  }
+  .mn-visitors .v-num::after{content:"/ 05";font-weight:500;font-size:clamp(16px,1.5vw,20px);letter-spacing:.2em;color:var(--v-eyebrow)}
+  .mn-visitors .v-text h3{font-size:clamp(30px,3.6vw,52px);line-height:1.08}
+  .mn-visitors .v-text p{font-size:clamp(17px,1.5vw,20px);line-height:1.65;margin-top:22px;max-width:46ch}
+  @media (min-width:861px){
+    .mn-visitors .v-rows{margin-top:clamp(56px,7vw,104px)}
+    .mn-visitors .v-row,.mn-visitors .v-row:nth-child(even){justify-content:stretch;gap:clamp(40px,7vw,112px)}
+    .mn-visitors .v-row{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+    .mn-visitors .v-row:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+    .mn-visitors .v-row + .v-row{margin-top:clamp(64px,8vw,128px)}
+  }
+  @media (max-width:860px){
+    .mn-visitors .v-num{margin-bottom:20px}
+    .mn-visitors .v-num::before{font-size:52px;padding:6px 34px 9px 24px}
+  }
+
+  /* бренды FUTURO — бирки: скруглённые, с точкой, чаще бежевые, изредка лайм и бордо */
+  .mn-visitors .v-brands{gap:12px 14px;margin-top:36px}
+  .mn-visitors .v-brands li{
+    display:inline-flex;align-items:center;gap:12px;padding:8px 20px 10px 16px;border:0;border-radius:14px;
+    background:#e8d5bf;color:var(--v-accent);
+    font-family:var(--v-label);font-weight:500;font-size:clamp(20px,1.9vw,26px);line-height:1.15;letter-spacing:.01em;text-transform:none;
+    transition:transform .2s;
+  }
+  .mn-visitors .v-brands li::before{content:"";flex:none;width:.42em;height:.42em;border-radius:50%;background:currentColor;margin-top:.08em}
+  .mn-visitors .v-brands li:nth-child(5n+2){background:#d8f32a}
+  .mn-visitors .v-brands li:nth-child(7n+3){background:var(--v-accent);color:#f3e7d8}
+  .mn-visitors .v-brands li:hover{transform:translateY(-3px) rotate(-1deg)}
+  .mn-visitors .v-futuro .v-brands + .v-meta{margin-top:48px}
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<!-- Обложка -->
+<section data-screen-label="Обложка форума" style="background: #5B0207; color: #FFFBF7; overflow: hidden">
+  <div class="fv-hero">
+    <div class="fv-hero-text">
+      <p class="fv-kick-sand">Форум локальной моды · Нижний Новгород</p>
+      <h1 class="fv-h1">Четыре дня о том, как устроена локальная мода</h1>
+      <div class="fv-date"><span>22–25 октября</span></div>
+      <p class="fv-venue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="#D8F32A"/><circle cx="12" cy="10" r="2.6" fill="#5B0207"/></svg>Галерея Futuro · Дом архитектора</p>
+      <p class="fv-lead">Дизайнеры, производственники, байеры, медиа и городские институции. Четыре дня на двух площадках — в галерее Futuro и Доме архитектора, финальный показ — на Чкаловской лестнице.</p>
+      <div class="fv-actions">
+        <a class="fv-btn fv-btn-milk" href="#program">Программа и регистрация</a>
+      </div>
+    </div>
+    <div class="fv-photo">
+      <div class="fv-photo-img" style="background-image: url('uploads/forum-hero-3.jpg')" role="img" aria-label="Модели на Чкаловской лестнице на закате, вид на Волгу"></div>
+    </div>
+  </div>
+  <div class="fv-facts">
+    <div><span class="fv-num">4 дня</span><span class="fv-fact">22–25 октября 2026</span></div>
+    <div><span class="fv-num">2 площадки</span><span class="fv-fact">Галерея Futuro и Дом архитектора</span></div>
+    <div><span class="fv-num">Чкаловская лестница</span><span class="fv-fact">финальный показ</span></div>
+  </div>
+</section>
+
+<!-- О форуме -->
+<section id="about" data-screen-label="О форуме" style="background: #F3E7D8; color: #241012">
+  <div class="fv-wrap fv-two">
+    <div>
+      <p class="fv-kick">01 · О форуме</p>
+      <h2 class="fv-h2" style="color: #5B0207; margin-bottom: 28px">Разговор, после которого запускаются коллекции</h2>
+      <img src="uploads/forum-block1.jpg" alt="Участники показа локальных брендов" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.65">
+      <p style="margin: 0">Форум собирает тех, кто обычно работает поодиночке: дизайнеров, швейные производства, закупщиков, преподавателей и городские институции. Задача простая — превратить разрозненные усилия в отрасль, у которой есть цепочка от лекала до полки.</p>
+      <p style="margin: 0">Мы делаем ставку на прикладной формат: меньше панельных речей, больше разборов, встреч один на один и открытых цифр. Каждая сессия заканчивается конкретикой — контактом, заявкой или договорённостью.</p>
+      <div class="fv-list">
+        <div class="fv-row"><span class="fv-rn">I</span><span class="fv-rt">Индустрия</span><span class="fv-rd">Собираем цепочку: дизайнер — производство — байер — покупатель.</span></div>
+        <div class="fv-row"><span class="fv-rn">II</span><span class="fv-rt">Практика</span><span class="fv-rd">Разборы, цифры и встречи вместо панельных дискуссий.</span></div>
+        <div class="fv-row"><span class="fv-rn">III</span><span class="fv-rt">Смена</span><span class="fv-rd">Студенты и начинающие бренды попадают на форум бесплатно.</span></div>
+      </div>
+      <div class="fv-actions" style="margin-top: 8px">
+        <a class="fv-btn fv-btn-plate" href="#program">Выбрать мероприятие</a>
+        <a class="fv-link" href="О проекте.dc.html#partners">Стать партнёром форума →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Для кого -->
+<section id="audience" data-screen-label="Для кого" style="background: #5B0207; color: #FFFBF7">
+  <div class="fv-wrap">
+    <p class="fv-kick" style="color: #D8F32A">01А · Для кого</p>
+    <h2 class="fv-h2" style="color: #FFFBF7; margin-bottom: clamp(28px, 4vw, 48px)">Кого мы ждём на форуме</h2>
+    <div class="fv-aud">
+      <div><span class="fv-at">Горожане и туристы</span><span class="fv-ad">Для всех, кто интересуется локальной модой.</span></div>
+      <div><span class="fv-at">Профессионалы</span><span class="fv-ad">Бренды, дизайнеры, стилисты, байеры, производства.</span></div>
+      <div><span class="fv-at">Медиа</span><span class="fv-ad">Журналисты, блогеры, городские и федеральные медиа.</span></div>
+      <div><span class="fv-at">Институты</span><span class="fv-ad">Органы власти, институты развития, ВУЗы и СУЗы.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Программа -->
+<!-- Посетителям (01Б) -->
+<section class="mn-visitors" id="visitors">
+  <div class="v-wrap">
+    <p class="v-eyebrow">01Б · Посетителям</p>
+    <h2>Здесь вещь можно потрогать, а автора — спросить</h2>
+    <p class="v-lead">Маркет форума — это не витрина. Три дня в Доме архитектора больше ста локальных брендов стоят за своими изделиями сами. Вы приходите не в магазин, а в мастерскую города, которая на три дня переехала в центр.</p>
+
+    <ol class="v-rows">
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-avtor.jpg" alt="Автор бренда украшений показывает изделие покупательнице за своим столом на маркете" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Познакомиться с теми, кто это сделал</h3>
+          <p>За каждой вешалкой стоит автор — не продавец. Можно спросить, почему такая ткань, откуда крой, сколько шла работа. Такого разговора не бывает ни в одном торговом центре.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-veshch.jpg" alt="Посетительницы рассматривают жилет с цветочным принтом" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Понять, что такое дизайнерская вещь</h3>
+          <p>Разница между локальным брендом и масс-маркетом объясняется не словами, а руками: посадка, шов, изнанка, материал. За один день вы увидите больше, чем за год чтения про моду.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-primerka.jpg" alt="Девушка в красном платье примеряет вещь на маркете" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Примерить</h3>
+          <p>На маркете работают примерочные — вещь можно надеть, посмотреть в зеркало, сравнить несколько брендов между собой. Локальные авторы шьют на разные типы фигуры: у каждого своя посадка, и понять, чья ваша, можно только на себе.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-sovet.jpg" alt="Дизайнер надевает шляпку на посетительницу" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Получить совет лично от автора</h3>
+          <p>Что подойдёт именно вам, что можно адаптировать, что доработать под вас. Индивидуальный подход здесь не услуга, а норма разговора.</p>
+        </div>
+      </li>
+      <li class="v-row">
+        <figure class="v-photo"><img src="uploads/forum-visit-market-pokupka.jpg" alt="Посетительницы рассматривают кольцо, купленное на маркете" width="1000" height="1250" loading="lazy"></figure>
+        <div class="v-text">
+          <span class="v-num"></span>
+          <h3>Уйти с покупкой, которой больше ни у кого не будет</h3>
+          <p>Локальные бренды шьют малыми партиями. Вещь, купленную на маркете, вы вряд ли встретите на другом человеке в городе.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="v-cta" id="market-reg">
+      <div class="v-cta-info">
+        <span class="v-stamp">23–25 октября</span>
+        <p class="v-cta-h">Маркет в Доме архитектора. Вход свободный по регистрации</p>
+        <a class="v-link" href="https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810" target="_blank" rel="noopener">Подбор образа на маркете — расписание →</a>
+      </div>
+      <div class="v-days">
+        <a class="v-day" href="https://goj.radario.ru/events/2886570/tickets" target="_blank" rel="noopener"><span class="v-day-n">23</span><span class="v-day-m">октября</span><span class="v-day-go">Регистрация →</span></a>
+        <a class="v-day" href="https://goj.radario.ru/events/2887643/tickets" target="_blank" rel="noopener"><span class="v-day-n">24</span><span class="v-day-m">октября</span><span class="v-day-go">Регистрация →</span></a>
+        <a class="v-day" href="https://goj.radario.ru/events/2887989/tickets" target="_blank" rel="noopener"><span class="v-day-n">25</span><span class="v-day-m">октября</span><span class="v-day-go">Регистрация →</span></a>
+      </div>
+    </div>
+
+    <div class="v-futuro">
+      <figure class="v-photo"><img src="uploads/forum-visit-futuro.jpg" alt="Вешалка с одеждой нижегородских брендов у кирпичной стены" width="1000" height="1250" loading="lazy"></figure>
+      <div class="v-body">
+        <p class="v-eyebrow">Вторая площадка</p>
+        <h3>Кураторский отбор в галерее FUTURO</h3>
+        <p>22 и 24 октября в галерее FUTURO работает вторая площадка — кураторский отбор организаторов форума. Больше пятнадцати брендов, которые, на наш взгляд, точнее всего показывают, куда движется нижегородская мода прямо сейчас. Коллекции Feelatto и Jssense в этом году были показаны на Московской неделе моды.</p>
+        <ul class="v-brands">
+          <li>Виолетта Лангас</li><li>Павел Рябинин</li><li>Синика</li><li>Смородина</li>
+          <li>Cosareve</li><li>Feelatto</li><li>Jssense</li><li>LanaVille</li><li>Lenes</li>
+          <li>Nelly Kruk</li><li>NinoGlass</li><li>Parle</li><li>Rasputai</li><li>Select studio</li>
+          <li>Sevingin</li><li>Solobags</li><li>Tiu</li><li>Urban Soul</li>
+        </ul>
+        <p class="v-meta">22 и 24 октября<span>·</span>Галерея FUTURO</p>
+        <div class="v-btns v-btns--left">
+          <a class="v-btn v-btn--dark" href="https://goj.radario.ru/events/2889579/tickets" target="_blank" rel="noopener">22 октября →</a>
+          <a class="v-btn v-btn--dark" href="https://goj.radario.ru/events/2889689/tickets" target="_blank" rel="noopener">24 октября →</a>
+        </div>
+        <p class="v-note">23 октября галерея работает по отдельной программе.</p>
+      </div>
+    </div>
+
+    <div class="v-futuro v-futuro--left">
+      <figure class="v-photo"><img style="object-position:50% 15%" src="uploads/forum-visit-vystavka.jpg" alt="Чёрный кожаный жакет нижегородского бренда на манекене" width="1000" height="1250" loading="lazy"></figure>
+      <div class="v-body">
+        <p class="v-eyebrow">Выставка · Галерея FUTURO</p>
+        <h3>Как выглядит Нижний, если не печатать Кремль на футболке?</h3>
+        <p>Попробуем увидеть современный визуальный код города не через сувенирные штампы, а через архитектуру, среду, характер, локальные истории, дизайнерское мышление и ДНК нижегородских брендов.</p>
+        <p>Весь день в Галерее Futuro будет работать выставка локальных брендов, можно будет познакомиться с коллекциями, перейти в цифровой сайт-каталог «Модный Нижний», задавать вопросы экспертам, участвовать в голосованиях и проверять собственное восприятие прямо по ходу программы.</p>
+        <p class="v-accent">Это срез: где нижегородская мода находится сейчас и куда она идёт.</p>
+        <p>По нему видно то, что не видно в отдельном магазине или ленте, — что у города уже есть собственный почерк. Не на уровне принта с Кремлём, а на уровне кроя, ткани и детали, которую замечаешь не сразу.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="program" data-screen-label="Программа" style="background: #5B0207; color: #FFFBF7">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap">
+      <div>
+        <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">02 · Программа и билеты</p>
+        <h2 class="fv-h2" style="color: #FFFBF7; max-width: 18ch">Программа форума</h2>
+      </div>
+      <p style="margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.55; color: #F3E7D8">Две площадки. На каждой — то, что идёт все дни, и отдельные события по дням. Билет или регистрация — на каждое событие свои.</p>
+    </div>
+
+    <!-- Таблица «дни × площадки». То, что идёт все дни, — одна объединённая ячейка; кнопки — внутри ячеек -->
+    <div id="reg">
+    <div class="pg-grid pg-grid-d" role="table" aria-label="Программа форума по дням и площадкам">
+      <sc-for list="{{ gridCells }}" as="c" hint-placeholder-count="14">
+        <div class="pg-c" data-k="{{ c.kind }}" style="{{ c.place }}">
+          <sc-if value="{{ c.isHead }}" hint-placeholder-val="{{ false }}">
+            <span class="pg-vpill" style="{{ c.pill }}">{{ c.name }}</span>
+            <span class="pg-c-hrs">{{ c.hours }}</span>
+          </sc-if>
+          <sc-if value="{{ c.isDay }}" hint-placeholder-val="{{ false }}">
+            <span class="pg-c-dn">{{ c.dayNum }}</span>
+            <span class="pg-c-dw">{{ c.weekday }}</span>
+          </sc-if>
+          <sc-if value="{{ c.hasLabel }}" hint-placeholder-val="{{ false }}">
+            <span class="pg-c-lab">{{ c.label }}</span>
+          </sc-if>
+          <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="1">
+            <div class="pg-c-it">
+              <span class="pg-c-t">{{ i.title }}</span>
+              <sc-if value="{{ i.hasNote }}" hint-placeholder-val="{{ false }}"><span class="pg-c-n">{{ i.note }}</span></sc-if>
+              <span class="pg-c-act">
+                <span class="pg-c-p">{{ i.price }}</span>
+                <sc-for list="{{ i.links }}" as="l" hint-placeholder-count="1">
+                  <a class="pg-c-a" href="{{ l.url }}" target="{{ l.target }}" rel="noopener"><span class="pg-c-full">{{ l.label }}</span><span class="pg-c-short">{{ l.short }}</span></a>
+                </sc-for>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- Телефон: площадки друг под другом, у каждой только её дни -->
+    <div class="pg-grid-ms">
+      <sc-for list="{{ mobileGrids }}" as="g" hint-placeholder-count="2">
+        <div class="pg-grid pg-grid-m" style="{{ g.cols }}">
+          <sc-for list="{{ g.cells }}" as="c" hint-placeholder-count="6">
+        <div class="pg-c" data-k="{{ c.kind }}" style="{{ c.place }}">
+              <sc-if value="{{ c.isHead }}" hint-placeholder-val="{{ false }}">
+                <span class="pg-vpill" style="{{ c.pill }}">{{ c.name }}</span>
+                <span class="pg-c-hrs">{{ c.hours }}</span>
+              </sc-if>
+              <sc-if value="{{ c.isDay }}" hint-placeholder-val="{{ false }}">
+                <span class="pg-c-dn">{{ c.dayNum }}</span>
+                <span class="pg-c-dw">{{ c.weekday }}</span>
+              </sc-if>
+              <sc-if value="{{ c.hasLabel }}" hint-placeholder-val="{{ false }}">
+                <span class="pg-c-lab">{{ c.label }}</span>
+              </sc-if>
+              <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="1">
+                <div class="pg-c-it">
+                  <span class="pg-c-t">{{ i.title }}</span>
+                  <sc-if value="{{ i.hasNote }}" hint-placeholder-val="{{ false }}"><span class="pg-c-n">{{ i.note }}</span></sc-if>
+                  <span class="pg-c-act">
+                    <span class="pg-c-p">{{ i.price }}</span>
+                    <sc-for list="{{ i.links }}" as="l" hint-placeholder-count="1">
+                      <a class="pg-c-a" href="{{ l.url }}" target="{{ l.target }}" rel="noopener"><span class="pg-c-full">{{ l.label }}</span><span class="pg-c-short">{{ l.short }}</span></a>
+                    </sc-for>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+
+    <!-- Полное расписание: один список по дням, без фильтров и раскрытия.
+         В начале дня — маркеты; дальше по времени группы (конференция, вечер, лекторий) с одной кнопкой под группой;
+         повторяющиеся (экскурсии, подбор образа) — отдельными блоками со слотами времени ниже -->
+    <div class="fs" id="schedule">
+      <h3 class="fs-title">Полное расписание</h3>
+      <sc-for list="{{ fullDays }}" as="d" hint-placeholder-count="4">
+        <div class="fs-day">
+          <div class="fs-day-h"><span class="fs-dn">{{ d.dayNum }}</span><span class="fs-dl">{{ d.label }}</span></div>
+
+          <sc-for list="{{ d.markets }}" as="mk" hint-placeholder-count="1">
+            <div class="fs-mk" style="{{ mk.stripe }}">
+              <div class="fs-top"><span class="pg-vpill pg-vpill-s" style="{{ mk.pill }}">{{ mk.venue }}</span><span class="fs-time">{{ mk.hours }}</span><span class="fs-price">{{ mk.price }}</span></div>
+              <span class="fs-t">{{ mk.title }}</span>
+              <p class="fs-d">{{ mk.text }}</p>
+              <sc-if value="{{ mk.hasUrl }}" hint-placeholder-val="{{ false }}">
+                <a class="fs-btn" href="{{ mk.url }}" target="_blank" rel="noopener">{{ mk.cta }} →</a>
+              </sc-if>
+            </div>
+          </sc-for>
+
+          <sc-for list="{{ d.groups }}" as="g" hint-placeholder-count="1">
+            <div class="fs-g" style="{{ g.stripe }}">
+              <div class="fs-top"><span class="pg-vpill pg-vpill-s" style="{{ g.pill }}">{{ g.venue }}</span><span class="fs-time">{{ g.span }}</span><span class="fs-price">{{ g.price }}</span></div>
+              <span class="fs-gt">{{ g.title }}</span>
+              <sc-if value="{{ g.hasLead }}" hint-placeholder-val="{{ false }}">
+                <p class="fs-lead">{{ g.lead }}</p>
+              </sc-if>
+              <div class="fs-rows">
+                <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="3">
+                  <div class="fs-r">
+                    <span class="fs-r-time">{{ r.range }}</span>
+                    <div class="fs-r-body">
+                      <sc-if value="{{ r.hasKicker }}" hint-placeholder-val="{{ false }}"><span class="fs-k">{{ r.kicker }}</span></sc-if>
+                      <sc-if value="{{ r.title }}" hint-placeholder-val="{{ true }}"><span class="fs-t">{{ r.title }}</span></sc-if>
+                      <sc-if value="{{ r.hasSpeaker }}" hint-placeholder-val="{{ false }}"><span class="fs-sp">{{ r.speaker }}</span></sc-if>
+                      <sc-if value="{{ r.hasText }}" hint-placeholder-val="{{ true }}"><p class="fs-d">{{ r.text }}</p></sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div class="fs-g-a">
+                <a class="fv-btn fv-btn-milk" href="{{ g.url }}" target="_blank" rel="noopener">{{ g.cta }} →</a>
+                <sc-if value="{{ g.hasPage }}" hint-placeholder-val="{{ false }}">
+                  <a class="fv-link fv-link-light" href="{{ g.page }}">Подробнее →</a>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ d.hasRepeats }}" hint-placeholder-val="{{ false }}">
+            <a class="fs-also" href="#sessions">{{ d.repeatsNote }} ↓</a>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <!-- Повторяющиеся события: сеансы по дням, каждая кнопка — своя форма билета -->
+      <div id="sessions" class="fs-reps">
+        <sc-for list="{{ repeats }}" as="rp" hint-placeholder-count="2">
+          <div class="fs-rep" style="{{ rp.stripe }}">
+            <div class="fs-top"><span class="pg-vpill pg-vpill-s" style="{{ rp.pill }}">{{ rp.venue }}</span><span class="fs-time">{{ rp.when }}</span><span class="fs-price">{{ rp.price }}</span></div>
+            <span class="fs-gt">{{ rp.title }}</span>
+            <p class="fs-d">{{ rp.text }}</p>
+            <span class="fs-k">Выберите время · {{ rp.note }}</span>
+            <sc-for list="{{ rp.days }}" as="rd" hint-placeholder-count="3">
+              <div class="fs-sl-row">
+                <span class="fs-sl-d">{{ rd.label }}</span>
+                <span class="fs-sl-list">
+                  <sc-for list="{{ rd.slots }}" as="sl" hint-placeholder-count="4">
+                    <sc-if value="{{ sl.open }}" hint-placeholder-val="{{ true }}">
+                      <a class="fs-sl" href="{{ sl.url }}" target="_blank" rel="noopener">{{ sl.time }}</a>
+                    </sc-if>
+                    <sc-if value="{{ sl.sold }}" hint-placeholder-val="{{ false }}">
+                      <span class="fs-sl fs-sl-sold" title="Мест нет" aria-label="{{ sl.time }} — мест нет">{{ sl.time }}</span>
+                    </sc-if>
+                  </sc-for>
+                  <sc-if value="{{ rd.empty }}" hint-placeholder-val="{{ false }}"><span class="fs-sl-none">время уточняется</span></sc-if>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Кто в программе -->
+<section id="lineup" data-screen-label="Кто в программе" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(48px, 6vw, 72px)">
+  <div>
+    <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E">03 · Кто в программе</p>
+    <h2 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.12">Кто в программе</h2>
+  </div>
+
+  <!-- Спикеры -->
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(91,2,7,0.3); padding-bottom: 14px">
+      <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(22px, 2.4vw, 30px)">Спикеры</h3>
+      <span style="font-size: 14px; opacity: 0.7">Список пополняется до 1 октября</span>
+    </div>
+    <div class="fp-speakers-grid">
+      <sc-for list="{{ speakersVisible }}" as="s" hint-placeholder-count="8">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="aspect-ratio: 3 / 4; background: #E8C9A0 url(uploads/forum-monogram-vine.svg) center / 30% no-repeat; display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
+            <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #5B0207; opacity: 0.75">портрет 3×4</span>
+          </div>
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #A0060E">{{ s.actLabel }}</span>
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.15">{{ s.name }}</span>
+          <span style="{{ s.roleStyle }}">{{ s.roleText }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ speakersHasMore }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: right">
+        <button onClick="{{ toggleSpeakers }}" style="border: none; border-bottom: 1px solid #5B0207; background: transparent; padding: 0 0 2px; font-size: 14px; color: #5B0207; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #2E0A0C; border-color: #2E0A0C">{{ speakersToggleLabel }}</button>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- Бренды-участники маркета -->
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(91,2,7,0.3); padding-bottom: 14px">
+      <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(22px, 2.4vw, 30px)">Бренды-участники маркета</h3>
+      <a href="Каталог.dc.html" style="font-size: 14px; border-bottom: 1px solid #5B0207; padding-bottom: 2px">Все бренды в каталоге →</a>
+    </div>
+    <div class="fp-brands-grid">
+      <sc-for list="{{ brandsVisible }}" as="b" hint-placeholder-count="12">
+        <sc-if value="{{ b.hasUrl }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ b.url }}" target="_blank" rel="noopener" style="{{ b.cardStyle }}" style-hover="background: #F7EFE3">
+            <div style="aspect-ratio: 1 / 1; background: #E8C9A0"></div>
+            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+              <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.2">{{ b.name }}</span>
+              <span style="{{ b.catStyle }}">{{ b.catText }}</span>
+            </div>
+          </a>
+        </sc-if>
+        <sc-if value="{{ b.hasNoUrl }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ b.cardStyle }}">
+            <div style="aspect-ratio: 1 / 1; background: #E8C9A0"></div>
+            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+              <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.2">{{ b.name }}</span>
+              <span style="{{ b.catStyle }}">{{ b.catText }}</span>
+            </div>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+    <sc-if value="{{ brandsHasMore }}" hint-placeholder-val="{{ true }}">
+      <div style="text-align: right">
+        <button onClick="{{ toggleBrands }}" style="border: none; border-bottom: 1px solid #5B0207; background: transparent; padding: 0 0 2px; font-size: 14px; color: #5B0207; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #2E0A0C; border-color: #2E0A0C">{{ brandsToggleLabel }}</button>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- Партнёры -->
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(91,2,7,0.3); padding-bottom: 14px">
+      <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(22px, 2.4vw, 30px)">Партнёры</h3>
+      <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #5B0207; padding-bottom: 2px">Стать партнёром →</a>
+    </div>
+    <div class="fp-partners-grid">
+      <sc-for list="{{ partnersVisible }}" as="p" hint-placeholder-count="8">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="aspect-ratio: 3 / 2; background: #E8C9A0"></div>
+          <span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ partnersHasMore }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align: right">
+        <button onClick="{{ togglePartners }}" style="border: none; border-bottom: 1px solid #5B0207; background: transparent; padding: 0 0 2px; font-size: 14px; color: #5B0207; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #2E0A0C; border-color: #2E0A0C">{{ partnersToggleLabel }}</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- Прошлый сезон -->
+<section id="archive" data-screen-label="Прошлый сезон" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(48px, 6vw, 80px)">
+  <div>
+    <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E">05 · Прошлый сезон</p>
+    <h2 style="margin: 0 0 clamp(28px, 4vw, 44px); font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(32px, 4vw, 56px); line-height: 1.06">Как это было в 2025 году</h2>
+
+    <div style="margin-bottom: clamp(32px, 4vw, 48px)">
+      <div style="display: flex; flex-direction: column; gap: 22px">
+        <span style="font-size: 15px; opacity: 0.75">Дом архитектора и Верхне-Волжская набережная · 6–7 сентября 2025</span>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 6px; background: #5B0207; color: #F3E7D8; padding: 20px 22px">
+            <span style="font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.02em; color: #D8F32A; font-size: clamp(38px, 4.2vw, 56px); line-height: 1">40</span>
+            <span style="font-size: 15px; line-height: 1.35; opacity: 0.9">брендов-участников маркета</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; background: #5B0207; color: #F3E7D8; padding: 20px 22px">
+            <span style="font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.02em; color: #D8F32A; font-size: clamp(38px, 4.2vw, 56px); line-height: 1">10</span>
+            <span style="font-size: 15px; line-height: 1.35; opacity: 0.9">показов коллекций</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; background: #5B0207; color: #F3E7D8; padding: 20px 22px">
+            <span style="font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.02em; color: #D8F32A; font-size: clamp(38px, 4.2vw, 56px); line-height: 1">12</span>
+            <span style="font-size: 15px; line-height: 1.35; opacity: 0.9">презентаций и мастер-классов</span>
+          </div>
+        </div>
+        <p style="margin: 0; font-style: italic; font-size: 15px; line-height: 1.6; opacity: 0.7; max-width: 60ch">Первый фестиваль «Модного Нижнего» — прообраз октябрьской программы 2026 года.</p>
+      </div>
+    </div>
+
+    <div class="fp-archive-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px">
+      <img src="uploads/forum-block05-1.jpg" alt="Одежда локальных брендов на площадке" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block">
+      <img src="uploads/forum-block05-2.jpg" alt="Показ локальных брендов" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block">
+      <img src="uploads/forum-block05-3.jpg" alt="Маркет локальных брендов" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block">
+      <img src="uploads/forum-block05-4.jpg" alt="Мастер-класс на площадке" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block">
+      <img src="uploads/forum-block05-5.jpg" alt="Гости мероприятия" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block">
+      <img src="uploads/forum-block05-6.jpg" alt="Показ на открытой площадке" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block">
+    </div>
+  </div>
+
+  <div>
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(24px, 3vw, 40px)">
+      <div>
+        <p style="margin: 0 0 12px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E">Другие события</p>
+        <h2 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(26px, 3vw, 38px); line-height: 1.15">Другие наши мероприятия</h2>
+      </div>
+      <a href="Медиа.dc.html#photo" style="font-size: 15px; border-bottom: 1px solid #5B0207; padding-bottom: 3px">Все съёмки →</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px">
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-1.jpg" alt="«Модный Нижний» ВИДНО в Доме архитектора" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">«Модный Нижний» ВИДНО в Доме архитектора 12 сентября 2026</span>
+          <span style="font-size: 12px; opacity: 0.8">15 сентября</span>
+        </div>
+      </a>
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-2.jpg" alt="Показ на ГастроРождественской" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">Показ на ГастроРождественской</span>
+          <span style="font-size: 12px; opacity: 0.8">31 августа</span>
+        </div>
+      </a>
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-3.jpg" alt="Официальное открытие пространства «Модный Нижний»" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">Официальное открытие пространства «Модный Нижний»</span>
+          <span style="font-size: 12px; opacity: 0.8">27 августа</span>
+        </div>
+      </a>
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-4.jpg" alt="Показ на Гастророждественской" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">Показ на Гастророждественской</span>
+          <span style="font-size: 12px; opacity: 0.8">8 августа</span>
+        </div>
+      </a>
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-5.jpg" alt="Показ на Гастророждественской 25.07.2026" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">Показ на Гастророждественской 25.07.2026</span>
+          <span style="font-size: 12px; opacity: 0.8">25 июля</span>
+        </div>
+      </a>
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-6.jpg" alt="Нижегородские эко-активисты в нижегородских брендах" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">Нижегородские эко-активисты в нижегородских брендах</span>
+          <span style="font-size: 12px; opacity: 0.8">20 ноября</span>
+        </div>
+      </a>
+      <a href="Медиа.dc.html#photo" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: block">
+        <img src="uploads/forum-media-7.jpg" alt="Создано в НиНо — сентябрь 2025" style="width: 100%; height: 100%; object-fit: cover; display: block">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,18,20,0.85) 0%, rgba(43,18,20,0) 55%); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 18px; color: #F3E7D8">
+          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; line-height: 1.2">Создано в НиНо — сентябрь 2025</span>
+          <span style="font-size: 12px; opacity: 0.8">7 сентября</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+// Ссылка на билеты закрытого вечера (Радарио). Регистрация на остальные мероприятия — в поле url каждого события
+const RADARIO_EVENING_URL = 'https://goj.radario.ru/events/2889660/tickets';
+
+// ===== Билеты =====
+// Регистрация идёт не на каждое мероприятие, а на событие дня на конкретной площадке: один билет = одна ссылка.
+// Мероприятия в EVENTS ссылаются на билет полем ticket.
+//   id — код билета; days — дни (['23'] или ['23', '24', '25']); venue — площадка
+//   title — полное название; short — короткое, для таблицы «дни × площадки»; includes — что входит, одной фразой
+//   price — подпись цены ('Бесплатно', 'от 2 500 ₽'); paid — true для платного (кнопка «Купить билет»)
+//   url — ссылка на регистрацию или покупку; null — вход свободный, без регистрации (кнопки нет); cta — необязательно, свой текст кнопки; page — необязательно, страница с подробностями
+const ALL_EVENTS_URL = 'https://radario.ru/customer/afisha/0749550d376154a2aa0c90fff47bbc91bf06b4380190cc3?widgetSettingId=2814';
+const STYLIST_URL = 'https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810';
+const TICKETS = [
+  { id: 'conf', days: ['22'], venue: 'futura', title: 'Конференция индустрии моды', short: 'Конференция', note: '4 акта, мини-показы, стратегическая сессия', price: '2 500 ₽', paid: true, includes: 'Четыре акта деловой программы, мини-показы локальных брендов, стратегическая сессия и нетворкинг.', url: 'https://goj.radario.ru/events/2889579/tickets' },
+  { id: 'evening', days: ['23'], venue: 'futura', title: 'Закрытый fashion-вечер', short: 'Fashion-вечер', note: 'звёздный гость — Владислав Лисовец', price: '5 000–11 000 ₽', paid: true, includes: 'Звёздный гость Владислав Лисовец, три показа нижегородских брендов, дизайн-маркет, выставка и фуршет.', url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
+  { id: 'fut24', days: ['24'], venue: 'futura', title: 'Лекторий «Мода говорит»', short: 'Лекторий «Мода говорит»', note: 'лекции каждый час', price: '0 ₽', includes: 'Публичная программа форума: лекции каждый час.', url: 'https://goj.radario.ru/events/2889689/tickets' },
+  { id: 'fmarket', days: ['22', '24'], venue: 'futura', title: 'Дизайн-маркет ведущих брендов', short: 'Дизайн-маркет', price: '0 ₽', includes: '11:00–21:00. Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', url: null },
+  { id: 'fexpo', days: ['22', '24'], venue: 'futura', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', short: 'Выставка', price: '0 ₽', includes: '11:00–21:00. Выставка нижегородской моды.', url: null },
+  { id: 'da23', days: ['23'], venue: 'da', title: 'Маркет локальных брендов. Открытие', short: 'Маркет', price: '0 ₽', includes: 'Первый день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2886570/tickets' },
+  { id: 'da24', days: ['24'], venue: 'da', title: 'Маркет локальных брендов. 2-й день', short: 'Маркет', price: '0 ₽', includes: 'Второй день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887643/tickets' },
+  { id: 'da25', days: ['25'], venue: 'da', title: 'Маркет локальных брендов. 3-й день', short: 'Маркет', price: '0 ₽', includes: 'Третий день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887989/tickets' },
+  { id: 'tour', days: ['23', '24', '25'], venue: 'da', title: 'Экскурсия', short: 'Экскурсия', price: '500 ₽', paid: true, includes: 'Экскурсия в рамках форума.', url: ALL_EVENTS_URL }, // TODO: своя ссылка на экскурсию
+  { id: 'style', days: ['23', '24', '25'], venue: 'da', title: 'Подбор образа от топовых стилистов', short: 'Подбор образа', note: 'запись на конкретное время', price: '2 500 ₽', paid: true, cta: 'Выбрать время', includes: 'Стилист подберёт образ под вашу задачу. Запись на конкретное время, отдельно от входа на маркет.', url: STYLIST_URL },
+];
+
+// ===== Таблица программы =====
+// Колонки: col — с какой колонки начинается площадка, cols — сколько колонок занимает.
+// byDay — события конкретного дня (по ячейке на день); daily — то, что идёт все дни: одна объединённая ячейка на days.
+// Маркет Дома архитектора — регистрация на каждый день отдельно (dayTickets → ссылки «23 окт», «24 окт», «25 окт»).
+const GRID = [
+  { venue: 'futura', col: 2, cols: 2, byDay: ['conf', 'evening', 'fut24'], daily: { days: ['22', '24'], label: 'Каждый день', items: ['fmarket', 'fexpo'] } },
+  { venue: 'da', col: 4, cols: 1, daily: { days: ['23', '24', '25'], label: 'Каждый день', items: [{ title: 'Маркет', price: '0 ₽', dayTickets: ['da23', 'da24', 'da25'] }, 'tour', 'style'] } },
+];
+
+// ===== Полное расписание =====
+// Маркеты — в начале каждого дня (tickets — регистрация на конкретный день).
+const DAY_MARKETS = [
+  { venue: 'futura', days: ['22', '24'], title: 'Дизайн-маркет ведущих брендов', price: 'вход свободный',
+    text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.' },
+  { venue: 'futura', days: ['22', '24'], title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', price: 'вход свободный',
+    text: 'Выставка нижегородской моды.' },
+  { venue: 'da', days: ['23', '24', '25'], title: 'Маркет локальных брендов', price: '0 ₽', tickets: { '23': 'da23', '24': 'da24', '25': 'da25' },
+    text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.' },
+];
+// Группы по времени: строки из EVENTS с этим ticket, одна кнопка под группой.
+const SCHEDULE_GROUPS = ['conf', 'evening', 'fut24'];
+const GROUP_LEADS = { conf: 'Талантов достаточно. Индустрии — нет. Четыре акта: в каждом разбираем одно звено цепочки от дизайнера до покупателя.' };
+// Повторяющиеся события: сеансы. url — ссылка на билет именно на этот сеанс (конкретная форма, не общий список).
+// Пример: { day: '23', time: '13:00', url: 'https://goj.radario.ru/events/<id>/tickets' }
+// Сеансы по 1 часу. Проданный сеанс: добавить в SOLD_OUT строку 'id день время' — кнопка станет бледной и некликабельной. TODO: ссылки на каждый сеанс — пока кнопки ведут на общую ссылку события (url билета)
+const slots = (day, times) => times.map(time => ({ day, time }));
+const SESSIONS = {
+  tour: [...slots('23', ['13:00', '15:00', '17:00']), ...slots('24', ['13:00', '15:00', '17:00']), ...slots('25', ['13:00', '15:00', '17:00'])],
+  style: [...slots('23', ['14:00', '15:00', '16:00', '17:00']), ...slots('24', ['13:00', '14:00', '15:00', '16:00', '17:00']), ...slots('25', ['13:00', '14:00', '15:00', '16:00', '17:00'])],
+};
+const SOLD_OUT = [
+  'tour 23 13:00',
+];
+Object.entries(SESSIONS).forEach(([id, list]) => list.forEach(s => { if (SOLD_OUT.includes(`${id} ${s.day} ${s.time}`)) s.sold = true; }));
+const SESSION_NOTE = 'Сеанс — 1 час.';
+const WEEKDAY_FULL = { чт: 'четверг', пт: 'пятница', сб: 'суббота', вс: 'воскресенье' };
+
+// ===== Программа =====
+// Как заполнять: добавить объект в EVENTS (порядок не важен, лента сама расставит по времени).
+//   day    — id дня из DAYS ('22', '23', '24', '25')
+//   venue  — id площадки из VENUES ('futura' или 'da')
+//   start, end — время «от и до», формат 'ЧЧ:ММ'
+//   kind   — вид мероприятия: 'Лекция', 'Мастер-класс', 'Показ', 'Дискуссия', 'Выставка', 'Маркет', 'Нетворкинг', 'Вечер' (можно и свой; необязательно)
+//   speaker — спикер (для лекции) или ведущий (для мастер-класса), через запятую если несколько; необязательно
+//   title  — название; text — короткое описание; lead — необязательно, вводная фраза курсивом; kicker — необязательно, надпись над названием («Акт первый»)
+//   tags   — необязательно, список тегов, например ['Производство', 'Кадры']
+//   ticket — id билета из TICKETS, в который входит мероприятие (кнопка в карточке ведёт на ссылку билета)
+//   page   — необязательно, ссылка на страницу с подробностями
+// ВНИМАНИЕ: время маркета, подбора образа и программы 24 октября — заглушки, уточнить.
+const VENUES = [
+  // pill — цвет метки площадки: везде, где упоминается площадка (таблица, билеты, карточки), одна и та же метка
+  { id: 'futura', name: 'Галерея Futuro', short: 'Futuro', hours: '11:00–21:00', pillBg: '#2E0A0C', pillFg: '#D8F32A', stripe: '#D8F32A' },
+  { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', hours: '12:00–20:00', pillBg: '#A0060E', pillFg: '#FFFBF7', stripe: '#A0060E' },
+];
+
+const DAYS = [
+  { id: '22', label: '22 октября', weekday: 'чт', venues: ['futura'], intro: {
+      kicker: 'Деловая программа',
+      title: 'Талантов достаточно. Индустрии — нет.',
+      paragraphs: [
+        'В Нижегородской области работает около 200 локальных брендов одежды, украшений и обуви. Но между дизайнером и покупателем не хватает производства, кадров и каналов сбыта.',
+        'Конференция индустрии — публичная профессиональная диагностика этих разрывов. Открывает её неудобный вопрос: почему Нижний не станет столицей моды? Дальше — четыре акта, в каждом разбираем одно звено цепочки.',
+      ],
+      facts: [] } },
+  { id: '23', label: '23 октября', weekday: 'пт', venues: ['da', 'futura'] },
+  { id: '24', label: '24 октября', weekday: 'сб', venues: ['futura', 'da'] },
+  { id: '25', label: '25 октября', weekday: 'вс', venues: ['da'] },
+];
+
+const EVENTS = [
+  // 22 октября · Галерея Futuro · деловая программа
+  { day: '22', venue: 'futura', start: '11:50', end: '12:55', kicker: 'Акт первый', title: '«Негде шить и некому шить»', kind: 'Лекция', speaker: 'Юлия Шинкарёва, Григорий Хромов, Антон Гуреев', tags: ['Производство', 'Кадры'], ticket: 'conf',
+    lead: 'В регионе почти нет производств, готовых работать с малыми партиями, а технологов, конструкторов и швей не хватает.',
+    text: 'Малые партии, загрузка и себестоимость цехов; образование, стажировки и как связать учебные программы с реальным бизнесом.' },
+  { day: '22', venue: 'futura', start: '12:55', end: '13:10', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Короткая визуальная пауза между блоками.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '13:10', end: '14:15', kicker: 'Акт второй', title: '«Красиво. Дорого. Неприбыльно?»', kind: 'Лекция', speaker: 'Сергей Левин, Екатерина Булгакова, Николай Константинов, Елена Селина', tags: ['Экономика бренда', 'Дистрибуция'], ticket: 'conf',
+    lead: 'У брендов есть эстетика, но чаще нет бизнес-модели. Pop-up работает как событие, но редко как канал продаж.',
+    text: 'Себестоимость и ассортимент, ритейл и маркетплейсы, масштабирование и выход за пределы региона.' },
+  { day: '22', venue: 'futura', start: '14:15', end: '14:55', title: 'Обед и нетворкинг', kind: 'Нетворкинг', text: 'Выставка изделий локальных брендов, знакомства участников.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '14:55', end: '15:20', title: 'Презентация сайта-каталога «Модный Нижний»', kind: 'Лекция', text: 'Единая цифровая витрина локальных брендов: увидел офлайн → нашёл онлайн.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '15:20', end: '16:20', kicker: 'Акт третий', title: '«Если о тебе не говорят — ты не индустрия»', kind: 'Лекция', speaker: 'Юрате Гураускайте, Георгий Ростовщиков, Яна Аверьянова', tags: ['Идентичность', 'Медиа'], ticket: 'conf',
+    lead: 'Модный код города не сформулирован и не стал коммерческим преимуществом, а бренды почти не попадают в федеральную повестку.',
+    text: 'Современный код Нижнего, позиционирование, репутация и культурная ценность регионального бренда.' },
+  { day: '22', venue: 'futura', start: '16:20', end: '16:35', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Продолжение разговора о визуальном коде региона.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '16:35', end: '17:40', kicker: 'Акт четвёртый', title: '«Мода сама не вырастет»', kind: 'Лекция', speaker: 'Ольга Никитина, Олег Беркович, Максим Черкасов', tags: ['Институты', 'Инфраструктура'], ticket: 'conf',
+    lead: 'Мода воспринимается как культура, а не как отрасль экономики, — и выпадает из мер поддержки и статистики.',
+    text: 'Системные решения и поддержка, туризм, образование и постоянные каналы продаж.' },
+  { day: '22', venue: 'futura', start: '17:40', end: '18:10', kicker: 'Финальная сессия', title: 'Стратегическая сессия: 10 условий для Нижнего', kind: 'Дискуссия', tags: ['Дорожная карта 2036'], ticket: 'conf',
+    lead: 'Что должно измениться, чтобы Нижний Новгород стал одним из центров российской fashion-индустрии к 2036 году?',
+    text: 'Спикеры четырёх актов сводят выводы дня в 10 конкретных условий — основу публичной дорожной карты развития отрасли.' },
+  { day: '22', venue: 'futura', start: '18:10', end: '18:30', title: 'Итоги дня', text: 'Знакомство с брендами продолжается на сайте-каталоге.', ticket: 'conf' },
+
+  // 23 октября · Futuro · закрытый вечер — отдельное платное мероприятие
+  { day: '23', venue: 'futura', start: '17:00', end: '21:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, общение и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', ticket: 'evening', page: 'Закрытый вечер.dc.html' },
+  // 24 октября · Futuro · лекторий «Мода говорит»; 22 и 24 · Futuro · дизайн-маркет и выставка, вход свободный (23-го в Futuro только закрытый вечер)
+  // 24 октября · Futuro · лекторий «Мода говорит»: лекции каждый час. TODO: реальные темы и лекторы
+  { day: '24', venue: 'futura', start: '12:00', end: '13:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '13:00', end: '14:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '14:00', end: '15:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '15:00', end: '16:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '16:00', end: '17:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '17:00', end: '18:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '18:00', end: '19:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '19:00', end: '20:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '22', venue: 'futura', start: '11:00', end: '21:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', ticket: 'fmarket' },
+  { day: '22', venue: 'futura', start: '11:00', end: '21:00', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', kind: 'Выставка', text: 'Выставка нижегородской моды.', ticket: 'fexpo' },
+  { day: '24', venue: 'futura', start: '11:00', end: '21:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', ticket: 'fmarket' },
+  { day: '24', venue: 'futura', start: '11:00', end: '21:00', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', kind: 'Выставка', text: 'Выставка нижегородской моды.', ticket: 'fexpo' },
+  // 23–25 октября · Дом архитектора · маркет и подбор образа (время — заглушка)
+  { day: '23', venue: 'da', start: '12:00', end: '20:00', title: 'Маркет локальных брендов. Открытие', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da23' },
+  { day: '24', venue: 'da', start: '12:00', end: '20:00', title: 'Маркет локальных брендов. 2-й день', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da24' },
+  { day: '25', venue: 'da', start: '12:00', end: '20:00', title: 'Маркет локальных брендов. 3-й день', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da25' },
+];
+
+const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const venueOf = (id) => VENUES.find(v => v.id === id);
+const ticketOf = (id) => TICKETS.find(t => t.id === id);
+const dayOf = (id) => DAYS.find(d => d.id === id);
+const ticketCta = (t) => t.cta || (t.paid ? 'Купить билет' : 'Зарегистрироваться');
+const pillStyle = (v) => `background: ${v.pillBg}; color: ${v.pillFg}`;
+const stripeStyle = (v) => `border-left-color: ${v.stripe}`;
+const daysLabel = (days) => {
+  if (days.length === 1) return `${days[0]} октября`;
+  const consecutive = days.every((d, i) => i === 0 || +d === +days[i - 1] + 1);
+  return consecutive ? `${days[0]}–${days[days.length - 1]} октября` : `${days.slice(0, -1).join(', ')} и ${days[days.length - 1]} октября`;
+};
+// подряд идущие номера строк → отрезки [[2,3,4], [6]]
+const runsOf = (rows) => rows.reduce((acc, r) => { const last = acc[acc.length - 1]; if (last && r === last[last.length - 1] + 1) last.push(r); else acc.push([r]); return acc; }, []);
+
+
+const SPEAKERS = [
+  ['Юлия Шинкарёва', 'SHI-SHI, основатель', 'I'],
+  ['Григорий Хромов', 'Школа дизайна НИУ ВШЭ — Нижний Новгород', 'I'],
+  ['Антон Гуреев', '«Человек, который шьёт»', 'I'],
+  ['Сергей Левин', 'Called A Garment', 'II'],
+  ['Екатерина Булгакова', 'Called A Garment', 'II'],
+  ['Николай Константинов', 'Trend Island', 'II'],
+  ['Елена Селина', '«Алиса и Розы»', 'II'],
+  ['Юрате Гураускайте', '', 'III'],
+  ['Георгий Ростовщиков', 'Fashion Hub', 'III'],
+  ['Яна Аверьянова', 'НН.Собака.ru', 'III'],
+  ['Ольга Никитина', '', 'IV'],
+  ['Олег Беркович', '', 'IV'],
+  ['Максим Черкасов', '', 'IV'],
+].map(([name, role, act]) => ({
+  name, actLabel: 'Акт ' + act,
+  roleText: role || '',
+  roleStyle: "font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: 0.04em; line-height: 1.4; color: #6B4A42; opacity: " + (role ? 1 : 0.5),
+}));
+
+const BRANDS = [
+  ['Форс', 'Одежда', 'https://modnynn.ru/catalog/fors'],
+  ['Виолетта Лангас', 'Одежда', 'https://modnynn.ru/catalog/violetta-langas'],
+  ['Притяжение', 'Украшения', 'https://modnynn.ru/catalog/prityazhenie'],
+  ['Бурмур', 'Украшения', 'https://modnynn.ru/catalog/burmur'],
+  ['Ниногласс', 'Украшения', ''],
+  ['Sveta Vesta', 'Одежда', 'https://modnynn.ru/catalog/sveta-vesta'],
+  ['Golubka', '', ''],
+  ['Золотая Муха', '', ''],
+  ['Селина', '', ''],
+  ['Наталья Дегтярук', '', ''],
+  ['Единовластие', 'Одежда', 'https://modnynn.ru/catalog/edinovlastie'],
+  ['Lenes', 'Одежда', 'https://modnynn.ru/catalog/lenes'],
+  ['Animartin', 'Одежда', 'https://modnynn.ru/catalog/animartin'],
+  ['Kod', '', ''],
+  ['B&M (Белякова и Мавлянова)', '', ''],
+  ['Живая Нить', '', ''],
+].map(([name, cat, url]) => ({
+  name, url, hasUrl: !!url, hasNoUrl: !url,
+  catText: cat || '',
+  catStyle: "font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6B4A42; opacity: " + (cat ? 1 : 0.5),
+  cardStyle: 'border: 1px solid rgba(91,2,7,0.3); padding: 12px 12px 15px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s',
+}));
+
+const PARTNERS = ['Генеральный партнёр', 'Партнёр', 'Партнёр', 'Партнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр'];
+
+const SPEAKERS_STEP = 8;
+const BRANDS_STEP = 12;
+const PARTNERS_STEP = 8;
+
+class Component extends DCLogic {
+  state = { speakersExpanded: false, brandsExpanded: false, partnersExpanded: false, day: '22' };
+
+  ticketCard(t) {
+    const v = venueOf(t.venue);
+    return {
+      title: t.title, includes: t.includes, url: t.url || '#', hasUrl: t.url !== null, freeEntry: t.url === null, cta: ticketCta(t), price: t.url === null ? '' : (t.price || ''),
+      page: t.page || '', hasPage: !!t.page,
+      venueName: v.name, pill: pillStyle(v), stripe: stripeStyle(v),
+      when: daysLabel(t.days), dayShort: daysLabel(t.days).replace(' октября', ' окт'),
+      meta: t.url === null ? '' : (t.price || ''),
+    };
+  }
+
+  programVals() {
+    const at = (col, row, colSpan = 1, rowSpan = 1) => `grid-column: ${col} / span ${colSpan}; grid-row: ${row} / span ${rowSpan}`;
+    const dayRow = (id) => DAYS.findIndex(d => d.id === id) + 2;
+    const SHORT = { 'Купить билет': 'Купить', 'Зарегистрироваться': 'Записаться', 'Выбрать время': 'Записаться' };
+    const link = (label, url, short) => ({ label, url, short: short || label, target: '_blank' });
+    const item = (t) => ({
+      title: t.short, note: t.note || '', hasNote: !!t.note,
+      price: t.url === null ? 'вход свободный' : (t.price || ''),
+      links: t.url === null ? [] : [link(ticketCta(t) + ' →', t.url, (SHORT[ticketCta(t)] || ticketCta(t)) + ' →')].concat(t.page ? [{ label: 'Подробнее', short: 'Подробнее', url: t.page, target: '_self' }] : []),
+    });
+    const dailyItems = (g) => g.daily.items.map(x => x.dayTickets
+      ? { title: x.title, note: '', hasNote: false, price: x.price, links: x.dayTickets.map(ticketOf).map(t => link(`${t.days[0]} окт`, t.url, `${t.days[0]} окт`)) }
+      : item(ticketOf(x)));
+    const blank = { isHead: false, isDay: false, hasLabel: false, label: '', items: [], pill: '', name: '', hours: '', dayNum: '', weekday: '' };
+    const cells = [{ ...blank, kind: 'corner', place: at(1, 1), hasLabel: true, label: 'День' }];
+    // колонки: 2 — события Futuro по дням, 3 — Futuro «каждый день», 4 — Дом архитектора «каждый день»
+    GRID.forEach(g => {
+      const v = venueOf(g.venue);
+      cells.push({ ...blank, kind: 'head', place: at(g.col, 1, g.cols), isHead: true, pill: pillStyle(v), name: v.name, hours: v.hours });
+    });
+    DAYS.forEach(d => cells.push({ ...blank, kind: 'day', place: at(1, dayRow(d.id)), isDay: true, dayNum: d.id, weekday: d.weekday }));
+    GRID.forEach(g => {
+      const v = venueOf(g.venue);
+      const stripe = `; border-left-color: ${v.stripe}`;
+      const covered = new Set();
+      (g.byDay || []).forEach(id => {
+        const t = ticketOf(id);
+        covered.add(t.days[0]);
+        const wide = !(g.daily && g.daily.days.includes(t.days[0]));
+        cells.push({ ...blank, kind: 'ev', place: at(g.col, dayRow(t.days[0]), wide ? g.cols : 1) + stripe, items: [item(t)] });
+      });
+      if (g.daily) {
+        const runs = runsOf(g.daily.days.map(dayRow));
+        const items = dailyItems(g);
+        const dcol = g.byDay ? g.col + 1 : g.col;
+        runs.forEach(r => cells.push({ ...blank, kind: 'daily', place: at(dcol, r[0], 1, r.length) + stripe, hasLabel: true, label: runs.length > 1 ? 'Весь день' : g.daily.label, items }));
+        g.daily.days.forEach(dd => { if (!g.byDay) covered.add(dd); });
+      }
+      // пустые ячейки — дни, когда площадка не работает
+      DAYS.forEach(d => {
+        const inDaily = g.daily && g.daily.days.includes(d.id);
+        if (g.byDay && !covered.has(d.id) && !inDaily) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id), g.cols) });
+        else if (g.byDay && !covered.has(d.id)) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id)) });
+        else if (!g.byDay && !covered.has(d.id)) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id), g.cols) });
+      });
+    });
+
+    // телефон: отдельная таблица на каждую площадку, только её дни
+    const mobileGrids = GRID.map(g => {
+      const v = venueOf(g.venue);
+      const days = DAYS.filter(d => (g.byDay || []).some(id => ticketOf(id).days[0] === d.id) || (g.daily && g.daily.days.includes(d.id)));
+      const row = (id) => days.findIndex(d => d.id === id) + 2;
+      const stripe = `; border-left-color: ${v.stripe}`;
+      const twoCols = !!(g.byDay && g.daily);
+      const mc = [{ ...blank, kind: 'head', place: at(1, 1, twoCols ? 3 : 2), isHead: true, pill: pillStyle(v), name: v.name, hours: v.hours }];
+      days.forEach(d => mc.push({ ...blank, kind: 'day', place: at(1, row(d.id)), isDay: true, dayNum: d.id, weekday: d.weekday }));
+      (g.byDay || []).forEach(id => { const t = ticketOf(id); const wide = twoCols && !g.daily.days.includes(t.days[0]); mc.push({ ...blank, kind: 'ev', place: at(2, row(t.days[0]), wide ? 2 : 1) + stripe, items: [item(t)] }); });
+      if (g.daily) {
+        const runs = runsOf(g.daily.days.map(row));
+        runs.forEach(r => mc.push({ ...blank, kind: 'daily', place: at(twoCols ? 3 : 2, r[0], 1, r.length) + stripe, hasLabel: true, label: runs.length > 1 ? 'Весь день' : g.daily.label, items: dailyItems(g) }));
+      }
+      return { cols: `grid-template-columns: 44px ${twoCols ? 'minmax(0, 1.1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)'}`, cells: mc };
+    });
+
+    return { gridCells: cells, mobileGrids };
+  }
+
+  fullScheduleVals() {
+    const span = (evs) => {
+      if (!evs.length) return '';
+      const f = (v) => `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`;
+      return `${f(Math.min(...evs.map(e => toMin(e.start))))}–${f(Math.max(...evs.map(e => toMin(e.end))))}`;
+    };
+    const vInfo = (id) => { const v = venueOf(id); return { venue: v.name, pill: pillStyle(v), stripe: `border-left-color: ${v.stripe}` }; };
+    const repeatIds = Object.keys(SESSIONS);
+    const fullDays = DAYS.map(d => {
+      const markets = DAY_MARKETS.filter(m => m.days.includes(d.id)).map(m => {
+        const t = m.tickets ? ticketOf(m.tickets[d.id]) : null;
+        return { ...vInfo(m.venue), title: m.title, text: m.text, price: m.price, hours: venueOf(m.venue).hours,
+          hasUrl: !!t, url: t ? t.url : '#', cta: t ? `Регистрация на ${d.id} октября` : '' };
+      });
+      const groups = SCHEDULE_GROUPS
+        .map(id => ({ t: ticketOf(id), evs: EVENTS.filter(e => e.ticket === id && e.day === d.id).sort((a, b) => toMin(a.start) - toMin(b.start)) }))
+        .filter(x => x.evs.length)
+        .sort((a, b) => toMin(a.evs[0].start) - toMin(b.evs[0].start))
+        .map(({ t, evs }) => ({ ...vInfo(t.venue), title: t.title, span: span(evs), price: t.price || '',
+          lead: GROUP_LEADS[t.id] || '', hasLead: !!GROUP_LEADS[t.id],
+          url: t.url, cta: ticketCta(t), page: t.page || '', hasPage: !!t.page,
+          rows: evs.map(e => ({ range: `${e.start}–${e.end}`, title: evs.length === 1 && e.title.toLowerCase() === t.title.toLowerCase() ? '' : e.title, text: e.text || '', hasText: !!e.text,
+            kicker: [e.kind, e.kicker].filter(Boolean).join(' · '), hasKicker: !!(e.kind || e.kicker),
+            speaker: e.speaker ? `${e.speaker.includes(',') ? 'Спикеры' : 'Спикер'}: ${e.speaker}` : '', hasSpeaker: !!e.speaker })) }));
+      const reps = repeatIds.map(ticketOf).filter(t => t.days.includes(d.id));
+      return { dayNum: d.id, label: `октября, ${WEEKDAY_FULL[d.weekday]}`, markets, groups,
+        hasRepeats: reps.length > 0, repeatsNote: `Также в ${venueOf(reps[0] ? reps[0].venue : 'da').name === 'Дом архитектора' ? 'Доме архитектора' : 'галерее Futuro'}: ${reps.map(t => t.short.toLowerCase()).join(' и ')} — сеансы ниже` };
+    });
+    const repeats = repeatIds.map(id => {
+      const t = ticketOf(id);
+      return { ...vInfo(t.venue), title: t.title, text: t.includes, price: t.price || '', when: daysLabel(t.days), note: SESSION_NOTE.replace(/\.$/, '').toLowerCase(),
+        days: t.days.map(dd => {
+          const slots = SESSIONS[id].filter(s => s.day === dd).map(s => ({ time: s.time, url: s.url || t.url, sold: !!s.sold, open: !s.sold }));
+          return { label: `${dd} окт, ${dayOf(dd).weekday}`, slots, empty: !slots.length };
+        }) };
+    });
+    return { fullDays, repeats };
+  }
+
+  renderVals() {
+    const speakersN = this.state.speakersExpanded ? SPEAKERS.length : SPEAKERS_STEP;
+    const brandsN = this.state.brandsExpanded ? BRANDS.length : BRANDS_STEP;
+    const partnersN = this.state.partnersExpanded ? PARTNERS.length : PARTNERS_STEP;
+
+    return {
+      ...this.programVals(),
+      ...this.fullScheduleVals(),
+      eveningUrl: RADARIO_EVENING_URL,
+      eveningBtnUrl: RADARIO_EVENING_URL || 'Закрытый вечер.dc.html',
+      hasEveningUrl: !!RADARIO_EVENING_URL,
+      noEveningUrl: !RADARIO_EVENING_URL,
+
+      speakersVisible: SPEAKERS.slice(0, speakersN),
+      speakersHasMore: SPEAKERS.length > SPEAKERS_STEP,
+      speakersToggleLabel: this.state.speakersExpanded ? 'Свернуть' : `Показать всех спикеров (${SPEAKERS.length})`,
+      toggleSpeakers: () => this.setState({ speakersExpanded: !this.state.speakersExpanded }),
+
+      brandsVisible: BRANDS.slice(0, brandsN),
+      brandsHasMore: BRANDS.length > BRANDS_STEP,
+      brandsToggleLabel: this.state.brandsExpanded ? 'Свернуть' : `Показать все бренды (${BRANDS.length})`,
+      toggleBrands: () => this.setState({ brandsExpanded: !this.state.brandsExpanded }),
+
+      partnersVisible: PARTNERS.slice(0, partnersN),
+      partnersHasMore: PARTNERS.length > PARTNERS_STEP,
+      partnersToggleLabel: this.state.partnersExpanded ? 'Свернуть' : `Показать всех партнёров (${PARTNERS.length})`,
+      togglePartners: () => this.setState({ partnersExpanded: !this.state.partnersExpanded }),
+    };
+  }
+}
+</script>
+</body>
+</html>
