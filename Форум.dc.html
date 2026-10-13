@@ -77,87 +77,23 @@ a { color: inherit; text-decoration: none; }
 .fp-speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 32px 20px; }
 .fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 14px; }
 .fp-partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 16px 12px; }
-.pg-vpill { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; padding: 7px 12px; font: 500 12px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
-.pg-vpill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-.pg-vpill-s { padding: 5px 9px; font-size: 11px; letter-spacing: 0.1em; }
-.pg-map { display: grid; grid-template-columns: 120px repeat(2, minmax(0, 1fr)); gap: 6px; }
-.pg-map-corner { align-self: end; font: 500 12px/1 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #E8C9A0; padding: 0 0 8px 4px; }
-.pg-map-vh { display: flex; align-items: flex-end; padding-bottom: 6px; }
-.pg-map-day, .pg-map-cell { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-height: 64px; padding: 12px 16px; text-align: left; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #F3E7D8; background: transparent; border: 1px solid rgba(243,231,216,0.35); transition: background 0.2s, color 0.2s; }
-.pg-map-day:hover, .pg-map-cell:hover { border-color: #F3E7D8; }
-.pg-map-day[data-on="1"], .pg-map-cell[data-on="1"] { background: #F3E7D8; color: #5B0207; border-color: #F3E7D8; }
-.pg-map-cell[data-off="1"] { cursor: default; opacity: 0.45; border-style: dashed; }
-.pg-map-cell[data-off="1"]:hover { border-color: rgba(243,231,216,0.35); }
-.pg-map-cell { border-left-width: 5px; }
-.pg-map-dn { font: 600 26px/1 'Oswald', sans-serif; color: #D8F32A; }
-.pg-map-day[data-on="1"] .pg-map-dn { color: #5B0207; }
-.pg-map-dw { font: 500 11px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
-.pg-map-t { font: 500 14px/1.25 'Oswald', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
-.pg-sel { margin: 0; font: 500 15px/1.4 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #E8C9A0; }
-.pg-tickets { display: flex; flex-direction: column; gap: 10px; }
-.pg-ticket { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px 32px; padding: clamp(16px, 2vw, 24px) clamp(18px, 2.6vw, 30px); background: #75070D; border: 1px solid rgba(255,251,247,0.25); border-left-width: 5px; }
-.pg-t-k { font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #E8C9A0; }
-.pg-t-h { font: 900 clamp(20px, 2.2vw, 28px)/1.1 'Playfair Display', serif; letter-spacing: -0.01em; color: #FFFBF7; }
-.pg-t-inc { font-size: 15px; line-height: 1.5; color: #F3E7D8; }
-.pg-t-meta { font: 500 14px/1.3 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #D8F32A; }
-.pg-t-btn { padding: 15px 24px; white-space: nowrap; }
-.pg-t-act { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
-.pg-ev-top { display: flex; align-items: center; gap: 6px 12px; flex-wrap: wrap; }
-.pg-intro { display: flex; flex-direction: column; gap: 16px; padding-top: clamp(8px, 1.5vw, 16px); border-top: 1px solid rgba(243,231,216,0.35); }
-.pg-slots { display: flex; flex-direction: column; gap: clamp(18px, 3vw, 34px); }
-.pg-slotg { display: flex; flex-direction: column; gap: 8px; }
-.pg-slot { font: 600 15px/1 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #D8F32A; padding-bottom: 10px; border-bottom: 1px solid rgba(243,231,216,0.3); }
-.pg-ev { background: #F3E7D8; color: #5B0207; font-family: 'IBM Plex Sans', system-ui, sans-serif; border-left: 5px solid transparent; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
-.pg-ev-head { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; align-items: start; width: 100%; padding: 18px 20px; text-align: left; background: none; border: none; color: inherit; font: inherit; cursor: default; }
-.pg-ev-range { font: 600 21px/1 'Oswald', sans-serif; letter-spacing: 0.02em; }
-.pg-ev-main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.pg-ev-kick { font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #A0060E; }
-.pg-ev-title { font: 500 clamp(17px, 1.7vw, 21px)/1.2 'Oswald', sans-serif; letter-spacing: 0.03em; text-transform: uppercase; }
-.pg-ev-chev { display: none; }
-.pg-ev-more { display: flex; flex-direction: column; gap: 8px; padding: 18px 22px 18px 0; }
-.pg-ev-tk { align-self: flex-start; margin-top: 4px; font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #5B0207; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
-.pg-ev-tk:hover { color: #A0060E; }
-.pg-tlist { display: flex; flex-direction: column; border-top: 1px solid rgba(243,231,216,0.3); }
-.pg-trow { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; gap: 14px 32px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(243,231,216,0.3); }
-.pg-trow-d { font: 600 22px/1.15 'Oswald', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #D8F32A; }
-.pg-trow-inc { font-size: 15px; line-height: 1.5; color: #F3E7D8; }
-.pg-trow-a { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-@media (max-width: 900px) {
-  .pg-ev { display: block; }
-  .pg-ev-range { padding-top: 3px; }
-  .pg-ev-head { grid-template-columns: 92px minmax(0, 1fr) 20px; gap: 12px; padding: 13px 14px; cursor: pointer; }
-  .pg-ev-range { font-size: 16px; }
-  .pg-ev-title { font-size: 16px; }
-  .pg-ev-kick { font-size: 11px; }
-  .pg-ev-chev { display: block; font-size: 22px; line-height: 1; opacity: 0.7; text-align: right; }
-  .pg-ev-more { display: none; padding: 0 14px 16px 118px; }
-  .pg-ev[data-open="1"] .pg-ev-more { display: flex; }
-  .pg-trow { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 18px 0; }
-  .pg-trow-d { font-size: 18px; }
-  .pg-trow-inc { display: none; }
-  .pg-trow-a { justify-content: space-between; }
-}
-@media (max-width: 560px) {
-  .pg-slots, .pg-slotg { gap: 6px; }
-  .pg-slot { display: none; }
-  .pg-map { grid-template-columns: 54px repeat(2, minmax(0, 1fr)); gap: 4px; }
-  .pg-map-corner { padding-left: 0; font-size: 10px; letter-spacing: 0.1em; }
-  .pg-map-day, .pg-map-cell { min-height: 54px; padding: 8px 8px; }
-  .pg-map-day { align-items: center; text-align: center; }
-  .pg-map-dn { font-size: 22px; }
-  .pg-map-dw { font-size: 10px; }
-  .pg-map-t { font-size: 12px; letter-spacing: 0.03em; }
-  .pg-map-vh .pg-vpill { white-space: normal; padding: 6px 8px; font-size: 11px; letter-spacing: 0.06em; }
-  .pg-ticket { grid-template-columns: minmax(0, 1fr); gap: 14px; }
-  .pg-t-act { flex-direction: row; align-items: center; justify-content: space-between; }
-  .pg-t-inc { font-size: 14px; }
-  .pg-t-btn { padding: 13px 16px; font-size: 13px; letter-spacing: 0.1em; }
-  .pg-ev-head { gap: 10px; padding: 12px; }
-  .pg-ev-range { font-size: 15px; }
-  .pg-ev-title { font-size: 15px; }
-  .pg-ev-more { padding: 0 12px 14px 92px; }
-  .pg-ev-head { grid-template-columns: 64px minmax(0, 1fr) 18px; }
-  .pg-ev-more { padding-left: 86px; }
+.pg-desktop { display: block; }
+.pg-mobile { display: none; flex-direction: column; gap: 0; }
+.pg-cap { display: none; }
+@media (max-width: 760px) {
+  .pg-desktop { display: none !important; } .pg-mobile { display: flex !important; }
+  .pg-chips { gap: 6px !important; }
+  .pg-kinds { flex-wrap: nowrap !important; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+  .pg-kinds::-webkit-scrollbar { display: none; }
+  .pg-kinds button { flex: none; }
+  .pg-chips button { padding: 9px 12px !important; font-size: 12px !important; letter-spacing: 0.08em !important; }
+  .pg-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 6px !important; }
+  .pg-tabs button { padding: 10px 2px 11px !important; align-items: center !important; text-align: center !important; gap: 0 !important; }
+  .pg-d-num { font-size: 30px !important; line-height: 1 !important; display: flex !important; flex-direction: column; align-items: center; }
+  .pg-d-mon { font-size: 11px; letter-spacing: 0.1em; font-weight: 500; margin-top: 4px; }
+  .pg-d-meta { display: none !important; }
+  .pg-legend-note { display: none; }
+  .pg-cap { display: block; margin: 0; font: 500 14px/1.4 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #E8C9A0; }
 }
   /* ===== Блок «Посетителям» — вставить перед #program ===== */
   .mn-visitors{
@@ -495,112 +431,196 @@ a { color: inherit; text-decoration: none; }
 
 <section id="program" data-screen-label="Программа" style="background: #5B0207; color: #FFFBF7">
   <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 3.5vw, 40px)">
-    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap">
       <div>
         <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">02 · Программа</p>
-        <h2 class="fv-h2" style="color: #FFFBF7; max-width: 18ch">Программа форума</h2>
+        <h2 class="fv-h2" style="color: #FFFBF7; max-width: 18ch">Программа форума по площадкам</h2>
       </div>
-      <p style="margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.55; color: #F3E7D8">Форум идёт на двух площадках: галерея Futuro и Дом архитектора. Билет — на конкретный день и площадку. Нажмите на день или ячейку, чтобы увидеть программу и билет.</p>
-    </div>
-
-    <!-- Где и когда: дни × площадки -->
-    <div class="pg-map" role="group" aria-label="Дни и площадки форума">
-      <span class="pg-map-corner">День</span>
-      <sc-for list="{{ mapVenues }}" as="v" hint-placeholder-count="2">
-        <span class="pg-map-vh"><span class="pg-vpill" style="{{ v.pill }}">{{ v.name }}</span></span>
-      </sc-for>
-      <sc-for list="{{ mapRows }}" as="r" hint-placeholder-count="4">
-        <button type="button" class="pg-map-day" data-on="{{ r.on }}" onClick="{{ r.select }}">
-          <span class="pg-map-dn">{{ r.dayNum }}</span>
-          <span class="pg-map-dw">{{ r.weekday }}</span>
-        </button>
-        <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="2">
-          <button type="button" class="pg-map-cell" data-on="{{ c.on }}" data-off="{{ c.off }}" onClick="{{ c.select }}" style="{{ c.stripe }}">
-            <sc-for list="{{ c.names }}" as="n" hint-placeholder-count="1">
-              <span class="pg-map-t">{{ n }}</span>
-            </sc-for>
-          </button>
+      <div class="pg-chips" style="display: flex; gap: 10px; flex-wrap: wrap">
+        <sc-for list="{{ venueFilters }}" as="f" hint-placeholder-count="3">
+          <button type="button" onClick="{{ f.select }}" style="{{ f.style }}">{{ f.label }}</button>
         </sc-for>
+      </div>
+    </div>
+
+    <div class="pg-chips pg-kinds" style="display: flex; gap: 10px; flex-wrap: wrap">
+      <sc-for list="{{ kindFilters }}" as="f" hint-placeholder-count="5">
+        <button type="button" onClick="{{ f.select }}" style="{{ f.style }}">{{ f.label }}</button>
       </sc-for>
     </div>
 
-    <p class="pg-sel">{{ selCaption }}</p>
-
-    <!-- Билеты выбранного дня -->
-    <div class="pg-tickets">
-      <sc-for list="{{ dayTickets }}" as="t" hint-placeholder-count="2">
-        <div class="pg-ticket" style="{{ t.stripe }}">
-          <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0">
-            <span style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><span class="pg-vpill" style="{{ t.pill }}">{{ t.venueName }}</span><span class="pg-t-k">{{ t.when }}</span></span>
-            <span class="pg-t-h">{{ t.title }}</span>
-            <span class="pg-t-inc">{{ t.includes }}</span>
-          </div>
-          <div class="pg-t-act">
-            <span class="pg-t-meta">{{ t.meta }}</span>
-            <a class="fv-btn fv-btn-milk pg-t-btn" href="{{ t.url }}" target="_blank" rel="noopener">{{ t.cta }} →</a>
-            <sc-if value="{{ t.hasPage }}" hint-placeholder-val="{{ false }}">
-              <a class="fv-link fv-link-light" href="{{ t.page }}">Подробнее →</a>
-            </sc-if>
-          </div>
-        </div>
+    <div class="pg-tabs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px">
+      <sc-for list="{{ dayTabs }}" as="d" hint-placeholder-count="4">
+        <button type="button" onClick="{{ d.select }}" style="{{ d.style }}">
+          <span class="pg-d-num" style="{{ d.numStyle }}">{{ d.dayNum }}<span class="pg-d-mon"> октября</span></span>
+          <span class="pg-d-meta" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75">{{ d.venues }}</span>
+          <span class="pg-d-meta" style="{{ d.statStyle }}">{{ d.stat }}</span>
+        </button>
       </sc-for>
     </div>
+
+    <p class="pg-cap">{{ dayCaption }}</p>
 
     <sc-if value="{{ hasIntro }}" hint-placeholder-val="{{ true }}">
-      <div class="pg-intro">
-        <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">{{ intro.kicker }}</span>
-        <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; font-size: clamp(24px, 3vw, 40px); line-height: 1.12">{{ intro.title }}</h3>
+      <div style="display: flex; flex-direction: column; gap: 22px; padding: clamp(8px, 1.5vw, 16px) 0; border-top: 1px solid rgba(243,231,216,0.35)">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">{{ intro.kicker }}</span>
+            <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; font-size: clamp(26px, 3vw, 40px); line-height: 1.12">{{ intro.title }}</h3>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; opacity: 0.85">
+            <sc-for list="{{ intro.facts }}" as="fact" hint-placeholder-count="3">
+              <span>{{ fact }}</span>
+            </sc-for>
+          </div>
+        </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px 40px; font-size: 16px; line-height: 1.6; opacity: 0.92">
           <sc-for list="{{ intro.paragraphs }}" as="p" hint-placeholder-count="2">
             <p style="margin: 0">{{ p }}</p>
           </sc-for>
         </div>
+        <a class="fv-btn fv-btn-milk" href="{{ introUrl }}" target="_blank" rel="noopener" style="align-self: flex-start">Зарегистрироваться на конференцию →</a>
       </div>
     </sc-if>
 
     <sc-if value="{{ dayEmpty }}" hint-placeholder-val="{{ false }}">
-      <p style="margin: 0; padding: 24px 0; font-size: 17px; opacity: 0.8">{{ emptyText }}</p>
+      <p style="margin: 0; padding: 32px 0; font-size: 17px; opacity: 0.8; border-top: 1px solid rgba(243,231,216,0.35)">{{ emptyText }}</p>
     </sc-if>
 
-    <!-- Лента «время — мероприятия». На телефоне карточка свёрнута, подробности — по нажатию -->
     <sc-if value="{{ dayHasEvents }}" hint-placeholder-val="{{ true }}">
-      <div class="pg-slots">
-        <sc-for list="{{ slots }}" as="s" hint-placeholder-count="4">
-          <div class="pg-slotg">
-            <span class="pg-slot">{{ s.time }}</span>
-            <sc-for list="{{ s.items }}" as="m" hint-placeholder-count="2">
-              <article class="pg-ev" data-open="{{ m.openAttr }}" style="{{ m.stripe }}">
-                <button type="button" class="pg-ev-head" onClick="{{ m.toggle }}" aria-expanded="{{ m.openAttr }}">
-                  <span class="pg-ev-range">{{ m.range }}</span>
-                  <span class="pg-ev-main">
-                    <span class="pg-ev-top"><span class="pg-vpill pg-vpill-s" style="{{ m.pill }}">{{ m.venueShort }}</span><span class="pg-ev-kick">{{ m.kickerLine }}</span></span>
-                    <span class="pg-ev-title">{{ m.title }}</span>
-                  </span>
-                  <span class="pg-ev-chev" aria-hidden="true">{{ m.chev }}</span>
-                </button>
-                <div class="pg-ev-more">
-                  <sc-if value="{{ m.hasSpeaker }}" hint-placeholder-val="{{ false }}">
-                    <span style="font-size: 14px; line-height: 1.4; font-weight: 500">{{ m.speakerLine }}</span>
+      <!-- Сетка (компьютер и планшет): описание — при наведении или по клику -->
+      <div class="pg-desktop">
+        <p style="margin: 0 0 14px; font-size: 14px; opacity: 0.7">Наведите курсор на мероприятие или нажмите на него — откроется описание и ссылка на регистрацию.</p>
+        <div style="display: flex; align-items: flex-start">
+          <div style="flex: 0 0 64px; position: relative">
+            <div style="height: 64px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7; padding-top: 4px">Время</div>
+            <div style="{{ axisStyle }}">
+              <sc-for list="{{ axisLabels }}" as="a" hint-placeholder-count="10">
+                <span style="{{ a.style }}">{{ a.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <sc-for list="{{ cols }}" as="c" hint-placeholder-count="2">
+            <div style="flex: 1 1 0; min-width: 0; border-left: 1px solid rgba(243,231,216,0.4)">
+              <div style="height: 64px; display: flex; flex-direction: column; gap: 4px; padding: 0 12px 12px; border-bottom: 1px solid rgba(243,231,216,0.5)">
+                <span style="font-weight: 500; font-size: clamp(16px, 1.7vw, 21px); line-height: 1.15">{{ c.name }}</span>
+                <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6">{{ c.note }}</span>
+              </div>
+              <div style="{{ c.bodyStyle }}">
+                <sc-for list="{{ c.lines }}" as="l" hint-placeholder-count="10">
+                  <div style="{{ l.style }}"></div>
+                </sc-for>
+                <sc-for list="{{ c.blocks }}" as="b" hint-placeholder-count="4">
+                  <div style="{{ b.wrapStyle }}" onMouseEnter="{{ b.enter }}" onMouseLeave="{{ b.leave }}">
+                    <div role="button" tabindex="0" onClick="{{ b.select }}" style="{{ b.style }}">
+                      <span style="{{ b.rangeStyle }}">{{ b.range }}</span>
+                      <span style="{{ b.titleStyle }}">{{ b.title }}</span>
+                      <span style="{{ b.tagStyle }}">{{ b.tagText }}</span>
+                      <span style="{{ b.metaWrapStyle }}"><span style="{{ b.kindStyle }}">{{ b.metaText }}</span><span style="{{ b.speakerStyle }}">{{ b.speakerText }}</span></span>
+                      <span style="{{ b.textStyle }}">{{ b.blockText }}</span>
+                      <span style="{{ b.regStyle }}">Регистрация →</span>
+                    </div>
+                    <sc-if value="{{ b.open }}" hint-placeholder-val="{{ false }}">
+                      <div style="{{ b.popStyle }}">
+                        <button type="button" onClick="{{ b.close }}" aria-label="Закрыть" style="{{ b.closeStyle }}">×</button>
+                        <sc-if value="{{ b.hasKickerLine }}" hint-placeholder-val="{{ false }}">
+                          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7">{{ b.kickerLine }}</span>
+                        </sc-if>
+                        <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 20px; line-height: 1.15; letter-spacing: 0.04em; text-transform: uppercase; padding-right: 22px">{{ b.title }}</span>
+                        <sc-if value="{{ b.hasSpeaker }}" hint-placeholder-val="{{ false }}">
+                          <span style="font-size: 14px; line-height: 1.4; font-weight: 500">{{ b.speakerLine }}</span>
+                        </sc-if>
+                        <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85">{{ b.metaLine }}</span>
+                        <sc-if value="{{ b.hasTags }}" hint-placeholder-val="{{ false }}">
+                          <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                            <sc-for list="{{ b.tags }}" as="t" hint-placeholder-count="2">
+                              <span style="{{ b.chipStyle }}">{{ t }}</span>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                        <sc-if value="{{ b.hasLead }}" hint-placeholder-val="{{ false }}">
+                          <p style="margin: 0; font-size: 14px; line-height: 1.5; font-style: italic; opacity: 0.8">{{ b.lead }}</p>
+                        </sc-if>
+                        <p style="margin: 0; font-size: 14px; line-height: 1.5">{{ b.text }}</p>
+                        <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 2px">
+                          <sc-if value="{{ b.hasUrl }}" hint-placeholder-val="{{ false }}">
+                            <a href="{{ b.url }}" target="_blank" rel="noopener" style="{{ b.btnStyle }}">{{ b.cta }} →</a>
+                          </sc-if>
+                          <sc-if value="{{ b.hasStub }}" hint-placeholder-val="{{ false }}">
+                            <span style="{{ b.stubStyle }}">Ссылка на регистрацию скоро появится</span>
+                          </sc-if>
+                          <sc-if value="{{ b.hasPage }}" hint-placeholder-val="{{ false }}">
+                            <a href="{{ b.page }}" style="{{ b.linkStyle }}">Подробнее →</a>
+                          </sc-if>
+                        </div>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- Список (телефон): лента «время — событие», описание раскрывается по нажатию -->
+      <div class="pg-mobile">
+        <sc-for list="{{ cards }}" as="m" hint-placeholder-count="6">
+          <div style="border-top: 1px solid rgba(255,251,247,0.2)">
+            <button type="button" onClick="{{ m.toggle }}" style="width: 100%; display: flex; align-items: stretch; gap: 12px; text-align: left; padding: 14px 0; background: transparent; border: none; color: #FFFBF7; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif">
+              <span style="flex: 0 0 56px; display: flex; flex-direction: column; gap: 4px; padding-top: 1px">
+                <span style="font: 600 21px/1 'Oswald', sans-serif; letter-spacing: 0.02em; color: #D8F32A">{{ m.startT }}</span>
+                <span style="font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.04em; color: #E8C9A0">{{ m.endT }}</span>
+              </span>
+              <span style="{{ m.barStyle }}"></span>
+              <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+                <span style="font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #E8C9A0">{{ m.venueName }}{{ m.kindSuffix }}<sc-if value="{{ m.hasPrice }}" hint-placeholder-val="{{ false }}"> · {{ m.priceLabel }}</sc-if></span>
+                <span style="font: 500 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.04em; text-transform: uppercase">{{ m.title }}</span>
+                <sc-if value="{{ m.hasSpeaker }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 14px; line-height: 1.4; color: #E8C9A0">{{ m.speakerLine }}</span>
+                </sc-if>
+              </span>
+              <span style="flex: none; font-size: 24px; line-height: 1; opacity: 0.8" aria-hidden="true">{{ m.chev }}</span>
+            </button>
+            <sc-if value="{{ m.isOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 0 20px 72px">
+                <sc-if value="{{ m.hasKicker }}" hint-placeholder-val="{{ false }}">
+                  <span style="font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #D8F32A">{{ m.kicker }}</span>
+                </sc-if>
+                <sc-if value="{{ m.hasTags }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                    <sc-for list="{{ m.tags }}" as="t" hint-placeholder-count="2">
+                      <span style="font: 500 11px/1 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; background: #D8F32A; color: #5B0207; border-radius: 999px">{{ t }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ m.hasLead }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin: 0; font-size: 15px; line-height: 1.55; font-style: italic; color: #F3E7D8">{{ m.lead }}</p>
+                </sc-if>
+                <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #F3E7D8">{{ m.text }}</p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center">
+                  <sc-if value="{{ m.hasUrl }}" hint-placeholder-val="{{ false }}">
+                    <a class="fv-btn fv-btn-milk" href="{{ m.url }}" target="_blank" rel="noopener" style="padding: 14px 22px">{{ m.cta }} →</a>
                   </sc-if>
-                  <sc-if value="{{ m.hasLead }}" hint-placeholder-val="{{ false }}">
-                    <p style="margin: 0; font-size: 15px; line-height: 1.5; font-style: italic; opacity: 0.85">{{ m.lead }}</p>
-                  </sc-if>
-                  <p style="margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.9">{{ m.text }}</p>
-                  <sc-if value="{{ m.hasTicket }}" hint-placeholder-val="{{ true }}">
-                    <a class="pg-ev-tk" href="{{ m.url }}" target="_blank" rel="noopener">Билет: {{ m.ticketName }} · {{ m.ticketPrice }} →</a>
+                  <sc-if value="{{ m.hasStub }}" hint-placeholder-val="{{ false }}">
+                    <span class="fv-stub">Ссылка скоро появится</span>
                   </sc-if>
                   <sc-if value="{{ m.hasPage }}" hint-placeholder-val="{{ false }}">
-                    <a href="{{ m.page }}" style="font-size: 14px; color: #5B0207; border-bottom: 1px solid rgba(91,2,7,0.35); padding-bottom: 2px; align-self: flex-start">Подробнее →</a>
+                    <a class="fv-link fv-link-light" href="{{ m.page }}">Подробнее →</a>
                   </sc-if>
                 </div>
-              </article>
-            </sc-for>
+              </div>
+            </sc-if>
           </div>
         </sc-for>
+        <div style="border-top: 1px solid rgba(255,251,247,0.2)"></div>
       </div>
     </sc-if>
 
-    <a class="fv-link fv-link-light" href="#reg" style="align-self: flex-start">Все билеты форума списком ↓</a>
+    <div class="pg-legend" style="display: flex; gap: 14px 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.9; align-items: center">
+      <span class="pg-legend-note">Высота блока = длительность мероприятия</span>
+    </div>
+
   </div>
 </section>
 
@@ -695,31 +715,32 @@ a { color: inherit; text-decoration: none; }
 
 <!-- Регистрация -->
 <section id="reg" data-screen-label="Регистрация" style="background: #5B0207; color: #FFFBF7">
-  <div class="fv-wrap" style="display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
-    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap">
-      <div style="display: flex; flex-direction: column; gap: 22px">
-        <p class="fv-kick" style="color: #D8F32A; margin: 0">04 · Билеты</p>
-        <h2 class="fv-h2" style="color: #FFFBF7; margin: 0">Все билеты форума</h2>
-      </div>
-      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; color: #F3E7D8">Билет — на конкретный день и площадку. Хотите на несколько событий — оформите билет на каждое.</p>
+  <div class="fv-wrap fv-two" style="align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 22px">
+      <p class="fv-kick" style="color: #D8F32A; margin: 0">04 · Регистрация</p>
+      <h2 class="fv-h2" style="color: #FFFBF7; margin: 0">Регистрация на мероприятия</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; color: #F3E7D8">Регистрация проходит на каждое мероприятие отдельно. Выберите нужное в программе и нажмите «Зарегистрироваться». Билеты на закрытый вечер 23 октября в Futuro продаются отдельно.</p>
     </div>
-    <div class="pg-tlist">
-      <sc-for list="{{ allTickets }}" as="t" hint-placeholder-count="7">
-        <div class="pg-trow">
-          <span class="pg-trow-d">{{ t.dayShort }}</span>
-          <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
-            <span class="pg-vpill pg-vpill-s" style="{{ t.pill }}">{{ t.venueName }}</span>
-            <span style="font: 500 clamp(17px, 1.8vw, 22px)/1.2 'Oswald', sans-serif; letter-spacing: 0.03em; text-transform: uppercase">{{ t.title }}</span>
-            <span class="pg-trow-inc">{{ t.includes }}</span>
-          </div>
-          <div class="pg-trow-a">
-            <span class="pg-t-meta">{{ t.price }}</span>
-            <a class="fv-btn fv-btn-milk pg-t-btn" href="{{ t.url }}" target="_blank" rel="noopener">{{ t.cta }} →</a>
-          </div>
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <div class="fv-card">
+        <span class="fv-card-k">22–25 октября 2026</span>
+        <h3 class="fv-card-h">Регистрация на мероприятия форума</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">У каждого мероприятия своя кнопка регистрации: она в карточке мероприятия в программе.</p>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap; align-items: center">
+          <a class="fv-btn fv-btn-milk" href="#program">Выбрать в программе →</a>
+          <a class="fv-link fv-link-light" href="https://radario.ru/customer/afisha/0749550d376154a2aa0c90fff47bbc91bf06b4380190cc3?widgetSettingId=2814" target="_blank" rel="noopener">Все мероприятия списком →</a>
         </div>
-      </sc-for>
+      </div>
+      <div class="fv-card">
+        <span class="fv-card-k">23 октября · Futuro · платные билеты</span>
+        <h3 class="fv-card-h">Закрытый fashion-вечер в Futuro</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #F3E7D8">Звёздный гость — Владислав Лисовец. Три показа нижегородских брендов, дизайн-маркет, выставка, общение и фуршет. Билеты — по кнопке ниже.</p>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap; align-items: center">
+          <a class="fv-btn fv-btn-milk" href="{{ eveningBtnUrl }}" target="_blank" rel="noopener">Купить билет →</a>
+          <a class="fv-link fv-link-light" href="Закрытый вечер.dc.html">О вечере →</a>
+        </div>
+      </div>
     </div>
-    <a class="fv-link fv-link-light" href="https://radario.ru/customer/afisha/0749550d376154a2aa0c90fff47bbc91bf06b4380190cc3?widgetSettingId=2814" target="_blank" rel="noopener" style="align-self: flex-start">Все мероприятия на одной странице →</a>
   </div>
 </section>
 
@@ -831,26 +852,8 @@ a { color: inherit; text-decoration: none; }
 // Ссылка на билеты закрытого вечера (Радарио). Регистрация на остальные мероприятия — в поле url каждого события
 const RADARIO_EVENING_URL = 'https://goj.radario.ru/events/2889660/tickets';
 
-// ===== Билеты =====
-// Регистрация идёт не на каждое мероприятие, а на событие дня на конкретной площадке: один билет = одна ссылка.
-// Мероприятия в EVENTS ссылаются на билет полем ticket.
-//   id — код билета; days — дни (['23'] или ['23', '24', '25']); venue — площадка
-//   title — полное название; short — короткое, для таблицы «дни × площадки»; includes — что входит, одной фразой
-//   price — подпись цены ('Бесплатно', 'от 2 500 ₽'); paid — true для платного (кнопка «Купить билет»)
-//   url — ссылка на регистрацию или покупку; cta — необязательно, свой текст кнопки; page — необязательно, страница с подробностями
-const STYLIST_URL = 'https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810';
-const TICKETS = [
-  { id: 'conf', days: ['22'], venue: 'futura', title: 'Конференция индустрии моды', short: 'Конференция', price: 'Бесплатно', includes: 'Четыре акта деловой программы, мини-показы локальных брендов, стратегическая сессия и нетворкинг.', url: 'https://goj.radario.ru/events/2889579/tickets' },
-  { id: 'evening', days: ['23'], venue: 'futura', title: 'Закрытый fashion-вечер', short: 'Fashion-вечер', price: 'от 6 700 ₽', paid: true, includes: 'Звёздный гость Владислав Лисовец, три показа нижегородских брендов, дизайн-маркет, выставка и фуршет.', url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
-  { id: 'fut24', days: ['24'], venue: 'futura', title: 'Публичная программа «Мода говорит»', short: 'Мода говорит', price: 'Бесплатно', includes: 'Публичная программа-лаборатория форума: выставка нижегородской моды, дизайн-маркет ведущих брендов и лекции.', url: 'https://goj.radario.ru/events/2889689/tickets' },
-  { id: 'da23', days: ['23'], venue: 'da', title: 'Маркет локальных брендов. Открытие', short: 'Маркет · открытие', price: 'Бесплатно', includes: 'Первый день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2886570/tickets' },
-  { id: 'da24', days: ['24'], venue: 'da', title: 'Маркет локальных брендов. 2-й день', short: 'Маркет · 2-й день', price: 'Бесплатно', includes: 'Второй день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887643/tickets' },
-  { id: 'da25', days: ['25'], venue: 'da', title: 'Маркет локальных брендов. 3-й день', short: 'Маркет · 3-й день', price: 'Бесплатно', includes: 'Третий день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887989/tickets' },
-  { id: 'style', days: ['23', '24', '25'], venue: 'da', title: 'Подбор образа от топовых стилистов', short: 'Подбор образа', price: 'от 2 500 ₽', paid: true, cta: 'Выбрать время', includes: 'Стилист подберёт образ под вашу задачу. Запись на конкретное время, отдельно от входа на маркет.', url: STYLIST_URL },
-];
-
 // ===== Программа =====
-// Как заполнять: добавить объект в EVENTS (порядок не важен, лента сама расставит по времени).
+// Как заполнять: добавить объект в EVENTS (порядок не важен, сетка сама расставит по времени).
 //   day    — id дня из DAYS ('22', '23', '24', '25')
 //   venue  — id площадки из VENUES ('futura' или 'da')
 //   start, end — время «от и до», формат 'ЧЧ:ММ'
@@ -858,75 +861,99 @@ const TICKETS = [
 //   speaker — спикер (для лекции) или ведущий (для мастер-класса), через запятую если несколько; необязательно
 //   title  — название; text — короткое описание; lead — необязательно, вводная фраза курсивом; kicker — необязательно, надпись над названием («Акт первый»)
 //   tags   — необязательно, список тегов, например ['Производство', 'Кадры']
-//   ticket — id билета из TICKETS, в который входит мероприятие (кнопка в карточке ведёт на ссылку билета)
+//   paid   — true платное, false бесплатное; если поле не указано, пометки о цене нет; price — необязательно, например 'от 1 500 ₽'
+//   url    — ссылка на регистрацию именно на это мероприятие (Радарио). '' = ссылки пока нет, кнопка стоит и ведёт на #;
+//            null = у мероприятия нет своей регистрации (кнопки не будет)
+//   cta    — необязательно, свой текст кнопки (по умолчанию «Зарегистрироваться» / «Купить билет»)
 //   page   — необязательно, ссылка на страницу с подробностями
-// ВНИМАНИЕ: время маркета, подбора образа и программы 24 октября — заглушки, уточнить.
+// ВНИМАНИЕ: мероприятия 23, 24 и 25 октября — примеры для макета, их нужно заменить на реальные.
 const VENUES = [
-  // pill — цвет метки площадки: везде, где упоминается площадка (таблица, билеты, карточки), одна и та же метка
-  { id: 'futura', name: 'Галерея Futuro', short: 'Futuro', pillBg: '#2E0A0C', pillFg: '#D8F32A', stripe: '#D8F32A' },
-  { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', pillBg: '#A0060E', pillFg: '#FFFBF7', stripe: '#A0060E' },
+  { id: 'futura', name: 'Галерея Futuro', short: 'Futuro', note: '22, 23, 24 октября', bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
+  { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', note: '23, 24, 25 октября', bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' },
 ];
 
 const DAYS = [
-  { id: '22', label: '22 октября', weekday: 'чт', venues: ['futura'], intro: {
+  { id: '22', label: '22 октября', venues: ['futura'], intro: {
+      url: 'https://goj.radario.ru/events/2889579/tickets', // регистрация на конференцию
       kicker: 'Деловая программа',
       title: 'Талантов достаточно. Индустрии — нет.',
       paragraphs: [
         'В Нижегородской области работает около 200 локальных брендов одежды, украшений и обуви. Но между дизайнером и покупателем не хватает производства, кадров и каналов сбыта.',
         'Конференция индустрии — публичная профессиональная диагностика этих разрывов. Открывает её неудобный вопрос: почему Нижний не станет столицей моды? Дальше — четыре акта, в каждом разбираем одно звено цепочки.',
       ],
-      facts: [] } },
-  { id: '23', label: '23 октября', weekday: 'пт', venues: ['da', 'futura'] },
-  { id: '24', label: '24 октября', weekday: 'сб', venues: ['futura', 'da'] },
-  { id: '25', label: '25 октября', weekday: 'вс', venues: ['da'] },
+      facts: ['11:00–18:30', 'Галерея Futuro', '4 акта · 2 мини-показа · стратегическая сессия'] } },
+  { id: '23', label: '23 октября', venues: ['da', 'futura'] },
+  { id: '24', label: '24 октября', venues: ['futura', 'da'] },
+  { id: '25', label: '25 октября', venues: ['da'] },
 ];
 
 const EVENTS = [
   // 22 октября · Галерея Futuro · деловая программа
-  { day: '22', venue: 'futura', start: '11:50', end: '12:55', kicker: 'Акт первый', title: '«Негде шить и некому шить»', kind: 'Лекция', speaker: 'Юлия Шинкарёва, Григорий Хромов, Антон Гуреев', tags: ['Производство', 'Кадры'], ticket: 'conf',
+  { day: '22', venue: 'futura', start: '11:50', end: '12:55', kicker: 'Акт первый', title: '«Негде шить и некому шить»', kind: 'Лекция', speaker: 'Юлия Шинкарёва, Григорий Хромов, Антон Гуреев', tags: ['Производство', 'Кадры'], url: null,
     lead: 'В регионе почти нет производств, готовых работать с малыми партиями, а технологов, конструкторов и швей не хватает.',
     text: 'Малые партии, загрузка и себестоимость цехов; образование, стажировки и как связать учебные программы с реальным бизнесом.' },
-  { day: '22', venue: 'futura', start: '12:55', end: '13:10', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Короткая визуальная пауза между блоками.', ticket: 'conf' },
-  { day: '22', venue: 'futura', start: '13:10', end: '14:15', kicker: 'Акт второй', title: '«Красиво. Дорого. Неприбыльно?»', kind: 'Лекция', speaker: 'Сергей Левин, Екатерина Булгакова, Николай Константинов, Елена Селина', tags: ['Экономика бренда', 'Дистрибуция'], ticket: 'conf',
+  { day: '22', venue: 'futura', start: '12:55', end: '13:10', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Короткая визуальная пауза между блоками.', url: null },
+  { day: '22', venue: 'futura', start: '13:10', end: '14:15', kicker: 'Акт второй', title: '«Красиво. Дорого. Неприбыльно?»', kind: 'Лекция', speaker: 'Сергей Левин, Екатерина Булгакова, Николай Константинов, Елена Селина', tags: ['Экономика бренда', 'Дистрибуция'], url: null,
     lead: 'У брендов есть эстетика, но чаще нет бизнес-модели. Pop-up работает как событие, но редко как канал продаж.',
     text: 'Себестоимость и ассортимент, ритейл и маркетплейсы, масштабирование и выход за пределы региона.' },
-  { day: '22', venue: 'futura', start: '14:15', end: '14:55', title: 'Обед и нетворкинг', kind: 'Нетворкинг', text: 'Выставка изделий локальных брендов, знакомства участников.', ticket: 'conf' },
-  { day: '22', venue: 'futura', start: '14:55', end: '15:20', title: 'Презентация сайта-каталога «Модный Нижний»', kind: 'Лекция', text: 'Единая цифровая витрина локальных брендов: увидел офлайн → нашёл онлайн.', ticket: 'conf' },
-  { day: '22', venue: 'futura', start: '15:20', end: '16:20', kicker: 'Акт третий', title: '«Если о тебе не говорят — ты не индустрия»', kind: 'Лекция', speaker: 'Юрате Гураускайте, Георгий Ростовщиков, Яна Аверьянова', tags: ['Идентичность', 'Медиа'], ticket: 'conf',
+  { day: '22', venue: 'futura', start: '14:15', end: '14:55', title: 'Обед и нетворкинг', kind: 'Нетворкинг', text: 'Выставка изделий локальных брендов, знакомства участников.', url: null },
+  { day: '22', venue: 'futura', start: '14:55', end: '15:20', title: 'Презентация сайта-каталога «Модный Нижний»', kind: 'Лекция', text: 'Единая цифровая витрина локальных брендов: увидел офлайн → нашёл онлайн.', url: null },
+  { day: '22', venue: 'futura', start: '15:20', end: '16:20', kicker: 'Акт третий', title: '«Если о тебе не говорят — ты не индустрия»', kind: 'Лекция', speaker: 'Юрате Гураускайте, Георгий Ростовщиков, Яна Аверьянова', tags: ['Идентичность', 'Медиа'], url: null,
     lead: 'Модный код города не сформулирован и не стал коммерческим преимуществом, а бренды почти не попадают в федеральную повестку.',
     text: 'Современный код Нижнего, позиционирование, репутация и культурная ценность регионального бренда.' },
-  { day: '22', venue: 'futura', start: '16:20', end: '16:35', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Продолжение разговора о визуальном коде региона.', ticket: 'conf' },
-  { day: '22', venue: 'futura', start: '16:35', end: '17:40', kicker: 'Акт четвёртый', title: '«Мода сама не вырастет»', kind: 'Лекция', speaker: 'Ольга Никитина, Олег Беркович, Максим Черкасов', tags: ['Институты', 'Инфраструктура'], ticket: 'conf',
+  { day: '22', venue: 'futura', start: '16:20', end: '16:35', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Продолжение разговора о визуальном коде региона.', url: null },
+  { day: '22', venue: 'futura', start: '16:35', end: '17:40', kicker: 'Акт четвёртый', title: '«Мода сама не вырастет»', kind: 'Лекция', speaker: 'Ольга Никитина, Олег Беркович, Максим Черкасов', tags: ['Институты', 'Инфраструктура'], url: null,
     lead: 'Мода воспринимается как культура, а не как отрасль экономики, — и выпадает из мер поддержки и статистики.',
     text: 'Системные решения и поддержка, туризм, образование и постоянные каналы продаж.' },
-  { day: '22', venue: 'futura', start: '17:40', end: '18:10', kicker: 'Финальная сессия', title: 'Стратегическая сессия: 10 условий для Нижнего', kind: 'Дискуссия', tags: ['Дорожная карта 2036'], ticket: 'conf',
+  { day: '22', venue: 'futura', start: '17:40', end: '18:10', kicker: 'Финальная сессия', title: 'Стратегическая сессия: 10 условий для Нижнего', kind: 'Дискуссия', tags: ['Дорожная карта 2036'], url: null,
     lead: 'Что должно измениться, чтобы Нижний Новгород стал одним из центров российской fashion-индустрии к 2036 году?',
     text: 'Спикеры четырёх актов сводят выводы дня в 10 конкретных условий — основу публичной дорожной карты развития отрасли.' },
-  { day: '22', venue: 'futura', start: '18:10', end: '18:30', title: 'Итоги дня', text: 'Знакомство с брендами продолжается на сайте-каталоге.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '18:10', end: '18:30', title: 'Итоги дня', text: 'Знакомство с брендами продолжается на сайте-каталоге.', url: null },
+  // 22 октября — примеры параллельных мероприятий (заменить на реальные)
+  { day: '22', venue: 'futura', start: '11:00', end: '11:50', title: 'Параллельное мероприятие А', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '22', venue: 'futura', start: '11:00', end: '11:50', title: 'Параллельное мероприятие Б', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
 
-  // 23 октября · Futuro · закрытый вечер — отдельное платное мероприятие
-  { day: '23', venue: 'futura', start: '17:00', end: '21:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, общение и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', ticket: 'evening', page: 'Закрытый вечер.dc.html' },
-  // 24 октября · Futuro · публичная программа «Мода говорит» (время окончания и лекций — заглушка)
-  { day: '24', venue: 'futura', start: '12:00', end: '19:00', title: 'Выставка нижегородской моды', kind: 'Выставка', text: 'Работы нижегородских дизайнеров и брендов.', ticket: 'fut24' },
-  { day: '24', venue: 'futura', start: '12:00', end: '19:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', ticket: 'fut24' },
-  { day: '24', venue: 'futura', start: '14:00', end: '17:00', title: 'Лекции', kind: 'Лекция', text: 'Лекции публичной программы «Мода говорит».', ticket: 'fut24' },
-  // 23–25 октября · Дом архитектора · маркет и подбор образа (время — заглушка)
-  { day: '23', venue: 'da', start: '11:00', end: '19:00', title: 'Маркет локальных брендов. Открытие', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da23' },
-  { day: '23', venue: 'da', start: '11:00', end: '19:00', title: 'Подбор образа от топовых стилистов', kind: 'Консультация', text: 'Стилист подберёт образ под вашу задачу. Запись на время.', ticket: 'style' },
-  { day: '24', venue: 'da', start: '11:00', end: '19:00', title: 'Маркет локальных брендов. 2-й день', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da24' },
-  { day: '24', venue: 'da', start: '11:00', end: '19:00', title: 'Подбор образа от топовых стилистов', kind: 'Консультация', text: 'Стилист подберёт образ под вашу задачу. Запись на время.', ticket: 'style' },
-  { day: '25', venue: 'da', start: '11:00', end: '19:00', title: 'Маркет локальных брендов. 3-й день', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da25' },
-  { day: '25', venue: 'da', start: '11:00', end: '19:00', title: 'Подбор образа от топовых стилистов', kind: 'Консультация', text: 'Стилист подберёт образ под вашу задачу. Запись на время.', ticket: 'style' },
+  // Примеры (заменить на реальные): в каждый день — одно, два и три одновременных мероприятия
+  // 23 октября · Futuro
+  // Закрытый вечер — отдельное платное мероприятие, ссылка берётся из RADARIO_EVENING_URL
+  { day: '23', venue: 'futura', start: '17:00', end: '21:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, общение и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', paid: true, url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
+  // 23 октября · Дом архитектора
+  { day: '23', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2886570/tickets' },
+  { day: '23', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '23', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '23', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '23', venue: 'da', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
+  { day: '23', venue: 'da', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  // 24 октября · Futuro: выставка (открытое посещение) + дизайн-маркет + лекции (время — заглушка)
+  { day: '24', venue: 'futura', start: '11:00', end: '19:00', title: 'Выставка нижегородской моды', kind: 'Выставка', text: 'Открытое посещение: работы нижегородских дизайнеров и брендов.', paid: false, url: 'https://goj.radario.ru/events/2889689/tickets' },
+  { day: '24', venue: 'futura', start: '11:00', end: '19:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', paid: false, url: 'https://goj.radario.ru/events/2889689/tickets' },
+  { day: '24', venue: 'futura', start: '14:00', end: '17:00', title: 'Лекции', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Лекции в рамках выставки.', paid: false, url: 'https://goj.radario.ru/events/2889689/tickets' },
+  // 24 октября · Дом архитектора
+  { day: '24', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887643/tickets' },
+  { day: '24', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'по записи', url: '' },
+  { day: '24', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '24', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '24', venue: 'da', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
+  { day: '24', venue: 'da', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  // 25 октября · Дом архитектора
+  { day: '25', venue: 'da', start: '11:00', end: '12:30', title: 'Название мероприятия', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: 'https://goj.radario.ru/events/2887989/tickets' },
+  { day: '25', venue: 'da', start: '13:30', end: '15:30', title: 'Параллельное мероприятие А', kind: 'Маркет', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '25', venue: 'da', start: '14:00', end: '15:30', title: 'Параллельное мероприятие Б', kind: 'Лекция', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '25', venue: 'da', start: '16:30', end: '18:30', title: 'Параллельное мероприятие А', kind: 'Мастер-класс', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
+  { day: '25', venue: 'da', start: '17:00', end: '18:30', title: 'Параллельное мероприятие Б', kind: 'Показ', text: 'Краткое описание мероприятия в одно-два предложения.', paid: true, price: 'от 1 500 ₽', url: '' },
+  { day: '25', venue: 'da', start: '17:30', end: '19:00', title: 'Параллельное мероприятие В', kind: 'Дискуссия', speaker: 'Имя Фамилия', text: 'Краткое описание мероприятия в одно-два предложения.', paid: false, url: '' },
 ];
 
+const KIND_ORDER = ['Лекция', 'Мастер-класс', 'Дискуссия', 'Показ', 'Выставка', 'Маркет', 'Нетворкинг', 'Вечер'];
+// Цвета мероприятий по видам (палитра айдентики форума)
+// Все мероприятия в сетке — бежевые (вид отражён подписью в блоке и фильтром)
+const BEIGE = { bg: '#F3E7D8', fg: '#5B0207', line: 'rgba(91,2,7,0.35)' };
+const KIND_STYLES = {};
+const KIND_DEFAULT = BEIGE;
+const kindPal = (k) => { const p = KIND_STYLES[k] || KIND_DEFAULT; return { ...p, pop: p.bg === 'transparent' ? '#2E0A0C' : p.bg }; };
+const PX_PER_MIN = 1.6;
 const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
-const venueOf = (id) => VENUES.find(v => v.id === id);
-const ticketOf = (id) => TICKETS.find(t => t.id === id);
-const dayOf = (id) => DAYS.find(d => d.id === id);
-const ticketCta = (t) => t.cta || (t.paid ? 'Купить билет' : 'Зарегистрироваться');
-const pillStyle = (v) => `background: ${v.pillBg}; color: ${v.pillFg}`;
-const stripeStyle = (v) => `border-left-color: ${v.stripe}`;
-const daysLabel = (days) => days.length > 1 ? `${days[0]}–${days[days.length - 1]} октября` : `${days[0]} октября`;
+const fromMin = (v) => `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`;
 
 
 const SPEAKERS = [
@@ -980,88 +1007,175 @@ const BRANDS_STEP = 12;
 const PARTNERS_STEP = 8;
 
 class Component extends DCLogic {
-  state = { speakersExpanded: false, brandsExpanded: false, partnersExpanded: false, day: '22', venue: 'all', exp: null };
+  state = { speakersExpanded: false, brandsExpanded: false, partnersExpanded: false, day: '22', venue: 'all', kind: 'all', sel: null, hov: null, exp: null };
 
-  ticketCard(t) {
-    const v = venueOf(t.venue);
-    return {
-      title: t.title, includes: t.includes, url: t.url || '#', cta: ticketCta(t), price: t.price || '',
-      page: t.page || '', hasPage: !!t.page,
-      venueName: v.name, pill: pillStyle(v), stripe: stripeStyle(v),
-      when: daysLabel(t.days), dayShort: daysLabel(t.days).replace(' октября', ' окт'),
-      meta: t.price || '',
-    };
+  pill(label, on, select) {
+    return { label, select,
+      style: `padding: 11px 20px; cursor: pointer; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; transition: all 0.2s; border: 1px solid ${on ? '#F3E7D8' : 'rgba(243,231,216,0.45)'}; background: ${on ? '#F3E7D8' : 'transparent'}; color: ${on ? '#5B0207' : '#F3E7D8'}` };
   }
 
   eventCard(e) {
-    const v = venueOf(e.venue);
-    const t = ticketOf(e.ticket);
-    const open = this.state.exp === e.i;
+    const v = VENUES.find(x => x.id === e.venue);
+    const d = DAYS.find(x => x.id === e.day);
+    const url = e.url === undefined ? '' : e.url;
+    const priceLabel = e.paid === true ? (e.price ? `Платно · ${e.price}` : 'Платно') : (e.paid === false ? 'Бесплатно' : '');
     return {
       title: e.title, text: e.text, page: e.page || '', hasPage: !!e.page,
-      hasSpeaker: !!e.speaker,
-      speakerLine: e.speaker ? `${e.speaker.includes(',') ? 'Спикеры' : 'Спикер'}: ${e.speaker}` : '',
+      kicker: e.kicker || '', hasKicker: !!e.kicker,
+      kind: e.kind || '', hasKind: !!e.kind, kindSuffix: e.kind ? ' · ' + e.kind : '',
+      speaker: e.speaker || '', hasSpeaker: !!e.speaker,
+      speakerLine: e.speaker ? `${e.kind === 'Мастер-класс' ? (e.speaker.includes(',') ? 'Ведущие' : 'Ведущий') : (e.speaker.includes(',') ? 'Спикеры' : 'Спикер')}: ${e.speaker}` : '',
       kickerLine: [e.kind, e.kicker].filter(Boolean).join(' · '), hasKickerLine: !!(e.kind || e.kicker),
       lead: e.lead || '', hasLead: !!e.lead,
+      tags: e.tags || [], hasTags: !!(e.tags && e.tags.length),
       range: `${e.start}–${e.end}`,
-      venueShort: v.short, pill: pillStyle(v), stripe: stripeStyle(v),
-      hasTicket: !!t, ticketName: t ? t.short : '', ticketPrice: t ? t.price : '', url: (t && t.url) || '#',
-      openAttr: open ? '1' : '0', chev: open ? '−' : '+',
-      toggle: () => this.setState({ exp: open ? null : e.i }),
+      dayLabel: d.label, venueName: v.name,
+      priceLabel, hasPrice: !!priceLabel,
+      metaLine: [d.label, `${e.start}–${e.end}`, v.name, priceLabel].filter(Boolean).join(' · '),
+      cta: e.cta || (e.paid ? 'Купить билет' : 'Зарегистрироваться'),
+      url: url || '#', hasUrl: url !== null && url !== undefined, hasStub: false,
+      startT: e.start, endT: e.end,
+      barStyle: `flex: none; width: 4px; align-self: stretch; background: ${kindPal(e.kind).bg === 'transparent' ? kindPal(e.kind).line : kindPal(e.kind).bg}`,
+      dotStyle: `width: 14px; height: 14px; display: block; background: ${v.bg}; border: 1px solid rgba(243,231,216,0.6)`,
     };
   }
 
   programVals() {
-    const { day: dayId, venue: venueFilter } = this.state;
-    const day = dayOf(dayId);
-    const vOrder = (id) => VENUES.findIndex(v => v.id === id);
-    const pick = (e) => e.day === day.id && (venueFilter === 'all' || venueFilter === e.venue);
+    const { day: dayId, venue: venueFilter, kind: kindFilter, sel, hov, exp } = this.state;
+    const day = DAYS.find(d => d.id === dayId);
+    const venues = day.venues.map(id => VENUES.find(v => v.id === id)).filter(v => venueFilter === 'all' || venueFilter === v.id); // порядок колонок задаётся порядком в day.venues
     const list = EVENTS.map((e, i) => ({ ...e, i }))
-      .filter(pick)
-      .sort((a, b) => toMin(a.start) - toMin(b.start) || vOrder(a.venue) - vOrder(b.venue));
+      .filter(e => e.day === dayId && venues.some(v => v.id === e.venue) && (kindFilter === 'all' || e.kind === kindFilter))
+      .sort((a, b) => toMin(a.start) - toMin(b.start));
 
-    // группы по времени начала
-    const slots = [];
-    list.forEach(e => {
-      let s = slots[slots.length - 1];
-      if (!s || s.time !== e.start) { s = { time: e.start, items: [] }; slots.push(s); }
-      s.items.push(this.eventCard(e));
+    const axisStart = list.length ? Math.floor(Math.min(...list.map(e => toMin(e.start))) / 60) * 60 : 0;
+    const axisEnd = list.length ? Math.ceil(Math.max(...list.map(e => toMin(e.end))) / 60) * 60 : 0;
+    const bodyH = (axisEnd - axisStart) * PX_PER_MIN;
+
+    const hours = [];
+    for (let m = axisStart; m <= axisEnd; m += 60) hours.push(m);
+    const axisLabels = hours.map(m => ({ label: fromMin(m), style: `position: absolute; right: 12px; top: ${(m - axisStart) * PX_PER_MIN - 8}px; font-size: 13px; opacity: 0.75` }));
+    const lines = hours.map(m => ({ style: `position: absolute; left: 0; right: 0; top: ${(m - axisStart) * PX_PER_MIN}px; border-top: 1px solid rgba(243,231,216,0.2); pointer-events: none` }));
+
+    const cols = venues.map((v, ci) => {
+      const lastCol = ci === venues.length - 1;
+      const items = list.filter(e => e.venue === v.id);
+      const placed = [];
+      let cluster = [], clusterEnd = -1;
+      const flush = () => {
+        const lanes = [];
+        cluster.forEach(e => {
+          let l = lanes.findIndex(end => end <= toMin(e.start));
+          if (l < 0) { l = lanes.length; lanes.push(0); }
+          lanes[l] = toMin(e.end);
+          placed.push({ e, lane: l, lanes });
+        });
+        cluster = []; clusterEnd = -1;
+      };
+      items.forEach(e => {
+        if (cluster.length && toMin(e.start) >= clusterEnd) flush();
+        cluster.push(e);
+        clusterEnd = Math.max(clusterEnd, toMin(e.end));
+      });
+      flush();
+
+      const blocks = placed.map(({ e, lane, lanes }) => {
+        const vk = kindPal(e.kind);
+        const top = (toMin(e.start) - axisStart) * PX_PER_MIN;
+        const h = (toMin(e.end) - toMin(e.start)) * PX_PER_MIN;
+        const n = lanes.length;
+        const tall = h >= (n > 1 ? 120 : 100);
+        const pinned = sel === e.i;
+        const open = pinned || hov === e.i;
+        const anchorRight = lastCol || lane > 0;
+        const low = top > bodyH * 0.55;
+        const card = this.eventCard(e);
+        const wide = venues.length === 1 && n === 1;
+        const lines = Math.max(0, Math.floor((h - (h >= 60 ? 26 : 8)) / 19));
+        const blk = { ...card, open, blockText: card.text,
+          tagText: n > 1 ? (e.paid === true ? 'Платно' : (e.paid === false ? 'Бесплатно' : '')) : card.priceLabel,
+          tip: `${card.range} · ${e.title}`,
+          enter: () => this.setState({ hov: e.i }),
+          leave: () => this.setState({ hov: null }),
+          select: () => this.setState({ sel: pinned ? null : e.i }),
+          close: () => this.setState({ sel: null, hov: null }),
+          wrapStyle: `position: absolute; top: ${top + 1}px; height: ${h - 3}px; left: calc(${(lane / n) * 100}% + 4px); width: calc(${100 / n}% - 8px); z-index: ${open ? 6 : 1}`,
+          style: `position: relative; box-sizing: border-box; width: 100%; height: 100%; padding: ${tall ? (n > 1 ? '9px 9px' : '9px 11px') : (h < 36 ? '1px 10px' : '4px 10px')}; display: flex; flex-direction: column; gap: 3px; justify-content: ${tall ? 'flex-start' : 'center'}; text-align: left; overflow: hidden; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: ${vk.bg}; color: ${vk.fg}; border: ${pinned ? '2px solid ' + v.fg : '1px solid ' + v.line}`,
+          rangeStyle: `font-size: 11px; letter-spacing: 0.08em; opacity: 0.75; line-height: 1.2; white-space: nowrap; display: ${tall || h >= 44 ? 'block' : 'none'}`,
+          titleStyle: `font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; font-size: ${tall ? '15px' : (h < 36 ? '12px' : '13px')}; line-height: ${h < 36 ? '1.1' : '1.2'}; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: ${tall ? (n > 1 ? 3 : 2) : (h >= 70 ? 2 : 1)}; overflow: hidden; overflow-wrap: anywhere`,
+          metaText: [e.kind, e.paid === true ? 'Платно' : (e.paid === false ? 'Бесплатно' : '')].filter(Boolean).join(' · '),
+          speakerText: card.speakerLine,
+          metaWrapStyle: `display: ${tall && (e.kind || e.paid !== undefined) ? 'flex' : 'none'}; flex-direction: column; gap: 2px; min-width: 0`,
+          kindStyle: `font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis`,
+          speakerStyle: `font-size: 12px; line-height: 1.35; opacity: 0.9; display: ${n === 1 && h >= 130 && e.speaker ? 'block' : 'none'}`,
+          tagStyle: `align-self: flex-start; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 6px; border: 1px solid ${vk.line}; line-height: 1.4; white-space: nowrap; display: none`,
+          textStyle: `font-size: 12px; line-height: 1.4; opacity: 0.8; display: ${h >= 130 && n === 1 ? '-webkit-box' : 'none'}; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden`,
+          regStyle: `margin-top: auto; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: ${tall && e.url !== null ? 'block' : 'none'}`,
+          popStyle: `position: absolute; z-index: 7; box-sizing: border-box; ${anchorRight ? 'right: 0' : 'left: 0'}; ${low ? 'bottom: 0' : 'top: 0'}; width: ${n > 1 ? '300px' : '100%'}; min-width: 280px; min-height: ${h - 3}px; padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; text-align: left; cursor: default; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: ${vk.pop}; color: ${vk.fg}; border: 2px solid ${vk.fg}; box-shadow: 0 18px 44px rgba(0,0,0,0.4)`,
+          closeStyle: `position: absolute; top: 6px; right: 8px; width: 28px; height: 28px; padding: 0; background: transparent; border: none; color: ${vk.fg}; font-size: 22px; line-height: 1; cursor: pointer`,
+          chipStyle: `font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; background: #D8F32A; color: #5B0207; border-radius: 999px`,
+          btnStyle: `display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; background: ${vk.fg}; color: ${vk.pop}; font-size: 14px; letter-spacing: 0.04em`,
+          stubStyle: `display: inline-flex; align-items: center; padding: 11px 20px; border: 1px solid ${vk.line}; font-size: 13px; opacity: 0.8`,
+          linkStyle: `font-size: 14px; color: ${vk.fg}; border-bottom: 1px solid ${vk.line}; padding-bottom: 2px`,
+        };
+        if (wide) {
+          Object.assign(blk, {
+            blockText: card.lead ? `${card.lead} ${card.text}` : card.text,
+            metaText: e.kind || '',
+            metaWrapStyle: `flex: 1 1 0; display: flex; flex-direction: column; gap: 4px; min-width: 0`,
+            kindStyle: `font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; line-height: 1.3`,
+            speakerStyle: `font-size: 13px; line-height: 1.35; opacity: 0.9; display: ${e.speaker && h >= 44 ? '-webkit-box' : 'none'}; -webkit-box-orient: vertical; -webkit-line-clamp: ${h >= 60 ? 3 : 1}; overflow: hidden`,
+            style: blk.style + `; flex-direction: row; align-items: ${h >= 60 ? 'flex-start' : 'center'}; justify-content: flex-start; gap: 24px; padding: ${h >= 60 ? '12px 20px' : '3px 20px'}`,
+            rangeStyle: `flex: 0 0 112px; font-size: 12px; letter-spacing: 0.08em; opacity: 0.8; line-height: 1.3; white-space: nowrap; display: block`,
+            titleStyle: `flex: 0 0 38%; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; font-size: ${h >= 60 ? '16px' : '14px'}; line-height: 1.2; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: ${h >= 60 ? 3 : 1}; overflow: hidden`,
+            tagStyle: `flex: none; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 6px; border: 1px solid ${vk.line}; line-height: 1.4; white-space: nowrap; display: ${card.hasPrice ? 'inline-block' : 'none'}`,
+            textStyle: `display: none`,
+            regStyle: `flex: none; align-self: center; margin-left: auto; white-space: nowrap; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; display: ${e.url !== null ? 'block' : 'none'}`,
+          });
+        }
+        return blk;
+      });
+      return { name: v.name, note: v.note, blocks, lines, bodyStyle: `position: relative; height: ${bodyH}px` };
     });
 
-    const ticketsAt = (dId, vId) => TICKETS.filter(t => t.days.includes(dId) && t.venue === vId);
-    const dayTickets = VENUES
-      .filter(v => venueFilter === 'all' || venueFilter === v.id)
-      .flatMap(v => ticketsAt(day.id, v.id))
-      .map(t => this.ticketCard(t));
+    const filterLabels = [['all', 'Все площадки'], ...VENUES.map(v => [v.id, v.name])];
+    const kindsPresent = KIND_ORDER.filter(k => EVENTS.some(e => e.kind === k)).concat([...new Set(EVENTS.map(e => e.kind).filter(k => k && !KIND_ORDER.includes(k)))]);
+    const kindLabels = [['all', 'Все виды'], ...kindsPresent.map(k => [k, k])];
+    const dayVenueNames = (d) => d.venues.map(id => VENUES.find(v => v.id === id).short).join(' · ');
+    const plural = (n) => { const a = n % 100, b = n % 10; return (a > 10 && a < 15) ? 'событий' : b === 1 ? 'событие' : (b >= 2 && b <= 4) ? 'события' : 'событий'; };
+    const dayStat = (d) => {
+      const evs = EVENTS.filter(e => e.day === d.id && d.venues.includes(e.venue) && (venueFilter === 'all' || venueFilter === e.venue) && (kindFilter === 'all' || e.kind === kindFilter));
+      if (!evs.length) return 'нет мероприятий';
+      return `${evs.length} ${plural(evs.length)} · ${fromMin(Math.min(...evs.map(e => toMin(e.start))))}–${fromMin(Math.max(...evs.map(e => toMin(e.end))))}`;
+    };
+    const filterNote = venueFilter === 'all' ? '' : VENUES.find(v => v.id === venueFilter).name;
 
-    const selVenue = venueFilter === 'all' ? null : venueOf(venueFilter);
     return {
-      mapVenues: VENUES.map(v => ({ name: v.name, pill: pillStyle(v) })),
-      mapRows: DAYS.map(d => ({
-        dayNum: d.id, weekday: d.weekday,
-        on: d.id === dayId ? '1' : '0',
-        select: () => this.setState({ day: d.id, venue: 'all', exp: null }),
-        cells: VENUES.map(v => {
-          const ts = ticketsAt(d.id, v.id);
-          const off = ts.length === 0;
-          return {
-            names: off ? ['Не работает'] : ts.map(t => t.short),
-            on: !off && d.id === dayId && (venueFilter === 'all' || venueFilter === v.id) ? '1' : '0',
-            off: off ? '1' : '0',
-            stripe: off ? '' : stripeStyle(v),
-            select: () => { if (!off) this.setState({ day: d.id, venue: v.id, exp: null }); },
-          };
-        }),
+      venueFilters: filterLabels.map(([id, label]) => this.pill(label, venueFilter === id, () => this.setState({ venue: id, sel: null, hov: null, exp: null }))),
+      kindFilters: kindLabels.map(([id, label]) => this.pill(label, kindFilter === id, () => this.setState({ kind: id, sel: null, hov: null, exp: null }))),
+      dayTabs: DAYS.map(d => ({
+        label: d.label, venues: dayVenueNames(d),
+        dayNum: d.id,
+        stat: dayStat(d),
+        statStyle: `font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: ${d.id === dayId ? '#5B0207' : '#E8C9A0'}`,
+        numStyle: `font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: ${d.id === dayId ? '#5B0207' : '#D8F32A'}`,
+        select: () => this.setState({ day: d.id, sel: null, hov: null, exp: null }),
+        style: `display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; padding: 14px 18px; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: all 0.2s; border: 1px solid ${d.id === dayId ? '#F3E7D8' : 'rgba(243,231,216,0.45)'}; background: ${d.id === dayId ? '#F3E7D8' : 'transparent'}; color: ${d.id === dayId ? '#5B0207' : '#F3E7D8'}`,
       })),
-      selCaption: `${day.label}, ${({ чт: 'четверг', пт: 'пятница', сб: 'суббота', вс: 'воскресенье' })[day.weekday]} · ${selVenue ? selVenue.name : VENUES.filter(v => day.venues.includes(v.id)).map(v => v.name).join(' и ')}`,
-      dayTickets,
-      allTickets: [...TICKETS].sort((a, b) => a.days[0].localeCompare(b.days[0]) || vOrder(a.venue) - vOrder(b.venue)).map(t => this.ticketCard(t)),
       hasIntro: !!day.intro && (venueFilter === 'all' || venueFilter === 'futura'),
-      intro: day.intro || { kicker: '', title: '', paragraphs: [] },
+      intro: day.intro || { kicker: '', title: '', paragraphs: [], facts: [] },
+      introUrl: (day.intro && day.intro.url) || '#',
+      dayCaption: `${dayVenueNames(day)} · ${dayStat(day)}`,
+      kindLegend: [],
       dayHasEvents: list.length > 0,
       dayEmpty: list.length === 0,
-      emptyText: 'В этот день нет мероприятий.',
-      slots,
+      emptyText: venues.length === 0 ? `${filterNote}: в этот день площадка не работает.` : (kindFilter !== 'all' ? 'В этот день нет мероприятий выбранного вида.' : 'В этот день нет мероприятий.'),
+      axisLabels, axisStyle: `position: relative; height: ${bodyH}px`,
+      cols,
+      cards: list.map(e => {
+        const isOpen = exp === e.i;
+        return { ...this.eventCard(e), isOpen, chev: isOpen ? '−' : '+', toggle: () => this.setState({ exp: isOpen ? null : e.i }) };
+      }),
     };
   }
 
