@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section id="program" data-screen-label="Программа" style="background: #5B0207; color: #FFFBF7">
+  <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap">
+      <div>
+        <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">Программа и билеты</p>
+        <h2 class="fv-h2" style="color: #FFFBF7; max-width: 18ch">{{ heading }}</h2>
+      </div>
+      <p style="margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.55; color: #F3E7D8">Две площадки. На каждой — то, что идёт все дни, и отдельные события по дням. Билет или регистрация — на каждое событие свои.</p>
+    </div>
+
+    <!-- Таблица «дни × площадки». То, что идёт все дни, — одна объединённая ячейка; кнопки — внутри ячеек -->
+    <div id="reg">
+    <div class="pg-grid pg-grid-d" role="table" aria-label="Программа форума по дням и площадкам">
+      <sc-for list="{{ gridCells }}" as="c" hint-placeholder-count="14">
+        <div class="pg-c" data-k="{{ c.kind }}" style="{{ c.place }}">
+          <sc-if value="{{ c.isHead }}" hint-placeholder-val="{{ false }}">
+            <span class="pg-vpill" style="{{ c.pill }}">{{ c.name }}</span>
+            <span class="pg-c-hrs">{{ c.hours }}</span>
+          </sc-if>
+          <sc-if value="{{ c.isDay }}" hint-placeholder-val="{{ false }}">
+            <span class="pg-c-dn">{{ c.dayNum }}</span>
+            <span class="pg-c-dw">{{ c.weekday }}</span>
+          </sc-if>
+          <sc-if value="{{ c.hasLabel }}" hint-placeholder-val="{{ false }}">
+            <span class="pg-c-lab">{{ c.label }}</span>
+          </sc-if>
+          <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="1">
+            <div class="pg-c-it">
+              <span class="pg-c-t">{{ i.title }}</span>
+              <sc-if value="{{ i.hasNote }}" hint-placeholder-val="{{ false }}"><span class="pg-c-n">{{ i.note }}</span></sc-if>
+              <span class="pg-c-act">
+                <span class="pg-c-p">{{ i.price }}</span>
+                <sc-for list="{{ i.links }}" as="l" hint-placeholder-count="1">
+                  <a class="pg-c-a" href="{{ l.url }}" target="{{ l.target }}" rel="noopener"><span class="pg-c-full">{{ l.label }}</span><span class="pg-c-short">{{ l.short }}</span></a>
+                </sc-for>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- Телефон: площадки друг под другом, у каждой только её дни -->
+    <div class="pg-grid-ms">
+      <sc-for list="{{ mobileGrids }}" as="g" hint-placeholder-count="2">
+        <div class="pg-grid pg-grid-m" style="{{ g.cols }}">
+          <sc-for list="{{ g.cells }}" as="c" hint-placeholder-count="6">
+        <div class="pg-c" data-k="{{ c.kind }}" style="{{ c.place }}">
+              <sc-if value="{{ c.isHead }}" hint-placeholder-val="{{ false }}">
+                <span class="pg-vpill" style="{{ c.pill }}">{{ c.name }}</span>
+                <span class="pg-c-hrs">{{ c.hours }}</span>
+              </sc-if>
+              <sc-if value="{{ c.isDay }}" hint-placeholder-val="{{ false }}">
+                <span class="pg-c-dn">{{ c.dayNum }}</span>
+                <span class="pg-c-dw">{{ c.weekday }}</span>
+              </sc-if>
+              <sc-if value="{{ c.hasLabel }}" hint-placeholder-val="{{ false }}">
+                <span class="pg-c-lab">{{ c.label }}</span>
+              </sc-if>
+              <sc-for list="{{ c.items }}" as="i" hint-placeholder-count="1">
+                <div class="pg-c-it">
+                  <span class="pg-c-t">{{ i.title }}</span>
+                  <sc-if value="{{ i.hasNote }}" hint-placeholder-val="{{ false }}"><span class="pg-c-n">{{ i.note }}</span></sc-if>
+                  <span class="pg-c-act">
+                    <span class="pg-c-p">{{ i.price }}</span>
+                    <sc-for list="{{ i.links }}" as="l" hint-placeholder-count="1">
+                      <a class="pg-c-a" href="{{ l.url }}" target="{{ l.target }}" rel="noopener"><span class="pg-c-full">{{ l.label }}</span><span class="pg-c-short">{{ l.short }}</span></a>
+                    </sc-for>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+
+    <sc-if value="{{ isFull }}" hint-placeholder-val="{{ false }}">
+    <!-- Полное расписание: один список по дням, без фильтров и раскрытия.
+         В начале дня — маркеты; дальше по времени группы (конференция, вечер, лекторий) с одной кнопкой под группой;
+         повторяющиеся (экскурсии, подбор образа) — отдельными блоками со слотами времени ниже -->
+    <div class="fs" id="schedule">
+      <sc-for list="{{ fullDays }}" as="d" hint-placeholder-count="4">
+        <div class="fs-day">
+          <div class="fs-day-h"><span class="fs-dn">{{ d.dayNum }}</span><span class="fs-dl">{{ d.label }}</span></div>
+
+          <sc-for list="{{ d.markets }}" as="mk" hint-placeholder-count="1">
+            <div class="fs-mk" style="{{ mk.stripe }}">
+              <div class="fs-top"><span class="pg-vpill pg-vpill-s" style="{{ mk.pill }}">{{ mk.venue }}</span><span class="fs-time">{{ mk.hours }}</span><span class="fs-price">{{ mk.price }}</span></div>
+              <span class="fs-t">{{ mk.title }}</span>
+              <p class="fs-d">{{ mk.text }}</p>
+              <sc-if value="{{ mk.hasUrl }}" hint-placeholder-val="{{ false }}">
+                <a class="fs-btn" href="{{ mk.url }}" target="_blank" rel="noopener">{{ mk.cta }} →</a>
+              </sc-if>
+            </div>
+          </sc-for>
+
+          <sc-for list="{{ d.groups }}" as="g" hint-placeholder-count="1">
+            <div class="fs-g" style="{{ g.stripe }}">
+              <div class="fs-top"><span class="pg-vpill pg-vpill-s" style="{{ g.pill }}">{{ g.venue }}</span><span class="fs-time">{{ g.span }}</span><span class="fs-price">{{ g.price }}</span></div>
+              <span class="fs-gt">{{ g.title }}</span>
+              <sc-if value="{{ g.hasLead }}" hint-placeholder-val="{{ false }}">
+                <p class="fs-lead">{{ g.lead }}</p>
+              </sc-if>
+              <div class="fs-rows">
+                <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="3">
+                  <div class="fs-r">
+                    <span class="fs-r-time">{{ r.range }}</span>
+                    <div class="fs-r-body">
+                      <sc-if value="{{ r.hasKicker }}" hint-placeholder-val="{{ false }}"><span class="fs-k">{{ r.kicker }}</span></sc-if>
+                      <sc-if value="{{ r.title }}" hint-placeholder-val="{{ true }}"><span class="fs-t">{{ r.title }}</span></sc-if>
+                      <sc-if value="{{ r.hasSpeaker }}" hint-placeholder-val="{{ false }}"><span class="fs-sp">{{ r.speaker }}</span></sc-if>
+                      <sc-if value="{{ r.hasText }}" hint-placeholder-val="{{ true }}"><p class="fs-d">{{ r.text }}</p></sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div class="fs-g-a">
+                <a class="fv-btn fv-btn-milk" href="{{ g.url }}" target="_blank" rel="noopener">{{ g.cta }} →</a>
+                <sc-if value="{{ g.hasPage }}" hint-placeholder-val="{{ false }}">
+                  <a class="fv-link fv-link-light" href="{{ g.page }}">Подробнее →</a>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ d.hasRepeats }}" hint-placeholder-val="{{ false }}">
+            <a class="fs-also" href="#sessions">{{ d.repeatsNote }} ↓</a>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <!-- Повторяющиеся события: сеансы по дням, каждая кнопка — своя форма билета -->
+      <div id="sessions" class="fs-reps">
+        <sc-for list="{{ repeats }}" as="rp" hint-placeholder-count="2">
+          <div class="fs-rep" style="{{ rp.stripe }}">
+            <div class="fs-top"><span class="pg-vpill pg-vpill-s" style="{{ rp.pill }}">{{ rp.venue }}</span><span class="fs-time">{{ rp.when }}</span><span class="fs-price">{{ rp.price }}</span></div>
+            <span class="fs-gt">{{ rp.title }}</span>
+            <p class="fs-d">{{ rp.text }}</p>
+            <span class="fs-k">Выберите время · {{ rp.note }}</span>
+            <sc-for list="{{ rp.days }}" as="rd" hint-placeholder-count="3">
+              <div class="fs-sl-row">
+                <span class="fs-sl-d">{{ rd.label }}</span>
+                <span class="fs-sl-list">
+                  <sc-for list="{{ rd.slots }}" as="sl" hint-placeholder-count="4">
+                    <sc-if value="{{ sl.open }}" hint-placeholder-val="{{ true }}">
+                      <a class="fs-sl" href="{{ sl.url }}" target="_blank" rel="noopener">{{ sl.time }}</a>
+                    </sc-if>
+                    <sc-if value="{{ sl.sold }}" hint-placeholder-val="{{ false }}">
+                      <span class="fs-sl fs-sl-sold" title="Мест нет" aria-label="{{ sl.time }} — мест нет">{{ sl.time }}</span>
+                    </sc-if>
+                  </sc-for>
+                  <sc-if value="{{ rd.empty }}" hint-placeholder-val="{{ false }}"><span class="fs-sl-none">время уточняется</span></sc-if>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+    <sc-if value="{{ isTable }}" hint-placeholder-val="{{ true }}">
+      <div class="pg-more-row">
+        <a class="fv-btn fv-btn-milk" href="Расписание форума.dc.html">Смотреть полное расписание →</a>
+        <span class="pg-more-note">Все события по дням и времени, сеансы экскурсий, подбора образа и битвы образов</span>
+      </div>
+    </sc-if>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;view&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;table&quot;,&quot;full&quot;],&quot;default&quot;:&quot;table&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+// Программа форума — общий компонент: все данные программы (билеты, цены, сеансы, ссылки) правятся ТОЛЬКО здесь.
+// view="table" — таблица «дни × площадки» и кнопка «Смотреть полное расписание» (страница форума);
+// view="full"  — таблица и полное расписание по дням с сеансами (страница «Расписание форума»).
+const PROGRAM_CSS = `.fv-h2 { margin: 0; font: 900 clamp(32px, 4vw, 56px)/1.06 'Playfair Display', serif; letter-spacing: -0.02em; }
+.fv-btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 32px; font: 500 15px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+.fv-btn-milk { background: #FFFBF7; color: #5B0207; }
+.fv-btn-milk:hover { background: #E8C9A0; color: #5B0207; }
+.fv-link { font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #5B0207; padding-bottom: 5px; border-bottom: 1px solid currentColor; }
+.fv-link:hover { color: #A0060E; }
+.fv-link-light { color: #F3E7D8; }
+.fv-link-light:hover { color: #D8F32A; }
+.pg-more-row { display: flex; align-items: center; gap: 14px 28px; flex-wrap: wrap; }
+.pg-more-note { font-size: 15px; line-height: 1.5; color: #E8C9A0; max-width: 46ch; }
+.pg-grid { display: grid; grid-template-columns: 110px minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1.25fr); gap: 6px; }
+.pg-grid-ms { display: none; flex-direction: column; gap: 28px; }
+.pg-c { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-height: 76px; padding: 12px 16px; border: 1px solid rgba(243,231,216,0.3); }
+.pg-c[data-k="head"], .pg-c[data-k="corner"] { border: none; padding: 0 0 4px; min-height: 0; justify-content: flex-end; gap: 6px; }
+.pg-c[data-k="corner"] { font: 500 12px/1 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #E8C9A0; }
+.pg-c[data-k="day"] { justify-content: center; gap: 4px; }
+.pg-c[data-k="off"] { border-style: dashed; opacity: 0.4; }
+.pg-c[data-k="ev"], .pg-c[data-k="daily"] { border-left-width: 5px; }
+.pg-c[data-k="daily"] { justify-content: flex-start; background: rgba(255,251,247,0.05); }
+.pg-c-hrs { font: 600 18px/1 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; }
+.pg-c-dn { font: 600 28px/1 'Oswald', sans-serif; color: #D8F32A; }
+.pg-c-dw { font: 500 11px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #E8C9A0; }
+.pg-c-lab { font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #D8F32A; }
+.pg-c-it { display: flex; flex-direction: column; gap: 3px; }
+.pg-c-t { font: 500 15px/1.25 'Oswald', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #FFFBF7; }
+.pg-c-n { font-size: 12px; line-height: 1.35; color: #E8C9A0; }
+.pg-c-act { display: flex; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
+.pg-c-p { font: 600 14px/1.2 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; white-space: nowrap; }
+.pg-c-a { font: 500 12px/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #FFFBF7; border-bottom: 1px solid rgba(255,251,247,0.6); padding-bottom: 2px; white-space: nowrap; }
+.pg-c-short { display: none; }
+.pg-c-a:hover { color: #D8F32A; border-color: #D8F32A; }
+.fs { display: flex; flex-direction: column; gap: clamp(36px, 5vw, 56px); padding-top: clamp(16px, 2vw, 24px); }
+.fs-title { margin: 0; font: 900 clamp(28px, 3.4vw, 44px)/1.1 'Playfair Display', serif; letter-spacing: -0.02em; color: #FFFBF7; }
+.fs-day { display: flex; flex-direction: column; gap: 12px; }
+.fs-day-h { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(243,231,216,0.4); }
+.fs-dn { font: 600 44px/1 'Oswald', sans-serif; color: #D8F32A; }
+.fs-dl { font: 500 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #F3E7D8; }
+.fs-mk, .fs-g, .fs-rep { display: flex; flex-direction: column; gap: 8px; padding: clamp(16px, 2vw, 22px) clamp(16px, 2.2vw, 26px); border: 1px solid rgba(243,231,216,0.25); border-left-width: 5px; }
+.fs-mk { background: rgba(255,251,247,0.06); }
+.fs-g, .fs-rep { background: #F3E7D8; color: #5B0207; border-color: #F3E7D8; }
+.fs-top { display: flex; align-items: center; gap: 6px 14px; flex-wrap: wrap; }
+.fs-time { font: 600 15px/1 'Oswald', sans-serif; letter-spacing: 0.04em; }
+.fs-price { font: 600 15px/1 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; }
+.fs-g .fs-price, .fs-rep .fs-price { color: #A0060E; }
+.fs-t { font: 500 18px/1.25 'Oswald', sans-serif; letter-spacing: 0.03em; text-transform: uppercase; }
+.fs-gt { font: 900 clamp(22px, 2.4vw, 30px)/1.12 'Playfair Display', serif; letter-spacing: -0.01em; }
+.fs-lead { margin: 0; font-size: 15px; line-height: 1.5; font-style: italic; opacity: 0.85; max-width: 70ch; }
+.fs-d { margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.9; max-width: 75ch; }
+.fs-mk .fs-d { color: #F3E7D8; }
+.fs-k { font: 500 12px/1.3 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #A0060E; }
+.fs-sp { font-size: 14px; line-height: 1.4; font-weight: 500; }
+.fs-rows { display: flex; flex-direction: column; margin-top: 6px; }
+.fs-r { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 4px 20px; padding: 14px 0; border-top: 1px solid rgba(91,2,7,0.18); }
+.fs-r-time { font: 600 18px/1.2 'Oswald', sans-serif; letter-spacing: 0.02em; }
+.fs-r-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fs-g-a { display: flex; align-items: center; gap: 14px 28px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid rgba(91,2,7,0.18); }
+.fs-g .fv-btn-milk, .fs-rep .fv-btn-milk { background: #5B0207; color: #FFFBF7; }
+.fs-g .fv-btn-milk:hover { background: #A0060E; color: #FFFBF7; }
+.fs-g .fv-link-light { color: #5B0207; }
+.fs-btn { align-self: flex-start; margin-top: 4px; display: inline-flex; padding: 12px 18px; background: #FFFBF7; color: #5B0207; font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+.fs-btn:hover { background: #E8C9A0; color: #5B0207; }
+.fs-also { align-self: flex-start; font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #E8C9A0; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+.fs-also:hover { color: #D8F32A; }
+.fs-reps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 14px; scroll-margin-top: 90px; }
+.fs-sl-row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 14px; align-items: center; padding: 10px 0; border-top: 1px solid rgba(91,2,7,0.18); }
+.fs-sl-d { font: 500 14px/1.2 'Oswald', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+.fs-sl-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.fs-sl { display: inline-flex; padding: 9px 12px; background: #5B0207; color: #FFFBF7; font: 500 14px/1 'Oswald', sans-serif; letter-spacing: 0.04em; }
+.fs-sl:hover { background: #A0060E; color: #FFFBF7; }
+.fs-sl-sold, .fs-sl-sold:hover { background: transparent; color: rgba(91,2,7,0.4); border: 1px solid rgba(91,2,7,0.25); text-decoration: line-through; cursor: default; }
+.fs-sl-none { font-size: 14px; opacity: 0.6; }
+@media (max-width: 760px) {
+  .fs-dn { font-size: 34px; }
+  .fs-dl { font-size: 14px; }
+  .fs-r { grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 12px 0; }
+  .fs-r-time { font-size: 15px; color: #A0060E; }
+  .fs-t { font-size: 16px; }
+  .fs-d, .fs-lead { font-size: 14px; }
+  .fs-sl-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .fs-sl-list { gap: 5px; }
+  .fs-sl { padding: 9px 7px; font-size: 13px; letter-spacing: 0.02em; }
+}
+@media (max-width: 760px) {
+  .pg-grid-d { display: none; }
+  .pg-grid-ms { display: flex; }
+  .pg-grid { gap: 4px; }
+  .pg-c { padding: 10px 10px; min-height: 64px; gap: 8px; }
+  .pg-c[data-k="head"] { flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; padding: 0 0 6px; }
+  .pg-c[data-k="head"] .pg-vpill { font-size: 12px; padding: 7px 10px; }
+  .pg-c[data-k="ev"], .pg-c[data-k="daily"] { border-left-width: 4px; }
+  .pg-c[data-k="day"] { padding: 6px 2px; align-items: center; }
+  .pg-c-hrs { font-size: 16px; }
+  .pg-c-dn { font-size: 24px; }
+  .pg-c-dw { font-size: 10px; }
+  .pg-c-lab { font-size: 11px; letter-spacing: 0.12em; }
+  .pg-c-t { font-size: 14px; letter-spacing: 0.03em; overflow-wrap: anywhere; }
+  .pg-c-n { font-size: 12px; }
+  .pg-c-act { gap: 2px 10px; }
+  .pg-c-p { font-size: 13px; white-space: normal; }
+  .pg-c-a { font-size: 12px; letter-spacing: 0.06em; white-space: normal; }
+  .pg-c-full { display: none; }
+  .pg-c-short { display: inline; }
+}
+.pg-vpill { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; padding: 7px 12px; font: 500 12px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+.pg-vpill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pg-vpill-s { padding: 5px 9px; font-size: 11px; letter-spacing: 0.1em; }
+`;
+
+const RADARIO_EVENING_URL = 'https://goj.radario.ru/events/2889660/tickets';
+
+// ===== Билеты =====
+// Регистрация идёт не на каждое мероприятие, а на событие дня на конкретной площадке: один билет = одна ссылка.
+// Мероприятия в EVENTS ссылаются на билет полем ticket.
+//   id — код билета; days — дни (['23'] или ['23', '24', '25']); venue — площадка
+//   title — полное название; short — короткое, для таблицы «дни × площадки»; includes — что входит, одной фразой
+//   price — подпись цены ('Бесплатно', 'от 2 500 ₽'); paid — true для платного (кнопка «Купить билет»)
+//   url — ссылка на регистрацию или покупку; null — вход свободный, без регистрации (кнопки нет); cta — необязательно, свой текст кнопки; page — необязательно, страница с подробностями
+const ALL_EVENTS_URL = 'https://radario.ru/customer/afisha/0749550d376154a2aa0c90fff47bbc91bf06b4380190cc3?widgetSettingId=2814';
+const STYLIST_URL = 'https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810';
+const TICKETS = [
+  { id: 'conf', days: ['22'], venue: 'futura', title: 'Конференция индустрии моды', short: 'Конференция', note: '4 акта, мини-показы, стратегическая сессия', price: '2 500 ₽', paid: true, includes: 'Четыре акта деловой программы, мини-показы локальных брендов, стратегическая сессия и нетворкинг.', url: 'https://goj.radario.ru/events/2889579/tickets' },
+  { id: 'evening', days: ['23'], venue: 'futura', title: 'Закрытый fashion-вечер', short: 'Fashion-вечер', note: 'звёздный гость — Владислав Лисовец', price: '5 000–11 000 ₽', paid: true, includes: 'Звёздный гость Владислав Лисовец, три показа нижегородских брендов, дизайн-маркет, выставка и фуршет.', url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
+  { id: 'fut24', days: ['24'], venue: 'futura', title: 'Лекторий «Мода говорит»', short: 'Лекторий «Мода говорит»', note: 'лекции каждый час', price: '0 ₽', includes: 'Публичная программа форума: лекции каждый час.', url: 'https://goj.radario.ru/events/2889689/tickets' },
+  { id: 'fmarket', days: ['22', '24'], venue: 'futura', title: 'Дизайн-маркет ведущих брендов', short: 'Дизайн-маркет', price: '0 ₽', includes: '11:00–21:00. Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', url: null },
+  { id: 'fexpo', days: ['22', '24'], venue: 'futura', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', short: 'Выставка', price: '0 ₽', includes: '11:00–21:00. Выставка нижегородской моды.', url: null },
+  { id: 'da23', days: ['23'], venue: 'da', title: 'Маркет локальных брендов. Открытие', short: 'Маркет', price: '0 ₽', includes: 'Первый день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2886570/tickets' },
+  { id: 'da24', days: ['24'], venue: 'da', title: 'Маркет локальных брендов. 2-й день', short: 'Маркет', price: '0 ₽', includes: 'Второй день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887643/tickets' },
+  { id: 'da25', days: ['25'], venue: 'da', title: 'Маркет локальных брендов. 3-й день', short: 'Маркет', price: '0 ₽', includes: 'Третий день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887989/tickets' },
+  { id: 'battle', days: ['23', '24', '25'], venue: 'da', title: 'Битва образов', short: 'Битва образов', price: '0 ₽', includes: 'Активность на маркете в Доме архитектора. Одна регистрация на все сеансы.', url: 'https://goj.radario.ru/events/2894053/tickets' },
+  { id: 'tour', days: ['23', '24', '25'], venue: 'da', title: 'Экскурсия', short: 'Экскурсия', price: '500 ₽', paid: true, includes: 'Экскурсия в рамках форума.', url: ALL_EVENTS_URL }, // TODO: своя ссылка на экскурсию
+  { id: 'style', days: ['23', '24', '25'], venue: 'da', title: 'Подбор образа от топовых стилистов', short: 'Подбор образа', note: 'запись на конкретное время', price: '2 500 ₽', paid: true, cta: 'Выбрать время', includes: 'Стилист подберёт образ под вашу задачу. Запись на конкретное время, отдельно от входа на маркет.', url: STYLIST_URL },
+];
+
+// ===== Таблица программы =====
+// Колонки: col — с какой колонки начинается площадка, cols — сколько колонок занимает.
+// byDay — события конкретного дня (по ячейке на день); daily — то, что идёт все дни: одна объединённая ячейка на days.
+// Маркет Дома архитектора — регистрация на каждый день отдельно (dayTickets → ссылки «23 окт», «24 окт», «25 окт»).
+const GRID = [
+  { venue: 'futura', col: 2, cols: 2, byDay: ['conf', 'evening', 'fut24'], daily: { days: ['22', '24'], label: 'Каждый день', items: ['fmarket', 'fexpo'] } },
+  { venue: 'da', col: 4, cols: 1, daily: { days: ['23', '24', '25'], label: 'Каждый день', items: [{ title: 'Маркет', price: '0 ₽', dayTickets: ['da23', 'da24', 'da25'] }, 'battle', 'tour', 'style'] } },
+];
+
+// ===== Полное расписание =====
+// Маркеты — в начале каждого дня (tickets — регистрация на конкретный день).
+const DAY_MARKETS = [
+  { venue: 'futura', days: ['22', '24'], title: 'Дизайн-маркет ведущих брендов', price: 'Бесплатная регистрация',
+    text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.' },
+  { venue: 'futura', days: ['22', '24'], title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', price: 'Бесплатная регистрация',
+    text: 'Выставка нижегородской моды.' },
+  { venue: 'da', days: ['23', '24', '25'], title: 'Маркет локальных брендов', price: '0 ₽', tickets: { '23': 'da23', '24': 'da24', '25': 'da25' },
+    text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.' },
+];
+// Группы по времени: строки из EVENTS с этим ticket, одна кнопка под группой.
+const SCHEDULE_GROUPS = ['conf', 'evening', 'fut24'];
+const GROUP_LEADS = { conf: 'Талантов достаточно. Индустрии — нет. Четыре акта: в каждом разбираем одно звено цепочки от дизайнера до покупателя.' };
+// Повторяющиеся события: сеансы. url — ссылка на билет именно на этот сеанс (конкретная форма, не общий список).
+// Пример: { day: '23', time: '13:00', url: 'https://goj.radario.ru/events/<id>/tickets' }
+// Сеансы по 1 часу. Проданный сеанс: добавить в SOLD_OUT строку 'id день время' — кнопка станет бледной и некликабельной. TODO: ссылки на каждый сеанс — пока кнопки ведут на общую ссылку события (url билета)
+const slots = (day, times) => times.map(time => ({ day, time }));
+const SESSIONS = {
+  tour: [...slots('23', ['13:00', '15:00', '17:00']), ...slots('24', ['13:00', '15:00', '17:00']), ...slots('25', ['13:00', '15:00', '17:00'])],
+  battle: [...slots('23', ['14:30', '16:30']), ...slots('24', ['14:30', '16:30']), ...slots('25', ['14:30', '16:30'])],
+  style: [...slots('23', ['14:00', '15:00', '16:00', '17:00']), ...slots('24', ['13:00', '14:00', '15:00', '16:00', '17:00']), ...slots('25', ['13:00', '14:00', '15:00', '16:00', '17:00'])],
+};
+const SOLD_OUT = [
+  'tour 23 13:00',
+];
+Object.entries(SESSIONS).forEach(([id, list]) => list.forEach(s => { if (SOLD_OUT.includes(`${id} ${s.day} ${s.time}`)) s.sold = true; }));
+const SESSION_NOTE = 'Сеанс — 1 час.';
+const SESSION_NOTES = { battle: 'сеанс — 30 минут' }; // своя длительность, если не 1 час
+const listRu = (a) => a.length > 1 ? `${a.slice(0, -1).join(', ')} и ${a[a.length - 1]}` : a.join('');
+const WEEKDAY_FULL = { чт: 'четверг', пт: 'пятница', сб: 'суббота', вс: 'воскресенье' };
+
+// ===== Программа =====
+// Как заполнять: добавить объект в EVENTS (порядок не важен, лента сама расставит по времени).
+//   day    — id дня из DAYS ('22', '23', '24', '25')
+//   venue  — id площадки из VENUES ('futura' или 'da')
+//   start, end — время «от и до», формат 'ЧЧ:ММ'
+//   kind   — вид мероприятия: 'Лекция', 'Мастер-класс', 'Показ', 'Дискуссия', 'Выставка', 'Маркет', 'Нетворкинг', 'Вечер' (можно и свой; необязательно)
+//   speaker — спикер (для лекции) или ведущий (для мастер-класса), через запятую если несколько; необязательно
+//   title  — название; text — короткое описание; lead — необязательно, вводная фраза курсивом; kicker — необязательно, надпись над названием («Акт первый»)
+//   tags   — необязательно, список тегов, например ['Производство', 'Кадры']
+//   ticket — id билета из TICKETS, в который входит мероприятие (кнопка в карточке ведёт на ссылку билета)
+//   page   — необязательно, ссылка на страницу с подробностями
+// ВНИМАНИЕ: время маркета, подбора образа и программы 24 октября — заглушки, уточнить.
+const VENUES = [
+  // pill — цвет метки площадки: везде, где упоминается площадка (таблица, билеты, карточки), одна и та же метка
+  { id: 'futura', name: 'Галерея Futuro', short: 'Futuro', hours: '11:00–21:00', pillBg: '#2E0A0C', pillFg: '#D8F32A', stripe: '#D8F32A' },
+  { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', hours: '12:00–20:00', pillBg: '#A0060E', pillFg: '#FFFBF7', stripe: '#A0060E' },
+];
+
+const DAYS = [
+  { id: '22', label: '22 октября', weekday: 'чт', venues: ['futura'], intro: {
+      kicker: 'Деловая программа',
+      title: 'Талантов достаточно. Индустрии — нет.',
+      paragraphs: [
+        'В Нижегородской области работает около 200 локальных брендов одежды, украшений и обуви. Но между дизайнером и покупателем не хватает производства, кадров и каналов сбыта.',
+        'Конференция индустрии — публичная профессиональная диагностика этих разрывов. Открывает её неудобный вопрос: почему Нижний не станет столицей моды? Дальше — четыре акта, в каждом разбираем одно звено цепочки.',
+      ],
+      facts: [] } },
+  { id: '23', label: '23 октября', weekday: 'пт', venues: ['da', 'futura'] },
+  { id: '24', label: '24 октября', weekday: 'сб', venues: ['futura', 'da'] },
+  { id: '25', label: '25 октября', weekday: 'вс', venues: ['da'] },
+];
+
+const EVENTS = [
+  // 22 октября · Галерея Futuro · деловая программа
+  { day: '22', venue: 'futura', start: '11:50', end: '12:55', kicker: 'Акт первый', title: '«Негде шить и некому шить»', kind: 'Лекция', speaker: 'Юлия Шинкарёва, Григорий Хромов, Антон Гуреев', tags: ['Производство', 'Кадры'], ticket: 'conf',
+    lead: 'В регионе почти нет производств, готовых работать с малыми партиями, а технологов, конструкторов и швей не хватает.',
+    text: 'Малые партии, загрузка и себестоимость цехов; образование, стажировки и как связать учебные программы с реальным бизнесом.' },
+  { day: '22', venue: 'futura', start: '12:55', end: '13:10', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Короткая визуальная пауза между блоками.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '13:10', end: '14:15', kicker: 'Акт второй', title: '«Красиво. Дорого. Неприбыльно?»', kind: 'Лекция', speaker: 'Сергей Левин, Екатерина Булгакова, Николай Константинов, Елена Селина', tags: ['Экономика бренда', 'Дистрибуция'], ticket: 'conf',
+    lead: 'У брендов есть эстетика, но чаще нет бизнес-модели. Pop-up работает как событие, но редко как канал продаж.',
+    text: 'Себестоимость и ассортимент, ритейл и маркетплейсы, масштабирование и выход за пределы региона.' },
+  { day: '22', venue: 'futura', start: '14:15', end: '14:55', title: 'Обед и нетворкинг', kind: 'Нетворкинг', text: 'Выставка изделий локальных брендов, знакомства участников.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '14:55', end: '15:20', title: 'Презентация сайта-каталога «Модный Нижний»', kind: 'Лекция', text: 'Единая цифровая витрина локальных брендов: увидел офлайн → нашёл онлайн.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '15:20', end: '16:20', kicker: 'Акт третий', title: '«Если о тебе не говорят — ты не индустрия»', kind: 'Лекция', speaker: 'Юрате Гураускайте, Георгий Ростовщиков, Яна Аверьянова', tags: ['Идентичность', 'Медиа'], ticket: 'conf',
+    lead: 'Модный код города не сформулирован и не стал коммерческим преимуществом, а бренды почти не попадают в федеральную повестку.',
+    text: 'Современный код Нижнего, позиционирование, репутация и культурная ценность регионального бренда.' },
+  { day: '22', venue: 'futura', start: '16:20', end: '16:35', title: 'Мини-показ локального бренда', kind: 'Показ', text: 'Продолжение разговора о визуальном коде региона.', ticket: 'conf' },
+  { day: '22', venue: 'futura', start: '16:35', end: '17:40', kicker: 'Акт четвёртый', title: '«Мода сама не вырастет»', kind: 'Лекция', speaker: 'Ольга Никитина, Олег Беркович, Максим Черкасов', tags: ['Институты', 'Инфраструктура'], ticket: 'conf',
+    lead: 'Мода воспринимается как культура, а не как отрасль экономики, — и выпадает из мер поддержки и статистики.',
+    text: 'Системные решения и поддержка, туризм, образование и постоянные каналы продаж.' },
+  { day: '22', venue: 'futura', start: '17:40', end: '18:10', kicker: 'Финальная сессия', title: 'Стратегическая сессия: 10 условий для Нижнего', kind: 'Дискуссия', tags: ['Дорожная карта 2036'], ticket: 'conf',
+    lead: 'Что должно измениться, чтобы Нижний Новгород стал одним из центров российской fashion-индустрии к 2036 году?',
+    text: 'Спикеры четырёх актов сводят выводы дня в 10 конкретных условий — основу публичной дорожной карты развития отрасли.' },
+  { day: '22', venue: 'futura', start: '18:10', end: '18:30', title: 'Итоги дня', text: 'Знакомство с брендами продолжается на сайте-каталоге.', ticket: 'conf' },
+
+  // 23 октября · Futuro · закрытый вечер — отдельное платное мероприятие
+  { day: '23', venue: 'futura', start: '17:00', end: '21:00', title: 'Закрытый fashion-вечер', kind: 'Вечер', text: 'Звёздный гость — Владислав Лисовец, лекция «Умный гардероб: тренды, культура и локальная мода». Три показа нижегородских брендов, дизайн-маркет, выставка, общение и фуршет. Вход по билетам.', speaker: 'Владислав Лисовец', ticket: 'evening', page: 'Закрытый вечер.dc.html' },
+  // 24 октября · Futuro · лекторий «Мода говорит»; 22 и 24 · Futuro · дизайн-маркет и выставка, вход свободный (23-го в Futuro только закрытый вечер)
+  // 24 октября · Futuro · лекторий «Мода говорит»: лекции каждый час. TODO: реальные темы и лекторы
+  { day: '24', venue: 'futura', start: '12:00', end: '13:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '13:00', end: '14:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '14:00', end: '15:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '15:00', end: '16:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '16:00', end: '17:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '17:00', end: '18:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '18:00', end: '19:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '24', venue: 'futura', start: '19:00', end: '20:00', title: 'Лекция', text: 'Тема и лектор уточняются.', ticket: 'fut24' },
+  { day: '22', venue: 'futura', start: '11:00', end: '21:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', ticket: 'fmarket' },
+  { day: '22', venue: 'futura', start: '11:00', end: '21:00', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', kind: 'Выставка', text: 'Выставка нижегородской моды.', ticket: 'fexpo' },
+  { day: '24', venue: 'futura', start: '11:00', end: '21:00', title: 'Дизайн-маркет ведущих брендов', kind: 'Маркет', text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', ticket: 'fmarket' },
+  { day: '24', venue: 'futura', start: '11:00', end: '21:00', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', kind: 'Выставка', text: 'Выставка нижегородской моды.', ticket: 'fexpo' },
+  // 23–25 октября · Дом архитектора · маркет и подбор образа (время — заглушка)
+  { day: '23', venue: 'da', start: '12:00', end: '20:00', title: 'Маркет локальных брендов. Открытие', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da23' },
+  { day: '24', venue: 'da', start: '12:00', end: '20:00', title: 'Маркет локальных брендов. 2-й день', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da24' },
+  { day: '25', venue: 'da', start: '12:00', end: '20:00', title: 'Маркет локальных брендов. 3-й день', kind: 'Маркет', text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.', ticket: 'da25' },
+];
+
+const toMin = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const venueOf = (id) => VENUES.find(v => v.id === id);
+const ticketOf = (id) => TICKETS.find(t => t.id === id);
+const dayOf = (id) => DAYS.find(d => d.id === id);
+const ticketCta = (t) => t.cta || (t.paid ? 'Купить билет' : 'Зарегистрироваться');
+const pillStyle = (v) => `background: ${v.pillBg}; color: ${v.pillFg}`;
+const stripeStyle = (v) => `border-left-color: ${v.stripe}`;
+const daysLabel = (days) => {
+  if (days.length === 1) return `${days[0]} октября`;
+  const consecutive = days.every((d, i) => i === 0 || +d === +days[i - 1] + 1);
+  return consecutive ? `${days[0]}–${days[days.length - 1]} октября` : `${days.slice(0, -1).join(', ')} и ${days[days.length - 1]} октября`;
+};
+// подряд идущие номера строк → отрезки [[2,3,4], [6]]
+const runsOf = (rows) => rows.reduce((acc, r) => { const last = acc[acc.length - 1]; if (last && r === last[last.length - 1] + 1) last.push(r); else acc.push([r]); return acc; }, []);
+
+
+class Component extends DCLogic {
+  componentDidMount() {
+    // стили программы подключаются один раз на страницу
+    if (!document.getElementById('mn-program-css')) {
+      const st = document.createElement('style');
+      st.id = 'mn-program-css';
+      st.textContent = PROGRAM_CSS;
+      document.head.appendChild(st);
+    }
+  }
+
+  ticketCard(t) {
+    const v = venueOf(t.venue);
+    return {
+      title: t.title, includes: t.includes, url: t.url || '#', hasUrl: t.url !== null, freeEntry: t.url === null, cta: ticketCta(t), price: t.url === null ? '' : (t.price || ''),
+      page: t.page || '', hasPage: !!t.page,
+      venueName: v.name, pill: pillStyle(v), stripe: stripeStyle(v),
+      when: daysLabel(t.days), dayShort: daysLabel(t.days).replace(' октября', ' окт'),
+      meta: t.url === null ? '' : (t.price || ''),
+    };
+  }
+
+  programVals() {
+    const at = (col, row, colSpan = 1, rowSpan = 1) => `grid-column: ${col} / span ${colSpan}; grid-row: ${row} / span ${rowSpan}`;
+    const dayRow = (id) => DAYS.findIndex(d => d.id === id) + 2;
+    const SHORT = { 'Купить билет': 'Купить', 'Зарегистрироваться': 'Записаться', 'Выбрать время': 'Записаться' };
+    const link = (label, url, short) => ({ label, url, short: short || label, target: '_blank' });
+    const item = (t) => ({
+      title: t.short, note: t.note || '', hasNote: !!t.note,
+      price: t.url === null ? 'Бесплатная регистрация' : (t.price || ''),
+      links: t.url === null ? [] : [link(ticketCta(t) + ' →', t.url, (SHORT[ticketCta(t)] || ticketCta(t)) + ' →')].concat(t.page ? [{ label: 'Подробнее', short: 'Подробнее', url: t.page, target: '_self' }] : []),
+    });
+    const dailyItems = (g) => g.daily.items.map(x => x.dayTickets
+      ? { title: x.title, note: '', hasNote: false, price: x.price, links: x.dayTickets.map(ticketOf).map(t => link(`${t.days[0]} окт`, t.url, `${t.days[0]} окт`)) }
+      : item(ticketOf(x)));
+    const blank = { isHead: false, isDay: false, hasLabel: false, label: '', items: [], pill: '', name: '', hours: '', dayNum: '', weekday: '' };
+    const cells = [{ ...blank, kind: 'corner', place: at(1, 1), hasLabel: true, label: 'День' }];
+    // колонки: 2 — события Futuro по дням, 3 — Futuro «каждый день», 4 — Дом архитектора «каждый день»
+    GRID.forEach(g => {
+      const v = venueOf(g.venue);
+      cells.push({ ...blank, kind: 'head', place: at(g.col, 1, g.cols), isHead: true, pill: pillStyle(v), name: v.name, hours: v.hours });
+    });
+    DAYS.forEach(d => cells.push({ ...blank, kind: 'day', place: at(1, dayRow(d.id)), isDay: true, dayNum: d.id, weekday: d.weekday }));
+    GRID.forEach(g => {
+      const v = venueOf(g.venue);
+      const stripe = `; border-left-color: ${v.stripe}`;
+      const covered = new Set();
+      (g.byDay || []).forEach(id => {
+        const t = ticketOf(id);
+        covered.add(t.days[0]);
+        const wide = !(g.daily && g.daily.days.includes(t.days[0]));
+        cells.push({ ...blank, kind: 'ev', place: at(g.col, dayRow(t.days[0]), wide ? g.cols : 1) + stripe, items: [item(t)] });
+      });
+      if (g.daily) {
+        const runs = runsOf(g.daily.days.map(dayRow));
+        const items = dailyItems(g);
+        const dcol = g.byDay ? g.col + 1 : g.col;
+        runs.forEach(r => cells.push({ ...blank, kind: 'daily', place: at(dcol, r[0], 1, r.length) + stripe, hasLabel: true, label: runs.length > 1 ? 'Весь день' : g.daily.label, items }));
+        g.daily.days.forEach(dd => { if (!g.byDay) covered.add(dd); });
+      }
+      // пустые ячейки — дни, когда площадка не работает
+      DAYS.forEach(d => {
+        const inDaily = g.daily && g.daily.days.includes(d.id);
+        if (g.byDay && !covered.has(d.id) && !inDaily) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id), g.cols) });
+        else if (g.byDay && !covered.has(d.id)) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id)) });
+        else if (!g.byDay && !covered.has(d.id)) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id), g.cols) });
+      });
+    });
+
+    // телефон: отдельная таблица на каждую площадку, только её дни
+    const mobileGrids = GRID.map(g => {
+      const v = venueOf(g.venue);
+      const days = DAYS.filter(d => (g.byDay || []).some(id => ticketOf(id).days[0] === d.id) || (g.daily && g.daily.days.includes(d.id)));
+      const row = (id) => days.findIndex(d => d.id === id) + 2;
+      const stripe = `; border-left-color: ${v.stripe}`;
+      const twoCols = !!(g.byDay && g.daily);
+      const mc = [{ ...blank, kind: 'head', place: at(1, 1, twoCols ? 3 : 2), isHead: true, pill: pillStyle(v), name: v.name, hours: v.hours }];
+      days.forEach(d => mc.push({ ...blank, kind: 'day', place: at(1, row(d.id)), isDay: true, dayNum: d.id, weekday: d.weekday }));
+      (g.byDay || []).forEach(id => { const t = ticketOf(id); const wide = twoCols && !g.daily.days.includes(t.days[0]); mc.push({ ...blank, kind: 'ev', place: at(2, row(t.days[0]), wide ? 2 : 1) + stripe, items: [item(t)] }); });
+      if (g.daily) {
+        const runs = runsOf(g.daily.days.map(row));
+        runs.forEach(r => mc.push({ ...blank, kind: 'daily', place: at(twoCols ? 3 : 2, r[0], 1, r.length) + stripe, hasLabel: true, label: runs.length > 1 ? 'Весь день' : g.daily.label, items: dailyItems(g) }));
+      }
+      return { cols: `grid-template-columns: 44px ${twoCols ? 'minmax(0, 1.1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)'}`, cells: mc };
+    });
+
+    return { gridCells: cells, mobileGrids };
+  }
+
+  fullScheduleVals() {
+    const span = (evs) => {
+      if (!evs.length) return '';
+      const f = (v) => `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`;
+      return `${f(Math.min(...evs.map(e => toMin(e.start))))}–${f(Math.max(...evs.map(e => toMin(e.end))))}`;
+    };
+    const vInfo = (id) => { const v = venueOf(id); return { venue: v.name, pill: pillStyle(v), stripe: `border-left-color: ${v.stripe}` }; };
+    const repeatIds = Object.keys(SESSIONS);
+    const fullDays = DAYS.map(d => {
+      const markets = DAY_MARKETS.filter(m => m.days.includes(d.id)).map(m => {
+        const t = m.tickets ? ticketOf(m.tickets[d.id]) : null;
+        return { ...vInfo(m.venue), title: m.title, text: m.text, price: m.price, hours: venueOf(m.venue).hours,
+          hasUrl: !!t, url: t ? t.url : '#', cta: t ? `Регистрация на ${d.id} октября` : '' };
+      });
+      const groups = SCHEDULE_GROUPS
+        .map(id => ({ t: ticketOf(id), evs: EVENTS.filter(e => e.ticket === id && e.day === d.id).sort((a, b) => toMin(a.start) - toMin(b.start)) }))
+        .filter(x => x.evs.length)
+        .sort((a, b) => toMin(a.evs[0].start) - toMin(b.evs[0].start))
+        .map(({ t, evs }) => ({ ...vInfo(t.venue), title: t.title, span: span(evs), price: t.price || '',
+          lead: GROUP_LEADS[t.id] || '', hasLead: !!GROUP_LEADS[t.id],
+          url: t.url, cta: ticketCta(t), page: t.page || '', hasPage: !!t.page,
+          rows: evs.map(e => ({ range: `${e.start}–${e.end}`, title: evs.length === 1 && e.title.toLowerCase() === t.title.toLowerCase() ? '' : e.title, text: e.text || '', hasText: !!e.text,
+            kicker: [e.kind, e.kicker].filter(Boolean).join(' · '), hasKicker: !!(e.kind || e.kicker),
+            speaker: e.speaker ? `${e.speaker.includes(',') ? 'Спикеры' : 'Спикер'}: ${e.speaker}` : '', hasSpeaker: !!e.speaker })) }));
+      const reps = repeatIds.map(ticketOf).filter(t => t.days.includes(d.id));
+      return { dayNum: d.id, label: `октября, ${WEEKDAY_FULL[d.weekday]}`, markets, groups,
+        hasRepeats: reps.length > 0, repeatsNote: `Также в ${venueOf(reps[0] ? reps[0].venue : 'da').name === 'Дом архитектора' ? 'Доме архитектора' : 'галерее Futuro'}: ${listRu(reps.map(t => t.short.toLowerCase()))} — сеансы ниже` };
+    });
+    const repeats = repeatIds.map(id => {
+      const t = ticketOf(id);
+      return { ...vInfo(t.venue), title: t.title, text: t.includes, price: t.price || '', when: daysLabel(t.days), note: SESSION_NOTES[id] || SESSION_NOTE.replace(/\.$/, '').toLowerCase(),
+        days: t.days.map(dd => {
+          const slots = SESSIONS[id].filter(s => s.day === dd).map(s => ({ time: s.time, url: s.url || t.url, sold: !!s.sold, open: !s.sold }));
+          return { label: `${dd} окт, ${dayOf(dd).weekday}`, slots, empty: !slots.length };
+        }) };
+    });
+    return { fullDays, repeats };
+  }
+
+  renderVals() {
+    const full = this.props.view === 'full';
+    return {
+      ...this.programVals(),
+      ...(full ? this.fullScheduleVals() : { fullDays: [], repeats: [] }),
+      isFull: full, isTable: !full,
+      heading: full ? 'Полное расписание форума' : 'Программа форума',
+    };
+  }
+}
+</script>
+</body>
+</html>
