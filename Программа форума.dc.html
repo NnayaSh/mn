@@ -212,6 +212,7 @@ const PROGRAM_CSS = `.fv-h2 { margin: 0; font: 900 clamp(32px, 4vw, 56px)/1.06 '
 .pg-c-p { font: 600 14px/1.2 'Oswald', sans-serif; letter-spacing: 0.04em; color: #D8F32A; white-space: nowrap; }
 .pg-c-a { font: 500 12px/1.2 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #FFFBF7; border-bottom: 1px solid rgba(255,251,247,0.6); padding-bottom: 2px; white-space: nowrap; }
 .pg-c-short { display: none; }
+.pg-c-p:empty, .pg-c-p:has(.sc-interp:empty) { display: none; }
 .pg-c-a:hover { color: #D8F32A; border-color: #D8F32A; }
 .fs { display: flex; flex-direction: column; gap: clamp(36px, 5vw, 56px); padding-top: clamp(16px, 2vw, 24px); }
 .fs-title { margin: 0; font: 900 clamp(28px, 3.4vw, 44px)/1.1 'Playfair Display', serif; letter-spacing: -0.02em; color: #FFFBF7; }
@@ -298,15 +299,17 @@ const RADARIO_EVENING_URL = 'https://goj.radario.ru/events/2889660/tickets';
 //   id — код билета; days — дни (['23'] или ['23', '24', '25']); venue — площадка
 //   title — полное название; short — короткое, для таблицы «дни × площадки»; includes — что входит, одной фразой
 //   price — подпись цены ('Бесплатно', 'от 2 500 ₽'); paid — true для платного (кнопка «Купить билет»)
-//   url — ссылка на регистрацию или покупку; null — вход свободный, без регистрации (кнопки нет); cta — необязательно, свой текст кнопки; page — необязательно, страница с подробностями
+//   url — ссылка на регистрацию или покупку; null — без регистрации (кнопки нет); freeReg — показывать ссылку как «Бесплатная регистрация →»; cta — необязательно, свой текст кнопки; page — необязательно, страница с подробностями
 const ALL_EVENTS_URL = 'https://radario.ru/customer/afisha/0749550d376154a2aa0c90fff47bbc91bf06b4380190cc3?widgetSettingId=2814';
+// Бесплатная регистрация в Futuro 22 и 24 октября — маркет и выставка (у конференции своя ссылка, платные билеты)
+const FUTURO_REG_URL = 'https://goj.radario.ru/events/2889689/tickets';
 const STYLIST_URL = 'https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810';
 const TICKETS = [
   { id: 'conf', days: ['22'], venue: 'futura', title: 'Конференция индустрии моды', short: 'Конференция', note: '4 акта, мини-показы, стратегическая сессия', price: '2 500 ₽', paid: true, includes: 'Четыре акта деловой программы, мини-показы локальных брендов, стратегическая сессия и нетворкинг.', url: 'https://goj.radario.ru/events/2889579/tickets' },
   { id: 'evening', days: ['23'], venue: 'futura', title: 'Закрытый fashion-вечер', short: 'Fashion-вечер', note: 'звёздный гость — Владислав Лисовец', price: '5 000–11 000 ₽', paid: true, includes: 'Звёздный гость Владислав Лисовец, три показа нижегородских брендов, дизайн-маркет, выставка и фуршет.', url: RADARIO_EVENING_URL, page: 'Закрытый вечер.dc.html' },
   { id: 'fut24', days: ['24'], venue: 'futura', title: 'Лекторий «Мода говорит»', short: 'Лекторий «Мода говорит»', note: 'лекции каждый час', price: '0 ₽', includes: 'Публичная программа форума: лекции каждый час.', url: 'https://goj.radario.ru/events/2889689/tickets' },
-  { id: 'fmarket', days: ['22', '24'], venue: 'futura', title: 'Дизайн-маркет ведущих брендов', short: 'Дизайн-маркет', price: '0 ₽', includes: '11:00–21:00. Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', url: null },
-  { id: 'fexpo', days: ['22', '24'], venue: 'futura', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', short: 'Выставка', price: '0 ₽', includes: '11:00–21:00. Выставка нижегородской моды.', url: null },
+  { id: 'fmarket', days: ['22', '24'], venue: 'futura', title: 'Дизайн-маркет ведущих брендов', short: 'Дизайн-маркет', price: '0 ₽', includes: '11:00–21:00. Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.', url: FUTURO_REG_URL, freeReg: true },
+  { id: 'fexpo', days: ['22', '24'], venue: 'futura', title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', short: 'Выставка', price: '0 ₽', includes: '11:00–21:00. Выставка нижегородской моды.', url: FUTURO_REG_URL, freeReg: true },
   { id: 'da23', days: ['23'], venue: 'da', title: 'Маркет локальных брендов. Открытие', short: 'Маркет', price: '0 ₽', includes: 'Первый день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2886570/tickets' },
   { id: 'da24', days: ['24'], venue: 'da', title: 'Маркет локальных брендов. 2-й день', short: 'Маркет', price: '0 ₽', includes: 'Второй день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887643/tickets' },
   { id: 'da25', days: ['25'], venue: 'da', title: 'Маркет локальных брендов. 3-й день', short: 'Маркет', price: '0 ₽', includes: 'Третий день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887989/tickets' },
@@ -327,9 +330,9 @@ const GRID = [
 // ===== Полное расписание =====
 // Маркеты — в начале каждого дня (tickets — регистрация на конкретный день).
 const DAY_MARKETS = [
-  { venue: 'futura', days: ['22', '24'], title: 'Дизайн-маркет ведущих брендов', price: 'Бесплатная регистрация',
+  { venue: 'futura', days: ['22', '24'], title: 'Дизайн-маркет ведущих брендов', price: '0 ₽', url: FUTURO_REG_URL,
     text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.' },
-  { venue: 'futura', days: ['22', '24'], title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', price: 'Бесплатная регистрация',
+  { venue: 'futura', days: ['22', '24'], title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', price: '0 ₽', url: FUTURO_REG_URL,
     text: 'Выставка нижегородской моды.' },
   { venue: 'da', days: ['23', '24', '25'], title: 'Маркет локальных брендов', price: '0 ₽', tickets: { '23': 'da23', '24': 'da24', '25': 'da25' },
     text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.' },
@@ -477,8 +480,8 @@ class Component extends DCLogic {
     const link = (label, url, short) => ({ label, url, short: short || label, target: '_blank' });
     const item = (t) => ({
       title: t.short, note: t.note || '', hasNote: !!t.note,
-      price: t.url === null ? 'Бесплатная регистрация' : (t.price || ''),
-      links: t.url === null ? [] : [link(ticketCta(t) + ' →', t.url, (SHORT[ticketCta(t)] || ticketCta(t)) + ' →')].concat(t.page ? [{ label: 'Подробнее', short: 'Подробнее', url: t.page, target: '_self' }] : []),
+      price: t.freeReg ? '' : (t.url === null ? 'Бесплатная регистрация' : (t.price || '')),
+      links: t.url === null ? [] : t.freeReg ? [link('Бесплатная регистрация →', t.url, 'Регистрация →')] : [link(ticketCta(t) + ' →', t.url, (SHORT[ticketCta(t)] || ticketCta(t)) + ' →')].concat(t.page ? [{ label: 'Подробнее', short: 'Подробнее', url: t.page, target: '_self' }] : []),
     });
     const dailyItems = (g) => g.daily.items.map(x => x.dayTickets
       ? { title: x.title, note: '', hasNote: false, price: x.price, links: x.dayTickets.map(ticketOf).map(t => link(`${t.days[0]} окт`, t.url, `${t.days[0]} окт`)) }
@@ -549,7 +552,7 @@ class Component extends DCLogic {
       const markets = DAY_MARKETS.filter(m => m.days.includes(d.id)).map(m => {
         const t = m.tickets ? ticketOf(m.tickets[d.id]) : null;
         return { ...vInfo(m.venue), title: m.title, text: m.text, price: m.price, hours: venueOf(m.venue).hours,
-          hasUrl: !!t, url: t ? t.url : '#', cta: t ? `Регистрация на ${d.id} октября` : '' };
+          hasUrl: !!(t || m.url), url: t ? t.url : (m.url || '#'), cta: t ? `Регистрация на ${d.id} октября` : 'Бесплатная регистрация' };
       });
       const groups = SCHEDULE_GROUPS
         .map(id => ({ t: ticketOf(id), evs: EVENTS.filter(e => e.ticket === id && e.day === d.id).sort((a, b) => toMin(a.start) - toMin(b.start)) }))
