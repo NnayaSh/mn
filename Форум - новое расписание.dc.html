@@ -890,6 +890,7 @@ const TICKETS = [
   { id: 'da23', days: ['23'], venue: 'da', title: 'Маркет локальных брендов. Открытие', short: 'Маркет', price: '0 ₽', includes: 'Первый день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2886570/tickets' },
   { id: 'da24', days: ['24'], venue: 'da', title: 'Маркет локальных брендов. 2-й день', short: 'Маркет', price: '0 ₽', includes: 'Второй день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887643/tickets' },
   { id: 'da25', days: ['25'], venue: 'da', title: 'Маркет локальных брендов. 3-й день', short: 'Маркет', price: '0 ₽', includes: 'Третий день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887989/tickets' },
+  { id: 'battle', days: ['23', '24', '25'], venue: 'da', title: 'Битва образов', short: 'Битва образов', price: '0 ₽', includes: 'Активность на маркете в Доме архитектора. Одна регистрация на все сеансы.', url: 'https://goj.radario.ru/events/2894053/tickets' },
   { id: 'tour', days: ['23', '24', '25'], venue: 'da', title: 'Экскурсия', short: 'Экскурсия', price: '500 ₽', paid: true, includes: 'Экскурсия в рамках форума.', url: ALL_EVENTS_URL }, // TODO: своя ссылка на экскурсию
   { id: 'style', days: ['23', '24', '25'], venue: 'da', title: 'Подбор образа от топовых стилистов', short: 'Подбор образа', note: 'запись на конкретное время', price: '2 500 ₽', paid: true, cta: 'Выбрать время', includes: 'Стилист подберёт образ под вашу задачу. Запись на конкретное время, отдельно от входа на маркет.', url: STYLIST_URL },
 ];
@@ -900,7 +901,7 @@ const TICKETS = [
 // Маркет Дома архитектора — регистрация на каждый день отдельно (dayTickets → ссылки «23 окт», «24 окт», «25 окт»).
 const GRID = [
   { venue: 'futura', col: 2, cols: 2, byDay: ['conf', 'evening', 'fut24'], daily: { days: ['22', '24'], label: 'Каждый день', items: ['fmarket', 'fexpo'] } },
-  { venue: 'da', col: 4, cols: 1, daily: { days: ['23', '24', '25'], label: 'Каждый день', items: [{ title: 'Маркет', price: '0 ₽', dayTickets: ['da23', 'da24', 'da25'] }, 'tour', 'style'] } },
+  { venue: 'da', col: 4, cols: 1, daily: { days: ['23', '24', '25'], label: 'Каждый день', items: [{ title: 'Маркет', price: '0 ₽', dayTickets: ['da23', 'da24', 'da25'] }, 'battle', 'tour', 'style'] } },
 ];
 
 // ===== Полное расписание =====
@@ -922,6 +923,7 @@ const GROUP_LEADS = { conf: 'Талантов достаточно. Индуст
 const slots = (day, times) => times.map(time => ({ day, time }));
 const SESSIONS = {
   tour: [...slots('23', ['13:00', '15:00', '17:00']), ...slots('24', ['13:00', '15:00', '17:00']), ...slots('25', ['13:00', '15:00', '17:00'])],
+  battle: [...slots('23', ['14:30', '16:30']), ...slots('24', ['14:30', '16:30']), ...slots('25', ['14:30', '16:30'])],
   style: [...slots('23', ['14:00', '15:00', '16:00', '17:00']), ...slots('24', ['13:00', '14:00', '15:00', '16:00', '17:00']), ...slots('25', ['13:00', '14:00', '15:00', '16:00', '17:00'])],
 };
 const SOLD_OUT = [
@@ -929,6 +931,8 @@ const SOLD_OUT = [
 ];
 Object.entries(SESSIONS).forEach(([id, list]) => list.forEach(s => { if (SOLD_OUT.includes(`${id} ${s.day} ${s.time}`)) s.sold = true; }));
 const SESSION_NOTE = 'Сеанс — 1 час.';
+const SESSION_NOTES = { battle: 'сеанс — 30 минут' }; // своя длительность, если не 1 час
+const listRu = (a) => a.length > 1 ? `${a.slice(0, -1).join(', ')} и ${a[a.length - 1]}` : a.join('');
 const WEEKDAY_FULL = { чт: 'четверг', пт: 'пятница', сб: 'суббота', вс: 'воскресенье' };
 
 // ===== Программа =====
@@ -1174,11 +1178,11 @@ class Component extends DCLogic {
             speaker: e.speaker ? `${e.speaker.includes(',') ? 'Спикеры' : 'Спикер'}: ${e.speaker}` : '', hasSpeaker: !!e.speaker })) }));
       const reps = repeatIds.map(ticketOf).filter(t => t.days.includes(d.id));
       return { dayNum: d.id, label: `октября, ${WEEKDAY_FULL[d.weekday]}`, markets, groups,
-        hasRepeats: reps.length > 0, repeatsNote: `Также в ${venueOf(reps[0] ? reps[0].venue : 'da').name === 'Дом архитектора' ? 'Доме архитектора' : 'галерее Futuro'}: ${reps.map(t => t.short.toLowerCase()).join(' и ')} — сеансы ниже` };
+        hasRepeats: reps.length > 0, repeatsNote: `Также в ${venueOf(reps[0] ? reps[0].venue : 'da').name === 'Дом архитектора' ? 'Доме архитектора' : 'галерее Futuro'}: ${listRu(reps.map(t => t.short.toLowerCase()))} — сеансы ниже` };
     });
     const repeats = repeatIds.map(id => {
       const t = ticketOf(id);
-      return { ...vInfo(t.venue), title: t.title, text: t.includes, price: t.price || '', when: daysLabel(t.days), note: SESSION_NOTE.replace(/\.$/, '').toLowerCase(),
+      return { ...vInfo(t.venue), title: t.title, text: t.includes, price: t.price || '', when: daysLabel(t.days), note: SESSION_NOTES[id] || SESSION_NOTE.replace(/\.$/, '').toLowerCase(),
         days: t.days.map(dd => {
           const slots = SESSIONS[id].filter(s => s.day === dd).map(s => ({ time: s.time, url: s.url || t.url, sold: !!s.sold, open: !s.sold }));
           return { label: `${dd} окт, ${dayOf(dd).weekday}`, slots, empty: !slots.length };
