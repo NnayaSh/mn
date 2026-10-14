@@ -74,6 +74,26 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 720px) { .fp-archive-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 @media (max-width: 460px) { .fp-archive-grid { grid-template-columns: 1fr !important; } }
+.fp-sp { display: flex; flex-direction: column; gap: 8px; }
+.fp-sp-name { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.15; }
+.fp-mobile-only { display: none; }
+.fp-bgroup { display: flex; flex-direction: column; gap: 16px; }
+.fp-bgroup-h { display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; }
+.fp-bgroup-t { font: 500 15px/1.2 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #5B0207; }
+.fp-bgroup-n { font-size: 14px; color: #6B4A42; }
+.fp-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 12px; }
+.fp-tags li > span, .fp-tags li > a { display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px 8px 13px; border-radius: 12px; background: #E8D5BF; color: #5B0207; font: 500 clamp(16px, 1.5vw, 20px)/1.15 'Oswald', sans-serif; letter-spacing: 0.01em; transition: transform 0.2s; }
+.fp-tags li > span::before, .fp-tags li > a::before { content: ''; flex: none; width: 0.42em; height: 0.42em; border-radius: 50%; background: currentColor; }
+.fp-tags li:nth-child(5n+2) > * { background: #D8F32A; }
+.fp-tags li:nth-child(7n+3) > * { background: #5B0207; color: #F3E7D8; }
+.fp-tags li > a:hover { transform: translateY(-3px) rotate(-1deg); color: inherit; }
+@media (max-width: 760px) {
+  .fp-speakers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 24px 12px !important; }
+  .fp-speakers-grid[data-open="0"] .fp-sp[data-extra="1"] { display: none; }
+  .fp-sp-name { font-size: 16px; letter-spacing: 0.04em; }
+  .fp-mobile-only { display: block; }
+  .fp-tags { gap: 8px; }
+}
 .fp-speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 32px 20px; }
 .fp-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 14px; }
 .fp-partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 16px 12px; }
@@ -374,9 +394,9 @@ a { color: inherit; text-decoration: none; }
 <section id="about" data-screen-label="О форуме" style="background: #F3E7D8; color: #241012">
   <div class="fv-wrap fv-two">
     <div>
-      <p class="fv-kick">01 · О форуме</p>
+      <p class="fv-kick">О форуме</p>
       <h2 class="fv-h2" style="color: #5B0207; margin-bottom: 28px">Разговор, после которого запускаются коллекции</h2>
-      <img src="uploads/forum-block1.jpg" alt="Участники показа локальных брендов" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+      <img src="uploads/forum-about-image.jpg" alt="Модели в образах нижегородских брендов идут по набережной у Кремля" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 62% 50%; display: block">
     </div>
     <div style="display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.65">
       <p style="margin: 0">Форум собирает тех, кто обычно работает поодиночке: дизайнеров, швейные производства, закупщиков, преподавателей и городские институции. Задача простая — превратить разрозненные усилия в отрасль, у которой есть цепочка от лекала до полки.</p>
@@ -394,25 +414,11 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- Для кого -->
-<section id="audience" data-screen-label="Для кого" style="background: #5B0207; color: #FFFBF7">
-  <div class="fv-wrap">
-    <p class="fv-kick" style="color: #D8F32A">01А · Для кого</p>
-    <h2 class="fv-h2" style="color: #FFFBF7; margin-bottom: clamp(28px, 4vw, 48px)">Кого мы ждём на форуме</h2>
-    <div class="fv-aud">
-      <div><span class="fv-at">Горожане и туристы</span><span class="fv-ad">Для всех, кто интересуется локальной модой.</span></div>
-      <div><span class="fv-at">Профессионалы</span><span class="fv-ad">Бренды, дизайнеры, стилисты, байеры, производства.</span></div>
-      <div><span class="fv-at">Медиа</span><span class="fv-ad">Журналисты, блогеры, городские и федеральные медиа.</span></div>
-      <div><span class="fv-at">Институты</span><span class="fv-ad">Органы власти, институты развития, ВУЗы и СУЗы.</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- Программа -->
 <!-- Посетителям (01Б) -->
 <section class="mn-visitors" id="visitors">
   <div class="v-wrap">
-    <p class="v-eyebrow">01Б · Посетителям</p>
+    <p class="v-eyebrow">Посетителям</p>
     <h2>Здесь вещь можно потрогать, а автора — спросить</h2>
     <p class="v-lead">Маркет форума — это не витрина. Три дня в Доме архитектора больше ста локальных брендов стоят за своими изделиями сами. Вы приходите не в магазин, а в мастерскую города, которая на три дня переехала в центр.</p>
 
@@ -462,7 +468,7 @@ a { color: inherit; text-decoration: none; }
     <div class="v-cta" id="market-reg">
       <div class="v-cta-info">
         <span class="v-stamp">23–25 октября</span>
-        <p class="v-cta-h">Маркет в Доме архитектора. Вход свободный по регистрации</p>
+        <p class="v-cta-h">Маркет в Доме архитектора. Бесплатная регистрация</p>
         <a class="v-link" href="https://radario.ru/customer/afisha/07495503f3e6fa252564a8d7e8ccc9ca38c5a0e2e48e93d?widgetSettingId=2810" target="_blank" rel="noopener">Подбор образа на маркете — расписание →</a>
       </div>
       <div class="v-days">
@@ -511,7 +517,7 @@ a { color: inherit; text-decoration: none; }
   <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px)">
     <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap">
       <div>
-        <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">02 · Программа и билеты</p>
+        <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #D8F32A">Программа и билеты</p>
         <h2 class="fv-h2" style="color: #FFFBF7; max-width: 18ch">Программа форума</h2>
       </div>
       <p style="margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.55; color: #F3E7D8">Две площадки. На каждой — то, что идёт все дни, и отдельные события по дням. Билет или регистрация — на каждое событие свои.</p>
@@ -674,7 +680,6 @@ a { color: inherit; text-decoration: none; }
 <!-- Кто в программе -->
 <section id="lineup" data-screen-label="Кто в программе" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(48px, 6vw, 72px)">
   <div>
-    <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E">03 · Кто в программе</p>
     <h2 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.12">Кто в программе</h2>
   </div>
 
@@ -684,58 +689,48 @@ a { color: inherit; text-decoration: none; }
       <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(22px, 2.4vw, 30px)">Спикеры</h3>
       <span style="font-size: 14px; opacity: 0.7">Список пополняется до 1 октября</span>
     </div>
-    <div class="fp-speakers-grid">
-      <sc-for list="{{ speakersVisible }}" as="s" hint-placeholder-count="8">
-        <div style="display: flex; flex-direction: column; gap: 8px">
+    <div class="fp-speakers-grid" data-open="{{ speakersOpen }}">
+      <sc-for list="{{ speakersAll }}" as="s" hint-placeholder-count="8">
+        <div class="fp-sp" data-extra="{{ s.extra }}">
           <div style="aspect-ratio: 3 / 4; background: #E8C9A0 url(uploads/forum-monogram-vine.svg) center / 30% no-repeat; display: flex; align-items: flex-end; padding: 12px; margin-bottom: 6px">
             <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #5B0207; opacity: 0.75">портрет 3×4</span>
           </div>
           <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #A0060E">{{ s.actLabel }}</span>
-          <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.15">{{ s.name }}</span>
+          <span class="fp-sp-name">{{ s.name }}</span>
           <span style="{{ s.roleStyle }}">{{ s.roleText }}</span>
         </div>
       </sc-for>
     </div>
     <sc-if value="{{ speakersHasMore }}" hint-placeholder-val="{{ true }}">
-      <div style="text-align: right">
+      <div class="fp-mobile-only" style="text-align: right">
         <button onClick="{{ toggleSpeakers }}" style="border: none; border-bottom: 1px solid #5B0207; background: transparent; padding: 0 0 2px; font-size: 14px; color: #5B0207; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #2E0A0C; border-color: #2E0A0C">{{ speakersToggleLabel }}</button>
       </div>
     </sc-if>
   </div>
 
-  <!-- Бренды-участники маркета -->
+  <!-- Бренды-участники: бирки по площадкам (как в кураторском отборе), все сразу -->
   <div style="display: flex; flex-direction: column; gap: 24px">
     <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid rgba(91,2,7,0.3); padding-bottom: 14px">
-      <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(22px, 2.4vw, 30px)">Бренды-участники маркета</h3>
+      <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(22px, 2.4vw, 30px)">Бренды-участники</h3>
       <a href="Каталог.dc.html" style="font-size: 14px; border-bottom: 1px solid #5B0207; padding-bottom: 2px">Все бренды в каталоге →</a>
     </div>
-    <div class="fp-brands-grid">
-      <sc-for list="{{ brandsVisible }}" as="b" hint-placeholder-count="12">
-        <sc-if value="{{ b.hasUrl }}" hint-placeholder-val="{{ false }}">
-          <a href="{{ b.url }}" target="_blank" rel="noopener" style="{{ b.cardStyle }}" style-hover="background: #F7EFE3">
-            <div style="aspect-ratio: 1 / 1; background: #E8C9A0"></div>
-            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
-              <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.2">{{ b.name }}</span>
-              <span style="{{ b.catStyle }}">{{ b.catText }}</span>
-            </div>
-          </a>
-        </sc-if>
-        <sc-if value="{{ b.hasNoUrl }}" hint-placeholder-val="{{ true }}">
-          <div style="{{ b.cardStyle }}">
-            <div style="aspect-ratio: 1 / 1; background: #E8C9A0"></div>
-            <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
-              <span style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: #241012; line-height: 1.2">{{ b.name }}</span>
-              <span style="{{ b.catStyle }}">{{ b.catText }}</span>
-            </div>
-          </div>
-        </sc-if>
-      </sc-for>
-    </div>
-    <sc-if value="{{ brandsHasMore }}" hint-placeholder-val="{{ true }}">
-      <div style="text-align: right">
-        <button onClick="{{ toggleBrands }}" style="border: none; border-bottom: 1px solid #5B0207; background: transparent; padding: 0 0 2px; font-size: 14px; color: #5B0207; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #2E0A0C; border-color: #2E0A0C">{{ brandsToggleLabel }}</button>
+    <sc-for list="{{ brandGroups }}" as="g" hint-placeholder-count="2">
+      <div class="fp-bgroup">
+        <div class="fp-bgroup-h">
+          <span class="pg-vpill" style="{{ g.pill }}">{{ g.venue }}</span>
+          <span class="fp-bgroup-t">{{ g.title }}</span>
+          <span class="fp-bgroup-n">{{ g.count }}</span>
+        </div>
+        <ul class="fp-tags">
+          <sc-for list="{{ g.brands }}" as="b" hint-placeholder-count="12">
+            <li>
+              <sc-if value="{{ b.hasUrl }}" hint-placeholder-val="{{ false }}"><a href="{{ b.url }}" target="{{ b.target }}" rel="noopener">{{ b.name }} ↗</a></sc-if>
+              <sc-if value="{{ b.hasNoUrl }}" hint-placeholder-val="{{ true }}"><span>{{ b.name }}</span></sc-if>
+            </li>
+          </sc-for>
+        </ul>
       </div>
-    </sc-if>
+    </sc-for>
   </div>
 
   <!-- Партнёры -->
@@ -745,25 +740,20 @@ a { color: inherit; text-decoration: none; }
       <a href="О проекте.dc.html#partners" style="font-size: 14px; border-bottom: 1px solid #5B0207; padding-bottom: 2px">Стать партнёром →</a>
     </div>
     <div class="fp-partners-grid">
-      <sc-for list="{{ partnersVisible }}" as="p" hint-placeholder-count="8">
+      <sc-for list="{{ partnersAll }}" as="p" hint-placeholder-count="8">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div style="aspect-ratio: 3 / 2; background: #E8C9A0"></div>
           <span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6">{{ p }}</span>
         </div>
       </sc-for>
     </div>
-    <sc-if value="{{ partnersHasMore }}" hint-placeholder-val="{{ false }}">
-      <div style="text-align: right">
-        <button onClick="{{ togglePartners }}" style="border: none; border-bottom: 1px solid #5B0207; background: transparent; padding: 0 0 2px; font-size: 14px; color: #5B0207; cursor: pointer; font-family: 'IBM Plex Sans', system-ui, sans-serif; transition: color 0.2s, border-color 0.2s" style-hover="color: #2E0A0C; border-color: #2E0A0C">{{ partnersToggleLabel }}</button>
-      </div>
-    </sc-if>
   </div>
 </section>
 
 <!-- Прошлый сезон -->
 <section id="archive" data-screen-label="Прошлый сезон" style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) 32px; display: flex; flex-direction: column; gap: clamp(48px, 6vw, 80px)">
   <div>
-    <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E">05 · Прошлый сезон</p>
+    <p style="margin: 0 0 18px; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #A0060E">Прошлый сезон</p>
     <h2 style="margin: 0 0 clamp(28px, 4vw, 44px); font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.02em; color: #5B0207; font-size: clamp(32px, 4vw, 56px); line-height: 1.06">Как это было в 2025 году</h2>
 
     <div style="margin-bottom: clamp(32px, 4vw, 48px)">
@@ -859,6 +849,20 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
+<!-- Для кого -->
+<section id="audience" data-screen-label="Для кого" style="background: #5B0207; color: #FFFBF7">
+  <div class="fv-wrap">
+    <p class="fv-kick" style="color: #D8F32A">Для кого</p>
+    <h2 class="fv-h2" style="color: #FFFBF7; margin-bottom: clamp(28px, 4vw, 48px)">Кого мы ждём на форуме</h2>
+    <div class="fv-aud">
+      <div><span class="fv-at">Горожане и туристы</span><span class="fv-ad">Для всех, кто интересуется локальной модой.</span></div>
+      <div><span class="fv-at">Профессионалы</span><span class="fv-ad">Бренды, дизайнеры, стилисты, байеры, производства.</span></div>
+      <div><span class="fv-at">Медиа</span><span class="fv-ad">Журналисты, блогеры, городские и федеральные медиа.</span></div>
+      <div><span class="fv-at">Институты</span><span class="fv-ad">Органы власти, институты развития, ВУЗы и СУЗы.</span></div>
+    </div>
+  </div>
+</section>
+
 
 <dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
 
@@ -902,9 +906,9 @@ const GRID = [
 // ===== Полное расписание =====
 // Маркеты — в начале каждого дня (tickets — регистрация на конкретный день).
 const DAY_MARKETS = [
-  { venue: 'futura', days: ['22', '24'], title: 'Дизайн-маркет ведущих брендов', price: 'вход свободный',
+  { venue: 'futura', days: ['22', '24'], title: 'Дизайн-маркет ведущих брендов', price: 'Бесплатная регистрация',
     text: 'Коллекции ведущих нижегородских брендов — можно посмотреть, примерить и купить.' },
-  { venue: 'futura', days: ['22', '24'], title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', price: 'вход свободный',
+  { venue: 'futura', days: ['22', '24'], title: 'Выставка «Как выглядит Нижний, если не печатать кремль на футболке?»', price: 'Бесплатная регистрация',
     text: 'Выставка нижегородской моды.' },
   { venue: 'da', days: ['23', '24', '25'], title: 'Маркет локальных брендов', price: '0 ₽', tickets: { '23': 'da23', '24': 'da24', '25': 'da25' },
     text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.' },
@@ -1040,38 +1044,31 @@ const SPEAKERS = [
   roleStyle: "font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: 0.04em; line-height: 1.4; color: #6B4A42; opacity: " + (role ? 1 : 0.5),
 }));
 
-const BRANDS = [
-  ['Форс', 'Одежда', 'https://modnynn.ru/catalog/fors'],
-  ['Виолетта Лангас', 'Одежда', 'https://modnynn.ru/catalog/violetta-langas'],
-  ['Притяжение', 'Украшения', 'https://modnynn.ru/catalog/prityazhenie'],
-  ['Бурмур', 'Украшения', 'https://modnynn.ru/catalog/burmur'],
-  ['Ниногласс', 'Украшения', ''],
-  ['Sveta Vesta', 'Одежда', 'https://modnynn.ru/catalog/sveta-vesta'],
-  ['Golubka', '', ''],
-  ['Золотая Муха', '', ''],
-  ['Селина', '', ''],
-  ['Наталья Дегтярук', '', ''],
-  ['Единовластие', 'Одежда', 'https://modnynn.ru/catalog/edinovlastie'],
-  ['Lenes', 'Одежда', 'https://modnynn.ru/catalog/lenes'],
-  ['Animartin', 'Одежда', 'https://modnynn.ru/catalog/animartin'],
-  ['Kod', '', ''],
-  ['B&M (Белякова и Мавлянова)', '', ''],
-  ['Живая Нить', '', ''],
-].map(([name, cat, url]) => ({
-  name, url, hasUrl: !!url, hasNoUrl: !url,
-  catText: cat || '',
-  catStyle: "font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6B4A42; opacity: " + (cat ? 1 : 0.5),
-  cardStyle: 'border: 1px solid rgba(91,2,7,0.3); padding: 12px 12px 15px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s',
-}));
+// Бренды-участники по площадкам — из таблицы «Бренды МоНи», вкладка «Форум».
+// Ссылка есть только у брендов с известной страницей (каталог modnynn.ru или страница бренда на сайте).
+const BRAND_LINKS = {
+  'Fors': 'https://modnynn.ru/catalog/fors',
+  'Виолетта Лангас': 'https://modnynn.ru/catalog/violetta-langas',
+  'Притяжение': 'https://modnynn.ru/catalog/prityazhenie',
+  'Burmur': 'https://modnynn.ru/catalog/burmur',
+  'Sveta Vesta': 'https://modnynn.ru/catalog/sveta-vesta',
+  'Единовластие': 'https://modnynn.ru/catalog/edinovlastie',
+  'Lenes': 'https://modnynn.ru/catalog/lenes',
+  'Animartin': 'https://modnynn.ru/catalog/animartin',
+  'Kichka': 'KICHKA.dc.html',
+  'Фекла и Свекла': 'ФЁКЛА И СВЁКЛА.dc.html',
+};
+const BRAND_GROUPS = [
+  { venue: 'futura', title: 'Кураторский отбор · 22 и 24 октября', brands: ["Виолетта Лангас", "Павел Рябинин", "Синика", "Смородина", "Cosareve", "Feelatto", "Jssense", "LanaVille", "Lenes", "Nelly Kruk", "NinoGlass", "Parle", "Rasputai", "Select studio", "Sevingin", "Solobags", "Tiu", "Urban Soul"] },
+  { venue: 'da', title: 'Маркет · 23–25 октября', brands: ["Антик", "Артифакт", "Будь ветром", "Виолетта Лангас", "Горький Детям", "Евгения Ильина", "Единовластие", "Елена Голубка", "Живая нить", "Золотая муха", "Нефея", "Переплет", "Притяжение", "Свой Лук", "Связано", "Селина", "Синика", "Сияна", "Смородина", "Фекла и Свекла", "Хожу в Русском", "Aitch", "Animartin", "Antezi", "B&M", "Burmur", "Combez.lab", "Ellumi", "Fors", "Honey", "Icon philosophy", "Ira Moroz", "Kichka", "Kod", "LanaVille", "Lenes", "Lesfemmes", "Madmops", "Nelly Kruk", "Nimfa", "Ninoglass", "Parle", "Quartzme", "Rasputai", "Selina мастерская", "Sevingin", "SGveste", "Solo украшения", "Solobags", "Sveta Vesta", "Svetsmi", "Ufomo", "Urban Soul", "Vы’ха", "Vilena"] },
+];
 
 const PARTNERS = ['Генеральный партнёр', 'Партнёр', 'Партнёр', 'Партнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр', 'Инфопартнёр'];
 
-const SPEAKERS_STEP = 8;
-const BRANDS_STEP = 12;
-const PARTNERS_STEP = 8;
+const SPEAKERS_MOBILE = 6; // на телефоне сначала показываем 6 спикеров (3 ряда по 2)
 
 class Component extends DCLogic {
-  state = { speakersExpanded: false, brandsExpanded: false, partnersExpanded: false, day: '22' };
+  state = { speakersExpanded: false };
 
   ticketCard(t) {
     const v = venueOf(t.venue);
@@ -1091,7 +1088,7 @@ class Component extends DCLogic {
     const link = (label, url, short) => ({ label, url, short: short || label, target: '_blank' });
     const item = (t) => ({
       title: t.short, note: t.note || '', hasNote: !!t.note,
-      price: t.url === null ? 'вход свободный' : (t.price || ''),
+      price: t.url === null ? 'Бесплатная регистрация' : (t.price || ''),
       links: t.url === null ? [] : [link(ticketCta(t) + ' →', t.url, (SHORT[ticketCta(t)] || ticketCta(t)) + ' →')].concat(t.page ? [{ label: 'Подробнее', short: 'Подробнее', url: t.page, target: '_self' }] : []),
     });
     const dailyItems = (g) => g.daily.items.map(x => x.dayTickets
@@ -1191,10 +1188,6 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const speakersN = this.state.speakersExpanded ? SPEAKERS.length : SPEAKERS_STEP;
-    const brandsN = this.state.brandsExpanded ? BRANDS.length : BRANDS_STEP;
-    const partnersN = this.state.partnersExpanded ? PARTNERS.length : PARTNERS_STEP;
-
     return {
       ...this.programVals(),
       ...this.fullScheduleVals(),
@@ -1203,20 +1196,19 @@ class Component extends DCLogic {
       hasEveningUrl: !!RADARIO_EVENING_URL,
       noEveningUrl: !RADARIO_EVENING_URL,
 
-      speakersVisible: SPEAKERS.slice(0, speakersN),
-      speakersHasMore: SPEAKERS.length > SPEAKERS_STEP,
+      speakersAll: SPEAKERS.map((sp, i) => ({ ...sp, extra: i >= SPEAKERS_MOBILE ? '1' : '0' })),
+      speakersOpen: this.state.speakersExpanded ? '1' : '0',
+      speakersHasMore: SPEAKERS.length > SPEAKERS_MOBILE,
       speakersToggleLabel: this.state.speakersExpanded ? 'Свернуть' : `Показать всех спикеров (${SPEAKERS.length})`,
       toggleSpeakers: () => this.setState({ speakersExpanded: !this.state.speakersExpanded }),
 
-      brandsVisible: BRANDS.slice(0, brandsN),
-      brandsHasMore: BRANDS.length > BRANDS_STEP,
-      brandsToggleLabel: this.state.brandsExpanded ? 'Свернуть' : `Показать все бренды (${BRANDS.length})`,
-      toggleBrands: () => this.setState({ brandsExpanded: !this.state.brandsExpanded }),
+      brandGroups: BRAND_GROUPS.map(g => {
+        const v = VENUES.find(x => x.id === g.venue);
+        return { venue: v.name, pill: `background: ${v.pillBg}; color: ${v.pillFg}`, title: g.title, count: `${g.brands.length} брендов`,
+          brands: g.brands.map(name => { const url = BRAND_LINKS[name] || ''; return { name, url, hasUrl: !!url, hasNoUrl: !url, target: url.startsWith('http') ? '_blank' : '_self' }; }) };
+      }),
 
-      partnersVisible: PARTNERS.slice(0, partnersN),
-      partnersHasMore: PARTNERS.length > PARTNERS_STEP,
-      partnersToggleLabel: this.state.partnersExpanded ? 'Свернуть' : `Показать всех партнёров (${PARTNERS.length})`,
-      togglePartners: () => this.setState({ partnersExpanded: !this.state.partnersExpanded }),
+      partnersAll: PARTNERS,
     };
   }
 }
