@@ -125,12 +125,14 @@
                   </div>
                 </sc-for>
               </div>
+              <sc-if value="{{ g.hasActions }}" hint-placeholder-val="{{ true }}">
               <div class="fs-g-a">
-                <a class="fv-btn fv-btn-milk" href="{{ g.url }}" target="_blank" rel="noopener">{{ g.cta }} →</a>
+                <sc-if value="{{ g.hasUrl }}" hint-placeholder-val="{{ true }}"><a class="fv-btn fv-btn-milk" href="{{ g.url }}" target="_blank" rel="noopener">{{ g.cta }} →</a></sc-if>
                 <sc-if value="{{ g.hasPage }}" hint-placeholder-val="{{ false }}">
                   <a class="fv-link fv-link-light" href="{{ g.page }}">Подробнее →</a>
                 </sc-if>
               </div>
+              </sc-if>
             </div>
           </sc-for>
 
@@ -313,6 +315,7 @@ const TICKETS = [
   { id: 'da23', days: ['23'], venue: 'da', title: 'Маркет локальных брендов. Открытие', short: 'Маркет', price: '0 ₽', includes: 'Первый день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2886570/tickets' },
   { id: 'da24', days: ['24'], venue: 'da', title: 'Маркет локальных брендов. 2-й день', short: 'Маркет', price: '0 ₽', includes: 'Второй день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887643/tickets' },
   { id: 'da25', days: ['25'], venue: 'da', title: 'Маркет локальных брендов. 3-й день', short: 'Маркет', price: '0 ₽', includes: 'Третий день маркета нижегородских брендов в Доме архитектора.', url: 'https://goj.radario.ru/events/2887989/tickets' },
+  { id: 'show', days: ['25'], venue: 'chk', title: 'Финальный показ на Чкаловской лестнице', short: 'Финальный показ', price: 'Бесплатно', includes: 'Показ нижегородских брендов на открытом воздухе — город становится подиумом.', url: null },
   { id: 'battle', days: ['23', '24', '25'], venue: 'da', title: 'Битва образов', short: 'Битва образов', price: '0 ₽', includes: 'Активность на маркете в Доме архитектора. Одна регистрация на все сеансы.', url: 'https://goj.radario.ru/events/2894053/tickets' },
   { id: 'tour', days: ['23', '24', '25'], venue: 'da', title: 'Экскурсия', short: 'Экскурсия', price: '500 ₽', paid: true, includes: 'Экскурсия в рамках форума.', url: ALL_EVENTS_URL }, // TODO: своя ссылка на экскурсию
   { id: 'style', days: ['23', '24', '25'], venue: 'da', title: 'Подбор образа от топовых стилистов', short: 'Подбор образа', note: 'запись на конкретное время', price: '2 500 ₽', paid: true, cta: 'Выбрать время', includes: 'Стилист подберёт образ под вашу задачу. Запись на конкретное время, отдельно от входа на маркет.', url: STYLIST_URL },
@@ -323,7 +326,9 @@ const TICKETS = [
 // byDay — события конкретного дня (по ячейке на день); daily — то, что идёт все дни: одна объединённая ячейка на days.
 // Маркет Дома архитектора — регистрация на каждый день отдельно (dayTickets → ссылки «23 окт», «24 окт», «25 окт»).
 const GRID = [
-  { venue: 'futura', col: 2, cols: 2, byDay: ['conf', 'evening', 'fut24'], daily: { days: ['22', '24'], label: 'Каждый день', items: ['fmarket', 'fexpo'] } },
+  { venue: 'futura', col: 2, cols: 2, skipDays: ['25'], byDay: ['conf', 'evening', 'fut24'], daily: { days: ['22', '24'], label: 'Каждый день', items: ['fmarket', 'fexpo'] } },
+  // «гостевая» площадка: без своей колонки, событие встаёт в пустую ячейку Futuro (на телефоне — своя мини-таблица)
+  { venue: 'chk', col: 2, cols: 2, guest: true, byDay: ['show'] },
   { venue: 'da', col: 4, cols: 1, daily: { days: ['23', '24', '25'], label: 'Каждый день', items: [{ title: 'Маркет', price: '0 ₽', dayTickets: ['da23', 'da24', 'da25'] }, 'battle', 'tour', 'style'] } },
 ];
 
@@ -338,7 +343,7 @@ const DAY_MARKETS = [
     text: 'Одежда, украшения и аксессуары нижегородских брендов — можно примерить и купить.' },
 ];
 // Группы по времени: строки из EVENTS с этим ticket, одна кнопка под группой.
-const SCHEDULE_GROUPS = ['conf', 'evening', 'fut24'];
+const SCHEDULE_GROUPS = ['conf', 'evening', 'fut24', 'show'];
 const GROUP_LEADS = { conf: 'Талантов достаточно. Индустрии — нет. Четыре акта: в каждом разбираем одно звено цепочки от дизайнера до покупателя.' };
 // Повторяющиеся события: сеансы. url — ссылка на билет именно на этот сеанс (конкретная форма, не общий список).
 // Пример: { day: '23', time: '13:00', url: 'https://goj.radario.ru/events/<id>/tickets' }
@@ -374,6 +379,7 @@ const VENUES = [
   // pill — цвет метки площадки: везде, где упоминается площадка (таблица, билеты, карточки), одна и та же метка
   { id: 'futura', name: 'Галерея Futuro', short: 'Futuro', hours: '11:00–21:00', pillBg: '#2E0A0C', pillFg: '#D8F32A', stripe: '#D8F32A' },
   { id: 'da', name: 'Дом архитектора', short: 'Дом архитектора', hours: '12:00–20:00', pillBg: '#A0060E', pillFg: '#FFFBF7', stripe: '#A0060E' },
+  { id: 'chk', name: 'Чкаловская лестница', short: 'Чкаловская лестница', hours: '15:00–16:00', pillBg: '#FFFBF7', pillFg: '#5B0207', stripe: '#FFFBF7' },
 ];
 
 const DAYS = [
@@ -391,6 +397,8 @@ const DAYS = [
 ];
 
 const EVENTS = [
+  // 25 октября · Чкаловская лестница · финальный показ
+  { day: '25', venue: 'chk', start: '15:00', end: '16:00', title: 'Финальный показ на Чкаловской лестнице', kind: 'Показ', text: 'Показ нижегородских брендов на открытом воздухе — город становится подиумом.', ticket: 'show' },
   // 22 октября · Галерея Futuro · деловая программа
   { day: '22', venue: 'futura', start: '11:50', end: '12:55', kicker: 'Акт первый', title: '«Негде шить и некому шить»', kind: 'Лекция', speaker: 'Юлия Шинкарёва, Григорий Хромов, Антон Гуреев', tags: ['Производство', 'Кадры'], ticket: 'conf',
     lead: 'В регионе почти нет производств, готовых работать с малыми партиями, а технологов, конструкторов и швей не хватает.',
@@ -480,7 +488,7 @@ class Component extends DCLogic {
     const link = (label, url, short) => ({ label, url, short: short || label, target: '_blank' });
     const item = (t) => ({
       title: t.short, note: t.note || '', hasNote: !!t.note,
-      price: t.freeReg ? '' : (t.url === null ? 'Бесплатная регистрация' : (t.price || '')),
+      price: t.freeReg ? '' : (t.url === null ? (t.price || 'Бесплатная регистрация') : (t.price || '')),
       links: t.url === null ? [] : t.freeReg ? [link('Бесплатная регистрация →', t.url, 'Регистрация →')] : [link(ticketCta(t) + ' →', t.url, (SHORT[ticketCta(t)] || ticketCta(t)) + ' →')].concat(t.page ? [{ label: 'Подробнее', short: 'Подробнее', url: t.page, target: '_self' }] : []),
     });
     const dailyItems = (g) => g.daily.items.map(x => x.dayTickets
@@ -488,8 +496,8 @@ class Component extends DCLogic {
       : item(ticketOf(x)));
     const blank = { isHead: false, isDay: false, hasLabel: false, label: '', items: [], pill: '', name: '', hours: '', dayNum: '', weekday: '' };
     const cells = [{ ...blank, kind: 'corner', place: at(1, 1), hasLabel: true, label: 'День' }];
-    // колонки: 2 — события Futuro по дням, 3 — Futuro «каждый день», 4 — Дом архитектора «каждый день»
-    GRID.forEach(g => {
+    // колонки (гостевые площадки — без своей колонки): 2 — события Futuro по дням, 3 — Futuro «каждый день», 4 — Дом архитектора «каждый день»
+    GRID.filter(g => !g.guest).forEach(g => {
       const v = venueOf(g.venue);
       cells.push({ ...blank, kind: 'head', place: at(g.col, 1, g.cols), isHead: true, pill: pillStyle(v), name: v.name, hours: v.hours });
     });
@@ -502,7 +510,8 @@ class Component extends DCLogic {
         const t = ticketOf(id);
         covered.add(t.days[0]);
         const wide = !(g.daily && g.daily.days.includes(t.days[0]));
-        cells.push({ ...blank, kind: 'ev', place: at(g.col, dayRow(t.days[0]), wide ? g.cols : 1) + stripe, items: [item(t)] });
+        const guestHead = g.guest ? { isHead: true, pill: pillStyle(v), name: v.name, hours: v.hours } : {};
+        cells.push({ ...blank, ...guestHead, kind: 'ev', place: at(g.col, dayRow(t.days[0]), wide ? g.cols : 1) + stripe, items: [item(t)] });
       });
       if (g.daily) {
         const runs = runsOf(g.daily.days.map(dayRow));
@@ -512,7 +521,8 @@ class Component extends DCLogic {
         g.daily.days.forEach(dd => { if (!g.byDay) covered.add(dd); });
       }
       // пустые ячейки — дни, когда площадка не работает
-      DAYS.forEach(d => {
+      if (!g.guest) DAYS.forEach(d => {
+        if ((g.skipDays || []).includes(d.id)) return;
         const inDaily = g.daily && g.daily.days.includes(d.id);
         if (g.byDay && !covered.has(d.id) && !inDaily) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id), g.cols) });
         else if (g.byDay && !covered.has(d.id)) cells.push({ ...blank, kind: 'off', place: at(g.col, dayRow(d.id)) });
@@ -521,7 +531,8 @@ class Component extends DCLogic {
     });
 
     // телефон: отдельная таблица на каждую площадку, только её дни
-    const mobileGrids = GRID.map(g => {
+    // на телефоне гостевые площадки (Чкаловская лестница) идут после основных
+    const mobileGrids = [...GRID.filter(g => !g.guest), ...GRID.filter(g => g.guest)].map(g => {
       const v = venueOf(g.venue);
       const days = DAYS.filter(d => (g.byDay || []).some(id => ticketOf(id).days[0] === d.id) || (g.daily && g.daily.days.includes(d.id)));
       const row = (id) => days.findIndex(d => d.id === id) + 2;
@@ -560,7 +571,7 @@ class Component extends DCLogic {
         .sort((a, b) => toMin(a.evs[0].start) - toMin(b.evs[0].start))
         .map(({ t, evs }) => ({ ...vInfo(t.venue), title: t.title, span: span(evs), price: t.price || '',
           lead: GROUP_LEADS[t.id] || '', hasLead: !!GROUP_LEADS[t.id],
-          url: t.url, cta: ticketCta(t), page: t.page || '', hasPage: !!t.page,
+          url: t.url || '#', hasUrl: !!t.url, hasActions: !!(t.url || t.page), cta: ticketCta(t), page: t.page || '', hasPage: !!t.page,
           rows: evs.map(e => ({ range: `${e.start}–${e.end}`, title: evs.length === 1 && e.title.toLowerCase() === t.title.toLowerCase() ? '' : e.title, text: e.text || '', hasText: !!e.text,
             kicker: [e.kind, e.kicker].filter(Boolean).join(' · '), hasKicker: !!(e.kind || e.kicker),
             speaker: e.speaker ? `${e.speaker.includes(',') ? 'Спикеры' : 'Спикер'}: ${e.speaker}` : '', hasSpeaker: !!e.speaker })) }));
