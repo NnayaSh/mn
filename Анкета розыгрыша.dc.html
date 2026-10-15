@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Анкета участника розыгрыша — Форум локальной моды · Модный Нижний</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&amp;family=Oswald:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #F3E7D8; color: #241012; font-family: 'IBM Plex Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* обложка */
+.rz-hero { background: #5B0207; color: #FFFBF7; }
+.rz-hero-in { max-width: 1280px; margin: 0 auto; padding: clamp(40px, 6vw, 80px) 32px clamp(96px, 11vw, 150px); }
+.rz-k { margin: 0 0 22px; font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.24em; text-transform: uppercase; color: #E8C9A0; }
+.rz-h { margin: 0; font: 900 clamp(38px, 5.6vw, 76px)/1.02 'Playfair Display', serif; letter-spacing: -0.02em; max-width: 14ch; }
+.rz-stamp { display: inline-block; margin: 26px 0 0 -10px; padding: 8px 40px 11px 26px; background: url(uploads/forum-mazok-1.png) center / 100% 100% no-repeat; font: 700 clamp(24px, 2.8vw, 36px)/1 'Oswald', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; color: #5B0207; }
+.rz-lead { margin: 26px 0 0; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; max-width: 52ch; color: #F3E7D8; }
+
+/* форма */
+.rz-wrap { max-width: 880px; margin: calc(-1 * clamp(64px, 8vw, 104px)) auto 0; padding: 0 32px clamp(56px, 8vw, 112px); position: relative; }
+.rz-form { background: #FFFBF7; box-shadow: 0 24px 60px rgba(46,10,12,0.16); }
+.rz-step { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 20px; padding: clamp(24px, 3.4vw, 40px); border-bottom: 1px solid rgba(91,2,7,0.12); }
+.rz-n { font: 700 40px/1 'Oswald', sans-serif; color: #5B0207; opacity: 0.18; }
+.rz-step[data-ok="1"] .rz-n { opacity: 1; color: #A0060E; }
+.rz-body { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.rz-st { margin: 4px 0 0; font: 900 clamp(22px, 2.4vw, 28px)/1.15 'Playfair Display', serif; color: #5B0207; }
+.rz-sub { margin: -10px 0 0; font-size: 14px; color: #6B4A42; }
+
+.rz-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.rz-tile { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 16px 14px 14px; border: 1.5px solid rgba(91,2,7,0.22); background: #FFFFFF; cursor: pointer; transition: border-color 0.15s, transform 0.15s, background 0.15s; }
+.rz-tile:hover { border-color: #5B0207; transform: translateY(-2px); }
+.rz-tile input { position: absolute; opacity: 0; pointer-events: none; }
+.rz-tile:focus-within { outline: 2px solid #A0060E; outline-offset: 2px; }
+.rz-tile-d { display: flex; align-items: baseline; gap: 6px; color: #5B0207; }
+.rz-tile-n { font: 700 46px/0.9 'Oswald', sans-serif; }
+.rz-tile-m { font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+.rz-pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; font: 500 11px/1.15 'Oswald', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+.rz-pill::before { content: ''; flex: none; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.rz-tick { position: absolute; top: 10px; right: 10px; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid rgba(91,2,7,0.25); display: grid; place-items: center; font-size: 14px; line-height: 1; color: transparent; }
+.rz-tile[data-on="1"] { border-color: #5B0207; background: #5B0207; }
+.rz-tile[data-on="1"] .rz-tile-d { color: #D8F32A; }
+.rz-tile[data-on="1"] .rz-tick { background: #D8F32A; border-color: #D8F32A; color: #5B0207; }
+
+.rz-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; }
+.rz-f { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.rz-f-wide { grid-column: 1 / -1; }
+.rz-l { font: 500 13px/1.3 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #5B0207; }
+.rz-in { width: 100%; padding: 15px 16px; border: 1.5px solid rgba(91,2,7,0.22); background: #FFFFFF; font: 400 17px/1.3 'IBM Plex Sans', sans-serif; color: #241012; border-radius: 0; transition: border-color 0.15s; }
+.rz-in::placeholder { color: #B79C8E; }
+.rz-in:focus { outline: none; border-color: #5B0207; box-shadow: inset 0 -3px 0 #D8F32A; }
+.rz-f[data-bad="1"] .rz-in { border-color: #A0060E; }
+
+.rz-ticket { display: flex; gap: 8px; }
+.rz-cell { width: 54px; height: 64px; padding: 0; text-align: center; border: 1.5px solid rgba(91,2,7,0.22); background: #FFFFFF; font: 600 30px/1 'Oswald', sans-serif; color: #5B0207; border-radius: 0; caret-color: #A0060E; }
+.rz-cell:focus { outline: none; border-color: #5B0207; box-shadow: inset 0 -3px 0 #D8F32A; }
+.rz-ticket[data-bad="1"] .rz-cell { border-color: #A0060E; }
+.rz-hint { font-size: 14px; line-height: 1.45; color: #6B4A42; }
+
+.rz-checks { display: flex; flex-direction: column; gap: 10px; }
+.rz-cb { position: relative; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; align-items: start; padding: 14px 16px; border: 1.5px solid rgba(91,2,7,0.14); background: #FFFFFF; font-size: 15px; line-height: 1.45; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.rz-cb:hover { border-color: rgba(91,2,7,0.4); }
+.rz-cb input { position: absolute; opacity: 0; pointer-events: none; }
+.rz-box { width: 26px; height: 26px; border: 1.5px solid rgba(91,2,7,0.45); display: grid; place-items: center; font-size: 15px; color: transparent; background: #FFFFFF; }
+.rz-cb[data-on="1"] { border-color: #5B0207; background: #FBF4EA; }
+.rz-cb[data-on="1"] .rz-box { background: #5B0207; border-color: #5B0207; color: #D8F32A; }
+.rz-cb:focus-within { outline: 2px solid #A0060E; outline-offset: 2px; }
+.rz-cb[data-bad="1"] { border-color: #A0060E; }
+.rz-cb a { color: #5B0207; text-decoration: none; border-bottom: 1px solid rgba(91,2,7,0.5); }
+.rz-req { color: #A0060E; }
+.rz-all { align-self: flex-start; padding: 0 0 3px; border: 0; border-bottom: 1px solid currentColor; background: none; font: 500 13px/1 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #5B0207; cursor: pointer; }
+
+.rz-err { font-size: 13px; color: #A0060E; font-weight: 500; }
+.rz-foot { display: flex; align-items: center; gap: 14px 24px; flex-wrap: wrap; padding: clamp(22px, 3vw, 32px) clamp(24px, 3.4vw, 40px); background: #5B0207; }
+.rz-btn { padding: 19px 34px; border: 0; background: #D8F32A; color: #5B0207; font: 600 16px/1 'Oswald', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: transform 0.15s, background 0.15s; }
+.rz-btn:hover { transform: translateY(-2px); }
+.rz-btn[disabled] { opacity: 0.6; cursor: default; transform: none; }
+.rz-left { font-size: 14px; color: #E8C9A0; }
+.rz-left b { color: #FFFBF7; font-weight: 500; }
+.rz-foot .rz-err { color: #FFB4A8; flex-basis: 100%; }
+
+/* готово */
+.rz-done { background: #FFFBF7; box-shadow: 0 24px 60px rgba(46,10,12,0.16); padding: clamp(32px, 5vw, 64px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.rz-check { width: 72px; height: 72px; border-radius: 50%; background: #D8F32A; color: #5B0207; display: grid; place-items: center; font: 700 36px/1 'Oswald', sans-serif; }
+.rz-done h2 { margin: 0; font: 900 clamp(30px, 3.6vw, 44px)/1.08 'Playfair Display', serif; color: #5B0207; }
+.rz-done p { margin: 0; font-size: 17px; line-height: 1.6; max-width: 48ch; }
+.rz-ticketcard { display: flex; gap: 16px 28px; flex-wrap: wrap; padding: 18px 22px; background: #5B0207; color: #F3E7D8; border-left: 6px solid #D8F32A; }
+.rz-ticketcard span { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.rz-ticketcard b { font: 600 20px/1.1 'Oswald', sans-serif; color: #FFFBF7; letter-spacing: 0.04em; }
+
+@media (max-width: 760px) {
+  .rz-hero-in { padding: 32px 16px 92px; }
+  .rz-wrap { padding: 0 0 56px; margin-top: -64px; }
+  .rz-form, .rz-done { box-shadow: none; }
+  .rz-step { grid-template-columns: minmax(0, 1fr); padding: 26px 16px; }
+  .rz-n { font-size: 15px; letter-spacing: 0.16em; opacity: 1; color: #A0060E; margin-bottom: 4px; }
+  .rz-n::before { content: 'Шаг '; }
+  .rz-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .rz-tile-n { font-size: 40px; }
+  .rz-fields { grid-template-columns: minmax(0, 1fr); }
+  .rz-cell { flex: 1 1 0; width: auto; min-width: 0; height: 60px; }
+  .rz-foot { padding: 20px 16px; position: sticky; bottom: 0; z-index: 5; }
+  .rz-btn { flex: 1 1 100%; }
+  .rz-left { flex: 1 1 100%; text-align: center; }
+  .rz-done { margin: 0 16px; padding: 28px 20px; }
+}
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<section class="rz-hero">
+  <div class="rz-hero-in">
+    <p class="rz-k">Форум локальной моды · Розыгрыш</p>
+    <h1 class="rz-h">Анкета участника розыгрыша</h1>
+    <span class="rz-stamp">23–25 октября</span>
+    <p class="rz-lead">Четыре коротких шага — и вы участвуете в розыгрыше призов среди гостей форума. Понадобится номер билета или регистрации.</p>
+  </div>
+</section>
+
+<div class="rz-wrap">
+  <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+    <form class="rz-form" onSubmit="{{ submit }}" novalidate>
+
+      <div class="rz-step" data-ok="{{ okVisit }}" id="rz-visit">
+        <span class="rz-n">01</span>
+        <div class="rz-body" role="radiogroup" aria-labelledby="rz-visit-h">
+          <h2 class="rz-st" id="rz-visit-h">Когда вы были на форуме?</h2>
+          <p class="rz-sub">Выберите один вариант <span class="rz-req">*</span></p>
+          <div class="rz-tiles">
+            <sc-for list="{{ visits }}" as="v" hint-placeholder-count="4">
+              <label class="rz-tile" data-on="{{ v.on }}">
+                <input type="radio" name="visit" value="{{ v.value }}" checked="{{ v.checked }}" onChange="{{ v.pick }}">
+                <span class="rz-tick" aria-hidden="true">✓</span>
+                <span class="rz-tile-d"><span class="rz-tile-n">{{ v.day }}</span><span class="rz-tile-m">окт · {{ v.wd }}</span></span>
+                <span class="rz-pill" style="{{ v.pill }}">{{ v.venue }}</span>
+              </label>
+            </sc-for>
+          </div>
+          <sc-if value="{{ errVisit }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Выберите дату и площадку</span></sc-if>
+        </div>
+      </div>
+
+      <div class="rz-step" data-ok="{{ okContacts }}" id="rz-contacts">
+        <span class="rz-n">02</span>
+        <div class="rz-body">
+          <h2 class="rz-st">Как с вами связаться</h2>
+          <p class="rz-sub">Сюда напишем, если вы выиграете</p>
+          <div class="rz-fields">
+            <label class="rz-f rz-f-wide" data-bad="{{ badName }}">
+              <span class="rz-l">Имя и фамилия <span class="rz-req">*</span></span>
+              <input class="rz-in" type="text" name="name" autocomplete="name" placeholder="Анна Иванова" value="{{ name }}" onInput="{{ setName }}">
+              <sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Укажите имя и фамилию</span></sc-if>
+            </label>
+            <label class="rz-f" data-bad="{{ badEmail }}">
+              <span class="rz-l">Электронная почта <span class="rz-req">*</span></span>
+              <input class="rz-in" type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@mail.ru" value="{{ email }}" onInput="{{ setEmail }}">
+              <sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Проверьте адрес почты</span></sc-if>
+            </label>
+            <label class="rz-f" data-bad="{{ badPhone }}">
+              <span class="rz-l">Телефон <span class="rz-req">*</span></span>
+              <input class="rz-in" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" value="{{ phone }}" onInput="{{ setPhone }}">
+              <sc-if value="{{ errPhone }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Проверьте номер телефона</span></sc-if>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="rz-step" data-ok="{{ okTicket }}" id="rz-ticket">
+        <span class="rz-n">03</span>
+        <div class="rz-body">
+          <h2 class="rz-st">Номер билета</h2>
+          <p class="rz-sub">Последние 5 цифр — из билета или письма о регистрации <span class="rz-req">*</span></p>
+          <div class="rz-ticket" data-bad="{{ badTicket }}" role="group" aria-label="Последние 5 цифр номера билета">
+            <sc-for list="{{ cells }}" as="c" hint-placeholder-count="5">
+              <input class="rz-cell" type="text" inputmode="numeric" autocomplete="off" maxlength="5" aria-label="{{ c.label }}" data-i="{{ c.i }}" value="{{ c.val }}" onInput="{{ c.input }}" onKeyDown="{{ c.key }}" onPaste="{{ c.paste }}" onFocus="{{ c.focus }}">
+            </sc-for>
+          </div>
+          <sc-if value="{{ errTicket }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Нужно ровно 5 цифр</span></sc-if>
+        </div>
+      </div>
+
+      <div class="rz-step" data-ok="{{ okConsent }}" id="rz-consent">
+        <span class="rz-n">04</span>
+        <div class="rz-body">
+          <h2 class="rz-st">Согласия</h2>
+          <div class="rz-checks">
+            <label class="rz-cb" data-on="{{ onRules }}" data-bad="{{ badRules }}">
+              <input type="checkbox" name="rules" checked="{{ rules }}" onChange="{{ toggleRules }}">
+              <span class="rz-box" aria-hidden="true">✓</span>
+              <span>Ознакомлен(а) с <a href="{{ rulesUrl }}" target="_blank" rel="noopener">условиями розыгрыша</a> и согласен(на) с ними <span class="rz-req">*</span></span>
+            </label>
+            <label class="rz-cb" data-on="{{ onPd }}" data-bad="{{ badPd }}">
+              <input type="checkbox" name="pd" checked="{{ pd }}" onChange="{{ togglePd }}">
+              <span class="rz-box" aria-hidden="true">✓</span>
+              <span>Соглашаюсь на передачу и <a href="{{ privacyUrl }}" target="_blank" rel="noopener">обработку персональных данных</a> <span class="rz-req">*</span></span>
+            </label>
+            <label class="rz-cb" data-on="{{ onNews }}">
+              <input type="checkbox" name="news" checked="{{ news }}" onChange="{{ toggleNews }}">
+              <span class="rz-box" aria-hidden="true">✓</span>
+              <span>Соглашаюсь получать информационные рассылки от «Модного Нижнего»</span>
+            </label>
+          </div>
+          <sc-if value="{{ showAll }}" hint-placeholder-val="{{ true }}">
+            <button type="button" class="rz-all" onClick="{{ checkAll }}">Отметить всё</button>
+          </sc-if>
+          <sc-if value="{{ errConsent }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Отметьте обязательные согласия — без них участвовать нельзя</span></sc-if>
+        </div>
+      </div>
+
+      <div class="rz-foot">
+        <button class="rz-btn" type="submit" disabled="{{ sending }}">{{ btnLabel }}</button>
+        <span class="rz-left">{{ leftText }}</span>
+        <sc-if value="{{ errSend }}" hint-placeholder-val="{{ false }}"><span class="rz-err">Не удалось отправить анкету. Проверьте интернет и попробуйте ещё раз.</span></sc-if>
+      </div>
+    </form>
+  </sc-if>
+
+  <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+    <div class="rz-done">
+      <span class="rz-check" aria-hidden="true">✓</span>
+      <h2>Анкета принята!</h2>
+      <p>Вы участвуете в розыгрыше. Итоги объявим в наших соцсетях — следите за новостями.</p>
+      <div class="rz-ticketcard">
+        <span>Посещение<b>{{ doneVisit }}</b></span>
+        <span>Билет<b>…{{ doneTicket }}</b></span>
+      </div>
+      <button type="button" class="rz-all" onClick="{{ again }}">Заполнить ещё одну анкету</button>
+    </div>
+  </sc-if>
+</div>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+// ===== Анкета розыгрыша =====
+// Страница не в карте сайта и не в меню: доступна только по прямой ссылке (noindex).
+// FORM_ENDPOINT — адрес, куда отправляются ответы (POST, JSON). Пока пусто — анкета проверяет поля
+//   и показывает «Анкета принята», но ответы НИКУДА не сохраняются. Подключить до публикации ссылки!
+// RULES_URL — условия розыгрыша, PRIVACY_URL — политика обработки персональных данных.
+const FORM_ENDPOINT = '';
+const RULES_URL = '#';
+const PRIVACY_URL = '#';
+
+const DA = 'background: #A0060E; color: #FFFBF7';
+const FU = 'background: #2E0A0C; color: #D8F32A';
+const VISITS = [
+  { value: '23-da', day: '23', wd: 'пт', venue: 'Дом архитектора', pill: DA },
+  { value: '24-da', day: '24', wd: 'сб', venue: 'Дом архитектора', pill: DA },
+  { value: '24-futuro', day: '24', wd: 'сб', venue: 'Галерея FUTURO', pill: FU },
+  { value: '25-da', day: '25', wd: 'вс', venue: 'Дом архитектора', pill: DA },
+];
+
+// телефон: +7 (900) 123-45-67
+const formatPhone = (raw) => {
+  let d = raw.replace(/\D/g, '');
+  if (!d) return '';
+  if (d[0] === '8') d = '7' + d.slice(1);
+  if (d[0] !== '7') d = '7' + d;
+  d = d.slice(0, 11);
+  const p = d.slice(1);
+  let out = '+7';
+  if (p.length) out += ' (' + p.slice(0, 3);
+  if (p.length >= 3) out += ')';
+  if (p.length > 3) out += ' ' + p.slice(3, 6);
+  if (p.length > 6) out += '-' + p.slice(6, 8);
+  if (p.length > 8) out += '-' + p.slice(8, 10);
+  return out;
+};
+
+const EMPTY = { visit: '', name: '', email: '', phone: '', ticket: ['', '', '', '', ''], rules: false, pd: false, news: false, tried: false, sending: false, done: false, errSend: false };
+
+class Component extends DCLogic {
+  state = { ...EMPTY, ticket: [...EMPTY.ticket] };
+
+  errors() {
+    const { visit, name, email, phone, ticket, rules, pd } = this.state;
+    return {
+      visit: !visit,
+      name: name.trim().split(/\s+/).filter(Boolean).length < 2,
+      email: !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()),
+      phone: phone.replace(/\D/g, '').length !== 11,
+      ticket: ticket.join('').length !== 5,
+      rules: !rules,
+      pd: !pd,
+    };
+  }
+
+  cellEl(i) { return document.querySelector(`.rz-cell[data-i="${i}"]`); }
+
+  setDigits(from, digits) {
+    const t = [...this.state.ticket];
+    let i = from;
+    for (const ch of digits) { if (i > 4) break; t[i++] = ch; }
+    this.setState({ ticket: t });
+    const next = this.cellEl(Math.min(i, 4));
+    if (next) setTimeout(() => next.focus(), 0);
+  }
+
+  async submit(e) {
+    e.preventDefault();
+    this.setState({ tried: true, errSend: false });
+    const er = this.errors();
+    const firstBad = er.visit ? 'rz-visit' : (er.name || er.email || er.phone) ? 'rz-contacts' : er.ticket ? 'rz-ticket' : (er.rules || er.pd) ? 'rz-consent' : '';
+    if (firstBad) {
+      const el = document.getElementById(firstBad);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const s = this.state;
+    const v = VISITS.find(x => x.value === s.visit);
+    const payload = {
+      visit: `${v.day} октября, ${v.venue}`, name: s.name.trim(), email: s.email.trim(), phone: s.phone,
+      ticket: s.ticket.join(''), rules: true, personalData: true, newsletter: s.news, sentAt: new Date().toISOString(),
+    };
+    if (!FORM_ENDPOINT) { this.setState({ done: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    this.setState({ sending: true });
+    try {
+      const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+      if (!r.ok) throw new Error(String(r.status));
+      this.setState({ sending: false, done: true });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      this.setState({ sending: false, errSend: true });
+    }
+  }
+
+  renderVals() {
+    const s = this.state;
+    const er = this.errors();
+    const show = (k) => s.tried && er[k];
+    const flag = (b) => (b ? '1' : '0');
+    const left = Object.values(er).filter(Boolean).length;
+    const plural = (n) => (n === 1 ? 'пункт' : n < 5 ? 'пункта' : 'пунктов');
+    const v = VISITS.find(x => x.value === s.visit);
+    return {
+      rulesUrl: RULES_URL, privacyUrl: PRIVACY_URL,
+      visits: VISITS.map(x => ({ ...x, on: flag(s.visit === x.value), checked: s.visit === x.value, pick: () => this.setState({ visit: x.value }) })),
+      okVisit: flag(!er.visit), okContacts: flag(!er.name && !er.email && !er.phone), okTicket: flag(!er.ticket), okConsent: flag(!er.rules && !er.pd),
+      name: s.name, email: s.email, phone: s.phone,
+      setName: (e) => this.setState({ name: e.target.value }),
+      setEmail: (e) => this.setState({ email: e.target.value }),
+      setPhone: (e) => this.setState({ phone: formatPhone(e.target.value) }),
+      cells: s.ticket.map((val, i) => ({
+        i: String(i), val, label: `Цифра ${i + 1} из 5`,
+        input: (e) => { const d = e.target.value.replace(/\D/g, ''); if (!d) { const t = [...s.ticket]; t[i] = ''; this.setState({ ticket: t }); return; } this.setDigits(i, d); },
+        key: (e) => {
+          if (e.key === 'Backspace' && !s.ticket[i] && i > 0) { const t = [...s.ticket]; t[i - 1] = ''; this.setState({ ticket: t }); const p = this.cellEl(i - 1); if (p) p.focus(); e.preventDefault(); }
+          if (e.key === 'ArrowLeft' && i > 0) { const p = this.cellEl(i - 1); if (p) p.focus(); }
+          if (e.key === 'ArrowRight' && i < 4) { const n = this.cellEl(i + 1); if (n) n.focus(); }
+        },
+        paste: (e) => { const d = (e.clipboardData.getData('text') || '').replace(/\D/g, ''); if (d) { e.preventDefault(); this.setDigits(0, d.slice(-5)); } },
+        focus: (e) => e.target.select(),
+      })),
+      rules: s.rules, pd: s.pd, news: s.news,
+      onRules: flag(s.rules), onPd: flag(s.pd), onNews: flag(s.news),
+      toggleRules: () => this.setState({ rules: !s.rules }),
+      togglePd: () => this.setState({ pd: !s.pd }),
+      toggleNews: () => this.setState({ news: !s.news }),
+      showAll: !(s.rules && s.pd && s.news),
+      checkAll: () => this.setState({ rules: true, pd: true, news: true }),
+      errVisit: show('visit'), errName: show('name'), errEmail: show('email'), errPhone: show('phone'), errTicket: show('ticket'),
+      errConsent: show('rules') || show('pd'),
+      badName: flag(show('name')), badEmail: flag(show('email')), badPhone: flag(show('phone')), badTicket: flag(show('ticket')),
+      badRules: flag(show('rules')), badPd: flag(show('pd')),
+      errSend: s.errSend, sending: s.sending,
+      btnLabel: s.sending ? 'Отправляем…' : 'Участвовать в розыгрыше →',
+      leftText: left ? `Осталось заполнить: ${left} ${plural(left)}` : 'Всё заполнено — можно отправлять',
+      submit: (e) => this.submit(e),
+      done: s.done, notDone: !s.done,
+      doneVisit: v ? `${v.day} октября, ${v.venue}` : '', doneTicket: s.ticket.join(''),
+      again: () => { this.setState({ ...EMPTY, ticket: ['', '', '', '', ''], visit: '', name: s.name, email: s.email, phone: s.phone }); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+    };
+  }
+}
+</script>
+</body>
+</html>
