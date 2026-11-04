@@ -8,22 +8,22 @@
 <body>
 <x-dc>
 <sc-if value="{{ show }}" hint-placeholder-val="{{ true }}">
-  <aside aria-label="Форум локальной моды" style="{{ wrapStyle }}">
-    <a href="Форум.dc.html" style="{{ cardStyle }}">
-      <span style="{{ titleStyle }}">Форум локальной моды</span>
-      <span style="{{ dateStyle }}">22–25<span style="{{ monStyle }}"> октября</span></span>
-      <span style="{{ venuesStyle }}">
-        <span style="{{ venueStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex: none"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="#FFFBF7"/><circle cx="12" cy="10" r="2.6" fill="#5B0207"/></svg>Дом архитектора</span>
-        <span style="{{ venueStyle }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex: none"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="#FFFBF7"/><circle cx="12" cy="10" r="2.6" fill="#5B0207"/></svg>Галерея Futuro</span>
-      </span>
-      <span style="{{ btnStyle }}" style-hover="background: #E8C9A0">Программа и регистрация →</span>
+  <aside aria-label="Опрос гостей форума" style="{{ wrapStyle }}">
+    <a href="Опрос форума.dc.html" style="{{ cardStyle }}">
+      <span style="{{ kickStyle }}">Опрос гостей форума</span>
+      <span style="{{ titleStyle }}">Что изменил для вас форум?</span>
+      <span style="{{ noteStyle }}">16 вопросов · около 5 минут</span>
+      <span style="{{ btnStyle }}" style-hover="background: #E8C9A0">Пройти опрос →</span>
     </a>
     <button type="button" aria-label="Закрыть" onClick="{{ close }}" style="{{ closeStyle }}">×</button>
   </aside>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:200}}">// Плавающая карточка форума: показывается через несколько секунд, закрывается крестиком и больше не появляется (запоминается в браузере)
-const CLOSED_KEY = 'mn-forum-promo-closed';
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:200}}">// Плавающая карточка: приглашение пройти опрос гостей форума («Опрос форума.dc.html»).
+// Показывается через несколько секунд, закрывается крестиком и больше не появляется (запоминается в браузере).
+// Не показывается и тем, кто уже прошёл опрос (SURVEY_DONE_KEY ставит страница опроса).
+const CLOSED_KEY = 'mn-survey-promo-closed';
+const SURVEY_DONE_KEY = 'mn-survey-done';
 const COOKIE_KEY = 'mn-cookie-consent';
 const SHOW_AFTER_MS = 5000;
 
@@ -31,7 +31,7 @@ class Component extends DCLogic {
   state = { show: false, entered: false, mobile: false, lift: false };
 
   componentDidMount() {
-    try { if (localStorage.getItem(CLOSED_KEY)) return; } catch (e) {}
+    try { if (localStorage.getItem(CLOSED_KEY) || localStorage.getItem(SURVEY_DONE_KEY)) return; } catch (e) {}
     if (!document.querySelector('link[data-mn-promo-fonts]')) {
       const l = document.createElement('link');
       l.rel = 'stylesheet';
@@ -80,11 +80,9 @@ class Component extends DCLogic {
       close: () => this.close(),
       wrapStyle: `position: fixed; z-index: 55; right: ${mobile ? 12 : 24}px; ${mobile ? 'left: 12px; ' : ''}bottom: ${bottom}px; ${mobile ? '' : 'width: 340px; '}font-family: ${font}; transition: opacity 0.3s ease, transform 0.3s ease, bottom 0.25s ease; opacity: ${entered ? 1 : 0}; transform: translateY(${entered ? 0 : 18}px); filter: drop-shadow(0 16px 34px rgba(36,16,18,0.42))`,
       cardStyle: `position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: ${mobile ? 8 : 18}px; padding: ${mobile ? '16px 48px 14px 16px' : '30px 26px 26px'}; background: #5B0207; color: #FFFBF7; text-decoration: none`,
-      titleStyle: `display: block; font: 900 ${mobile ? 17 : 34}px/1.05 ${pf}; letter-spacing: -0.01em; text-transform: uppercase; color: #FFFBF7; ${mobile ? '' : 'max-width: 9ch; padding-right: 20px'}`,
-      dateStyle: `display: inline-block; margin-left: ${mobile ? -4 : -14}px; padding: ${mobile ? '5px 26px 6px 18px' : '9px 42px 11px 30px'}; background: url(uploads/forum-mazok-1.png) center / 100% 100% no-repeat; font: 700 ${mobile ? 20 : 34}px/1 ${osw}; letter-spacing: 0.02em; text-transform: uppercase; color: #5B0207; white-space: nowrap`,
-      monStyle: `font-size: ${mobile ? 13 : 20}px`,
-      venuesStyle: mobile ? 'display: none' : 'display: flex; flex-direction: column; gap: 8px',
-      venueStyle: `display: flex; align-items: center; gap: 8px; font: 500 16px/1.2 ${osw}; letter-spacing: 0.06em; text-transform: uppercase; color: #FFFBF7`,
+      kickStyle: `font: 500 ${mobile ? 11 : 12}px/1.2 ${osw}; letter-spacing: 0.18em; text-transform: uppercase; color: #E8C9A0`,
+      titleStyle: `display: block; font: 900 ${mobile ? 19 : 30}px/1.08 ${pf}; letter-spacing: -0.01em; color: #FFFBF7; ${mobile ? '' : 'padding-right: 18px'}`,
+      noteStyle: mobile ? 'display: none' : `display: inline-block; margin-left: -12px; padding: 7px 34px 9px 24px; background: url(uploads/forum-mazok-1.png) center / 100% 100% no-repeat; font: 700 17px/1 ${osw}; letter-spacing: 0.04em; text-transform: uppercase; color: #5B0207; white-space: nowrap`,
       btnStyle: mobile
         ? `font: 500 12px/1.2 ${osw}; letter-spacing: 0.12em; text-transform: uppercase; color: #D8F32A`
         : `display: flex; align-self: stretch; align-items: center; justify-content: center; margin-top: 8px; padding: 16px 20px; background: #FFFBF7; color: #5B0207; font: 500 14px/1 ${osw}; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; transition: background 0.2s`,
