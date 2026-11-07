@@ -69,6 +69,11 @@ textarea.sv-in { min-height: 84px; }
 .sv-check { width: 72px; height: 72px; border-radius: 50%; background: #D8F32A; color: #5B0207; display: grid; place-items: center; font: 700 36px/1 'Oswald', sans-serif; }
 .sv-done h2 { margin: 0; font: 900 clamp(30px, 3.6vw, 44px)/1.08 'Playfair Display', serif; color: #5B0207; }
 .sv-done p { margin: 0; font-size: 17px; line-height: 1.6; max-width: 52ch; }
+.sv-gift { display: flex; align-items: center; gap: 14px 24px; flex-wrap: wrap; width: 100%; padding: 22px 26px; background: #5B0207; color: #FFFBF7; }
+.sv-gift-n { font: 900 clamp(44px, 6vw, 60px)/1 'Playfair Display', serif; color: #D8F32A; }
+.sv-done .sv-gift-t { font: 500 18px/1.25 'Oswald', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+.sv-done .sv-gift-s { margin-top: 6px; font-size: 15px; line-height: 1.45; color: #F3E7D8; }
+.sv-done .sv-gift-code { margin-top: 8px; font: 600 clamp(26px, 3.4vw, 34px)/1.1 'Oswald', sans-serif; letter-spacing: 0.08em; color: #D8F32A; white-space: nowrap; user-select: all; }
 .sv-links { display: flex; gap: 12px; flex-wrap: wrap; }
 .sv-link { display: inline-flex; align-items: center; gap: 10px; padding: 16px 24px; background: #5B0207; color: #FFFBF7; font: 500 15px/1 'Oswald', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s; }
 .sv-link:hover { background: #A0060E; }
@@ -84,7 +89,7 @@ textarea.sv-in { min-height: 84px; }
   .sv-q { grid-template-columns: minmax(0, 1fr); padding: 24px 16px; }
   .sv-n { font-size: 14px; letter-spacing: 0.16em; opacity: 1; color: #A0060E; margin-bottom: 6px; }
   .sv-n::before { content: 'Вопрос '; }
-  .sv-n::after { content: ' из 16'; }
+  .sv-n::after { content: ' из ' attr(data-total); }
   .sv-qt { font-size: 17px; }
   .sv-chip { padding: 11px 14px; font-size: 15px; }
   .sv-five { grid-template-columns: minmax(0, 1fr); }
@@ -104,8 +109,8 @@ textarea.sv-in { min-height: 84px; }
   <div class="sv-hero-in">
     <p class="sv-k">Форум локальной моды · Опрос гостей</p>
     <h1 class="sv-h">Что изменил для вас форум <em>«Модный Нижний»</em>?</h1>
-    <p class="sv-lead">Мы изучаем, как форум влияет на знакомство жителей с локальной модой, стилем и культурой региона. Просим ответить на несколько вопросов о ваших впечатлениях и открытиях.</p>
-    <div class="sv-meta"><span>16 вопросов</span><span>около 5 минут</span><span>анонимно</span></div>
+    <p class="sv-lead">Мы изучаем, как форум влияет на знакомство жителей с локальной модой, стилем и культурой региона. Просим ответить на несколько вопросов о ваших впечатлениях и открытиях. За ответы дарим скидку 10% в Модном Нижнем.</p>
+    <div class="sv-meta"><span>2–3 минуты</span><span>до 15 вопросов</span><span>анонимно</span><span>скидка 10% в Модном Нижнем</span></div>
   </div>
 </section>
 
@@ -116,7 +121,7 @@ textarea.sv-in { min-height: 84px; }
         <div class="sv-part">{{ bl.part }}</div>
         <sc-for list="{{ bl.questions }}" as="q" hint-placeholder-count="5">
           <div class="sv-q" data-ok="{{ q.ok }}" id="{{ q.anchor }}">
-            <span class="sv-n">{{ q.num }}</span>
+            <span class="sv-n" data-total="{{ q.total }}">{{ q.num }}</span>
             <div class="sv-body">
               <p class="sv-qt">{{ q.text }}</p>
               <sc-if value="{{ q.hasHint }}" hint-placeholder-val="{{ false }}"><p class="sv-hint">{{ q.hint }}</p></sc-if>
@@ -170,6 +175,14 @@ textarea.sv-in { min-height: 84px; }
       <span class="sv-check" aria-hidden="true">✓</span>
       <h2>Благодарим!</h2>
       <p>Ваши ответы помогут понять, как развивается интерес к локальной моде и культурной жизни региона.</p>
+      <div class="sv-gift">
+        <span class="sv-gift-n">−10%</span>
+        <div>
+          <p class="sv-gift-t">Ваша скидка в Модном Нижнем</p>
+          <p class="sv-gift-s">Назовите этот код на кассе:</p>
+          <p class="sv-gift-code">{{ code }}</p>
+        </div>
+      </div>
       <div class="sv-links">
         <a class="sv-link" href="Каталог.dc.html">Каталог нижегородских брендов →</a>
         <a class="sv-link sv-link-light" href="https://vk.ru/modniy_nizhny" target="_blank" rel="noopener">
@@ -192,8 +205,17 @@ textarea.sv-in { min-height: 84px; }
 // После отправки в браузере ставится отметка SURVEY_DONE_KEY — плавающая карточка опроса на сайте больше не показывается.
 const FORM_ENDPOINT = '';
 const SURVEY_DONE_KEY = 'mn-survey-done';
+// Код скидки: случайный, создаётся в браузере и хранится там же (SURVEY_CODE_KEY), поэтому после перезагрузки не меняется.
+// Уходит вместе с ответами в поле «Код скидки» — по этому списку можно сверять коды на кассе.
+const SURVEY_CODE_KEY = 'mn-survey-code';
+const newCode = () => {
+  const n = crypto.getRandomValues(new Uint32Array(1))[0] % 100000000;
+  const d = String(n).padStart(8, '0');
+  return `МН ${d.slice(0, 4)} ${d.slice(4)}`;
+};
 
 // type: multi — несколько вариантов, single — один, text — свободный ответ, five — до пяти названий
+// showIf — вопрос виден только при этом ответе на другой вопрос; скрытые вопросы не нумеруются и не отправляются
 // follow — дополнительное поле «почему / что именно» (when — при каком ответе показывать; без when — всегда после выбора)
 const QUESTIONS = [
   { part: 'Форум', id: 'events', type: 'multi', text: 'Какие мероприятия форума вы посетили?', hint: 'Можно выбрать несколько',
@@ -202,11 +224,10 @@ const QUESTIONS = [
     options: ['Да', 'Что-то слышал(а)', 'Нет'] },
   { id: 'brandsBefore', type: 'text', text: 'Какие нижегородские бренды вы могли назвать до посещения форума?', ph: 'Если не помните, так и напишите' },
   { id: 'brandsNew', type: 'text', text: 'Какие новые бренды вы открыли для себя на форуме?', ph: 'Названия брендов' },
-  { id: 'brandsNow', type: 'five', text: 'Назовите до пяти нижегородских брендов, которые вы знаете сейчас.', hint: 'Без подсказок — по памяти' },
   { part: 'Впечатления', id: 'touched', type: 'single', text: 'Знакомились ли вы лично с изделиями локальных брендов: рассматривали, трогали, примеряли?', options: ['Да', 'Нет'] },
-  { id: 'quality', type: 'single', col: true, text: 'Какое впечатление у вас сложилось об их качестве?',
+  { id: 'quality', type: 'single', col: true, showIf: { id: 'touched', is: 'Да' }, text: 'Какое впечатление у вас сложилось об их качестве?',
     options: ['Очень хорошее', 'Скорее хорошее', 'Неоднозначное', 'Скорее плохое', 'Не могу оценить'] },
-  { id: 'qualityWhy', type: 'multi', text: 'Что именно повлияло на вашу оценку качества?', hint: 'Можно выбрать несколько',
+  { id: 'qualityWhy', type: 'multi', showIf: { id: 'touched', is: 'Да' }, text: 'Что именно повлияло на вашу оценку качества?', hint: 'Можно выбрать несколько',
     options: ['Материалы', 'Пошив', 'Посадка', 'Дизайн', 'Общение с дизайнером', 'Другое'], follow: { label: 'Можете пояснить', ph: 'Необязательно' } },
   { id: 'attitude', type: 'single', col: true, text: 'Изменилось ли ваше отношение к нижегородским брендам после форума?',
     options: ['Стало более положительным', 'Не изменилось', 'Стало менее положительным', 'Затрудняюсь ответить'], follow: { label: 'Почему?', ph: 'Пара слов' } },
@@ -227,7 +248,19 @@ const QUESTIONS = [
 const emptyAnswers = () => Object.fromEntries(QUESTIONS.map(q => [q.id, q.type === 'multi' ? [] : q.type === 'five' ? ['', '', '', '', ''] : '']));
 
 class Component extends DCLogic {
-  state = { a: emptyAnswers(), follow: {}, tried: false, sending: false, done: false, errSend: false };
+  state = { a: emptyAnswers(), follow: {}, tried: false, sending: false, done: false, errSend: false, code: '' };
+
+  componentDidMount() {
+    // Экран с кодом остаётся после перезагрузки: код называют на кассе
+    try {
+      if (!localStorage.getItem(SURVEY_DONE_KEY)) return;
+      const code = localStorage.getItem(SURVEY_CODE_KEY) || newCode();
+      localStorage.setItem(SURVEY_CODE_KEY, code);
+      this.setState({ done: true, code });
+    } catch (err) {}
+  }
+
+  visible() { return QUESTIONS.filter(q => !q.showIf || this.state.a[q.showIf.id] === q.showIf.is); }
 
   answered(q) {
     const v = this.state.a[q.id];
@@ -247,16 +280,18 @@ class Component extends DCLogic {
 
   async submit(e) {
     e.preventDefault();
-    const count = QUESTIONS.filter(q => this.answered(q)).length;
+    const count = this.visible().filter(q => this.answered(q)).length;
     this.setState({ tried: true, errSend: false });
     if (count < 3) return;
-    const payload = { sentAt: new Date().toISOString() };
-    QUESTIONS.forEach((q, i) => {
+    const code = this.state.code || newCode();
+    this.setState({ code });
+    const payload = { sentAt: new Date().toISOString(), 'Код скидки': code };
+    this.visible().forEach((q, i) => {
       const v = this.state.a[q.id];
       payload[`${i + 1}. ${q.text}`] = Array.isArray(v) ? v.filter(x => String(x).trim()).join('; ') : v;
       if (this.state.follow[q.id]) payload[`${i + 1}. ${q.follow.label}`] = this.state.follow[q.id];
     });
-    const finish = () => { try { localStorage.setItem(SURVEY_DONE_KEY, '1'); } catch (err) {} this.setState({ sending: false, done: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+    const finish = () => { try { localStorage.setItem(SURVEY_DONE_KEY, '1'); localStorage.setItem(SURVEY_CODE_KEY, code); } catch (err) {} this.setState({ sending: false, done: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); };
     if (!FORM_ENDPOINT) { finish(); return; }
     this.setState({ sending: true });
     try {
@@ -273,14 +308,15 @@ class Component extends DCLogic {
     const flag = (b) => (b ? '1' : '0');
     let part = null;
     const blocks = [];
-    QUESTIONS.forEach((q, i) => {
+    const shown = this.visible();
+    shown.forEach((q, i) => {
       if (q.part) { part = { part: q.part, questions: [] }; blocks.push(part); }
       const v = s.a[q.id];
       const isChoice = q.type === 'multi' || q.type === 'single';
       const chosen = isChoice && (q.type === 'multi' ? v.length > 0 : !!v);
       const followOn = q.follow && chosen && (!q.follow.when || q.follow.when.some(w => (q.type === 'multi' ? v.includes(w) : v === w)));
       part.questions.push({
-        num: String(i + 1).padStart(2, '0'), anchor: `q-${q.id}`, text: q.text,
+        num: String(i + 1).padStart(2, '0'), total: shown.length, anchor: `q-${q.id}`, text: q.text,
         hint: q.hint || '', hasHint: !!q.hint, ok: flag(this.answered(q)),
         isChoice, isText: q.type === 'text', isFive: q.type === 'five',
         kind: q.type === 'single' ? 'radio' : 'checkbox', col: flag(q.col),
@@ -296,15 +332,15 @@ class Component extends DCLogic {
         setFollow: (e) => this.setState({ follow: { ...s.follow, [q.id]: e.target.value } }),
       });
     });
-    const count = QUESTIONS.filter(q => this.answered(q)).length;
+    const count = shown.filter(q => this.answered(q)).length;
     return {
       blocks,
-      progressText: `Отвечено ${count} из ${QUESTIONS.length}${count < QUESTIONS.length ? ' · можно пропустить сложные вопросы' : ''}`,
-      barStyle: `width: ${Math.round((count / QUESTIONS.length) * 100)}%`,
+      progressText: `Отвечено ${count} из ${shown.length}${count < shown.length ? ' · можно пропустить сложные вопросы' : ''}`,
+      barStyle: `width: ${Math.round((count / shown.length) * 100)}%`,
       errEmpty: s.tried && count < 3, errSend: s.errSend,
       sending: s.sending, btnLabel: s.sending ? 'Отправляем…' : 'Отправить ответы →',
       submit: (e) => this.submit(e),
-      done: s.done, notDone: !s.done,
+      done: s.done, notDone: !s.done, code: s.code,
     };
   }
 }
