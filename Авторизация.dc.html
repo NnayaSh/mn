@@ -21,7 +21,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: #75070D
 input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
 </style>
 </helmet>
-<div style="min-height: 100vh; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); align-items: stretch">
+<div style="min-height: 100vh; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); align-items: stretch">
 
   <!-- Левая колонка: смысл -->
   <div style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding: clamp(32px, 5vw, 72px)">
@@ -150,6 +150,28 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
         </form>
       </sc-if>
 
+      <!-- Новый пароль: сюда ведёт ссылка из письма (#new-password) -->
+      <sc-if value="{{ isNewPassword }}" hint-placeholder-val="{{ false }}">
+        <form onSubmit="{{ submitNewPassword }}" style="display: flex; flex-direction: column; gap: 22px">
+          <div>
+            <h2 style="margin: 0 0 10px; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; color: #75070D">Придумайте новый пароль</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.8">Не менее 8 символов. Старый пароль перестанет работать.</p>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Новый пароль</span>
+            <input type="password" name="password" required="" minlength="8" autocomplete="new-password" placeholder="••••••••" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #75070D">Повторите пароль</span>
+            <input type="password" name="password2" required="" minlength="8" autocomplete="new-password" placeholder="••••••••" style="width: 100%; padding: 15px 16px; font-size: 16px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; color: #2B1214; background: #F7EFE3; border: 1px solid rgba(117,7,13,0.35); border-radius: 0; transition: border-color 0.2s">
+          </label>
+          <sc-if value="{{ loginError }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 14px 16px; background: rgba(117,7,13,0.08); border-left: 2px solid #75070D; font-size: 14px; line-height: 1.5; color: #75070D">{{ loginError }}</p>
+          </sc-if>
+          <button type="submit" style="{{ primaryBtnStyle }}">Сохранить пароль <span style="font-size: 15px">→</span></button>
+        </form>
+      </sc-if>
+
       <!-- Подтверждение -->
       <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; flex-direction: column; gap: 22px; border: 1px solid rgba(117,7,13,0.35); background: #F7EFE3; padding: clamp(24px, 4vw, 40px)">
@@ -157,13 +179,15 @@ input::placeholder, textarea::placeholder { color: rgba(43,18,20,0.4); }
           <h2 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(24px, 2.8vw, 34px); line-height: 1.15; color: #75070D">{{ doneTitle }}</h2>
           <p style="margin: 0; font-size: 16px; line-height: 1.65">{{ doneText }}</p>
           <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px">
-            <a href="Кабинет бренда.dc.html" style="display: inline-flex; align-items: center; gap: 10px; background: #75070D; color: #F7EFE3; padding: 15px 26px; font-size: 15px; border: 1px solid #75070D; transition: background 0.2s, color 0.2s" style-hover="background: #F7EFE3; color: #75070D">Открыть кабинет</a>
+            <sc-if value="{{ showCabinet }}" hint-placeholder-val="{{ false }}">
+              <a href="Кабинет бренда.dc.html" style="display: inline-flex; align-items: center; gap: 10px; background: #75070D; color: #F7EFE3; padding: 15px 26px; font-size: 15px; border: 1px solid #75070D; transition: background 0.2s, color 0.2s" style-hover="background: #F7EFE3; color: #75070D">Открыть кабинет</a>
+            </sc-if>
             <button type="button" onClick="{{ goLogin }}" style="background: transparent; border: 1px solid #75070D; color: #75070D; padding: 15px 26px; font-size: 15px; font-family: 'MN Sans', Helvetica, Arial, sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s" style-hover="background: #75070D; color: #F7EFE3">Ко входу</button>
           </div>
         </div>
       </sc-if>
 
-      <p style="margin: 0; padding-top: 4px; border-top: 1px solid rgba(117,7,13,0.2); font-size: 14px; line-height: 1.6; opacity: 0.75; padding-top: 20px">Вопросы по кабинету: <a href="mailto:hello@modnyinn.ru" style="border-bottom: 1px solid rgba(117,7,13,0.4)">hello@modnyinn.ru</a></p>
+      <p style="margin: 0; padding-top: 4px; border-top: 1px solid rgba(117,7,13,0.2); font-size: 14px; line-height: 1.6; opacity: 0.75; padding-top: 20px">Вопросы по кабинету: <a href="mailto:hi@modnynn.ru" style="border-bottom: 1px solid rgba(117,7,13,0.4)">hi@modnynn.ru</a></p>
     </div>
   </div>
 </div>
@@ -175,7 +199,7 @@ class Component extends DCLogic {
 
   componentDidMount() {
     const h = (window.location.hash || '').replace('#', '');
-    if (['login', 'signup', 'reset'].includes(h)) this.setState({ screen: h });
+    if (['login', 'signup', 'reset', 'new-password'].includes(h)) this.setState({ screen: h });
   }
 
   go(screen) {
@@ -188,13 +212,16 @@ class Component extends DCLogic {
     const done = {
       signup: { doneKicker: 'Заявка отправлена', doneTitle: 'Мы получили заявку бренда', doneText: 'Редакция проверит информацию и пришлёт письмо с доступом в кабинет — обычно в течение двух рабочих дней. После подтверждения можно загружать товары в каталог.' },
       reset: { doneKicker: 'Письмо отправлено', doneTitle: 'Ссылка для смены пароля у вас на почте', doneText: 'Если письма нет в течение десяти минут, проверьте папку «Спам» или напишите нам — восстановим доступ вручную.' },
+      password: { doneKicker: 'Пароль изменён', doneTitle: 'Новый пароль сохранён', doneText: 'Теперь войдите в кабинет с новым паролем.' },
       signedin: { doneKicker: 'Кабинет бренда', doneTitle: 'Вы вошли в кабинет', doneText: 'Здесь будет рабочий стол бренда: карточка, товары и заявки на события платформы.' },
-    }[s] || {};
+    }[s.replace('-done', '')] || {};
     return {
       isLogin: s === 'login',
       isSignup: s === 'signup',
       isReset: s === 'reset',
-      isDone: s === 'signup-done' || s === 'reset-done' || s === 'signedin',
+      isNewPassword: s === 'new-password',
+      isDone: s === 'signup-done' || s === 'reset-done' || s === 'password-done' || s === 'signedin',
+      showCabinet: s === 'signedin',
       showTabs: s === 'login' || s === 'signup',
       tabLoginStyle: tab(s === 'login'),
       tabSignupStyle: tab(s === 'signup'),
@@ -214,6 +241,14 @@ class Component extends DCLogic {
       },
       submitSignup: (e) => { e.preventDefault(); this.setState({ screen: 'signup-done' }); },
       submitReset: (e) => { e.preventDefault(); this.setState({ screen: 'reset-done' }); },
+      submitNewPassword: (e) => {
+        e.preventDefault();
+        const f = new FormData(e.target);
+        const pass = String(f.get('password') || '');
+        if (pass.length < 8) { this.setState({ loginError: 'Пароль должен содержать не менее 8 символов.' }); return; }
+        if (pass !== String(f.get('password2') || '')) { this.setState({ loginError: 'Пароли не совпадают.' }); return; }
+        this.setState({ screen: 'password-done', loginError: '' });
+      },
       ...done,
       doneKicker: done.doneKicker || '',
       doneTitle: done.doneTitle || '',
