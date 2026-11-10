@@ -68,7 +68,7 @@
 </header>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:420},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;about&quot;,&quot;brands&quot;,&quot;media&quot;,&quot;events&quot;,&quot;b2b&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:420},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;about&quot;,&quot;services&quot;,&quot;media&quot;,&quot;events&quot;,&quot;b2b&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 const RED = '#75070D';
 
 const MENU = [
@@ -80,14 +80,10 @@ const MENU = [
       { title: 'Как устроено', links: [
         { label: 'Платформа проекта', href: 'О проекте.dc.html#platform' },
         { label: 'Контакты', href: 'Контакты.dc.html' } ] } ] },
-  { key: 'brands', label: 'Бренды', href: 'Каталог.dc.html', note: 'Марки Нижнего Новгорода', cols: [
-      { title: 'Каталог', links: [
-        { label: 'Все бренды', href: 'Каталог.dc.html#brands' },
-        { label: 'Карта брендов', href: 'Каталог.dc.html#map' } ] },
-      { title: 'Категории', links: [
-        { label: 'Одежда', href: 'Каталог.dc.html#brands' },
-        { label: 'Аксессуары', href: 'Каталог.dc.html#brands' },
-        { label: 'Ремесло и керамика', href: 'Каталог.dc.html#brands' } ] } ] },
+  { key: 'services', label: 'Услуги', href: 'Услуги.dc.html', note: 'Стилисты «Модного Нижнего» для компаний', cols: [
+      { title: 'Для компаний', links: [
+        { label: 'Все услуги', href: 'Услуги.dc.html' },
+        { label: 'Корпоратив со стилистом', href: 'Корпоратив со стилистом.dc.html' } ] } ] },
   { key: 'media', label: 'Медиа', href: 'Медиа.dc.html', note: 'Новости, лонгриды, съёмки', cols: [
       { title: 'Материалы', links: [
         { label: 'Новости', href: 'Медиа.dc.html#feed' },

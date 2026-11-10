@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Корпоратив со стилистом — Модный Нижний</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+body{margin:0;background:#f3e7d8;-webkit-font-smoothing:antialiased}
+a{color:#75070d}a:hover{color:#4e0509}
+.todo{background:#d8f32a;color:#2b1214;padding:1px 6px}
+.btn{display:inline-flex;align-items:center;min-height:48px;box-sizing:border-box;padding:0 24px;text-decoration:none;font-size:15px}
+.btn-main{background:#75070d;color:#f3e7d8}.btn-main:hover{background:#4e0509;color:#f3e7d8}
+.btn-line{border:1px solid #75070d66;color:#75070d}.btn-line:hover{background:#e4d2bb}
+.nav-a{color:#5b0207;text-decoration:none;font-size:14px;padding:6px 0}
+.field{display:flex;flex-direction:column;gap:6px;font-size:13px;letter-spacing:.04em}
+.field input,.field textarea,.field select{font:inherit;font-size:16px;letter-spacing:0;color:#2b1214;background:#fefbf6;border:1px solid #75070d66;border-radius:0;padding:12px;min-height:48px;box-sizing:border-box;width:100%}
+.ph{background:#e4d2bb;color:#5b0207;box-sizing:border-box;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.ph strong{font-family:'IBM Plex Serif',Georgia,serif;font-size:12px;letter-spacing:.18em;font-weight:500}
+.ph span{font-size:14px;line-height:1.45}
+.over{margin:0 0 16px;font-family:'IBM Plex Serif',Georgia,serif;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#75070d}
+.h2{margin:0 0 44px;font-family:'Yeseva One',Georgia,serif;font-weight:400;font-size:44px;line-height:1.1;color:#75070d}
+.h3{margin:0 0 8px;font-family:'IBM Plex Serif',Georgia,serif;font-weight:400;font-size:22px;line-height:1.25;color:#75070d}
+.price{font-family:'IBM Plex Serif',Georgia,serif;font-size:26px;color:#75070d}
+@media (max-width:720px){.pad{padding-left:16px !important;padding-right:16px !important}.h1{font-size:40px !important}.h2{font-size:32px !important;margin-bottom:28px !important}}
+</style>
+</helmet>
+<div style="font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #2b1214; background: #f3e7d8; min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="services" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+
+  <!-- HERO -->
+  <section class="pad" style="padding: 40px 32px 72px">
+    <div style="max-width: 1216px; margin: 0 auto">
+      <nav aria-label="Хлебные крошки" style="font-size: 14px; margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 8px">
+        <a href="Услуги.dc.html">Услуги</a><span aria-hidden="true">/</span><a href="Услуги.dc.html#stylists">Услуги стилистов</a><span aria-hidden="true">/</span><span>Корпоратив со стилистом</span>
+      </nav>
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch">
+        <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+          <p class="over" style="margin: 0">Услуги стилистов · Для компаний</p>
+          <div>
+            <h1 class="h1" style="margin: 0 0 12px; font-family: 'Yeseva One', Georgia, serif; font-weight: 400; font-size: 60px; line-height: 1.08; color: #75070d">Корпоратив со стилистом</h1>
+            <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 20px; color: #75070d">Стильный практикум от команды «Модного Нижнего»</p>
+          </div>
+          <p style="margin: 0; font-size: 19px; line-height: 1.55">Стилисты приходят в вашу компанию с одеждой и украшениями локальных брендов. Рассказываем о трендах и логике современной моды, помогаем каждому участнику подобрать свой образ, а в расширенном формате устраиваем мини-ярмарку нижегородских брендов.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a class="btn btn-main" href="#request">Обсудить корпоратив →</a>
+            <a class="btn btn-line" href="#formats">Форматы и цены</a>
+          </div>
+          <p style="margin: 8px 0 0; display: flex; align-items: baseline; gap: 12px">
+            <span style="font-family: 'Yeseva One', Georgia, serif; font-size: 56px; line-height: 1; color: #75070d">35+</span>
+            <span style="font-size: 16px; line-height: 1.35">практикумов<br>уже проведено</span>
+          </p>
+        </div>
+        <div class="ph" style="flex: 1 1 520px; min-width: 0; min-height: 460px">
+          <strong>ФОТО 1 · ОБЛОЖКА · 4:3</strong>
+          <span>То же фото, что в карточке: стилист поправляет образ участника у рейла, на фоне читается офис.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section class="pad" aria-label="Коротко об услуге" style="padding: 0 32px 88px">
+    <dl style="max-width: 1216px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid #75070d66; border-bottom: 1px solid #75070d66">
+      <div style="padding: 24px 24px 24px 0">
+        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Где</dt>
+        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; line-height: 1.35; color: #75070d">У вас в компании или на площадке локального бренда</dd>
+      </div>
+      <div style="padding: 24px 24px 24px 0">
+        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Длительность</dt>
+        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; color: #75070d">от 1 до 3 часов</dd>
+      </div>
+      <div style="padding: 24px 24px 24px 0">
+        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Группа</dt>
+        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; color: #75070d">Любого размера</dd>
+      </div>
+      <div style="padding: 24px 0">
+        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Стоимость</dt>
+        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; color: #75070d">от 20 000 ₽</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- STEPS -->
+  <section class="pad" style="padding: 0 32px 88px">
+    <div style="max-width: 1216px; margin: 0 auto">
+      <p class="over">01 — Как это проходит</p>
+      <h2 class="h2">От трендов до готового образа</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
+        <li style="border: 1px solid #75070d66; display: flex; flex-direction: column">
+          <div class="ph" style="aspect-ratio: 4 / 5"><strong>ФОТО 2 · 4:5</strong><span>Стилист выступает перед коллективом, на экране слайд с трендами.</span></div>
+          <div style="padding: 20px">
+            <p style="margin: 0 0 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">I · 60 или 120 минут</p>
+            <h3 class="h3">Практикум</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55">Рассказываем о макро- и микротрендах и логике современной моды. Каждый выбирает тренды для себя и узнаёт, как применять их в обычной жизни.</p>
+          </div>
+        </li>
+        <li style="border: 1px solid #75070d66; display: flex; flex-direction: column">
+          <div class="ph" style="aspect-ratio: 4 / 5"><strong>ФОТО 3 · 4:5</strong><span>Стилист и участник у зеркала: примеряют вещь или аксессуар.</span></div>
+          <div style="padding: 20px">
+            <p style="margin: 0 0 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">II · 45 минут</p>
+            <h3 class="h3">Примерка</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55">Участники применяют знания на практике: по рекомендации стилиста примеряют образы и пробуют новое.</p>
+          </div>
+        </li>
+        <li style="border: 1px solid #75070d66; display: flex; flex-direction: column">
+          <div class="ph" style="aspect-ratio: 4 / 5"><strong>ФОТО 4 · 4:5</strong><span>Мини-ярмарка: рейлы с одеждой брендов, участники выбирают вещи вместе со стилистом.</span></div>
+          <div style="padding: 20px">
+            <p style="margin: 0 0 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">III · в расширенном формате</p>
+            <h3 class="h3">Мини-ярмарка брендов</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55">После кофе-брейка — вещи 10–15 нижегородских брендов. Стилисты помогают собрать образ, а понравившуюся одежду и украшения можно сразу купить.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FORMATS -->
+  <section id="formats" class="pad" style="background: #f7efe3; padding: 88px 32px">
+    <div style="max-width: 1216px; margin: 0 auto">
+      <p class="over">02 — Форматы и цены</p>
+      <h2 class="h2">Выберите формат</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+
+        <article style="border: 1px solid #75070d66; background: #f3e7d8; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">I</p>
+          <h3 class="h3" style="margin: 0; font-size: 26px">Практикум</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Тренды и логика современной моды.</p>
+          <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; border-bottom: 1px solid #75070d40">
+            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>60 минут</span><span class="price" style="font-size: 20px">20 000 ₽</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>120 минут</span><span class="price" style="font-size: 20px">40 000 ₽</span></li>
+          </ul>
+        </article>
+
+        <article style="border: 1px solid #75070d66; background: #f3e7d8; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">II</p>
+          <h3 class="h3" style="margin: 0; font-size: 26px">Практикум с примеркой</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Практикум и прикладная часть: участники примеряют образы по рекомендации стилиста.</p>
+          <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; border-bottom: 1px solid #75070d40">
+            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>60 + 45 минут</span><span class="price" style="font-size: 20px">40 000 ₽</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>120 + 45 минут</span><span class="price" style="font-size: 20px">60 000 ₽</span></li>
+          </ul>
+        </article>
+
+        <article style="border: 1px solid #75070d; background: #75070d; color: #f3e7d8; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px">III · Расширенный</p>
+          <h3 class="h3" style="margin: 0; font-size: 26px; color: #f3e7d8">Практикум и мини-ярмарка</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Практикум, кофе-брейк и мини-ярмарка 10–15 нижегородских брендов. Два стилиста помогают подобрать образы, одежду и украшения — всё можно купить на месте.</p>
+          <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; border-bottom: 1px solid #f3e7d84d">
+            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #f3e7d84d"><span>до 3 часов</span><span style="font-family: 'IBM Plex Serif', Georgia, serif; font-size: 20px">20 000 ₽ / час</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+        <div style="border-top: 1px solid #75070d66; padding-top: 20px">
+          <h3 class="h3">Дополнительная тема</h3>
+          <p style="margin: 0 0 8px; font-size: 15px; line-height: 1.55">Управление впечатлением, основы коррекции фигуры или другая тема о стиле и моде — подбираем под возраст и интересы коллектива.</p>
+          <p style="margin: 0; font-size: 15px"><strong style="font-weight: 500">10 000 ₽</strong> за 30 минут</p>
+        </div>
+        <div style="border-top: 1px solid #75070d66; padding-top: 20px">
+          <h3 class="h3">Площадка</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">У вас в компании — без доплат. На площадке локального бренда — без аренды, примерка на вещах бренда. На независимой площадке к стоимости добавляется аренда.</p>
+        </div>
+        <div style="border-top: 1px solid #75070d66; padding-top: 20px">
+          <h3 class="h3">Фотограф</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">По желанию: снимет образы и сам корпоратив. Стоимость зависит от фотографа.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR PARTICIPANTS + REQUIREMENTS -->
+  <section class="pad" style="padding: 88px 32px">
+    <div style="max-width: 1216px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px">
+      <div style="flex: 1 1 520px; min-width: 0">
+        <p class="over">03 — Для участников</p>
+        <h2 class="h2" style="margin-bottom: 28px">Что получает каждый</h2>
+        <div style="display: flex; flex-direction: column">
+          <div style="padding: 18px 0; border-top: 1px solid #75070d40">
+            <h3 class="h3">Понимание трендов</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55">Какие тренды подходят именно ему и как носить их каждый день.</p>
+          </div>
+          <div style="padding: 18px 0; border-top: 1px solid #75070d40">
+            <h3 class="h3">Свой образ</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55">Подобранный стилистом лично для него.</p>
+          </div>
+          <div style="padding: 18px 0; border-top: 1px solid #75070d40; border-bottom: 1px solid #75070d40">
+            <h3 class="h3">Знакомство с локальными брендами</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55">Вещи нижегородских дизайнеров можно примерить, а на мини-ярмарке — купить.</p>
+          </div>
+        </div>
+        <p style="margin: 20px 0 0; font-size: 14px; line-height: 1.55">Ждём и смешанные коллективы. Подборка мужской одежды пока небольшая — расскажите о составе группы, и мы подготовимся заранее.</p>
+      </div>
+      <div class="ph" style="flex: 1 1 420px; min-width: 0; min-height: 420px">
+        <strong>ФОТО 5 · 3:2</strong>
+        <span>Групповое фото коллектива в готовых образах: у каждого свой стиль, настроение живое.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" style="background: #75070d; color: #f3e7d8; padding: 72px 32px">
+    <div style="max-width: 1216px; margin: 0 auto">
+      <p class="over" style="color: #f3e7d8">04 — Подготовка</p>
+      <h2 class="h2" style="color: #f3e7d8; margin-bottom: 36px">Что нужно от компании</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
+        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
+          <h3 class="h3" style="color: #f3e7d8">Место для переодевания</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Отдельная комната или зона, где можно спокойно примерить вещи.</p>
+        </div>
+        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
+          <h3 class="h3" style="color: #f3e7d8">Экран для презентации</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Для практикума мы показываем слайды с трендами и образами.</p>
+        </div>
+        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
+          <h3 class="h3" style="color: #f3e7d8">Кофе-брейк</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">В расширенном формате — перерыв перед мини-ярмаркой. Его организует компания.</p>
+        </div>
+        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
+          <h3 class="h3" style="color: #f3e7d8">Остальное привозим мы</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Одежду, украшения и зеркала.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="pad" style="padding: 88px 32px">
+    <div style="max-width: 1216px; margin: 0 auto">
+      <p class="over">05 — Отзывы</p>
+      <h2 class="h2">35+ практикумов уже проведено</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+        <figure style="margin: 0; border: 1px solid #75070d66; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <blockquote style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.5; color: #2b1214">«Вроде лекция про актуальные тренды, а на самом деле непринуждённо, весело и доступно обсудили, что и где покупать».</blockquote>
+          <figcaption style="font-size: 14px; margin-top: auto">Ольга Тарасова</figcaption>
+        </figure>
+        <figure style="margin: 0; border: 1px solid #75070d66; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <blockquote style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.5; color: #2b1214">«Всё очень понятно, доступно, Ольга открыта для вопросов и диалога».</blockquote>
+          <figcaption style="font-size: 14px; margin-top: auto">Юлия Емельянова</figcaption>
+        </figure>
+        <figure style="margin: 0; border: 1px solid #75070d66; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <blockquote style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.5; color: #2b1214">«Всё понравилось. Всё доступно, наглядно, познавательно. Прекрасная атмосфера».</blockquote>
+          <figcaption style="font-size: 14px; margin-top: auto">Мария</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTS -->
+  <section class="pad" style="background: #f7efe3; padding: 88px 32px">
+    <div style="max-width: 1216px; margin: 0 auto">
+      <p class="over">06 — Кто ведёт</p>
+      <h2 class="h2">Стилисты практикума</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px">
+        <div style="display: flex; flex-wrap: wrap; gap: 24px">
+          <div class="ph" style="flex: 0 0 180px; aspect-ratio: 4 / 5"><strong>ФОТО 6 · 4:5</strong><span>Портрет Ольги</span></div>
+          <div style="flex: 1 1 200px; min-width: 0">
+            <h3 class="h3" style="font-size: 24px">Ольга Мышаева</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6">Стилист, дизайнер бренда FЁKLA&amp;SЁVKLA, эксперт по управлению впечатлением. Ведущий стилист конкурса «Леди года», автор курсов «Стильная Я» и «Стильный интенсив».</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px">
+          <div class="ph" style="flex: 0 0 180px; aspect-ratio: 4 / 5"><strong>ФОТО 7 · 4:5</strong><span>Портрет Юлии</span></div>
+          <div style="flex: 1 1 200px; min-width: 0">
+            <h3 class="h3" style="font-size: 24px">Юлия Тритузова</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6">Персональный стилист с опытом более 5 лет: шопинг-сопровождение, стилизация фото- и видеосъёмок, ТВ-проекты по преображению на ННТВ. Один из ведущих стилистов «Леди года».</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUEST -->
+  <section id="request" class="pad" style="padding: 88px 32px">
+    <div style="max-width: 1216px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px">
+      <div style="flex: 1 1 400px; min-width: 0">
+        <p class="over">07 — Заявка</p>
+        <h2 class="h2" style="margin-bottom: 20px">Обсудим ваш корпоратив</h2>
+        <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.6">Расскажите о коллективе и о том, когда планируете мероприятие. Мы свяжемся с вами, поможем выбрать формат и рассчитаем стоимость.</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.8"><a href="tel:+79202575777">+7 920 257-57-77</a><br><a href="mailto:hi@modnynn.ru">hi@modnynn.ru</a></p>
+      </div>
+      <form style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+        <label class="field">Имя<input type="text" name="name" autocomplete="name"></label>
+        <label class="field">Компания<input type="text" name="company" autocomplete="organization"></label>
+        <label class="field">Телефон или email<input type="text" name="contact"></label>
+        <label class="field">Сколько участников<input type="text" name="people" inputmode="numeric"></label>
+        <label class="field" style="grid-column: 1 / -1">Формат
+          <select name="format">
+            <option>Пока не знаю — помогите выбрать</option>
+            <option>Практикум</option>
+            <option>Практикум с примеркой</option>
+            <option>Практикум и мини-ярмарка</option>
+          </select>
+        </label>
+        <label class="field" style="grid-column: 1 / -1">Комментарий и желаемая дата<textarea name="message" rows="4"></textarea></label>
+        <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+          <button type="button" class="btn btn-main" style="border: 0; cursor: pointer; font-family: inherit">Отправить заявку</button>
+          <p style="margin: 0; font-size: 13px; line-height: 1.5">Отправляя форму, вы соглашаетесь с политикой конфиденциальности и даёте согласие на обработку персональных данных.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":5600}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Услуги — Модный Нижний</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+
+.sv-wrap { max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px; }
+.sv-over { margin: 0 0 16px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D; }
+.sv-h2 { margin: 0 0 36px; font-family: 'Yeseva One', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4vw, 44px); line-height: 1.1; color: #75070D; }
+
+/* Карточка услуги — по прототипу Татьяны */
+.service-card { display: flex; flex-wrap: wrap; border: 1px solid rgba(117,7,13,0.4); background: #F7EFE3; color: #2B1214; }
+.service-card__media { flex: 1 1 420px; min-width: 0; min-height: 420px; position: relative; background: #E4D2BB; color: #5B0207; }
+/* Когда появится фото: замените .service-card__placeholder на <img class="service-card__photo" src="..." alt="..."> */
+.service-card__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.service-card__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 24px; font-size: 15px; line-height: 1.5; }
+.service-card__placeholder strong { font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; }
+.service-card__body { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: 40px; }
+.service-card__label { margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #75070D; }
+.service-card__title { margin: 0; font-family: 'Yeseva One', Georgia, serif; font-size: 34px; font-weight: 400; line-height: 1.15; color: #75070D; }
+.service-card__title a { color: inherit; }
+.service-card__text { margin: 0; font-size: 16px; line-height: 1.6; }
+.service-card__list { margin: 0; padding: 0; list-style: none; font-size: 15px; line-height: 1.5; border-bottom: 1px solid rgba(117,7,13,0.25); }
+.service-card__list li { padding: 10px 0; border-top: 1px solid rgba(117,7,13,0.25); }
+.service-card__facts { margin: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 17px; color: #75070D; }
+.service-card__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
+.service-card__btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; font-size: 15px; text-decoration: none; }
+.service-card__btn--main { background: #75070D; color: #F3E7D8; }
+.service-card__btn--main:hover { background: #4E0509; color: #F3E7D8; }
+.service-card__btn--line { border: 1px solid rgba(117,7,13,0.4); color: #75070D; }
+.service-card__btn--line:hover { background: #E4D2BB; }
+
+@media (max-width: 720px) {
+  .sv-wrap { padding-left: 16px; padding-right: 16px; }
+  .service-card__media { flex-basis: 100%; min-height: 260px; }
+  .service-card__body { flex-basis: 100%; padding: 24px 20px; }
+  .service-card__title { font-size: 28px; }
+}
+</style>
+</helmet>
+<div style="min-width: 320px; overflow-x: clip">
+
+<dc-import name="Шапка" active="services" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
+
+<!-- Заголовок -->
+<section data-screen-label="Заголовок" style="background: #75070D; color: #F3E7D8; position: relative; overflow: hidden">
+  <img src="uploads/mini-logo.svg" alt="" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92vw, 1100px); height: auto; opacity: 0.13; filter: brightness(0.6)">
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) 32px clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px">
+    <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">Услуги</p>
+    <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(40px, 7vw, 100px); line-height: 1.02; text-wrap: balance; max-width: 18ch">Стиль с командой «Модного Нижнего»</h1>
+    <p style="margin: 0; max-width: 56ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; opacity: 0.95">Стилисты проекта проводят практикумы о стиле и подбирают образы на одежде и украшениях нижегородских брендов.</p>
+  </div>
+</section>
+
+<!-- Услуги стилистов -->
+<section id="stylists" data-screen-label="Услуги стилистов" class="sv-wrap">
+  <p class="sv-over">01 — Услуги стилистов</p>
+  <h2 class="sv-h2">Для компаний</h2>
+
+  <article class="service-card">
+    <div class="service-card__media">
+      <div class="service-card__placeholder">
+        <strong>ФОТО 1 · ОБЛОЖКА · 4:3</strong>
+        <span>Стилист поправляет образ участника у рейла с одеждой. На фоне читается офис, рядом видны коллеги.</span>
+      </div>
+    </div>
+
+    <div class="service-card__body">
+      <p class="service-card__label">Для компаний</p>
+      <h3 class="service-card__title"><a href="Корпоратив со стилистом.dc.html">Корпоратив со стилистом</a></h3>
+      <p class="service-card__text">Стилисты приходят в вашу компанию с одеждой и украшениями локальных брендов. Рассказываем о трендах и логике современной моды и помогаем каждому участнику подобрать свой образ.</p>
+
+      <ul class="service-card__list">
+        <li>Практикум о трендах и о том, как применять их в обычной жизни</li>
+        <li>Примерка: образ для каждого участника по рекомендации стилиста</li>
+        <li>В расширенном формате — мини-ярмарка 10–15 нижегородских брендов, вещи можно купить на месте</li>
+        <li>Фотограф — по желанию</li>
+      </ul>
+
+      <p class="service-card__facts">
+        <span>от 1 до 3 часов</span>
+        <span>группа любого размера</span>
+        <span>от 20 000 ₽</span>
+      </p>
+
+      <div class="service-card__actions">
+        <a class="service-card__btn service-card__btn--main" href="Корпоратив со стилистом.dc.html">Подробнее →</a>
+        <a class="service-card__btn service-card__btn--line" href="Корпоратив со стилистом.dc.html#request">Обсудить корпоратив</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
