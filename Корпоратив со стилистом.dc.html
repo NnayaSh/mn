@@ -16,287 +16,366 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @font-face { font-family: 'MN Sans'; src: url('uploads/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-body{margin:0;background:#f3e7d8;-webkit-font-smoothing:antialiased}
-a{color:#75070d}a:hover{color:#4e0509}
-.todo{background:#d8f32a;color:#2b1214;padding:1px 6px}
-.btn{display:inline-flex;align-items:center;min-height:48px;box-sizing:border-box;padding:0 24px;text-decoration:none;font-size:15px}
-.btn-main{background:#75070d;color:#f3e7d8}.btn-main:hover{background:#4e0509;color:#f3e7d8}
-.btn-line{border:1px solid #75070d66;color:#75070d}.btn-line:hover{background:#e4d2bb}
-.nav-a{color:#5b0207;text-decoration:none;font-size:14px;padding:6px 0}
-.field{display:flex;flex-direction:column;gap:6px;font-size:13px;letter-spacing:.04em}
-.field input,.field textarea,.field select{font:inherit;font-size:16px;letter-spacing:0;color:#2b1214;background:#fefbf6;border:1px solid #75070d66;border-radius:0;padding:12px;min-height:48px;box-sizing:border-box;width:100%}
-.ph{background:#e4d2bb;color:#5b0207;box-sizing:border-box;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
-.ph strong{font-family:'IBM Plex Serif',Georgia,serif;font-size:12px;letter-spacing:.18em;font-weight:500}
-.ph span{font-size:14px;line-height:1.45}
-.over{margin:0 0 16px;font-family:'IBM Plex Serif',Georgia,serif;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#75070d}
-.h2{margin:0 0 44px;font-family:'Yeseva One',Georgia,serif;font-weight:400;font-size:44px;line-height:1.1;color:#75070d}
-.h3{margin:0 0 8px;font-family:'IBM Plex Serif',Georgia,serif;font-weight:400;font-size:22px;line-height:1.25;color:#75070d}
-.price{font-family:'IBM Plex Serif',Georgia,serif;font-size:26px;color:#75070d}
-@media (max-width:720px){.pad{padding-left:16px !important;padding-right:16px !important}.h1{font-size:40px !important}.h2{font-size:32px !important;margin-bottom:28px !important}}
+body { margin: 0; background: #F3E7D8; color: #2B1214; font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #75070D; text-decoration: none; }
+a:hover { color: #4E0509; }
+
+.k-in { max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 32px; }
+.k-red { background: #75070D; color: #F3E7D8; }
+.k-milk { background: #F7EFE3; }
+.k-over { margin: 0 0 20px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D; }
+.k-red .k-over { color: #F3E7D8; opacity: 0.7; }
+.k-h2 { margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; color: #75070D; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.12; text-wrap: balance; }
+.k-red .k-h2 { color: #F3E7D8; }
+.k-head { margin-bottom: clamp(28px, 4vw, 44px); }
+.k-text { margin: 0; font-size: 17px; line-height: 1.65; }
+
+.k-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 15px; transition: background 0.2s, color 0.2s; }
+.k-btn-cream { background: #F3E7D8; color: #75070D; }
+.k-btn-cream:hover { background: #E4D2BB; color: #75070D; }
+.k-btn-line { border: 1px solid rgba(243,231,216,0.7); color: #F3E7D8; }
+.k-btn-line:hover { background: #F3E7D8; color: #75070D; }
+
+/* Заголовок */
+.k-hero { position: relative; overflow: hidden; }
+.k-hero-mark { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92vw, 1100px); height: auto; opacity: 0.13; filter: brightness(0.6); pointer-events: none; }
+.k-hero .k-in { position: relative; padding-top: clamp(40px, 6vw, 80px); padding-bottom: clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 26px; }
+.k-crumbs { margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; }
+.k-crumbs a { color: #F3E7D8; opacity: 0.75; border-bottom: 1px solid rgba(243,231,216,0.4); }
+.k-crumbs a:hover { color: #F3E7D8; opacity: 1; }
+.k-crumbs span { opacity: 0.75; }
+.k-h1 { margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(40px, 7vw, 96px); line-height: 1.02; text-wrap: balance; max-width: 16ch; }
+.k-sub { margin: -10px 0 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: clamp(18px, 1.8vw, 22px); font-style: italic; opacity: 0.9; }
+.k-lead { margin: 0; max-width: 58ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; opacity: 0.95; }
+.k-hero-row { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px; }
+.k-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.k-stat { display: flex; align-items: center; gap: 14px; }
+.k-stat b { font-family: 'Yeseva One', serif; font-weight: 400; font-size: 54px; line-height: 1; }
+.k-stat span { font-size: 15px; line-height: 1.35; opacity: 0.9; }
+.k-hero-pics { display: flex; gap: 14px; margin-top: 8px; height: clamp(220px, 36vw, 440px); }
+.k-hero-pics .k-ph { min-width: 0; height: 100%; }
+/* Заглушки фото: заменить на <img> со снимками корпоративов */
+.k-ph { background: #E4D2BB; color: #5B0207; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; }
+.k-ph strong { font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; }
+.k-ph span { font-size: 14px; line-height: 1.45; max-width: 40ch; }
+.k-red .k-ph { background: #5B0207; color: #F3E7D8; }
+
+/* Коротко */
+.k-facts { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-bottom: 1px solid rgba(117,7,13,0.3); }
+.k-facts div { padding: 26px 24px 26px 0; border-top: 1px solid rgba(117,7,13,0.3); }
+.k-facts dt { margin-bottom: 10px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #75070D; opacity: 0.75; }
+.k-facts dd { margin: 0; font-family: 'Yeseva One', serif; font-size: 23px; line-height: 1.25; color: #75070D; }
+
+/* Карточки */
+.k-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.k-card { border: 1px solid rgba(117,7,13,0.3); padding: 28px 26px 30px; display: flex; flex-direction: column; gap: 12px; }
+.k-num { font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.14em; color: #75070D; opacity: 0.7; }
+.k-h3 { margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 25px; line-height: 1.2; color: #75070D; }
+.k-card p { margin: 0; font-size: 15px; line-height: 1.6; }
+.k-pics { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; margin-top: 20px; }
+.k-pics .k-ph { min-height: 260px; }
+
+/* Цены */
+.k-price { margin: auto 0 0; padding: 0; list-style: none; border-bottom: 1px solid rgba(117,7,13,0.25); }
+.k-price li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 13px 0; border-top: 1px solid rgba(117,7,13,0.25); font-size: 15px; }
+.k-price b { font-family: 'Yeseva One', serif; font-weight: 400; font-size: 22px; color: #75070D; white-space: nowrap; }
+.k-card-red { background: #75070D; color: #F3E7D8; border-color: #75070D; }
+.k-card-red .k-num, .k-card-red .k-h3, .k-card-red .k-price b { color: #F3E7D8; }
+.k-card-red .k-price, .k-card-red .k-price li { border-color: rgba(243,231,216,0.3); }
+.k-extra { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px clamp(24px, 4vw, 48px); margin-top: clamp(32px, 4vw, 48px); }
+.k-extra div { border-top: 1px solid rgba(117,7,13,0.3); padding-top: 20px; }
+.k-extra h3 { margin: 0 0 10px; font-family: 'IBM Plex Serif', Georgia, serif; font-weight: 500; font-size: 20px; color: #75070D; }
+.k-extra p { margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* Две колонки */
+.k-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.k-list { display: flex; flex-direction: column; margin-top: 28px; }
+.k-list div { padding: 18px 0; border-top: 1px solid rgba(117,7,13,0.25); }
+.k-list div:last-child { border-bottom: 1px solid rgba(117,7,13,0.25); }
+.k-list h3 { margin: 0 0 6px; font-family: 'IBM Plex Serif', Georgia, serif; font-weight: 500; font-size: 20px; color: #75070D; }
+.k-list p { margin: 0; font-size: 15px; line-height: 1.6; }
+.k-note { margin: 20px 0 0; font-size: 15px; line-height: 1.6; opacity: 0.8; }
+.k-photo { width: 100%; aspect-ratio: 4 / 5; }
+
+/* Подготовка */
+.k-prep { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.k-prep div { border: 1px solid rgba(243,231,216,0.4); padding: 26px 24px 28px; display: flex; flex-direction: column; gap: 10px; transition: background 0.25s; }
+.k-prep div:hover { background: #5B0207; }
+.k-prep h3 { margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-weight: 500; font-size: 20px; line-height: 1.25; }
+.k-prep p { margin: 0; font-size: 15px; line-height: 1.6; opacity: 0.88; }
+
+/* Отзывы */
+.k-quote { margin: 0; border: 1px solid rgba(117,7,13,0.3); padding: 30px 28px; display: flex; flex-direction: column; gap: 18px; }
+.k-quote::before { content: '«'; font-family: 'Yeseva One', serif; font-size: 64px; line-height: 0.6; color: #75070D; height: 26px; }
+.k-quote blockquote { margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.55; }
+.k-quote figcaption { margin-top: auto; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #75070D; }
+
+/* Стилисты */
+.k-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(28px, 4vw, 48px); }
+.k-person { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.k-person img { flex: 0 0 200px; width: 200px; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+.k-person div { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.k-person h3 { margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: 26px; color: #75070D; }
+.k-person p { margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* Заявка */
+.k-contacts { display: flex; flex-direction: column; gap: 10px; font-size: 16px; border-top: 1px solid rgba(117,7,13,0.25); padding-top: 20px; }
+.k-contacts a { border-bottom: 1px solid rgba(117,7,13,0.4); align-self: flex-start; }
+.k-form { display: flex; flex-direction: column; gap: 18px; border: 1px solid rgba(117,7,13,0.35); padding: clamp(24px, 3vw, 36px); }
+.k-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.k-field { display: flex; flex-direction: column; gap: 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #75070D; }
+.k-field input, .k-field select, .k-field textarea { width: 100%; padding: 14px 16px; font-family: 'MN Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; letter-spacing: 0; text-transform: none; color: #2B1214; background: transparent; border: 1px solid rgba(117,7,13,0.4); border-radius: 0; outline: none; }
+.k-field input:focus, .k-field select:focus, .k-field textarea:focus { border-color: #75070D; }
+.k-field textarea { resize: vertical; }
+.k-submit { margin-top: 6px; padding: 17px 32px; background: #75070D; color: #F3E7D8; border: 1px solid #75070D; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 16px; letter-spacing: 0.05em; cursor: pointer; transition: background 0.2s; }
+.k-submit:hover { background: #4E0509; }
+.k-legal { margin: 0; font-size: 13px; opacity: 0.6; line-height: 1.5; }
+.k-sent { background: #75070D; color: #F3E7D8; padding: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; gap: 16px; }
+.k-sent h3 { margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; }
+.k-sent p { margin: 0; font-size: 16px; line-height: 1.6; opacity: 0.9; }
+
+@media (max-width: 760px) {
+  .k-in { padding-left: 16px; padding-right: 16px; }
+  .k-hero-pics { height: auto; flex-direction: column; }
+  .k-hero-pics .k-ph { height: 240px; }
+  .k-hero-pics .k-ph + .k-ph { display: none; }
+  .k-pics { grid-template-columns: 1fr 1fr; }
+  .k-pics .k-ph:first-child { grid-column: 1 / -1; }
+  .k-pics .k-ph { min-height: 180px; }
+  .k-person img { flex-basis: 140px; width: 140px; }
+}
 </style>
 </helmet>
-<div style="font-family: 'MN Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #2b1214; background: #f3e7d8; min-width: 320px; overflow-x: clip">
+<div style="min-width: 320px; overflow-x: clip">
 
 <dc-import name="Шапка" active="services" hint-size="100%,74px" style="position: sticky; top: 0; z-index: 50; display: block"></dc-import>
 
-
-  <!-- HERO -->
-  <section class="pad" style="padding: 40px 32px 72px">
-    <div style="max-width: 1216px; margin: 0 auto">
-      <nav aria-label="Хлебные крошки" style="font-size: 14px; margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 8px">
-        <a href="Услуги.dc.html">Услуги</a><span aria-hidden="true">/</span><a href="Услуги.dc.html#stylists">Услуги стилистов</a><span aria-hidden="true">/</span><span>Корпоратив со стилистом</span>
-      </nav>
-      <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch">
-        <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
-          <p class="over" style="margin: 0">Услуги стилистов · Для компаний</p>
-          <div>
-            <h1 class="h1" style="margin: 0 0 12px; font-family: 'Yeseva One', Georgia, serif; font-weight: 400; font-size: 60px; line-height: 1.08; color: #75070d">Корпоратив со стилистом</h1>
-            <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 20px; color: #75070d">Стильный практикум от команды «Модного Нижнего»</p>
-          </div>
-          <p style="margin: 0; font-size: 19px; line-height: 1.55">Стилисты приходят в вашу компанию с одеждой и украшениями локальных брендов. Рассказываем о трендах и логике современной моды, помогаем каждому участнику подобрать свой образ, а в расширенном формате устраиваем мини-ярмарку нижегородских брендов.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 12px">
-            <a class="btn btn-main" href="#request">Обсудить корпоратив →</a>
-            <a class="btn btn-line" href="#formats">Форматы и цены</a>
-          </div>
-          <p style="margin: 8px 0 0; display: flex; align-items: baseline; gap: 12px">
-            <span style="font-family: 'Yeseva One', Georgia, serif; font-size: 56px; line-height: 1; color: #75070d">35+</span>
-            <span style="font-size: 16px; line-height: 1.35">практикумов<br>уже проведено</span>
-          </p>
-        </div>
-        <div class="ph" style="flex: 1 1 520px; min-width: 0; min-height: 460px">
-          <strong>ФОТО 1 · ОБЛОЖКА · 4:3</strong>
-          <span>То же фото, что в карточке: стилист поправляет образ участника у рейла, на фоне читается офис.</span>
-        </div>
+<!-- Заголовок -->
+<section class="k-red k-hero" data-screen-label="Заголовок">
+  <img class="k-hero-mark" src="uploads/mini-logo.svg" alt="" aria-hidden="true">
+  <div class="k-in">
+    <p class="k-crumbs"><a href="Услуги.dc.html">Услуги</a> <span>· Для компаний</span></p>
+    <h1 class="k-h1">Корпоратив со стилистом</h1>
+    <p class="k-sub">Стильный практикум от команды «Модного Нижнего»</p>
+    <p class="k-lead">Стилисты приходят в вашу компанию с одеждой и украшениями локальных брендов. Рассказываем о трендах и логике современной моды, помогаем каждому участнику подобрать свой образ, а в расширенном формате устраиваем мини-ярмарку нижегородских брендов.</p>
+    <div class="k-hero-row">
+      <div class="k-btns">
+        <a class="k-btn k-btn-cream" href="#request">Обсудить корпоратив <span aria-hidden="true">→</span></a>
+        <a class="k-btn k-btn-line" href="#formats">Форматы и цены <span aria-hidden="true">↓</span></a>
       </div>
+      <p class="k-stat" style="margin: 0"><b>35+</b><span>практикумов<br>уже проведено</span></p>
     </div>
-  </section>
+    <div class="k-hero-pics">
+      <div class="k-ph" style="flex: 2 1 380px"><strong>ФОТО 1 · ОБЛОЖКА · 4:3</strong><span>Стилист поправляет образ участника у рейла, на фоне читается офис.</span></div>
+      <div class="k-ph" style="flex: 1 1 200px"><strong>ФОТО 2 · 3:4</strong><span>Участница в новом образе у зеркала.</span></div>
+    </div>
+  </div>
+</section>
 
-  <!-- FACTS -->
-  <section class="pad" aria-label="Коротко об услуге" style="padding: 0 32px 88px">
-    <dl style="max-width: 1216px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid #75070d66; border-bottom: 1px solid #75070d66">
-      <div style="padding: 24px 24px 24px 0">
-        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Где</dt>
-        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; line-height: 1.35; color: #75070d">У вас в компании или на площадке локального бренда</dd>
-      </div>
-      <div style="padding: 24px 24px 24px 0">
-        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Длительность</dt>
-        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; color: #75070d">от 1 до 3 часов</dd>
-      </div>
-      <div style="padding: 24px 24px 24px 0">
-        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Группа</dt>
-        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; color: #75070d">Любого размера</dd>
-      </div>
-      <div style="padding: 24px 0">
-        <dt style="font-size: 13px; letter-spacing: 0.08em; margin-bottom: 8px">Стоимость</dt>
-        <dd style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 19px; color: #75070d">от 20 000 ₽</dd>
-      </div>
+<!-- Коротко -->
+<section aria-label="Коротко об услуге">
+  <div class="k-in" style="padding-bottom: 0">
+    <dl class="k-facts">
+      <div><dt>Где</dt><dd>У вас в компании или на площадке бренда</dd></div>
+      <div><dt>Длительность</dt><dd>от 1 до 3 часов</dd></div>
+      <div><dt>Группа</dt><dd>Любого размера</dd></div>
+      <div><dt>Стоимость</dt><dd>от 20 000 ₽</dd></div>
     </dl>
-  </section>
+  </div>
+</section>
 
-  <!-- STEPS -->
-  <section class="pad" style="padding: 0 32px 88px">
-    <div style="max-width: 1216px; margin: 0 auto">
-      <p class="over">01 — Как это проходит</p>
-      <h2 class="h2">От трендов до готового образа</h2>
-      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
-        <li style="border: 1px solid #75070d66; display: flex; flex-direction: column">
-          <div class="ph" style="aspect-ratio: 4 / 5"><strong>ФОТО 2 · 4:5</strong><span>Стилист выступает перед коллективом, на экране слайд с трендами.</span></div>
-          <div style="padding: 20px">
-            <p style="margin: 0 0 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">I · 60 или 120 минут</p>
-            <h3 class="h3">Практикум</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.55">Рассказываем о макро- и микротрендах и логике современной моды. Каждый выбирает тренды для себя и узнаёт, как применять их в обычной жизни.</p>
-          </div>
-        </li>
-        <li style="border: 1px solid #75070d66; display: flex; flex-direction: column">
-          <div class="ph" style="aspect-ratio: 4 / 5"><strong>ФОТО 3 · 4:5</strong><span>Стилист и участник у зеркала: примеряют вещь или аксессуар.</span></div>
-          <div style="padding: 20px">
-            <p style="margin: 0 0 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">II · 45 минут</p>
-            <h3 class="h3">Примерка</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.55">Участники применяют знания на практике: по рекомендации стилиста примеряют образы и пробуют новое.</p>
-          </div>
-        </li>
-        <li style="border: 1px solid #75070d66; display: flex; flex-direction: column">
-          <div class="ph" style="aspect-ratio: 4 / 5"><strong>ФОТО 4 · 4:5</strong><span>Мини-ярмарка: рейлы с одеждой брендов, участники выбирают вещи вместе со стилистом.</span></div>
-          <div style="padding: 20px">
-            <p style="margin: 0 0 8px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">III · в расширенном формате</p>
-            <h3 class="h3">Мини-ярмарка брендов</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.55">После кофе-брейка — вещи 10–15 нижегородских брендов. Стилисты помогают собрать образ, а понравившуюся одежду и украшения можно сразу купить.</p>
-          </div>
-        </li>
-      </ol>
+<!-- Как это проходит -->
+<section data-screen-label="Как это проходит">
+  <div class="k-in">
+    <div class="k-head">
+      <p class="k-over">01 — Как это проходит</p>
+      <h2 class="k-h2">От трендов до готового образа</h2>
     </div>
-  </section>
+    <ol class="k-grid" style="margin: 0; padding: 0; list-style: none">
+      <li class="k-card">
+        <span class="k-num">I · 60 или 120 минут</span>
+        <h3 class="k-h3">Практикум</h3>
+        <p>Рассказываем о макро- и микротрендах и логике современной моды. Каждый выбирает тренды для себя и узнаёт, как применять их в обычной жизни.</p>
+      </li>
+      <li class="k-card">
+        <span class="k-num">II · 45 минут</span>
+        <h3 class="k-h3">Примерка</h3>
+        <p>Участники применяют знания на практике: по рекомендации стилиста примеряют образы и пробуют новое.</p>
+      </li>
+      <li class="k-card">
+        <span class="k-num">III · в расширенном формате</span>
+        <h3 class="k-h3">Мини-ярмарка брендов</h3>
+        <p>После кофе-брейка — вещи 10–15 нижегородских брендов. Стилисты помогают собрать образ, а понравившуюся одежду и украшения можно сразу купить.</p>
+      </li>
+    </ol>
+    <div class="k-pics">
+      <div class="k-ph"><strong>ФОТО 3 · 3:2</strong><span>Стилист выступает перед коллективом, на экране слайд с трендами.</span></div>
+      <div class="k-ph"><strong>ФОТО 4 · 3:4</strong><span>Стилист и участник у зеркала: примеряют вещь или аксессуар.</span></div>
+      <div class="k-ph"><strong>ФОТО 5 · 3:4</strong><span>Мини-ярмарка: рейлы с одеждой брендов, участники выбирают вещи.</span></div>
+    </div>
+  </div>
+</section>
 
-  <!-- FORMATS -->
-  <section id="formats" class="pad" style="background: #f7efe3; padding: 88px 32px">
-    <div style="max-width: 1216px; margin: 0 auto">
-      <p class="over">02 — Форматы и цены</p>
-      <h2 class="h2">Выберите формат</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
-
-        <article style="border: 1px solid #75070d66; background: #f3e7d8; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">I</p>
-          <h3 class="h3" style="margin: 0; font-size: 26px">Практикум</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">Тренды и логика современной моды.</p>
-          <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; border-bottom: 1px solid #75070d40">
-            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>60 минут</span><span class="price" style="font-size: 20px">20 000 ₽</span></li>
-            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>120 минут</span><span class="price" style="font-size: 20px">40 000 ₽</span></li>
-          </ul>
-        </article>
-
-        <article style="border: 1px solid #75070d66; background: #f3e7d8; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070d">II</p>
-          <h3 class="h3" style="margin: 0; font-size: 26px">Практикум с примеркой</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">Практикум и прикладная часть: участники примеряют образы по рекомендации стилиста.</p>
-          <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; border-bottom: 1px solid #75070d40">
-            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>60 + 45 минут</span><span class="price" style="font-size: 20px">40 000 ₽</span></li>
-            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #75070d40"><span>120 + 45 минут</span><span class="price" style="font-size: 20px">60 000 ₽</span></li>
-          </ul>
-        </article>
-
-        <article style="border: 1px solid #75070d; background: #75070d; color: #f3e7d8; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px">III · Расширенный</p>
-          <h3 class="h3" style="margin: 0; font-size: 26px; color: #f3e7d8">Практикум и мини-ярмарка</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">Практикум, кофе-брейк и мини-ярмарка 10–15 нижегородских брендов. Два стилиста помогают подобрать образы, одежду и украшения — всё можно купить на месте.</p>
-          <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; border-bottom: 1px solid #f3e7d84d">
-            <li style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #f3e7d84d"><span>до 3 часов</span><span style="font-family: 'IBM Plex Serif', Georgia, serif; font-size: 20px">20 000 ₽ / час</span></li>
-          </ul>
-        </article>
+<!-- Форматы и цены -->
+<section id="formats" class="k-milk" data-screen-label="Форматы и цены">
+  <div class="k-in">
+    <div class="k-head">
+      <p class="k-over">02 — Форматы и цены</p>
+      <h2 class="k-h2">Выберите формат</h2>
+    </div>
+    <div class="k-grid">
+      <article class="k-card">
+        <span class="k-num">I</span>
+        <h3 class="k-h3">Практикум</h3>
+        <p>Тренды и логика современной моды.</p>
+        <ul class="k-price">
+          <li><span>60 минут</span><b>20 000 ₽</b></li>
+          <li><span>120 минут</span><b>40 000 ₽</b></li>
+        </ul>
+      </article>
+      <article class="k-card">
+        <span class="k-num">II</span>
+        <h3 class="k-h3">Практикум с примеркой</h3>
+        <p>Практикум и прикладная часть: участники примеряют образы по рекомендации стилиста.</p>
+        <ul class="k-price">
+          <li><span>60 + 45 минут</span><b>40 000 ₽</b></li>
+          <li><span>120 + 45 минут</span><b>60 000 ₽</b></li>
+        </ul>
+      </article>
+      <article class="k-card k-card-red">
+        <span class="k-num">III · Расширенный</span>
+        <h3 class="k-h3">Практикум и мини-ярмарка</h3>
+        <p>Практикум, кофе-брейк и мини-ярмарка 10–15 нижегородских брендов. Два стилиста помогают подобрать образы, одежду и украшения — всё можно купить на месте.</p>
+        <ul class="k-price">
+          <li><span>до 3 часов</span><b>20 000 ₽ / час</b></li>
+        </ul>
+      </article>
+    </div>
+    <div class="k-extra">
+      <div>
+        <h3>Дополнительная тема · 10 000 ₽ за 30 минут</h3>
+        <p>Управление впечатлением, основы коррекции фигуры или другая тема о стиле и моде — подбираем под возраст и интересы коллектива.</p>
       </div>
-
-      <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
-        <div style="border-top: 1px solid #75070d66; padding-top: 20px">
-          <h3 class="h3">Дополнительная тема</h3>
-          <p style="margin: 0 0 8px; font-size: 15px; line-height: 1.55">Управление впечатлением, основы коррекции фигуры или другая тема о стиле и моде — подбираем под возраст и интересы коллектива.</p>
-          <p style="margin: 0; font-size: 15px"><strong style="font-weight: 500">10 000 ₽</strong> за 30 минут</p>
-        </div>
-        <div style="border-top: 1px solid #75070d66; padding-top: 20px">
-          <h3 class="h3">Площадка</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">У вас в компании — без доплат. На площадке локального бренда — без аренды, примерка на вещах бренда. На независимой площадке к стоимости добавляется аренда.</p>
-        </div>
-        <div style="border-top: 1px solid #75070d66; padding-top: 20px">
-          <h3 class="h3">Фотограф</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">По желанию: снимет образы и сам корпоратив. Стоимость зависит от фотографа.</p>
-        </div>
+      <div>
+        <h3>Площадка</h3>
+        <p>У вас в компании — без доплат. На площадке локального бренда — без аренды, примерка на вещах бренда. На независимой площадке к стоимости добавляется аренда.</p>
+      </div>
+      <div>
+        <h3>Фотограф</h3>
+        <p>По желанию: снимет образы и сам корпоратив. Стоимость зависит от фотографа.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOR PARTICIPANTS + REQUIREMENTS -->
-  <section class="pad" style="padding: 88px 32px">
-    <div style="max-width: 1216px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px">
-      <div style="flex: 1 1 520px; min-width: 0">
-        <p class="over">03 — Для участников</p>
-        <h2 class="h2" style="margin-bottom: 28px">Что получает каждый</h2>
-        <div style="display: flex; flex-direction: column">
-          <div style="padding: 18px 0; border-top: 1px solid #75070d40">
-            <h3 class="h3">Понимание трендов</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.55">Какие тренды подходят именно ему и как носить их каждый день.</p>
-          </div>
-          <div style="padding: 18px 0; border-top: 1px solid #75070d40">
-            <h3 class="h3">Свой образ</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.55">Подобранный стилистом лично для него.</p>
-          </div>
-          <div style="padding: 18px 0; border-top: 1px solid #75070d40; border-bottom: 1px solid #75070d40">
-            <h3 class="h3">Знакомство с локальными брендами</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.55">Вещи нижегородских дизайнеров можно примерить, а на мини-ярмарке — купить.</p>
-          </div>
-        </div>
-        <p style="margin: 20px 0 0; font-size: 14px; line-height: 1.55">Ждём и смешанные коллективы. Подборка мужской одежды пока небольшая — расскажите о составе группы, и мы подготовимся заранее.</p>
+<!-- Для участников -->
+<section data-screen-label="Для участников">
+  <div class="k-in k-two">
+    <div>
+      <p class="k-over">03 — Для участников</p>
+      <h2 class="k-h2">Что получает каждый</h2>
+      <div class="k-list">
+        <div><h3>Понимание трендов</h3><p>Какие тренды подходят именно ему и как носить их каждый день.</p></div>
+        <div><h3>Свой образ</h3><p>Подобранный стилистом лично для него.</p></div>
+        <div><h3>Знакомство с локальными брендами</h3><p>Вещи нижегородских дизайнеров можно примерить, а на мини-ярмарке — купить.</p></div>
       </div>
-      <div class="ph" style="flex: 1 1 420px; min-width: 0; min-height: 420px">
-        <strong>ФОТО 5 · 3:2</strong>
-        <span>Групповое фото коллектива в готовых образах: у каждого свой стиль, настроение живое.</span>
-      </div>
+      <p class="k-note">Ждём и смешанные коллективы. Подборка мужской одежды пока небольшая — расскажите о составе группы, и мы подготовимся заранее.</p>
     </div>
-  </section>
+    <div class="k-ph k-photo"><strong>ФОТО 6 · 4:5</strong><span>Групповое фото коллектива в готовых образах: у каждого свой стиль.</span></div>
+  </div>
+</section>
 
-  <section class="pad" style="background: #75070d; color: #f3e7d8; padding: 72px 32px">
-    <div style="max-width: 1216px; margin: 0 auto">
-      <p class="over" style="color: #f3e7d8">04 — Подготовка</p>
-      <h2 class="h2" style="color: #f3e7d8; margin-bottom: 36px">Что нужно от компании</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
-        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
-          <h3 class="h3" style="color: #f3e7d8">Место для переодевания</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">Отдельная комната или зона, где можно спокойно примерить вещи.</p>
-        </div>
-        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
-          <h3 class="h3" style="color: #f3e7d8">Экран для презентации</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">Для практикума мы показываем слайды с трендами и образами.</p>
-        </div>
-        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
-          <h3 class="h3" style="color: #f3e7d8">Кофе-брейк</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">В расширенном формате — перерыв перед мини-ярмаркой. Его организует компания.</p>
-        </div>
-        <div style="border-top: 1px solid #f3e7d84d; padding-top: 16px">
-          <h3 class="h3" style="color: #f3e7d8">Остальное привозим мы</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55">Одежду, украшения и зеркала.</p>
+<!-- Подготовка -->
+<section class="k-red" data-screen-label="Подготовка">
+  <div class="k-in">
+    <div class="k-head">
+      <p class="k-over">04 — Подготовка</p>
+      <h2 class="k-h2">Что нужно от компании</h2>
+    </div>
+    <div class="k-prep">
+      <div><h3>Место для переодевания</h3><p>Отдельная комната или зона, где можно спокойно примерить вещи.</p></div>
+      <div><h3>Экран для презентации</h3><p>Для практикума мы показываем слайды с трендами и образами.</p></div>
+      <div><h3>Кофе-брейк</h3><p>В расширенном формате — перерыв перед мини-ярмаркой. Его организует компания.</p></div>
+      <div><h3>Остальное привозим мы</h3><p>Одежду, украшения и зеркала.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Отзывы -->
+<section data-screen-label="Отзывы">
+  <div class="k-in">
+    <div class="k-head">
+      <p class="k-over">05 — Отзывы</p>
+      <h2 class="k-h2">35+ практикумов уже проведено</h2>
+    </div>
+    <div class="k-grid">
+      <figure class="k-quote">
+        <blockquote>Вроде лекция про актуальные тренды, а на самом деле непринуждённо, весело и доступно обсудили, что и где покупать.</blockquote>
+        <figcaption>Ольга Тарасова</figcaption>
+      </figure>
+      <figure class="k-quote">
+        <blockquote>Всё очень понятно, доступно, Ольга открыта для вопросов и диалога.</blockquote>
+        <figcaption>Юлия Емельянова</figcaption>
+      </figure>
+      <figure class="k-quote">
+        <blockquote>Всё понравилось. Всё доступно, наглядно, познавательно. Прекрасная атмосфера.</blockquote>
+        <figcaption>Мария</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Кто ведёт -->
+<section class="k-milk" data-screen-label="Кто ведёт">
+  <div class="k-in">
+    <div class="k-head">
+      <p class="k-over">06 — Кто ведёт</p>
+      <h2 class="k-h2">Стилисты практикума</h2>
+    </div>
+    <div class="k-team">
+      <div class="k-person">
+        <img src="uploads/ольга.png" alt="Ольга Мышаева">
+        <div>
+          <h3>Ольга Мышаева</h3>
+          <p>Стилист, дизайнер бренда FЁKLA&amp;SЁVKLA, эксперт по управлению впечатлением. Ведущий стилист конкурса «Леди года», автор курсов «Стильная Я» и «Стильный интенсив».</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="pad" style="padding: 88px 32px">
-    <div style="max-width: 1216px; margin: 0 auto">
-      <p class="over">05 — Отзывы</p>
-      <h2 class="h2">35+ практикумов уже проведено</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
-        <figure style="margin: 0; border: 1px solid #75070d66; padding: 28px; display: flex; flex-direction: column; gap: 16px">
-          <blockquote style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.5; color: #2b1214">«Вроде лекция про актуальные тренды, а на самом деле непринуждённо, весело и доступно обсудили, что и где покупать».</blockquote>
-          <figcaption style="font-size: 14px; margin-top: auto">Ольга Тарасова</figcaption>
-        </figure>
-        <figure style="margin: 0; border: 1px solid #75070d66; padding: 28px; display: flex; flex-direction: column; gap: 16px">
-          <blockquote style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.5; color: #2b1214">«Всё очень понятно, доступно, Ольга открыта для вопросов и диалога».</blockquote>
-          <figcaption style="font-size: 14px; margin-top: auto">Юлия Емельянова</figcaption>
-        </figure>
-        <figure style="margin: 0; border: 1px solid #75070d66; padding: 28px; display: flex; flex-direction: column; gap: 16px">
-          <blockquote style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 18px; line-height: 1.5; color: #2b1214">«Всё понравилось. Всё доступно, наглядно, познавательно. Прекрасная атмосфера».</blockquote>
-          <figcaption style="font-size: 14px; margin-top: auto">Мария</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERTS -->
-  <section class="pad" style="background: #f7efe3; padding: 88px 32px">
-    <div style="max-width: 1216px; margin: 0 auto">
-      <p class="over">06 — Кто ведёт</p>
-      <h2 class="h2">Стилисты практикума</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px">
-        <div style="display: flex; flex-wrap: wrap; gap: 24px">
-          <div class="ph" style="flex: 0 0 180px; aspect-ratio: 4 / 5"><strong>ФОТО 6 · 4:5</strong><span>Портрет Ольги</span></div>
-          <div style="flex: 1 1 200px; min-width: 0">
-            <h3 class="h3" style="font-size: 24px">Ольга Мышаева</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.6">Стилист, дизайнер бренда FЁKLA&amp;SЁVKLA, эксперт по управлению впечатлением. Ведущий стилист конкурса «Леди года», автор курсов «Стильная Я» и «Стильный интенсив».</p>
-          </div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 24px">
-          <div class="ph" style="flex: 0 0 180px; aspect-ratio: 4 / 5"><strong>ФОТО 7 · 4:5</strong><span>Портрет Юлии</span></div>
-          <div style="flex: 1 1 200px; min-width: 0">
-            <h3 class="h3" style="font-size: 24px">Юлия Тритузова</h3>
-            <p style="margin: 0; font-size: 15px; line-height: 1.6">Персональный стилист с опытом более 5 лет: шопинг-сопровождение, стилизация фото- и видеосъёмок, ТВ-проекты по преображению на ННТВ. Один из ведущих стилистов «Леди года».</p>
-          </div>
+      <div class="k-person">
+        <img src="uploads/юлия.png" alt="Юлия Тритузова">
+        <div>
+          <h3>Юлия Тритузова</h3>
+          <p>Персональный стилист с опытом более 5 лет: шопинг-сопровождение, стилизация фото- и видеосъёмок, ТВ-проекты по преображению на ННТВ. Один из ведущих стилистов «Леди года».</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- REQUEST -->
-  <section id="request" class="pad" style="padding: 88px 32px">
-    <div style="max-width: 1216px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px">
-      <div style="flex: 1 1 400px; min-width: 0">
-        <p class="over">07 — Заявка</p>
-        <h2 class="h2" style="margin-bottom: 20px">Обсудим ваш корпоратив</h2>
-        <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.6">Расскажите о коллективе и о том, когда планируете мероприятие. Мы свяжемся с вами, поможем выбрать формат и рассчитаем стоимость.</p>
-        <p style="margin: 0; font-size: 16px; line-height: 1.8"><a href="tel:+79202575777">+7 920 257-57-77</a><br><a href="mailto:hi@modnynn.ru">hi@modnynn.ru</a></p>
+<!-- Заявка -->
+<section id="request" data-screen-label="Заявка">
+  <div class="k-in k-two">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <p class="k-over" style="margin: 0">07 — Заявка</p>
+      <h2 class="k-h2">Обсудим ваш корпоратив</h2>
+      <p class="k-text" style="max-width: 46ch">Расскажите о коллективе и о том, когда планируете мероприятие. Мы свяжемся с вами, поможем выбрать формат и рассчитаем стоимость.</p>
+      <div class="k-contacts">
+        <a href="tel:+79202575777">+7 920 257-57-77</a>
+        <a href="mailto:hi@modnynn.ru">hi@modnynn.ru</a>
+        <span style="opacity: 0.75">переулок Кожевенный, 5, Нижний Новгород</span>
       </div>
-      <form style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
-        <label class="field">Имя<input type="text" name="name" autocomplete="name"></label>
-        <label class="field">Компания<input type="text" name="company" autocomplete="organization"></label>
-        <label class="field">Телефон или email<input type="text" name="contact"></label>
-        <label class="field">Сколько участников<input type="text" name="people" inputmode="numeric"></label>
-        <label class="field" style="grid-column: 1 / -1">Формат
+    </div>
+
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <form class="k-form" onSubmit="{{ submit }}">
+        <div class="k-form-row">
+          <label class="k-field">Имя<input required="" type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться"></label>
+          <label class="k-field">Компания<input type="text" name="company" autocomplete="organization" placeholder="Название"></label>
+        </div>
+        <div class="k-form-row">
+          <label class="k-field">Телефон или email<input required="" type="text" name="contact" placeholder="Как с вами связаться"></label>
+          <label class="k-field">Сколько участников<input type="text" name="people" inputmode="numeric" placeholder="Примерно"></label>
+        </div>
+        <label class="k-field">Формат
           <select name="format">
             <option>Пока не знаю — помогите выбрать</option>
             <option>Практикум</option>
@@ -304,22 +383,35 @@ a{color:#75070d}a:hover{color:#4e0509}
             <option>Практикум и мини-ярмарка</option>
           </select>
         </label>
-        <label class="field" style="grid-column: 1 / -1">Комментарий и желаемая дата<textarea name="message" rows="4"></textarea></label>
-        <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
-          <button type="button" class="btn btn-main" style="border: 0; cursor: pointer; font-family: inherit">Отправить заявку</button>
-          <p style="margin: 0; font-size: 13px; line-height: 1.5">Отправляя форму, вы соглашаетесь с политикой конфиденциальности и даёте согласие на обработку персональных данных.</p>
-        </div>
+        <label class="k-field">Комментарий и желаемая дата<textarea name="message" rows="4" placeholder="Пара слов о коллективе и сроках"></textarea></label>
+        <button class="k-submit" type="submit">Отправить заявку</button>
+        <p class="k-legal">Отправляя форму, вы соглашаетесь с политикой конфиденциальности и даёте согласие на обработку персональных данных.</p>
       </form>
-    </div>
-  </section>
+    </sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div class="k-sent">
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Свяжемся с вами, чтобы обсудить формат и дату.</p>
+      </div>
+    </sc-if>
+  </div>
+</section>
 
 <dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":5600}}'>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+// Форма заявки пока никуда не отправляет — только показывает «Заявка отправлена», как остальные формы макета.
 class Component extends DCLogic {
-  renderVals() { return {}; }
+  state = { sent: false };
+  renderVals() {
+    return {
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+    };
+  }
 }
 </script>
 </body>

@@ -21,29 +21,31 @@ a { color: #75070D; text-decoration: none; }
 a:hover { color: #4E0509; }
 
 .sv-wrap { max-width: 1280px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 32px; }
-.sv-over { margin: 0 0 16px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D; }
-.sv-h2 { margin: 0 0 36px; font-family: 'Yeseva One', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4vw, 44px); line-height: 1.1; color: #75070D; }
+.sv-over { margin: 0 0 20px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #75070D; }
+.sv-h2 { margin: 0 0 clamp(28px, 4vw, 44px); font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.12; color: #75070D; }
 
 /* Карточка услуги — по прототипу Татьяны */
-.service-card { display: flex; flex-wrap: wrap; border: 1px solid rgba(117,7,13,0.4); background: #F7EFE3; color: #2B1214; }
-.service-card__media { flex: 1 1 420px; min-width: 0; min-height: 420px; position: relative; background: #E4D2BB; color: #5B0207; }
+.service-card { display: flex; flex-wrap: wrap; border: 1px solid rgba(117,7,13,0.3); background: #F7EFE3; color: #2B1214; }
+.service-card__media { flex: 1 1 420px; min-width: 0; min-height: 440px; position: relative; overflow: hidden; background: #E4D2BB; }
 /* Когда появится фото: замените .service-card__placeholder на <img class="service-card__photo" src="..." alt="..."> */
-.service-card__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.service-card__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
 .service-card__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 24px; font-size: 15px; line-height: 1.5; }
 .service-card__placeholder strong { font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; }
-.service-card__body { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: 40px; }
+.service-card__body { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: clamp(28px, 3.4vw, 44px); }
 .service-card__label { margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #75070D; }
-.service-card__title { margin: 0; font-family: 'Yeseva One', Georgia, serif; font-size: 34px; font-weight: 400; line-height: 1.15; color: #75070D; }
+.service-card__title { margin: 0; font-family: 'Yeseva One', serif; font-size: clamp(30px, 3vw, 40px); font-weight: 400; line-height: 1.12; color: #75070D; }
 .service-card__title a { color: inherit; }
-.service-card__text { margin: 0; font-size: 16px; line-height: 1.6; }
+.service-card__text { margin: 0; font-size: 17px; line-height: 1.65; }
 .service-card__list { margin: 0; padding: 0; list-style: none; font-size: 15px; line-height: 1.5; border-bottom: 1px solid rgba(117,7,13,0.25); }
 .service-card__list li { padding: 10px 0; border-top: 1px solid rgba(117,7,13,0.25); }
-.service-card__facts { margin: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 17px; color: #75070D; }
+.service-card__facts { margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.service-card__facts span { padding: 8px 14px; border: 1px solid rgba(117,7,13,0.3); font-family: 'IBM Plex Serif', Georgia, serif; font-size: 14px; color: #75070D; }
+.service-card__facts span:last-child { background: #75070D; border-color: #75070D; color: #F3E7D8; }
 .service-card__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
-.service-card__btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; font-size: 15px; text-decoration: none; }
+.service-card__btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 15px; transition: background 0.2s, color 0.2s; }
 .service-card__btn--main { background: #75070D; color: #F3E7D8; }
-.service-card__btn--main:hover { background: #4E0509; color: #F3E7D8; }
-.service-card__btn--line { border: 1px solid rgba(117,7,13,0.4); color: #75070D; }
+.service-card__btn--main:hover { background: #5B0207; color: #F3E7D8; }
+.service-card__btn--line { border: 1px solid rgba(117,7,13,0.5); color: #75070D; }
 .service-card__btn--line:hover { background: #E4D2BB; }
 
 @media (max-width: 720px) {
@@ -82,7 +84,7 @@ a:hover { color: #4E0509; }
     </div>
 
     <div class="service-card__body">
-      <p class="service-card__label">Для компаний</p>
+      <p class="service-card__label">Для компаний · 35+ практикумов</p>
       <h3 class="service-card__title"><a href="Корпоратив со стилистом.dc.html">Корпоратив со стилистом</a></h3>
       <p class="service-card__text">Стилисты приходят в вашу компанию с одеждой и украшениями локальных брендов. Рассказываем о трендах и логике современной моды и помогаем каждому участнику подобрать свой образ.</p>
 
@@ -100,7 +102,7 @@ a:hover { color: #4E0509; }
       </p>
 
       <div class="service-card__actions">
-        <a class="service-card__btn service-card__btn--main" href="Корпоратив со стилистом.dc.html">Подробнее →</a>
+        <a class="service-card__btn service-card__btn--main" href="Корпоратив со стилистом.dc.html">Подробнее <span aria-hidden="true">→</span></a>
         <a class="service-card__btn service-card__btn--line" href="Корпоратив со стилистом.dc.html#request">Обсудить корпоратив</a>
       </div>
     </div>
