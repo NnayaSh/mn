@@ -12,7 +12,7 @@
     <a href="Опрос форума.dc.html" style="{{ cardStyle }}">
       <span style="{{ kickStyle }}">{{ kickText }}</span>
       <span style="{{ titleStyle }}">Что изменил для вас форум?</span>
-      <span style="{{ noteStyle }}">Скидка 10% · 2–3 минуты</span>
+      <span style="{{ noteStyle }}">Подарок · 2–3 минуты</span>
       <span style="{{ btnStyle }}" style-hover="background: #E8C9A0">Пройти опрос →</span>
     </a>
     <button type="button" aria-label="Закрыть" onClick="{{ close }}" style="{{ closeStyle }}">×</button>
@@ -82,7 +82,7 @@ class Component extends DCLogic {
       cardStyle: `position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: ${mobile ? 8 : 18}px; padding: ${mobile ? '16px 48px 14px 16px' : '30px 26px 26px'}; background: #5B0207; color: #FFFBF7; text-decoration: none`,
       kickStyle: `font: 500 ${mobile ? 11 : 12}px/1.2 ${osw}; letter-spacing: 0.18em; text-transform: uppercase; color: #E8C9A0`,
       titleStyle: `display: block; font: 900 ${mobile ? 19 : 30}px/1.08 ${pf}; letter-spacing: -0.01em; color: #FFFBF7; ${mobile ? '' : 'padding-right: 18px'}`,
-      kickText: mobile ? 'Опрос · скидка 10%' : 'Опрос гостей форума',
+      kickText: mobile ? 'Опрос · подарок' : 'Опрос гостей форума',
       noteStyle: mobile ? 'display: none' : `display: inline-block; margin-left: -12px; padding: 7px 34px 9px 24px; background: url(uploads/forum-mazok-1.png) center / 100% 100% no-repeat; font: 700 17px/1 ${osw}; letter-spacing: 0.04em; text-transform: uppercase; color: #5B0207; white-space: nowrap`,
       btnStyle: mobile
         ? `font: 500 12px/1.2 ${osw}; letter-spacing: 0.12em; text-transform: uppercase; color: #D8F32A`
