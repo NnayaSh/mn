@@ -28,7 +28,12 @@ a:hover { color: #4E0509; }
 .service-card { display: flex; flex-wrap: wrap; border: 1px solid rgba(117,7,13,0.3); background: #F7EFE3; color: #2B1214; }
 .service-card__media { flex: 1 1 420px; min-width: 0; min-height: 440px; position: relative; overflow: hidden; background: #E4D2BB; }
 /* Когда появится фото: замените .service-card__placeholder на <img class="service-card__photo" src="..." alt="..."> */
-.service-card__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.service-card__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform 0.6s; }
+.service-card__media:hover .service-card__photo { transform: scale(1.03); }
+.sv-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+.sv-gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 30%; display: block; }
+.sv-hero-pics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 8px; }
+.sv-hero-pics img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 30%; display: block; }
 .service-card__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 24px; font-size: 15px; line-height: 1.5; }
 .service-card__placeholder strong { font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; }
 .service-card__body { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: clamp(28px, 3.4vw, 44px); }
@@ -50,7 +55,8 @@ a:hover { color: #4E0509; }
 
 @media (max-width: 720px) {
   .sv-wrap { padding-left: 16px; padding-right: 16px; }
-  .service-card__media { flex-basis: 100%; min-height: 260px; }
+  .service-card__media { flex-basis: 100%; min-height: 300px; }
+  .sv-hero-pics { grid-template-columns: 1fr 1fr; gap: 10px; }
   .service-card__body { flex-basis: 100%; padding: 24px 20px; }
   .service-card__title { font-size: 28px; }
 }
@@ -67,6 +73,12 @@ a:hover { color: #4E0509; }
     <p style="margin: 0; font-family: 'IBM Plex Serif', Georgia, serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75">Услуги</p>
     <h1 style="margin: 0; font-family: 'Yeseva One', serif; font-weight: 400; font-size: clamp(40px, 7vw, 100px); line-height: 1.02; text-wrap: balance; max-width: 18ch">Стиль с командой «Модного Нижнего»</h1>
     <p style="margin: 0; max-width: 56ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; opacity: 0.95">Стилисты проекта проводят практикумы о стиле и подбирают образы на одежде и украшениях нижегородских брендов.</p>
+    <div class="sv-hero-pics">
+      <img src="uploads/uslugi-praktikum.jpg" alt="Ольга Мышаева ведёт практикум у экрана со слайдами">
+      <img src="uploads/uslugi-primerka-shlyapa.jpg" alt="Стилист примеряет на гостью головной убор">
+      <img src="uploads/uslugi-veshalki.jpg" alt="Гостья выбирает вещи на рейле в пространстве «Модный Нижний»">
+      <img src="uploads/uslugi-makiyazh.jpg" alt="Стилист работает с гостьей на городском маркете">
+    </div>
   </div>
 </section>
 
@@ -77,10 +89,7 @@ a:hover { color: #4E0509; }
 
   <article class="service-card">
     <div class="service-card__media">
-      <div class="service-card__placeholder">
-        <strong>ФОТО 1 · ОБЛОЖКА · 4:3</strong>
-        <span>Стилист поправляет образ участника у рейла с одеждой. На фоне читается офис, рядом видны коллеги.</span>
-      </div>
+      <a href="Корпоратив со стилистом.dc.html" aria-hidden="true" tabindex="-1"><img class="service-card__photo" src="uploads/uslugi-olga-obraz.jpg" alt=""></a>
     </div>
 
     <div class="service-card__body">
@@ -107,6 +116,10 @@ a:hover { color: #4E0509; }
       </div>
     </div>
   </article>
+  <div class="sv-gallery">
+    <img src="uploads/uslugi-polka.jpg" alt="Ольга Мышаева рассказывает гостьям об аксессуарах нижегородских брендов">
+    <img src="uploads/uslugi-bluza.jpg" alt="Стилист и гостья выбирают блузу">
+  </div>
 </section>
 
 <dc-import name="Подвал" hint-size="100%,420px" style="display: block"></dc-import>
